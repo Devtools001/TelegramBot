@@ -35,6 +35,8 @@ else:
 
 
 updater=Fday.Updater(BOT_TOKEN,workers=WORKERS,use_context=True)
+dispatcher=updater.dispatcher
+
 
 pgram = Client (
       "TeleBot",
