@@ -1,4 +1,4 @@
-from TeleBot import pgram
+from TeleBot import pgram,LOG
 from pyrogram import filters
 
 @pgram.on_message(filters.command("start"))
