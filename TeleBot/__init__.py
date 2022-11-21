@@ -27,12 +27,14 @@ if ENV:
     API_HASH=str(os.environ.get("API_HASH",None))
     BOT_TOKEN=str(os.environ.get("BOT_TOKEN",None))
     WORKERS = int(os.environ.get("WORKERS", 8))
+    URL = os.environ.get("URL", "")
 
 else:
     API_ID=Config.API_ID
     API_HASH=Config.API_HASH
     BOT_TOKEN=Config.BOT_TOKEN
     WORKERS=Config.WORKERS
+    URL=Config.URL
 
 updater=Fday.Updater(BOT_TOKEN,workers=WORKERS,use_context=True)
 dispatcher=updater.dispatcher
