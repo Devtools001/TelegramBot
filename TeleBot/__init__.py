@@ -26,6 +26,7 @@ if ENV:
     API_ID=int(os.environ.get("API_ID",None))
     API_HASH=str(os.environ.get("API_HASH",None))
     BOT_TOKEN=str(os.environ.get("BOT_TOKEN",None))
+    WORKERS = int(os.environ.get("WORKERS", 8))
 
 else:
     API_ID=Config.API_ID
