@@ -32,7 +32,7 @@ else:
     API_ID=Config.API_ID
     API_HASH=Config.API_HASH
     BOT_TOKEN=Config.BOT_TOKEN
-
+    WORKERS=Config.WORKERS
 
 updater=Fday.Updater(BOT_TOKEN,workers=WORKERS,use_context=True)
 dispatcher=updater.dispatcher
