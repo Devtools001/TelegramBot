@@ -22,7 +22,7 @@ if sys.version_info[0] < 3 or sys.version_info[1] < 6:
 ENV=bool(os.environ.get("ENV",False))
 
 if ENV:
-    API_ID=int(os.environ.get("API_ID",None"))
+    API_ID=int(os.environ.get("API_ID",None))
     API_HASH=str(os.environ.get("API_HASH",None))
     BOT_TOKEN=str(os.environ.get("BOT_TOKEN",None))
 
