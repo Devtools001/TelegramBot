@@ -1,3 +1,4 @@
+import importlib
 from TeleBot import (
     pgram,
     LOG,
@@ -7,9 +8,24 @@ from TeleBot import (
     )
 from pyrogram import filters
 
+
+IMPORTED = {}
+MIGRATEABLE = []
+HELPABLE = {}
+STATS = []
+USER_INFO = []
+DATA_IMPORT = []
+DATA_EXPORT = []
+CHAT_SETTINGS = {}
+USER_SETTINGS = {}
+
+for module_name in FRIDAY_MODULES:
+    imported_module 
 @pgram.on_message(filters.command("start"))
-async def start(_,msg):
-    await msg.reply_text("am started")
+async def start_cmd(_, message):
+    
+    
+
 
 if __name__ == "__main__":
     LOG.info("started")
