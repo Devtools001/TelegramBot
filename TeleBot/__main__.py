@@ -1,7 +1,7 @@
 from TeleBot import pgram
 from pyrogram import filters
 
-@app.on_message(filters.command("start"))
+@pgram.on_message(filters.command("start"))
 async def start(_,msg):
     await msg.reply_text("am started")
 
