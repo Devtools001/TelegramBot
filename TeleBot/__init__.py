@@ -2,6 +2,7 @@ import os
 import logging
 import time 
 import sys
+import telegram.ext as Fday
 from pyrogram import Client
 from config import Friday as Config
 
@@ -30,6 +31,9 @@ else:
     API_ID=Config.API_ID
     API_HASH=Config.API_HASH
     BOT_TOKEN=Config.BOT_TOKEN
+
+
+updater=Fday.Updater(BOT_TOKEN,workers=WORKERS,use_context=True)
 
 pgram = Client (
       "TeleBot",
