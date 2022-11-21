@@ -3,7 +3,7 @@ import logging
 import time 
 import sys
 from pyrogram import Client
-from
+from config import Friday as Config
 
 
 logging.basicConfig(
