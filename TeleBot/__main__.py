@@ -55,7 +55,7 @@ from TeleBot.modules import ALL_MODULES
 from TeleBot.modules.helper_funcs.misc import paginate_modules
 
 
-START_IMG="ok"
+START_IMG="https://telegra.ph/file/1cb3bb5f1e44cebc4a50f.jpg"
 
 PM_START_TEXT = """
 *ʜᴇʏ* {}, 🥀
