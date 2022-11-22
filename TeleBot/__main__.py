@@ -66,7 +66,7 @@ PM_START_TEXT = """
 ๏ ᴄʟɪᴄᴋ ᴏɴ ᴛʜᴇ ʜᴇʟᴩ ʙᴜᴛᴛᴏɴ ᴛᴏ ɢᴇᴛ ɪɴғᴏʀᴍᴀᴛɪᴏɴ ᴀʙᴏᴜᴛ ᴍʏ ᴍᴏᴅᴜʟᴇs ᴀɴᴅ ᴄᴏᴍᴍᴀɴᴅsn.
 
 ๏ *ᴅɪᴅɴ'ᴛ sʟᴇᴇᴘ* {}
-๏ *ᴘɪɴɢ* {}
+๏ *ᴘɪɴɢ* {}ms
 """
 
 buttons = [
@@ -157,9 +157,9 @@ def send_help(chat_id, text, keyboard=None):
 
 
 def start(update: Update, context: CallbackContext):
-    args = context.args
-    uptime = get_readable_time((time.time() - StartTime))
+    args = context.args    
     ping_start = time.time()
+    uptime = get_readable_time((time.time() - StartTime))
     ping_end = time.time()
     ping_time = round((ping_end - ping_start) * 1000,3)
     if update.effective_chat.type == "private":
