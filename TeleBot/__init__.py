@@ -10,7 +10,7 @@ from config import Friday as Config
 logging.basicConfig(
     style="{",format="{asctime} -- {name} -- {levelname} -- {message}",
     handlers=[logging.FileHandler("log.txt"), logging.StreamHandler()],
-    level=logging.DEBUG,
+    level=logging.INFO,
 )
 
 LOG=logging.getLogger("Stark-industry")
