@@ -741,8 +741,8 @@ def migrate_chats(update: Update, context: CallbackContext):
     raise DispatcherHandlerStop
 
 
-async def main():
-    async with pgram:
+main():
+
         if SUPPORT_CHAT is not None and isinstance(SUPPORT_CHAT, str):
             try:
                await pgram.send_photo(
