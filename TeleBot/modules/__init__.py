@@ -36,6 +36,6 @@ def _list_all_modules():
     return all_modules
 
 
-FRIDAY_MODULES = _list_all_modules()
-LOG.info("Modules to load: %s", str(FRIDAY_MODULES))
-__all__ = FRIDAY_MODULES + ["FRIDAY_MODULES"]
+ALL_MODULES = _list_all_modules()
+LOG.info("Modules to load: %s", str(ALL_MODULES))
+__all__ = ALL_MODULES + ["ALL_MODULES"]
