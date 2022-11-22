@@ -21,8 +21,33 @@ if sys.version_info[0] < 3 or sys.version_info[1] < 6:
 else:
   LOG.info("Noice you have python version greater than 3.6")
 
-ENV=bool(os.environ.get("ENV",False))
+StartTime = time.time()
 
+def get_readable_time(seconds: int) -> str:
+    count = 0
+    ping_time = ""
+    time_list = []
+    time_suffix_list = ["s", "m", "h", "days"]
+
+    while count < 4:
+        count += 1
+        remainder, result = divmod(seconds, 60) if count < 3 else divmod(seconds, 24)
+        if seconds == 0 and remainder == 0:
+            break
+        time_list.append(int(result))
+        seconds = int(remainder)
+
+    for x in range(len(time_list)):
+        time_list[x] = str(time_list[x]) + time_suffix_list[x]
+    if len(time_list) == 4:
+        ping_time += time_list.pop() + ", "
+
+    time_list.reverse()
+    ping_time += ":".join(time_list)
+
+    return ping_time
+
+ENV=bool(os.environ.get("ENV",False))
 if ENV:
     API_ID=int(os.environ.get("API_ID",None))
     API_HASH=str(os.environ.get("API_HASH",None))
@@ -31,7 +56,13 @@ if ENV:
     URL = os.environ.get("URL", "")
     LOAD = os.environ.get("LOAD", "").split()
     NO_LOAD = os.environ.get("NO_LOAD", "translation").split()
-
+    BOT_NAME = str(os.environ.get("BOT_NAME",None))
+    BOT_USERNAME = str(os.environ.get("BOT_USERNAME",None))
+    DONATION_LINK = str(os.environ.get("DONATION_LINK",None))
+    OWNER_ID = int(os.environ.get("OWNER_ID",None))
+    PORT = int(os.environ.get("PORT",None))
+    SUPPORT_CHAT = str(os.environ.get("SUPPORT_CHAT",None))
+     
 else:
     API_ID=Config.API_ID
     API_HASH=Config.API_HASH
@@ -40,6 +71,12 @@ else:
     URL=Config.URL
     LOAD=Config.LOAD
     NO_LOAD = Config.NO_LOAD
+    BOT_NAME = Config.BOT_NAME
+    BOT_USERNAME = Config.BOT_USERNAME
+    DONATION_LINK = Config.DONATION_LINK
+    OWNER_ID = Config.OWNER_ID
+    PORT = Config.PORT
+    SUPPORT_CHAT = Config.SUPPORT_CHAT
 
 updater=Fday.Updater(BOT_TOKEN,workers=WORKERS,use_context=True)
 dispatcher=updater.dispatcher
