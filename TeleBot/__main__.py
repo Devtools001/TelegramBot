@@ -741,11 +741,11 @@ def migrate_chats(update: Update, context: CallbackContext):
     raise DispatcherHandlerStop
 
 
-def main():
-
-    if SUPPORT_CHAT is not None and isinstance(SUPPORT_CHAT, str):
-        try:
-            pgram.send_photo(
+async def main():
+    async with pgram:
+        if SUPPORT_CHAT is not None and isinstance(SUPPORT_CHAT, str):
+            try:
+               pgram.send_photo(
                 f"@{SUPPORT_CHAT}",
                 photo=START_IMG,
                 caption=f"""
@@ -758,12 +758,13 @@ def main():
 ㅤ★ **ᴩʏʀᴏɢʀᴀᴍ :** `{pyrover}`
 ┗•❅────✧❅✦❅✧────❅•┛""",                
             )
-        except Unauthorized:
+            except Unauthorized:
             LOG.warning(
                 f"Bot isn't able to send message to @{SUPPORT_CHAT}, go and check!"
             )
-        except BadRequest as e:
-            LOG.warning(e.message)
+            except BadRequest as e:
+            LOG.warning(e.message)        
+    
 
     start_handler = CommandHandler("start", start)
 
