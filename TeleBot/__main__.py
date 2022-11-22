@@ -1,13 +1,9 @@
 import importlib
 import re
 import time
-from platform import python_version as y
 from sys import argv
 from typing import Optional
-
-from pyrogram import __version__ as pyrover
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, ParseMode, Update
-from telegram import __version__ as telever
 from telegram.error import (
     BadRequest,
     ChatMigrated,
@@ -25,15 +21,13 @@ from telegram.ext import (
 )
 from telegram.ext.dispatcher import DispatcherHandlerStop, run_async
 from telegram.utils.helpers import escape_markdown
-from telethon import __version__ as tlhver
 
-import TeleBot.modules.sql.users_sql as sql
 from TeleBot import (
     BOT_NAME,
     BOT_USERNAME,
     CERT_PATH,
     DONATION_LINK,
-    LOGGER,
+    LOG,
     OWNER_ID,
     PORT,
     START_IMG,
@@ -43,8 +37,7 @@ from TeleBot import (
     WEBHOOK,
     StartTime,
     dispatcher,
-    pbot,
-    telethn,
+    pgram,    
     updater,
     get_readable_time
 )
