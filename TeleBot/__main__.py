@@ -97,7 +97,7 @@ buttons = [
     ],    
     [
         InlineKeyboardButton(text="⚡ ʜᴇʟᴘ ⚡", callback_data="help_back"),
-        InlineKeyboardButton(text="♻️ sᴛᴀᴛs ♻️", callback_data="bot_ping")
+        InlineKeyboardButton(text="♻️ sᴛᴀᴛs ♻️", callback_data="Friday_stats")
     ],    
 ]
 
@@ -179,10 +179,7 @@ def send_help(chat_id, text, keyboard=None):
 
 def start(update: Update, context: CallbackContext):
     args = context.args    
-    ping_start = datetime.now()
-    uptime = get_readable_time((time.time() - StartTime))
-    ping_end = datetime.now()
-    ping_time = (ping_end - ping_start).microseconds / 1000
+    uptime = get_readable_time((time.time() - StartTime))    
     if update.effective_chat.type == "private":
         if len(args) >= 1:
             if args[0].lower() == "help":
