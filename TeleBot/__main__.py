@@ -31,7 +31,7 @@ from TeleBot import (
     OWNER_ID,
     PORT,    
     SUPPORT_CHAT,
-    TOKEN,
+    BOT_TOKEN as TOKEN,
     URL,
     WEBHOOK,
     StartTime,
@@ -104,8 +104,8 @@ DATA_EXPORT = []
 CHAT_SETTINGS = {}
 USER_SETTINGS = {}
 
-for module_name in ALL_MODULES:
-    imported_module = importlib.import_module("FallenRobot.modules." + module_name)
+for module_name in FRIDAY_MODULES:
+    imported_module = importlib.import_module("TeleBot.modules." + module_name)
     if not hasattr(imported_module, "__mod_name__"):
         imported_module.__mod_name__ = imported_module.__name__
 
@@ -800,18 +800,12 @@ def main():
 
     else:
         LOGGER.info("Using long polling.")
-        updater.start_polling(timeout=15, read_latency=4, clean=True)
-
-    if len(argv) not in (1, 3, 4):
-        telethn.disconnect()
-    else:
-        telethn.run_until_disconnected()
+        updater.start_polling(timeout=15, read_latency=4, clean=True)    
 
     updater.idle()
 
 
 if __name__ == "__main__":
-    LOGGER.info("Successfully loaded modules: " + str(ALL_MODULES))
-    telethn.start(bot_token=TOKEN)
+    LOGGER.info("Successfully loaded modules: " + str(FRIDAY_MODULES))    
     pbot.start()
     main()
