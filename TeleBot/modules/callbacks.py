@@ -1,5 +1,5 @@
 import time
-from pyrogram import filters 
+from pyrogram import filters , __version__ as pyro 
 from TeleBot import pgram,StartTime,BOT_NAME,get_readable_time,BOT_USERNAME
 from pyrogram.types import CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton 
 
@@ -30,6 +30,17 @@ BUTTON = [
     ],    
 ]
 
+STATS_MSG="""
+ʜɪɪ {},
+
+๏ ʜᴇʀᴇ ɪs ᴍʏ sᴛᴀᴛs:
+» ᴜᴘᴛɪᴍᴇ : {}
+» ᴄᴘᴜ : {}
+» ʀᴀᴍ : {}
+» ᴅɪsᴋ : {}
+» ᴘʏʀᴏɢʀᴀᴍ ᴠᴇʀsɪᴏɴ : {}
+"""
+
 @pgram.on_callback_query(filters.regex("friday_back"))
 async def Friday(_, callback_query : CallbackQuery):
     query= callback_query.message
@@ -39,13 +50,12 @@ async def Friday(_, callback_query : CallbackQuery):
     reply_markup=InlineKeyboardMarkup(BUTTON))
 
 @pgram.on_callback_query(filters.regex("Friday_stats"))
-async def Friday(client, callback_query : CallbackQuery):
-    
+async def Friday(client, callback_query : CallbackQuery):    
     first_name=callback_query.from_user.first_name
     uptime= get_readable_time((time.time() - StartTime))
     await client.answer_callback_query(
     callback_query.id,
-    text="Hello",
+    text=STATS_MSG.format(first_name, uptime,cpu,ram,disk,pyro),
     show_alert=True
 )
 
