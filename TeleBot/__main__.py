@@ -62,7 +62,8 @@ ALIVE_MSG=f"""
 ㅤ★ **ʟɪʙʀᴀʀʏ :** `{telever}`
 ㅤ★ **ᴛᴇʟᴇᴛʜᴏɴ :** `{tlhver}`
 ㅤ★ **ᴩʏʀᴏɢʀᴀᴍ :** `{pyrover}`
-┗•❅────✧❅✦❅✧────❅•┛""",                
+┗•❅────✧❅✦❅✧────❅•┛
+"""               
             
 START_IMG="https://telegra.ph/file/1cb3bb5f1e44cebc4a50f.jpg"
 
