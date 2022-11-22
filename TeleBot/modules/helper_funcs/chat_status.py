@@ -32,3 +32,26 @@ def is_user_admin(chat: Chat, user_id: int, member: ChatMember = None) -> bool:
             ADMIN_CACHE[chat.id] = admin_list
 
             return user_id in admin_list
+
+def user_admin(func):
+    @wraps(func)
+    def is_admin(update: Update, context: CallbackContext, *args, **kwargs):
+        bot = context.bot
+        user = update.effective_user
+        chat = update.effective_chat
+
+        if user and is_user_admin(chat, user.id):
+            return func(update, context, *args, **kwargs)
+        if not user:
+            pass
+        elif DEL_CMDS and " " not in update.effective_message.text:
+            try:
+                update.effective_message.delete()
+            except:
+                pass
+        else:
+            update.effective_message.reply_text(
+                "At Least be an Admin to use these all Commands",
+            )
+
+    return is_admin
