@@ -14,7 +14,7 @@ async def wall(_,msg):
        if len(msg.command) < 3
        else msg.text.split(None,1)[1].replace(" ","%20")
        )
-    url=f"https://api.safone.me/wall?query={query}&limit=1"
+    url=f"https://api.safone.me/wall?query={query}"
     re=requests.get(url).json()
     wallpapers = re.get("results")
     index = randint(0, len(wallpapers) -1)
