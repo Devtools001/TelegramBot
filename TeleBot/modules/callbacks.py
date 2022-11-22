@@ -39,11 +39,14 @@ async def Friday(_, callback_query : CallbackQuery):
     reply_markup=InlineKeyboardMarkup(BUTTON))
 
 @pgram.on_callback_query(filters.regex("Friday_stats"))
-async def Friday(_, callback_query : CallbackQuery):
-    query= callback_query.message
+async def Friday(client, callback_query : CallbackQuery):
+    
     first_name=callback_query.from_user.first_name
     uptime= get_readable_time((time.time() - StartTime))
-    await query.answer("hii",show_alert=True
-    )
+    await client.answer_callback_query(
+    callback_query.id,
+    text="Hello",
+    show_alert=True
+)
 
 
