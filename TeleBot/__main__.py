@@ -432,7 +432,7 @@ def main():
         query=callback_query.message
         first_name=callback_query.from_user.first_name
         uptime = get_readable_time((time.time() - StartTime))
-        await query.edit_message_caption(PM_START_TEXT.format(first_name,BOT_NAME,uptime),
+        await query.edit_caption(PM_START_TEXT.format(first_name,BOT_NAME,uptime),
                 reply_markup=InlineKeyboardMarkup(buttons),
                 parse_mode=ParseMode.MARKDOWN,
                 
