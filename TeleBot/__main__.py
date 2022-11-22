@@ -33,7 +33,7 @@ from TeleBot import (
     BOT_USERNAME,
     CERT_PATH,
     DONATION_LINK,
-    LOGGER,
+    LOG,
     OWNER_ID,
     PORT,    
     SUPPORT_CHAT,
@@ -760,11 +760,11 @@ def main():
                 parse_mode=ParseMode.MARKDOWN,
             )
         except Unauthorized:
-            LOGGER.warning(
+            LOG.warning(
                 f"Bot isn't able to send message to @{SUPPORT_CHAT}, go and check!"
             )
         except BadRequest as e:
-            LOGGER.warning(e.message)
+            LOG.warning(e.message)
 
     start_handler = CommandHandler("start", start)
 
