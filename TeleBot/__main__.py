@@ -1,7 +1,7 @@
 import importlib
 import re
 import time
-import datetime
+from datetime import datetime
 from platform import python_version as y
 from sys import argv
 from typing import Optional
