@@ -599,11 +599,11 @@ def migrate_chats(update: Update, context: CallbackContext):
     else:
         return
 
-    LOGGER.info("Migrating from %s, to %s", str(old_chat), str(new_chat))
+    LOG.info("Migrating from %s, to %s", str(old_chat), str(new_chat))
     for mod in MIGRATEABLE:
         mod.__migrate__(old_chat, new_chat)
 
-    LOGGER.info("Successfully migrated!")
+    LOG.info("Successfully migrated!")
     raise DispatcherHandlerStop
 
 
@@ -632,7 +632,7 @@ def migrate_chats(update: Update, context: CallbackContext):
     dispatcher.add_error_handler(error_callback)
 
     if WEBHOOK:
-        LOGGER.info("Using webhooks.")
+        LOG.info("Using webhooks.")
         updater.start_webhook(listen="0.0.0.0", port=PORT, url_path=TOKEN)
 
         if CERT_PATH:
@@ -641,14 +641,14 @@ def migrate_chats(update: Update, context: CallbackContext):
             updater.bot.set_webhook(url=URL + TOKEN)
 
     else:
-        LOGGER.info("Using long polling.")
+        LOG.info("Using long polling.")
         updater.start_polling(timeout=15, read_latency=4, clean=True)    
 
     updater.idle()
 
 
 if __name__ == "__main__":
-    LOGGER.info("Successfully loaded modules: " + str(FRIDAY_MODULES))    
+    LOG.info("Successfully loaded modules: " + str(FRIDAY_MODULES))    
     pbot.start()
     
 
