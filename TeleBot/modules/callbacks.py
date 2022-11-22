@@ -34,9 +34,8 @@ BUTTON = [
 STATS_MSG="""
 ʜɪɪ {},
 
-๏ ʜᴇʀᴇ ɪs ᴍʏ sᴛᴀᴛs:
+๏ **ʜᴇʀᴇ ɪs ᴍʏ sᴛᴀᴛs:**
 » ᴜᴘᴛɪᴍᴇ : {}
-» ᴄᴘᴜ : {}
 » ʀᴀᴍ : {}
 » ᴅɪsᴋ : {}
 » ᴘʏʀᴏɢʀᴀᴍ ᴠᴇʀsɪᴏɴ : {}
@@ -53,13 +52,12 @@ async def Friday(_, callback_query : CallbackQuery):
 @pgram.on_callback_query(filters.regex("Friday_stats"))
 async def Friday(client, callback_query : CallbackQuery):    
     first_name=callback_query.from_user.first_name
-    uptime= get_readable_time((time.time() - StartTime))
-    cpu = psutil.cpu_percent(interval=0.5)
+    uptime= get_readable_time((time.time() - StartTime))   
     rem = psutil.virtual_memory().percent
     disk = psutil.disk_usage("/").percent
     await client.answer_callback_query(
     callback_query.id,
-    text=STATS_MSG.format(first_name, uptime,cpu,rem,disk,pyro),
+    text=STATS_MSG.format(first_name, uptime,rem,disk,pyro),
     show_alert=True
 )
 
