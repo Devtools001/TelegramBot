@@ -29,6 +29,8 @@ if ENV:
     BOT_TOKEN=str(os.environ.get("BOT_TOKEN",None))
     WORKERS = int(os.environ.get("WORKERS", 8))
     URL = os.environ.get("URL", "")
+    LOAD = os.environ.get("LOAD", "").split()
+    NO_LOAD = os.environ.get("NO_LOAD", "translation").split()
 
 else:
     API_ID=Config.API_ID
@@ -36,6 +38,8 @@ else:
     BOT_TOKEN=Config.BOT_TOKEN
     WORKERS=Config.WORKERS
     URL=Config.URL
+    LOAD=Config.LOAD
+    NO_LOAD = Config.NO_LOAD
 
 updater=Fday.Updater(BOT_TOKEN,workers=WORKERS,use_context=True)
 dispatcher=updater.dispatcher
