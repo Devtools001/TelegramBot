@@ -310,7 +310,7 @@ def help_button(update, context):
                 + HELPABLE[module].__help__
             )
             query.message.edit_caption(
-                HELP_STRINGS,
+                text,
                 parse_mode=ParseMode.MARKDOWN,                
                 reply_markup=InlineKeyboardMarkup(
                     [[InlineKeyboardButton(text="◁", callback_data="help_back")]]
