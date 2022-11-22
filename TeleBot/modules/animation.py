@@ -32,7 +32,7 @@ earth_ani = [
 @user_admin
 @pgram.on_message(filters.command("earth"))
 async def earth(_,msg):
-    m=await msg.edit_or_reply("🌍")
+    m=await edit_or_reply(msg,"🌍")
     for x in range(EDIT_TIMES):
         await m.edit(earth_ani[x % 18])
         asyncio.sleep(EDIT_SLEEP)
