@@ -8,9 +8,9 @@ from config import Friday as Config
 
 
 logging.basicConfig(
-    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+    style="{",format="{asctime} -- {name} -- {levelname} -- {message}",
     handlers=[logging.FileHandler("log.txt"), logging.StreamHandler()],
-    level=logging.INFO,
+    level=logging.DEBUG,
 )
 
 LOG=logging.getLogger("Stark-industry")
@@ -18,7 +18,8 @@ LOG=logging.getLogger("Stark-industry")
 if sys.version_info[0] < 3 or sys.version_info[1] < 6:
     LOG.error("you must have python version of atleast 3.6, bot quitting")
     quit(1)
-
+else:
+  LOG.info("Noice you have python version greater than 3.6")
 
 ENV=bool(os.environ.get("ENV",False))
 
