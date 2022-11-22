@@ -426,32 +426,7 @@ def migrate_chats(update: Update, context: CallbackContext):
     raise DispatcherHandlerStop
 
 
-def main():
-    buttons1 = [
-    [
-        InlineKeyboardButton(
-            text="✨ᴀᴅᴅ ᴍᴇ ʙᴀʙʏ ✨",
-            url=f"https://t.me/{BOT_USERNAME}?startgroup=true",
-        ),
-    ],    
-    [
-        InlineKeyboardButton(text="⚡ ʜᴇʟᴘ ⚡", callback_data="help_back"),
-        InlineKeyboardButton(text="♻️ sᴛᴀᴛs ♻️", callback_data="bot_ping")
-    ],    
-]
-    @pgram.on_callback_query(filters.regex("friday_back"))
-    async def friday_back(_,callback_query : CallbackQuery):
-        query=callback_query.message
-        first_name=callback_query.from_user.first_name
-        uptime = get_readable_time((time.time() - StartTime))
-        await query.edit_caption(PM_START_TEXT.format(first_name,BOT_NAME,uptime),
-                reply_markup=InlineKeyboardMarkup(buttons1),               
-                parse_mode=ParseMode.MARKDOWN,
-                                
-            )
-           
-           
-
+def main():   
     if SUPPORT_CHAT is not None and isinstance(SUPPORT_CHAT, str):
         try:
             dispatcher.bot.send_photo(
