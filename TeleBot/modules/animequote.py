@@ -1,6 +1,7 @@
 import requests
 import random
 from .. import pgram as app
+from pyrogram import filters 
 
 QUOTES_IMG = (
       "https://i.imgur.com/Iub4RYj.jpg", 
