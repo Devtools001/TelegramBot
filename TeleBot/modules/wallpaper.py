@@ -18,7 +18,7 @@ async def wall(_,msg):
     re=requests.get(url).json()
     walls = re.get("results")
     wall_index = randint(0, len(walls) -1)
-    wallpaper = wallpapers[wall_index]
+    wallpaper = walls[wall_index]
     pic = wallpaper.get("imageUrl")
     preview=wallpaper.get("thumbUrl") 
     title = wallpaper.get("title")
