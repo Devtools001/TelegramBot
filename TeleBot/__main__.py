@@ -69,6 +69,12 @@ PM_PHOTOS = (
 "https://telegra.ph/file/7517a65cab490e36d681c.jpg"
          )
 
+HELP_IMG=(
+"https://telegra.ph/file/74f547d4dd635432ea1b0.jpg",
+"https://telegra.ph/file/b846cc2a4326a9dab5a2d.jpg",
+"https://telegra.ph/file/1c58b1a72044ba6b6e644.jpg"
+   )
+
 PM_START_TEXT = """
 🥀 ʜᴇʏ *{}* ,
         
@@ -347,15 +353,15 @@ def get_help(update: Update, context: CallbackContext):
     if chat.type != chat.PRIVATE:
         if len(args) >= 2 and any(args[1].lower() == x for x in HELPABLE):
             module = args[1].lower()
-            update.effective_message.reply_text(
-                f"Contact me in PM to get help of {module.capitalize()}",
+            update.effective_message.reply_photo(
+                photo=random.choice(HELP_IMG),
+                caption=f"Contact me in PM to get help of {module.capitalize()}",
                 reply_markup=InlineKeyboardMarkup(
                     [
                         [
                             InlineKeyboardButton(
                                 text="ʜᴇʟᴘ​",
-                                url="t.me/{}?start=ghelp_{}".format(
-                                    context.bot.username, module
+                                url="https://t.me/{BOT_USERNAME}?start=help"
                                 ),
                             )
                         ]
@@ -363,8 +369,9 @@ def get_help(update: Update, context: CallbackContext):
                 ),
             )
             return
-        update.effective_message.reply_text(
-            "» ᴄʜᴏᴏsᴇ ᴀɴ ᴏᴩᴛɪᴏɴ ғᴏʀ ɢᴇᴛᴛɪɴɢ ʜᴇʟᴩ.",
+        update.effective_message.reply_photo(
+            photo=random.choice(HELP_IMG),
+            caption="» ᴄʜᴏᴏsᴇ ᴀɴ ᴏᴩᴛɪᴏɴ ғᴏʀ ɢᴇᴛᴛɪɴɢ ʜᴇʟᴩ.",
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
@@ -375,12 +382,7 @@ def get_help(update: Update, context: CallbackContext):
                             ),
                         )
                     ],
-                    [
-                        InlineKeyboardButton(
-                            text="ᴏᴩᴇɴ ʜᴇʀᴇ",
-                            callback_data="help_back",
-                        )
-                    ],
+                    
                 ]
             ),
         )
