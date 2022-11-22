@@ -1,4 +1,4 @@
-import random 
+from random import randint
 import requests
 from TeleBot import pgram
 from pyrogram import filters
