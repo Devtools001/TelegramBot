@@ -224,7 +224,7 @@ def start(update: Update, context: CallbackContext):
             parse_mode=ParseMode.HTML,
         )
 
-@pgram.on_callback_query(filters.regex("fallen_")):
+@pgram.on_callback_query(filters.regex("fallen_"))
 async def __ok(_,callback_query: CallbackQuery):
     query=callback_query.message
     await query.edit_text("hii")
