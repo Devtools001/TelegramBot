@@ -37,3 +37,13 @@ async def Friday(_, callback_query : CallbackQuery):
     uptime= get_readable_time((time.time() - StartTime))
     await query.edit_caption(PM_START_TEXT.format(first_name,BOT_NAME,uptime),
     reply_markup=InlineKeyboardMarkup(BUTTON))
+
+@pgram.on_callback_query(filters.regex("Friday_stats"))
+async def Friday(_, callback_query : CallbackQuery):
+    query= callback_query.message
+    first_name=callback_query.from_user.first_name
+    uptime= get_readable_time((time.time() - StartTime))
+    await query.answer("hii",show_alert=True
+    )
+
+
