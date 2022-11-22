@@ -159,7 +159,7 @@ def send_help(chat_id, text, keyboard=None):
     )
 
 
-@run_async
+
 def start(update: Update, context: CallbackContext):
     args = context.args
     uptime = get_readable_time((time.time() - StartTime))
@@ -605,7 +605,7 @@ def main():
         except BadRequest as e:
             LOG.warning(e.message)
 
-    start_handler = CommandHandler("start", start)
+    start_handler = CommandHandler("start", start,run_async=True)
     help_handler = CommandHandler("help", get_help)
     help_callback_handler = CallbackQueryHandler(help_button, pattern=r"help_.*")
     settings_handler = CommandHandler("settings", get_settings)
