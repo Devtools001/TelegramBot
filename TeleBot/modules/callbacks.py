@@ -1,4 +1,5 @@
 import time
+import psutil
 from pyrogram import filters , __version__ as pyro 
 from TeleBot import pgram,StartTime,BOT_NAME,get_readable_time,BOT_USERNAME
 from pyrogram.types import CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton 
@@ -53,9 +54,12 @@ async def Friday(_, callback_query : CallbackQuery):
 async def Friday(client, callback_query : CallbackQuery):    
     first_name=callback_query.from_user.first_name
     uptime= get_readable_time((time.time() - StartTime))
+    cpu = psutil.cpu_percent(interval=0.5)
+    rem = psutil.virtual_memory().percent
+    disk = psutil.disk_usage("/").percent
     await client.answer_callback_query(
     callback_query.id,
-    text=STATS_MSG.format(first_name, uptime,cpu,ram,disk,pyro),
+    text=STATS_MSG.format(first_name, uptime,cpu,rem,disk,pyro),
     show_alert=True
 )
 
