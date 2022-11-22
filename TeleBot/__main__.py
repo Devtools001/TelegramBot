@@ -745,7 +745,7 @@ def main():
 
     if SUPPORT_CHAT is not None and isinstance(SUPPORT_CHAT, str):
         try:
-            dispatcher.bot.send_photo(
+            pgram.bot.send_photo(
                 f"@{SUPPORT_CHAT}",
                 photo=START_IMG,
                 caption=f"""
