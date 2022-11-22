@@ -2,6 +2,7 @@ import requests
 import random
 from .. import pgram as app
 from pyrogram import filters 
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup 
 
 QUOTES_IMG = (
       "https://i.imgur.com/Iub4RYj.jpg", 
