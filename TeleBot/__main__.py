@@ -644,7 +644,7 @@ def migrate_chats(update: Update, context: CallbackContext):
         LOG.info("Using long polling.")
         updater.start_polling(timeout=15, read_latency=4, clean=True)    
 
-    updater.idle()
+    
 
 
 if __name__ == "__main__":
