@@ -270,7 +270,7 @@ def error_callback(update: Update, context: CallbackContext):
         # handle all other telegram related errors
 
 
-@run_async
+
 def help_button(update, context):
     query = update.callback_query
     mod_match = re.match(r"help_module\((.+?)\)", query.data)
@@ -333,7 +333,7 @@ def help_button(update, context):
         pass
 
 
-@run_async
+
 def get_help(update: Update, context: CallbackContext):
     chat = update.effective_chat  # type: Optional[Chat]
     args = update.effective_message.text.split(None, 1)
@@ -442,7 +442,7 @@ def send_settings(chat_id, user_id, user=False):
             )
 
 
-@run_async
+
 def settings_button(update: Update, context: CallbackContext):
     query = update.callback_query
     user = update.effective_user
@@ -526,7 +526,7 @@ def settings_button(update: Update, context: CallbackContext):
             LOGGER.exception("Exception in settings buttons. %s", str(query.data))
 
 
-@run_async
+
 def get_settings(update: Update, context: CallbackContext):
     chat = update.effective_chat  # type: Optional[Chat]
     user = update.effective_user  # type: Optional[User]
@@ -606,10 +606,10 @@ def main():
             LOG.warning(e.message)
 
     start_handler = CommandHandler("start", start,run_async=True)
-    help_handler = CommandHandler("help", get_help)
-    help_callback_handler = CallbackQueryHandler(help_button, pattern=r"help_.*")
-    settings_handler = CommandHandler("settings", get_settings)
-    settings_callback_handler = CallbackQueryHandler(settings_button, pattern=r"stngs_")        
+    help_handler = CommandHandler("help", get_help,run_async=True)
+    help_callback_handler = CallbackQueryHandler(help_button, pattern=r"help_.*",run_async=True)
+    settings_handler = CommandHandler("settings", get_settings,run_async=True)
+    settings_callback_handler = CallbackQueryHandler(settings_button, pattern=r"stngs_",run_async=True)        
     migrate_handler = MessageHandler(Filters.status_update.migrate, migrate_chats)
 
     dispatcher.add_handler(start_handler)
