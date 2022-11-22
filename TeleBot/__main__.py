@@ -37,7 +37,7 @@ from TeleBot import (
     OWNER_ID,
     PORT,    
     SUPPORT_CHAT,
-    TOKEN,
+    BOT_TOKEN as TOKEN,
     URL,
     WEBHOOK,
     StartTime,
