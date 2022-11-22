@@ -629,7 +629,7 @@ def migrate_chats(update: Update, context: CallbackContext):
 
 
 
-
+def main():
     start_handler = CommandHandler("start", start)
 
     help_handler = CommandHandler("help", get_help)
@@ -682,4 +682,4 @@ if __name__ == "__main__":
         pgram.send_photo(SUPPORT_CHAT,photo=START_IMG, caption=ALIVE_MSG)
     telethn.start(bot_token=TOKEN)
     pgram.start()
-    
+    main()
