@@ -363,7 +363,7 @@ def get_help(update: Update, context: CallbackContext):
                                 text="ʜᴇʟᴘ​",
                                 url="https://t.me/{BOT_USERNAME}?start=help"
                                 ),
-                            )
+                            
                         ]
                     ]
                 ),
