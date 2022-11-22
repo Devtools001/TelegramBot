@@ -1,12 +1,12 @@
-from random import randint
 import requests
 from TeleBot import pgram
+from random import randint
 from pyrogram import filters
 
 @pgram.on_message(filters.command("wall"))
 async def wall(_,msg):
     if len(msg.command) < 2:
-        await msg.reply_text("give something to search")
+        await msg.reply_text("ʜᴇʏ ɴᴏᴏʙ ɢɪᴠᴇ sᴏᴍᴇᴛʜɪɴɢ ᴛᴏ sᴇᴀʀᴄʜ.")
     else:
         pass
     query=(
@@ -14,11 +14,12 @@ async def wall(_,msg):
        if len(msg.command) < 3
        else msg.text.split(None,1)[1].replace(" ","%20")
        )
+
     url=f"https://api.safone.me/wall?query={query}"
     re=requests.get(url).json()
     walls = re.get("results")
     if not walls:
-        await msg.reply_text("No results found! Refine your search.")
+        await msg.reply_text("ɴᴏ ʀᴇsᴜʟᴛs ғᴏᴜɴᴅ! ")
         return 
     wall_index = randint(0, len(walls) -1)
     wallpaper = walls[wall_index]
@@ -29,5 +30,5 @@ async def wall(_,msg):
         await pgram.send_photo(msg.chat.id,preview, caption="⚡ ᴘʀɪᴠɪᴇᴡ")
         await pgram.send_document(msg.chat.id,pic, caption=f"⚡ ᴛɪᴛʟᴇ - {title}")
     except Exception as error :
-        await msg.reply_text("an error occurred")            
+        await msg.reply_text(f"ᴀɴ ᴇʀʀᴏʀ ᴏᴄᴄᴜʀᴇᴅ.\n {error}")            
     
