@@ -62,6 +62,7 @@ if ENV:
     OWNER_ID = int(os.environ.get("OWNER_ID",None))
     PORT = int(os.environ.get("PORT",None))
     SUPPORT_CHAT = str(os.environ.get("SUPPORT_CHAT",None))
+    CERT_PATH = os.environ.get("CERT_PATH")
      
 else:
     API_ID=Config.API_ID
@@ -77,6 +78,7 @@ else:
     OWNER_ID = Config.OWNER_ID
     PORT = Config.PORT
     SUPPORT_CHAT = Config.SUPPORT_CHAT
+    CERT_PATH = Config.CERT_PATH
 
 updater=Fday.Updater(BOT_TOKEN,workers=WORKERS,use_context=True)
 dispatcher=updater.dispatcher
