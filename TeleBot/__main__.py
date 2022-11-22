@@ -756,8 +756,7 @@ def main():
 ㅤ★ **ʟɪʙʀᴀʀʏ :** `{telever}`
 ㅤ★ **ᴛᴇʟᴇᴛʜᴏɴ :** `{tlhver}`
 ㅤ★ **ᴩʏʀᴏɢʀᴀᴍ :** `{pyrover}`
-┗•❅────✧❅✦❅✧────❅•┛""",
-                parse_mode=ParseMode.MARKDOWN,
+┗•❅────✧❅✦❅✧────❅•┛""",                
             )
         except Unauthorized:
             LOG.warning(
