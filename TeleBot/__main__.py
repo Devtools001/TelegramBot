@@ -742,15 +742,14 @@ def migrate_chats(update: Update, context: CallbackContext):
 
 
 def main():
-
-        if SUPPORT_CHAT is not None and isinstance(SUPPORT_CHAT, str):
-            try:
+    if SUPPORT_CHAT is not None and isinstance(SUPPORT_CHAT, str):
+        try:
                await pgram.send_photo(
                 f"@{SUPPORT_CHAT}",
                 photo=START_IMG,
                 caption=f"""
 ㅤ🥀 {BOT_NAME} ɪs ᴀʟɪᴠᴇ ʙᴀʙʏ...
-
+            
 ┏•❅────✧❅✦❅✧────❅•┓
 ㅤ★ **ᴘʏᴛʜᴏɴ :** `{y()}`
 ㅤ★ **ʟɪʙʀᴀʀʏ :** `{telever}`
@@ -758,13 +757,14 @@ def main():
 ㅤ★ **ᴩʏʀᴏɢʀᴀᴍ :** `{pyrover}`
 ┗•❅────✧❅✦❅✧────❅•┛""",                
             )
-            except Unauthorized:
+        except Unauthorized:
                 LOG.warning(
                 f"Bot isn't able to send message to @{SUPPORT_CHAT}, go and check!"
             )
-            except BadRequest as e:
+        except BadRequest as e:
                 LOG.warning(e.message)        
-    
+                          
+        
 
     start_handler = CommandHandler("start", start)
 
