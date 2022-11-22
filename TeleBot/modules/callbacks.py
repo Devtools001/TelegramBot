@@ -1,5 +1,5 @@
 import time
-from TeleBot import pgram,StartTime,BOT_NAME
+from TeleBot import pgram,StartTime,BOT_NAME,get_readable_time
 from pyrogram.types import CallbackQuery 
 
 
@@ -16,5 +16,5 @@ PM_START_TEXT = """
 async def Friday(_, callback_query : CallbackQuery):
     query= callback_query.message
     first_name=callback_query.from_user.first_name
-    uptime= (time.time() - StartTime)
+    uptime= get_readable_time(time.time() - StartTime)
     await query.edit_caption(PM_START_TEXT.format(first_name,BOT_NAME,uptime))
