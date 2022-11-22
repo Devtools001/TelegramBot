@@ -43,7 +43,7 @@ from TeleBot import (
 
 
 from TeleBot.modules import FRIDAY_MODULES
-from TeleBot.modules.helper_funcs.chat_status import is_user_admin
+#from TeleBot.modules.helper_funcs.chat_status import is_user_admin
 from TeleBot.modules.helper_funcs.misc import paginate_modules
 
 
