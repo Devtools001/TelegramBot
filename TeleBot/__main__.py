@@ -224,10 +224,7 @@ def start(update: Update, context: CallbackContext):
             parse_mode=ParseMode.HTML,
         )
 
-@pgram.on_callback_query(filters.regex("fallen_"))
-async def __ok(_,callback_query: CallbackQuery):
-    query=callback_query.message
-    await query.edit_text("hii")
+
 
 def error_handler(update, context):
     """Log the error and send a telegram message to notify the developer."""
@@ -637,6 +634,10 @@ def migrate_chats(update: Update, context: CallbackContext):
 
 
 def main():
+    @pgram.on_callback_query(filters.regex("fallen_"))
+    async def ok(_,callback_query: CallbackQuery):
+        query=callback_query.message
+        await query.edit_text("hii")
     start_handler = CommandHandler("start", start)
 
     help_handler = CommandHandler("help", get_help)
