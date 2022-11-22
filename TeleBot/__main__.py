@@ -164,9 +164,9 @@ def send_help(chat_id, text, keyboard=None):
         chat_id=chat_id,
         photo=(START_IMG),
         caption=text,
-        parse_mode=ParseMode.MARKDOWN,        
-        reply_markup=keyboard,
-    )
+        parse_mode=ParseMode.MARKDOWN,
+        reply_markup=keyboard)
+
 
 
 
