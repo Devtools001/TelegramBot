@@ -23,7 +23,7 @@ async def IMDb(_,msg):
     releaseDate=re["releaseDate"]
     list=re["genres"]
     for a in list:
-        genres=a + end=","
+        genres+=f"{x}, "
         print(a,end=",")
     popularity=re["popularity"]
     status=re["status"]
