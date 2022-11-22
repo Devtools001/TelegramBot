@@ -35,8 +35,7 @@ from TeleBot import (
     DONATION_LINK,
     LOG,
     OWNER_ID,
-    PORT,
-    START_IMG,
+    PORT,    
     SUPPORT_CHAT,
     TOKEN,
     URL,
@@ -56,6 +55,7 @@ from TeleBot.modules import ALL_MODULES
 from TeleBot.modules.helper_funcs.misc import paginate_modules
 
 
+START_IMG="ok"
 
 PM_START_TEXT = """
 *ʜᴇʏ* {}, 🥀
@@ -345,8 +345,8 @@ def Fallen_about_callback(update: Update, context: CallbackContext):
             "\n*ᴡʀɪᴛᴛᴇɴ ɪɴ ᴩʏᴛʜᴏɴ ᴡɪᴛʜ sǫʟᴀʟᴄʜᴇᴍʏ ᴀɴᴅ ᴍᴏɴɢᴏᴅʙ ᴀs ᴅᴀᴛᴀʙᴀsᴇ.*"
             "\n\n────────────────────"
             f"\n*➻ ᴜᴩᴛɪᴍᴇ »* {uptime}"
-            f"\n*➻ ᴜsᴇʀs »* {sql.num_users()}"
-            f"\n*➻ ᴄʜᴀᴛs »* {sql.num_chats()}"
+            f"\n*➻ ᴜsᴇʀs »*
+            f"\n*➻ ᴄʜᴀᴛs »*
             "\n────────────────────"
             "\n\n➲  ɪ ᴄᴀɴ ʀᴇꜱᴛʀɪᴄᴛ ᴜꜱᴇʀꜱ."
             "\n➲  ɪ ʜᴀᴠᴇ ᴀɴ ᴀᴅᴠᴀɴᴄᴇᴅ ᴀɴᴛɪ-ꜰʟᴏᴏᴅ ꜱʏꜱᴛᴇᴍ."
