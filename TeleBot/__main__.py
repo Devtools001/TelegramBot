@@ -162,8 +162,7 @@ def send_help(chat_id, text, keyboard=None):
         chat_id=chat_id,
         photo=random.choice(PM_PHOTOS),
         caption=text,
-        parse_mode=ParseMode.MARKDOWN,
-        disable_web_page_preview=True,
+        parse_mode=ParseMode.MARKDOWN,        
         reply_markup=keyboard,
     )
 
