@@ -16,11 +16,15 @@ async def wall(_,msg):
        )
     url=f"https://api.safone.me/wall?query={query}"
     re=requests.get(url).json()
-    wallpapers = re.get("results")
-    index = randint(0, len(wallpapers) -1)
-    wallpaper = wallpapers[index]
+    walls = re.get("results")
+    wall_index = randint(0, len(walls) -1)
+    wallpaper = wallpapers[wall_index]
     pic = wallpaper.get("imageUrl")
-    preview=wallpaper.get("thumbUrl")    
-    await pgram.send_photo(msg.chat.id,preview)
-    await pgram.send_document(msg.chat.id,pic)
-        
+    preview=wallpaper.get("thumbUrl") 
+    title = wallpaper.get("title")
+    try:
+        await pgram.send_photo(msg.chat.id,preview, caption="⚡ ᴘʀɪᴠɪᴇᴡ")
+        await pgram.send_document(msg.chat.id,pic, caption=f"⚡ ᴛɪᴛʟᴇ - {title}")
+    except Exception :
+        await msg.reply_text("No results found!")            
+    
