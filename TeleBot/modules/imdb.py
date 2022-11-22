@@ -21,7 +21,7 @@ async def IMDb(_,msg):
     runtime=re["runtime"]
     rating=re["rating"]
     releaseDate=re["releaseDate"]
-    list=re["genres"]
+    list=re["genres"][:-2]
     for a in list:
         genres=f"{a}, "
         print(a,end=",")
