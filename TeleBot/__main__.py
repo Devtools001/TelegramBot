@@ -692,6 +692,8 @@ def main():
 
 if __name__ == "__main__":
     LOG.info("Successfully loaded modules: " + str(ALL_MODULES))
+    with pgram:
+        await pgram.send_message(SUPPORT_CHAT,"hii")
     telethn.start(bot_token=TOKEN)
     pgram.start()
     main()
