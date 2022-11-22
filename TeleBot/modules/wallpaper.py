@@ -18,7 +18,7 @@ async def wall(_,msg):
     results=re["results"]
     index = randint(0, len(results) - 1)
     wallpaper = wallpapers[index]    
-    wallpaper = wallpaper["imageUrl]    
+    wallpaper = wallpaper["imageUrl"]    
     preview=wallpaper["thumbUrl"]
     title=wallpaper["title"]
     await pgram.send_photo(msg.chat.id,preview)
