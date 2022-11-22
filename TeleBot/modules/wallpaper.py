@@ -25,6 +25,6 @@ async def wall(_,msg):
     try:
         await pgram.send_photo(msg.chat.id,preview, caption="⚡ ᴘʀɪᴠɪᴇᴡ")
         await pgram.send_document(msg.chat.id,pic, caption=f"⚡ ᴛɪᴛʟᴇ - {title}")
-    except Exception :
+    except Exception as error :
         await msg.reply_text("No results found!")            
     
