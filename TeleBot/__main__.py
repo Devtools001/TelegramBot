@@ -54,7 +54,16 @@ from TeleBot.modules import ALL_MODULES
 #from FallenRobot.modules.helper_funcs.chat_status import is_user_admin
 from TeleBot.modules.helper_funcs.misc import paginate_modules
 
-
+ALIVE_MSG=f"""
+ㅤ🥀 {BOT_NAME} ɪs ᴀʟɪᴠᴇ ʙᴀʙʏ...
+            
+┏•❅────✧❅✦❅✧────❅•┓
+ㅤ★ **ᴘʏᴛʜᴏɴ :** `{y()}`
+ㅤ★ **ʟɪʙʀᴀʀʏ :** `{telever}`
+ㅤ★ **ᴛᴇʟᴇᴛʜᴏɴ :** `{tlhver}`
+ㅤ★ **ᴩʏʀᴏɢʀᴀᴍ :** `{pyrover}`
+┗•❅────✧❅✦❅✧────❅•┛""",                
+            )
 START_IMG="https://telegra.ph/file/1cb3bb5f1e44cebc4a50f.jpg"
 
 PM_START_TEXT = """
@@ -619,30 +628,7 @@ def migrate_chats(update: Update, context: CallbackContext):
     raise DispatcherHandlerStop
 
 
-def main():
-    if SUPPORT_CHAT is not None and isinstance(SUPPORT_CHAT, str):
-        try:
-             pgram.send_photo(
-                f"@{SUPPORT_CHAT}",
-                photo=START_IMG,
-                caption=f"""
-ㅤ🥀 {BOT_NAME} ɪs ᴀʟɪᴠᴇ ʙᴀʙʏ...
-            
-┏•❅────✧❅✦❅✧────❅•┓
-ㅤ★ **ᴘʏᴛʜᴏɴ :** `{y()}`
-ㅤ★ **ʟɪʙʀᴀʀʏ :** `{telever}`
-ㅤ★ **ᴛᴇʟᴇᴛʜᴏɴ :** `{tlhver}`
-ㅤ★ **ᴩʏʀᴏɢʀᴀᴍ :** `{pyrover}`
-┗•❅────✧❅✦❅✧────❅•┛""",                
-            )
-        except Unauthorized:
-                LOG.warning(
-                f"Bot isn't able to send message to @{SUPPORT_CHAT}, go and check!"
-            )
-        except BadRequest as e:
-                LOG.warning(e.message)        
-                          
-        
+
 
     start_handler = CommandHandler("start", start)
 
@@ -693,7 +679,7 @@ def main():
 if __name__ == "__main__":
     LOG.info("Successfully loaded modules: " + str(ALL_MODULES))
     with pgram:
-        pgram.send_message(SUPPORT_CHAT,"hii")
+        pgram.send_photo(SUPPORT_CHAT,photo=START_IMG, caption=ALIVE_MSG)
     telethn.start(bot_token=TOKEN)
     pgram.start()
-    main()
+    
