@@ -1,6 +1,7 @@
 import asyncio
 from TeleBot import pgram
 from pyrogram import filters 
+from TeleBot.modules.helper_funcs.chat_status import user_admin
 
 
 
@@ -28,6 +29,7 @@ earth_ani = [
     "🌏",
 ]
 
+@user_admin
 @pgram.on_message(filters.command("earth"))
 async def earth(_,msg):
     for x in range(EDIT_TIMES):
