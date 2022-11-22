@@ -1,9 +1,13 @@
 import importlib
 import re
 import time
+from platform import python_version as y
 from sys import argv
 from typing import Optional
+
+from pyrogram import __version__ as pyrover
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, ParseMode, Update
+from telegram import __version__ as telever
 from telegram.error import (
     BadRequest,
     ChatMigrated,
@@ -21,7 +25,9 @@ from telegram.ext import (
 )
 from telegram.ext.dispatcher import DispatcherHandlerStop, run_async
 from telegram.utils.helpers import escape_markdown
+from telethon import __version__ as tlhver
 
+#import TeleBot.modules.sql.users_sql as sql
 from TeleBot import (
     BOT_NAME,
     BOT_USERNAME,
@@ -29,25 +35,25 @@ from TeleBot import (
     DONATION_LINK,
     LOG,
     OWNER_ID,
-    PORT,    
+    PORT,
+    START_IMG,
     SUPPORT_CHAT,
-    BOT_TOKEN as TOKEN,
+    TOKEN,
     URL,
     WEBHOOK,
     StartTime,
     dispatcher,
-    pgram, 
-    telethn,   
+    pgram,
+    telethn,
     updater,
     get_readable_time
 )
 
-
-from TeleBot.modules import FRIDAY_MODULES
-#from TeleBot.modules.helper_funcs.chat_status import is_user_admin
+# needed to dynamically load modules
+# NOTE: Module order is not guaranteed, specify that in the config file!
+from TeleBot.modules import ALL_MODULES
+#from FallenRobot.modules.helper_funcs.chat_status import is_user_admin
 from TeleBot.modules.helper_funcs.misc import paginate_modules
-
-
 
 
 
@@ -105,7 +111,7 @@ DATA_EXPORT = []
 CHAT_SETTINGS = {}
 USER_SETTINGS = {}
 
-for module_name in FRIDAY_MODULES:
+for module_name in ALL_MODULES:
     imported_module = importlib.import_module("TeleBot.modules." + module_name)
     if not hasattr(imported_module, "__mod_name__"):
         imported_module.__mod_name__ = imported_module.__name__
@@ -326,6 +332,133 @@ def help_button(update, context):
 
     except BadRequest:
         pass
+
+
+@run_async
+def Fallen_about_callback(update: Update, context: CallbackContext):
+    query = update.callback_query
+    if query.data == "fallen_":
+        uptime = get_readable_time((time.time() - StartTime))
+        query.message.edit_text(
+            text=f"*ʜᴇʏ,*🥀\n  *ᴛʜɪs ɪs {BOT_NAME}*"
+            "\n*ᴀ ᴘᴏᴡᴇʀꜰᴜʟ ɢʀᴏᴜᴘ ᴍᴀɴᴀɢᴇᴍᴇɴᴛ ʙᴏᴛ ʙᴜɪʟᴛ ᴛᴏ ʜᴇʟᴘ ʏᴏᴜ ᴍᴀɴᴀɢᴇ ʏᴏᴜʀ ɢʀᴏᴜᴘ ᴇᴀꜱɪʟʏ ᴀɴᴅ ᴛᴏ ᴘʀᴏᴛᴇᴄᴛ ʏᴏᴜʀ ɢʀᴏᴜᴘ ꜰʀᴏᴍ ꜱᴄᴀᴍᴍᴇʀꜱ ᴀɴᴅ ꜱᴘᴀᴍᴍᴇʀꜱ.*"
+            "\n*ᴡʀɪᴛᴛᴇɴ ɪɴ ᴩʏᴛʜᴏɴ ᴡɪᴛʜ sǫʟᴀʟᴄʜᴇᴍʏ ᴀɴᴅ ᴍᴏɴɢᴏᴅʙ ᴀs ᴅᴀᴛᴀʙᴀsᴇ.*"
+            "\n\n────────────────────"
+            f"\n*➻ ᴜᴩᴛɪᴍᴇ »* {uptime}"
+            f"\n*➻ ᴜsᴇʀs »* {sql.num_users()}"
+            f"\n*➻ ᴄʜᴀᴛs »* {sql.num_chats()}"
+            "\n────────────────────"
+            "\n\n➲  ɪ ᴄᴀɴ ʀᴇꜱᴛʀɪᴄᴛ ᴜꜱᴇʀꜱ."
+            "\n➲  ɪ ʜᴀᴠᴇ ᴀɴ ᴀᴅᴠᴀɴᴄᴇᴅ ᴀɴᴛɪ-ꜰʟᴏᴏᴅ ꜱʏꜱᴛᴇᴍ."
+            "\n➲  ɪ ᴄᴀɴ ɢʀᴇᴇᴛ ᴜꜱᴇʀꜱ ᴡɪᴛʜ ᴄᴜꜱᴛᴏᴍɪᴢᴀʙʟᴇ ᴡᴇʟᴄᴏᴍᴇ ᴍᴇꜱꜱᴀɢᴇꜱ ᴀɴᴅ ᴇᴠᴇɴ ꜱᴇᴛ ᴀ ɢʀᴏᴜᴘ'ꜱ ʀᴜʟᴇꜱ."
+            "\n➲  ɪ ᴄᴀɴ ᴡᴀʀɴ ᴜꜱᴇʀꜱ ᴜɴᴛɪʟ ᴛʜᴇʏ ʀᴇᴀᴄʜ ᴍᴀx ᴡᴀʀɴꜱ, ᴡɪᴛʜ ᴇᴀᴄʜ ᴘʀᴇᴅᴇꜰɪɴᴇᴅ ᴀᴄᴛɪᴏɴꜱ ꜱᴜᴄʜ ᴀꜱ ʙᴀɴ, ᴍᴜᴛᴇ, ᴋɪᴄᴋ, ᴇᴛᴄ."
+            "\n➲  ɪ ʜᴀᴠᴇ ᴀ ɴᴏᴛᴇ ᴋᴇᴇᴘɪɴɢ ꜱʏꜱᴛᴇᴍ, ʙʟᴀᴄᴋʟɪꜱᴛꜱ, ᴀɴᴅ ᴇᴠᴇɴ ᴘʀᴇᴅᴇᴛᴇʀᴍɪɴᴇᴅ ʀᴇᴘʟɪᴇꜱ ᴏɴ ᴄᴇʀᴛᴀɪɴ ᴋᴇʏᴡᴏʀᴅꜱ."
+            f"\n\n➻ ᴄʟɪᴄᴋ ᴏɴ ᴛʜᴇ ʙᴜᴛᴛᴏɴs ɢɪᴠᴇɴ ʙᴇʟᴏᴡ ғᴏʀ ɢᴇᴛᴛɪɴɢ ʙᴀsɪᴄ ʜᴇʟᴩ ᴀɴᴅ ɪɴғᴏ ᴀʙᴏᴜᴛ {BOT_NAME}.",
+            parse_mode=ParseMode.MARKDOWN,
+            disable_web_page_preview=True,
+            reply_markup=InlineKeyboardMarkup(
+                [
+                    [
+                        InlineKeyboardButton(
+                            text="sᴜᴩᴩᴏʀᴛ", callback_data="fallen_support"
+                        ),
+                        InlineKeyboardButton(
+                            text="ᴄᴏᴍᴍᴀɴᴅs", callback_data="help_back"
+                        ),
+                    ],
+                    [
+                        InlineKeyboardButton(
+                            text="ᴅᴇᴠᴇʟᴏᴩᴇʀ", url=f"tg://user?id={OWNER_ID}"
+                        ),
+                        InlineKeyboardButton(
+                            text="sᴏᴜʀᴄᴇ",
+                            callback_data="source_",
+                        ),
+                    ],
+                    [
+                        InlineKeyboardButton(text="◁", callback_data="fallen_back"),
+                    ],
+                ]
+            ),
+        )
+    elif query.data == "fallen_support":
+        query.message.edit_text(
+            text="*๏ ᴄʟɪᴄᴋ ᴏɴ ᴛʜᴇ ʙᴜᴛᴛᴏɴs ɢɪᴠᴇɴ ʙᴇʟᴏᴡ ᴛᴏ ɢᴇᴛ ʜᴇʟᴩ ᴀɴᴅ ᴍᴏʀᴇ ɪɴғᴏʀᴍᴀᴛɪᴏɴ ᴀʙᴏᴜᴛ ᴍᴇ.*"
+            f"\n\nɪғ ʏᴏᴜ ғᴏᴜɴᴅ ᴀɴʏ ʙᴜɢ ɪɴ {BOT_NAME} ᴏʀ ɪғ ʏᴏᴜ ᴡᴀɴɴᴀ ɢɪᴠᴇ ғᴇᴇᴅʙᴀᴄᴋ ᴀʙᴏᴜᴛ ᴛʜᴇ {BOT_NAME}, ᴩʟᴇᴀsᴇ ʀᴇᴩᴏʀᴛ ɪᴛ ᴀᴛ sᴜᴩᴩᴏʀᴛ ᴄʜᴀᴛ.",
+            parse_mode=ParseMode.MARKDOWN,
+            reply_markup=InlineKeyboardMarkup(
+                [
+                    [
+                        InlineKeyboardButton(
+                            text="sᴜᴩᴩᴏʀᴛ", url=f"https://t.me/{SUPPORT_CHAT}"
+                        ),
+                        InlineKeyboardButton(
+                            text="ᴜᴩᴅᴀᴛᴇs", url=f"https://t.me/{SUPPORT_CHAT}"
+                        ),
+                    ],
+                    [
+                        InlineKeyboardButton(
+                            text="ᴅᴇᴠᴇʟᴏᴩᴇʀ", url=f"tg://user?id={OWNER_ID}"
+                        ),
+                        InlineKeyboardButton(
+                            text="ɢɪᴛʜᴜʙ",
+                            callback_data="https://github.com/TheAnonymous2005",
+                        ),
+                    ],
+                    [
+                        InlineKeyboardButton(text="◁", callback_data="fallen_"),
+                    ],
+                ]
+            ),
+        )
+    elif query.data == "fallen_back":
+        first_name = update.effective_user.first_name
+        query.message.edit_text(
+            PM_START_TEXT.format(escape_markdown(first_name), BOT_NAME),
+            reply_markup=InlineKeyboardMarkup(buttons),
+            parse_mode=ParseMode.MARKDOWN,
+            timeout=60,
+            disable_web_page_preview=False,
+        )
+
+
+@run_async
+def Source_about_callback(update: Update, context: CallbackContext):
+    query = update.callback_query
+    if query.data == "source_":
+        query.message.edit_text(
+            text=f"""
+*ʜᴇʏ,
+ ᴛʜɪs ɪs {BOT_NAME},
+ᴀɴ ᴏᴩᴇɴ sᴏᴜʀᴄᴇ ᴛᴇʟᴇɢʀᴀᴍ ɢʀᴏᴜᴩ ᴍᴀɴᴀɢᴇᴍᴇɴᴛ ʙᴏᴛ.*
+
+ᴡʀɪᴛᴛᴇɴ ɪɴ ᴩʏᴛʜᴏɴ ᴡɪᴛʜ ᴛʜᴇ ʜᴇʟᴩ ᴏғ : [ᴛᴇʟᴇᴛʜᴏɴ](https://github.com/LonamiWebs/Telethon)
+[ᴩʏʀᴏɢʀᴀᴍ](https://github.com/pyrogram/pyrogram)
+[ᴩʏᴛʜᴏɴ-ᴛᴇʟᴇɢʀᴀᴍ-ʙᴏᴛ](https://github.com/python-telegram-bot/python-telegram-bot)
+ᴀɴᴅ ᴜsɪɴɢ [sǫʟᴀʟᴄʜᴇᴍʏ](https://www.sqlalchemy.org) ᴀɴᴅ [ᴍᴏɴɢᴏ](https://cloud.mongodb.com) ᴀs ᴅᴀᴛᴀʙᴀsᴇ.
+
+
+*ʜᴇʀᴇ ɪs ᴍʏ sᴏᴜʀᴄᴇ ᴄᴏᴅᴇ :* [ɢɪᴛʜᴜʙ](https://github.com/TheAnonymous2005/FallenRobot)
+
+
+{BOT_NAME} ɪs ʟɪᴄᴇɴsᴇᴅ ᴜɴᴅᴇʀ ᴛʜᴇ [ᴍɪᴛ ʟɪᴄᴇɴsᴇ](https://github.com/TheAnonymous2005/FallenRobot/blob/master/LICENSE).
+© 2022 - 2023 [@ᴅᴇᴠɪʟsʜᴇᴀᴠᴇɴᴍғ](https://t.me/{SUPPORT_CHAT}), ᴀʟʟ ʀɪɢʜᴛs ʀᴇsᴇʀᴠᴇᴅ.
+""",
+            parse_mode=ParseMode.MARKDOWN,
+            disable_web_page_preview=True,
+            reply_markup=InlineKeyboardMarkup(
+                [[InlineKeyboardButton(text="◁", callback_data="source_back")]]
+            ),
+        )
+    elif query.data == "source_back":
+        first_name = update.effective_user.first_name
+        query.message.edit_text(
+            PM_START_TEXT.format(escape_markdown(first_name), BOT_NAME),
+            reply_markup=InlineKeyboardMarkup(buttons),
+            parse_mode=ParseMode.MARKDOWN,
+            timeout=60,
+            disable_web_page_preview=False,
+        )
 
 
 @run_async
@@ -600,16 +733,38 @@ def migrate_chats(update: Update, context: CallbackContext):
     else:
         return
 
-    LOG.info("Migrating from %s, to %s", str(old_chat), str(new_chat))
+    LOGGER.info("Migrating from %s, to %s", str(old_chat), str(new_chat))
     for mod in MIGRATEABLE:
         mod.__migrate__(old_chat, new_chat)
 
-    LOG.info("Successfully migrated!")
+    LOGGER.info("Successfully migrated!")
     raise DispatcherHandlerStop
 
 
+def main():
 
+    if SUPPORT_CHAT is not None and isinstance(SUPPORT_CHAT, str):
+        try:
+            dispatcher.bot.send_photo(
+                f"@{SUPPORT_CHAT}",
+                photo=START_IMG,
+                caption=f"""
+ㅤ🥀 {BOT_NAME} ɪs ᴀʟɪᴠᴇ ʙᴀʙʏ...
 
+┏•❅────✧❅✦❅✧────❅•┓
+ㅤ★ **ᴘʏᴛʜᴏɴ :** `{y()}`
+ㅤ★ **ʟɪʙʀᴀʀʏ :** `{telever}`
+ㅤ★ **ᴛᴇʟᴇᴛʜᴏɴ :** `{tlhver}`
+ㅤ★ **ᴩʏʀᴏɢʀᴀᴍ :** `{pyrover}`
+┗•❅────✧❅✦❅✧────❅•┛""",
+                parse_mode=ParseMode.MARKDOWN,
+            )
+        except Unauthorized:
+            LOGGER.warning(
+                f"Bot isn't able to send message to @{SUPPORT_CHAT}, go and check!"
+            )
+        except BadRequest as e:
+            LOGGER.warning(e.message)
 
     start_handler = CommandHandler("start", start)
 
@@ -619,11 +774,20 @@ def migrate_chats(update: Update, context: CallbackContext):
     settings_handler = CommandHandler("settings", get_settings)
     settings_callback_handler = CallbackQueryHandler(settings_button, pattern=r"stngs_")
 
+    about_callback_handler = CallbackQueryHandler(
+        Fallen_about_callback, pattern=r"fallen_"
+    )
+    source_callback_handler = CallbackQueryHandler(
+        Source_about_callback, pattern=r"source_"
+    )
+
     donate_handler = CommandHandler("donate", donate)
     migrate_handler = MessageHandler(Filters.status_update.migrate, migrate_chats)
 
     dispatcher.add_handler(start_handler)
     dispatcher.add_handler(help_handler)
+    dispatcher.add_handler(about_callback_handler)
+    dispatcher.add_handler(source_callback_handler)
     dispatcher.add_handler(settings_handler)
     dispatcher.add_handler(help_callback_handler)
     dispatcher.add_handler(settings_callback_handler)
@@ -643,7 +807,8 @@ def migrate_chats(update: Update, context: CallbackContext):
 
     else:
         LOG.info("Using long polling.")
-        updater.start_polling(timeout=15, read_latency=4, clean=True)    
+        updater.start_polling(timeout=15, read_latency=4, clean=True)
+
     if len(argv) not in (1, 3, 4):
         telethn.disconnect()
     else:
@@ -653,7 +818,7 @@ def migrate_chats(update: Update, context: CallbackContext):
 
 
 if __name__ == "__main__":
-    LOG.info("Successfully loaded modules: " + str(FRIDAY_MODULES))
+    LOG.info("Successfully loaded modules: " + str(ALL_MODULES))
     telethn.start(bot_token=TOKEN)
-    pgram.run()
-    
+    pgram.start()
+    main()
