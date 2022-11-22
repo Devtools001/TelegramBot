@@ -5,7 +5,8 @@ from platform import python_version as y
 from sys import argv
 from typing import Optional
 
-from pyrogram import __version__ as pyrover
+from pyrogram import filters, __version__ as pyrover
+from pyrogram.types import CallbackQuery
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, ParseMode, Update
 from telegram import __version__ as telever
 from telegram.error import (
@@ -157,6 +158,7 @@ for module_name in ALL_MODULES:
         USER_SETTINGS[imported_module.__mod_name__.lower()] = imported_module
 
 
+
 # do not async
 def send_help(chat_id, text, keyboard=None):
     if not keyboard:
@@ -222,6 +224,10 @@ def start(update: Update, context: CallbackContext):
             parse_mode=ParseMode.HTML,
         )
 
+@pgram.on_callback_query(filters.regex("fallen_")):
+async def __ok(_,callback_query: CallbackQuery):
+    query=callback_query.message
+    await query.edit_text("hii")
 
 def error_handler(update, context):
     """Log the error and send a telegram message to notify the developer."""
