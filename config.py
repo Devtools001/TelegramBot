@@ -16,6 +16,7 @@ class Config (object):
 
     BOT_NAME = "• ғ ʀ ɪ ᴅ ᴀ ʏ •"
     BOT_USERNAME = "Friday_Ro_Bot"
+    DONATION_LINK = "https://t.me/NoobStark_21"
     
 
 
