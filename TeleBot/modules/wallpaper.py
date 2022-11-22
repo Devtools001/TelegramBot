@@ -14,10 +14,13 @@ async def wall(_,msg):
        else msg.text.split(None,1)[1].replace(" ","%20")
        )
     url=f"https://api.safone.me/wall?query={query}&limit=1"
-    re=requests.get(url).json()["results"][0]
-    pic=re["imageUrl"]
-    preview=re["thumbUrl"]
-    title=re["title"]
+    re=requests.get(url).json()
+    results=re["results"]
+    index = randint(0, len(results) - 1)
+    wallpaper = wallpapers[index]    
+    wallpaper = wallpaper["imageUrl]    
+    preview=wallpaper["thumbUrl"]
+    title=wallpaper["title"]
     await pgram.send_photo(msg.chat.id,preview)
     await pgram.send_document(msg.chat.id,pic)
         
