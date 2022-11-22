@@ -20,7 +20,8 @@ CHAT_SETTINGS = {}
 USER_SETTINGS = {}
 
 for module_name in FRIDAY_MODULES:
-    imported_module 
+    imported_module = importlib.module_name("TeleBot.modules."+module_name)   
+             
 @pgram.on_message(filters.command("start"))
 async def start_cmd(_, message):
     
