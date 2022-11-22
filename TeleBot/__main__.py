@@ -201,7 +201,7 @@ def start(update: Update, context: CallbackContext):
             first_name = update.effective_user.first_name            
             update.effective_message.reply_photo(
                 photo=random.choice(PM_PHOTOS),
-                caption=PM_START_TEXT.format(escape_markdown(first_name), BOT_NAME,uptime,ping_time),
+                caption=PM_START_TEXT.format(escape_markdown(first_name), BOT_NAME,uptime),
                 reply_markup=InlineKeyboardMarkup(buttons),
                 parse_mode=ParseMode.MARKDOWN,
                 timeout=60,
@@ -426,6 +426,19 @@ def migrate_chats(update: Update, context: CallbackContext):
 
 
 def main():
+    @pgram.on_callback_query(filters.regex("friday_back"))
+    async def friday_back(_,callback_query : CallbackQuery):
+        query=callback_query.message
+        first_name=callback_query.from_user.first_name
+        uptime = get_readable_time((time.time() - StartTime))
+        await query.edit_caption(PM_START_TEXT.format(first_name,BOT_NAME,uptime),
+              reply_markup=InlineKeyboardMarkup(buttons),
+                parse_mode=ParseMode.MARKDOWN,
+                timeout=60,
+                
+            )
+           
+           
 
     if SUPPORT_CHAT is not None and isinstance(SUPPORT_CHAT, str):
         try:
