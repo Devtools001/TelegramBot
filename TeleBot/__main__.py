@@ -36,7 +36,8 @@ from TeleBot import (
     WEBHOOK,
     StartTime,
     dispatcher,
-    pgram,    
+    pgram, 
+    telethn   
     updater,
     get_readable_time
 )
