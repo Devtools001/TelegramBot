@@ -655,5 +655,4 @@ if __name__ == "__main__":
     LOGGER.info("Successfully loaded modules: " + str(FRIDAY_MODULES))
     telethn.start(bot_token=TOKEN)
     pgram.start()
-    main()
     
