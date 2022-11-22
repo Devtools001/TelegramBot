@@ -18,7 +18,7 @@ def _list_all_modules():
                 any(mod == module_name for module_name in all_modules)
                 for mod in to_load
             ):
-                LOGGER.error("Invalid loadorder names, Quitting...")
+                LOG.error("Invalid loadorder names, Quitting...")
                 quit(1)
 
             all_modules = sorted(set(all_modules) - set(to_load))
@@ -28,7 +28,7 @@ def _list_all_modules():
             to_load = all_modules
 
         if NO_LOAD:
-            LOGGER.info("Not loading: {}".format(NO_LOAD))
+            LOG.info("Not loading: {}".format(NO_LOAD))
             return [item for item in to_load if item not in NO_LOAD]
 
         return to_load
@@ -36,6 +36,6 @@ def _list_all_modules():
     return all_modules
 
 
-ALL_MODULES = __list_all_modules()
-LOGGER.info("Modules to load: %s", str(ALL_MODULES))
-__all__ = ALL_MODULES + ["ALL_MODULES"]
+FRIDAY_MODULES = __list_all_modules()
+LOG.info("Modules to load: %s", str(FRIDAY_MODULES))
+__all__ = FRIDAY_MODULES + ["ALL_MODULES"]
