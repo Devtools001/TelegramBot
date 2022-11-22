@@ -27,7 +27,7 @@ from telegram.ext.dispatcher import DispatcherHandlerStop, run_async
 from telegram.utils.helpers import escape_markdown
 from telethon import __version__ as tlhver
 
-#import TeleBot.modules.sql.users_sql as sql
+
 from TeleBot import (
     BOT_NAME,
     BOT_USERNAME,
@@ -48,8 +48,7 @@ from TeleBot import (
     get_readable_time
 )
 
-# needed to dynamically load modules
-# NOTE: Module order is not guaranteed, specify that in the config file!
+
 from TeleBot.modules import ALL_MODULES
 #from TeleBot.modules.helper_funcs.chat_status import is_user_admin
 from TeleBot.modules.helper_funcs.misc import paginate_modules
