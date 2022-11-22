@@ -21,7 +21,9 @@ async def IMDb(_,msg):
     runtime=re["runtime"]
     rating=re["rating"]
     releaseDate=re["releaseDate"]
-    genres=re["genres"][0:]
+    list=re["genres"][0:]
+    for a in list:
+        genres=a
     popularity=re["popularity"]
     status=re["status"]
     homepage=re["homepage"]
