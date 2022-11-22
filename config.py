@@ -6,6 +6,7 @@ class Config (object):
     WORKERS = 8   
     PORT = 5000 
     CERT_PATH = None
+    WEBHOOK = False
 
     API_ID=16191628
     API_HASH="7d5acccaf1df4f5b7a690b203fd1953e"
