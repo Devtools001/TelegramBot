@@ -63,6 +63,7 @@ if ENV:
     PORT = int(os.environ.get("PORT",None))
     SUPPORT_CHAT = str(os.environ.get("SUPPORT_CHAT",None))
     CERT_PATH = os.environ.get("CERT_PATH")
+    WEBHOOK = bool(os.environ.get("WEBHOOK", False))
      
 else:
     API_ID=Config.API_ID
@@ -79,6 +80,7 @@ else:
     PORT = Config.PORT
     SUPPORT_CHAT = Config.SUPPORT_CHAT
     CERT_PATH = Config.CERT_PATH
+    WEBHOOK = Config.WEBHOOK
 
 updater=Fday.Updater(BOT_TOKEN,workers=WORKERS,use_context=True)
 dispatcher=updater.dispatcher
