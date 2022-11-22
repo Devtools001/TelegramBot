@@ -121,16 +121,21 @@ CHAT_SETTINGS = {}
 USER_SETTINGS = {}
 
 for module_name in ALL_MODULES:
-    imported_module = importlib.import_module("TeleBot.modules." + module_name)
+    imported_module = importlib.import_module("SUMI.modules." +
+                                              module_name)
     if not hasattr(imported_module, "__mod_name__"):
         imported_module.__mod_name__ = imported_module.__name__
 
-    if imported_module.__mod_name__.lower() not in IMPORTED:
+    if not imported_module.__mod_name__.lower() in IMPORTED:
         IMPORTED[imported_module.__mod_name__.lower()] = imported_module
     else:
-        raise Exception("Can't have two modules with the same name! Please change one")
+        raise Exception(
+            "Can't have two modules with the same name! Please change one")
 
     if hasattr(imported_module, "__help__") and imported_module.__help__:
+        HELPABLE[imported_module.__mod_name__.lower()] = imported_module
+
+    if hasattr(imported_module, "get_help") and imported_module.get_help:
         HELPABLE[imported_module.__mod_name__.lower()] = imported_module
 
     # Chats to migrate on chat_migrated events
@@ -154,6 +159,8 @@ for module_name in ALL_MODULES:
 
     if hasattr(imported_module, "__user_settings__"):
         USER_SETTINGS[imported_module.__mod_name__.lower()] = imported_module
+
+
 
 
 # do not async
