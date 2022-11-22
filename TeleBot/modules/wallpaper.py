@@ -10,7 +10,7 @@ async def wall(_,msg):
         pass
     query=(
        msg.text.split(None,1)[1]
-       if len(msg.commamd) < 3
+       if len(msg.command) < 3
        else msg.text.split(None,1)[1].replace(" ","%20")
        )
     url=f"https://api.safone.me/wall?query={query}&limit=1"
