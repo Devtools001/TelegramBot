@@ -1,5 +1,5 @@
 import requests
-from TeleBot import pgram
+from .. import pgram
 from random import randint
 from pyrogram import filters
 
