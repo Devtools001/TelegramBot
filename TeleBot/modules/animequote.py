@@ -1,6 +1,6 @@
 import requests
 import random
-from .. import pgram as app
+from TeleBot import pgram as app
 from pyrogram import filters 
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup 
 
