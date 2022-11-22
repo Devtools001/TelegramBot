@@ -1,5 +1,7 @@
 class Config (object):
     LOG=True
+    LOAD=""
+    NO_LOAD="translation"
 
     API_ID=16191628
     API_HASH="7d5acccaf1df4f5b7a690b203fd1953e"
