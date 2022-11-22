@@ -17,7 +17,7 @@ async def wall(_,msg):
     url=f"https://api.safone.me/wall?query={query}&limit=1"
     re=requests.get(url).json()
     wallpapers = re.get("results")
-    index = randint(0, len(wallpapers))
+    index = randint(0, len(wallpapers) -1)
     wallpaper = wallpapers[index]
     pic = wallpaper.get("imageUrl")
     preview=wallpaper.get("thumbUrl")    
