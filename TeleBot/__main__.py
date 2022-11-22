@@ -57,6 +57,16 @@ from TeleBot.modules.helper_funcs.misc import paginate_modules
     
 START_IMG="https://telegra.ph/file/5381961c760ed435d0fc7.jpg"
 
+PM_PHOTOS = (
+"https://telegra.ph/file/9658f5c0f7d448ad4e0bd.jpg",
+"https://telegra.ph/file/4a94521e20c40195c9a9a.jpg",
+"https://telegra.ph/file/61c9b7921458f31260b0c.jpg",
+"https://telegra.ph/file/9e01586796e950cc8ddc6.jpg",
+"https://telegra.ph/file/0e068d1357c5a79c191e3.jpg",
+"https://telegra.ph/file/13b5bc8b84ee2ac687e3d.jpg",
+"https://telegra.ph/file/7517a65cab490e36d681c.jpg"
+         )
+
 PM_START_TEXT = """
 🥀 ʜᴇʏ *{}* ,
         
@@ -193,8 +203,9 @@ def start(update: Update, context: CallbackContext):
 
         else:
             first_name = update.effective_user.first_name            
-            update.effective_message.reply_text(
-                PM_START_TEXT.format(escape_markdown(first_name), BOT_NAME,uptime,ping_time),
+            update.effective_message.reply_photo(
+                photo=random.choice(PM_PHOTOS),
+                caption=PM_START_TEXT.format(escape_markdown(first_name), BOT_NAME,uptime,ping_time),
                 reply_markup=InlineKeyboardMarkup(buttons),
                 parse_mode=ParseMode.MARKDOWN,
                 timeout=60,
