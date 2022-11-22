@@ -745,7 +745,7 @@ async def main():
     async with pgram:
         if SUPPORT_CHAT is not None and isinstance(SUPPORT_CHAT, str):
             try:
-               pgram.send_photo(
+               await pgram.send_photo(
                 f"@{SUPPORT_CHAT}",
                 photo=START_IMG,
                 caption=f"""
