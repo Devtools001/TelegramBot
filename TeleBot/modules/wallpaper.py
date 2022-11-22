@@ -18,7 +18,8 @@ async def wall(_,msg):
     re=requests.get(url).json()
     walls = re.get("results")
     if not walls:
-        msg.reply_text("No results found! Refine your search.")
+        await msg.reply_text("No results found! Refine your search.")
+        return 
     wall_index = randint(0, len(walls) -1)
     wallpaper = walls[wall_index]
     pic = wallpaper.get("imageUrl")
