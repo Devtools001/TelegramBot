@@ -759,11 +759,11 @@ async def main():
 ┗•❅────✧❅✦❅✧────❅•┛""",                
             )
             except Unauthorized:
-            LOG.warning(
+                LOG.warning(
                 f"Bot isn't able to send message to @{SUPPORT_CHAT}, go and check!"
             )
             except BadRequest as e:
-            LOG.warning(e.message)        
+                LOG.warning(e.message)        
     
 
     start_handler = CommandHandler("start", start)
