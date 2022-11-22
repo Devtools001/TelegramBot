@@ -655,5 +655,5 @@ def migrate_chats(update: Update, context: CallbackContext):
 if __name__ == "__main__":
     LOG.info("Successfully loaded modules: " + str(FRIDAY_MODULES))
     telethn.start(bot_token=TOKEN)
-    pgram.start()
+    pgram.run()
     
