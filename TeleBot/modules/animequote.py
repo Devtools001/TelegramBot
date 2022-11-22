@@ -139,4 +139,4 @@ async def anime_quote(_,CallbackQuery):
         ],
         ]))   
 __help__ = "anime"
-__mod_name__ = "anime"
+__mod_name__ = "animeh"
