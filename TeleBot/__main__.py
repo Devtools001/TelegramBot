@@ -309,7 +309,7 @@ def help_button(update, context):
                 )
                 + HELPABLE[module].__help__
             )
-            query.message.edit_cation(
+            query.message.edit_caption(
                 HELP_STRINGS,
                 parse_mode=ParseMode.MARKDOWN,
                 disable_web_page_preview=True,
