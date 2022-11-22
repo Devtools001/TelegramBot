@@ -160,7 +160,7 @@ def send_help(chat_id, text, keyboard=None):
         keyboard = InlineKeyboardMarkup(paginate_modules(0, HELPABLE, "help"))
     dispatcher.bot.send_photo(
         chat_id=chat_id,
-        photo=(PM_PHOTOS),
+        photo=random.choice(PM_PHOTOS),
         caption=text,
         parse_mode=ParseMode.MARKDOWN,
         disable_web_page_preview=True,
