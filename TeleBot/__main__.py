@@ -27,7 +27,7 @@ from telegram.ext.dispatcher import DispatcherHandlerStop, run_async
 from telegram.utils.helpers import escape_markdown
 from telethon import __version__ as tlhver
 
-import TeleBot.modules.sql.users_sql as sql
+#import TeleBot.modules.sql.users_sql as sql
 from TeleBot import (
     BOT_NAME,
     BOT_USERNAME,
@@ -345,8 +345,8 @@ def Fallen_about_callback(update: Update, context: CallbackContext):
             "\n*ᴡʀɪᴛᴛᴇɴ ɪɴ ᴩʏᴛʜᴏɴ ᴡɪᴛʜ sǫʟᴀʟᴄʜᴇᴍʏ ᴀɴᴅ ᴍᴏɴɢᴏᴅʙ ᴀs ᴅᴀᴛᴀʙᴀsᴇ.*"
             "\n\n────────────────────"
             f"\n*➻ ᴜᴩᴛɪᴍᴇ »* {uptime}"
-            f"\n*➻ ᴜsᴇʀs »* {sql.num_users()}"
-            f"\n*➻ ᴄʜᴀᴛs »* {sql.num_chats()}"
+            f"\n*➻ ᴜsᴇʀs »* ok"
+            f"\n*➻ ᴄʜᴀᴛs »* ok"
             "\n────────────────────"
             "\n\n➲  ɪ ᴄᴀɴ ʀᴇꜱᴛʀɪᴄᴛ ᴜꜱᴇʀꜱ."
             "\n➲  ɪ ʜᴀᴠᴇ ᴀɴ ᴀᴅᴠᴀɴᴄᴇᴅ ᴀɴᴛɪ-ꜰʟᴏᴏᴅ ꜱʏꜱᴛᴇᴍ."
