@@ -29,8 +29,8 @@ async def wall(_,msg):
     preview=wallpaper.get("thumbUrl") 
     title = wallpaper.get("title")
     try:
-        await pgram.send_photo(msg.chat.id,preview, caption="⚡ ᴘʀɪᴠɪᴇᴡ")
-        await pgram.send_document(msg.chat.id,pic, caption=f"⚡ ᴛɪᴛʟᴇ - {title}")
+        await msg.reply_photo(preview, caption="⚡ ᴘʀɪᴠɪᴇᴡ")
+        await msg.reply_document(msg.chat.id,pic, caption=f"⚡ ᴛɪᴛʟᴇ - {title}")
     except Exception as error :
         await msg.reply_text(f"ᴀɴ ᴇʀʀᴏʀ ᴏᴄᴄᴜʀᴇᴅ.\n {error}")            
     
