@@ -75,7 +75,7 @@ buttons = [
     ],    
     [
         InlineKeyboardButton(text="⚡ ʜᴇʟᴘ ⚡", callback_data="help_back"),
-        InlineKeyboardButton(text="♻️ ᴘɪɴɢ ♻️", url=f"https://t.me/{SUPPORT_CHAT}"),
+        InlineKeyboardButton(text="♻️ ᴘɪɴɢ ♻️", callback_data="bot_ping")
     ],    
 ]
 
