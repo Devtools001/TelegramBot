@@ -7,7 +7,7 @@ from pyrogram import filters
 async def wall(_,msg):
     if len(msg.command) < 2:
          await msg.reply_text("ʜᴇʏ ɴᴏᴏʙ ɢɪᴠᴇ sᴏᴍᴇᴛʜɪɴɢ ᴛᴏ sᴇᴀʀᴄʜ.")
-     else:
+    else:
          pass
 
     query=(
