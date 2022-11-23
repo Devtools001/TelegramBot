@@ -15,7 +15,7 @@ TEMP_DOWNLOAD_DIRECTORY ="./"
 Credit = "SIXTH_H0KAGE" 
 
 
-@pgram.on_message(filters.command("mmf")
+@pgram.on_message(filters.command("mmf"))
 async def mmf_mod(_,msg):
 
     if not msg.reply_to_message.id:
