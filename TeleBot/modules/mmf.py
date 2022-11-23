@@ -89,7 +89,7 @@ async def drawText(image_path, text):
 
     else:
 
-        fnt = "./TeleBot/resources/default.ttf"
+        fnt = "./TeleBot/resources/FontRemix.ttf"
 
     m_font = ImageFont.truetype(fnt, int((70 / 640) * i_width))
 
