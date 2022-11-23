@@ -9,14 +9,13 @@ async def wall(_,msg):
         await msg.reply_text("ʜᴇʏ ɴᴏᴏʙ ɢɪᴠᴇ sᴏᴍᴇᴛʜɪɴɢ ᴛᴏ sᴇᴀʀᴄʜ.")
     else:
         pass
-    try:
-        query=(
+    
+    query=(
        msg.text.split(None,1)[1]
        if len(msg.command) < 3
        else msg.text.split(None,1)[1].replace(" ","%20")
        )
-    except Exception:
-        pass
+    
     url=f"https://api.safone.me/wall?query={query}"
     re=requests.get(url).json()
     walls = re.get("results")
