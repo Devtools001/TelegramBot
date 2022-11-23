@@ -2,6 +2,7 @@ import requests
 from .. import pgram
 from random import randint
 from pyrogram import filters,enums
+from TeleBot.modules.helper_funcs
 
 @pgram.on_message(filters.command("wall"))
 async def wall(_,msg):
