@@ -24,9 +24,8 @@ async def IMDb(_,msg):
     list=re["genres"][0:]
     genres=0
     for a in list:
-        genres+=f"{a},"
-        print(a,end=",")
-    genres = genres[:-2] + '`\n'
+        genres=a
+        genres+=1            
     popularity=re["popularity"]
     status=re["status"]
     homepage=re["homepage"]
