@@ -34,3 +34,10 @@ async def wall(_,msg):
     except Exception as error :
         await msg.reply_text(f"ᴀɴ ᴇʀʀᴏʀ ᴏᴄᴄᴜʀᴇᴅ.\n {error}")            
     
+__help__ = """
+「𝗖𝗢𝗠𝗠𝗔𝗡𝗗𝗦」 :
+═───────◇───────═
+๏ /wall «ǫᴜᴇʀʏ» : ɢᴇᴛ ᴡᴀʟʟᴘᴀᴘᴇʀs ғʀᴏᴍ ᴀʟᴘʜᴀᴄᴏᴅᴇʀs.
+═───────◇───────═
+"""
+__mod_name__ = "𝚆ᴀʟʟᴘᴀᴘᴇʀ"
