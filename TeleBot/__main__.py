@@ -359,7 +359,7 @@ def get_help(update: Update, context: CallbackContext):
             module = args[1].lower()
             update.effective_message.reply_photo(
                 photo=random.choice(HELP_IMG),
-                caption=f"Contact me in PM to get help of {module.capitalize()}",
+                caption=f"ᴄᴏɴᴛᴀᴄᴛ ᴍᴇ ɪɴ ᴘᴍ ᴛᴏ ɢᴇᴛ ᴛʜᴇ ʟɪsᴛ ᴏғ {module.capitalize()}",
                 reply_markup=InlineKeyboardMarkup(
                     [
                         [
@@ -375,7 +375,7 @@ def get_help(update: Update, context: CallbackContext):
             return
         update.effective_message.reply_photo(
             photo=random.choice(HELP_IMG),
-            caption="» ᴄʜᴏᴏsᴇ ᴀɴ ᴏᴩᴛɪᴏɴ ғᴏʀ ɢᴇᴛᴛɪɴɢ ʜᴇʟᴩ.",
+            caption="» ᴄᴏɴᴛᴀᴄᴛ ᴍᴇ ɪɴ ᴘᴍ ᴛᴏ ɢᴇᴛ ᴛʜᴇ ʟɪsᴛ ᴏғ ᴘᴏssɪʙʟᴇ ᴄᴏᴍᴍᴀɴᴅs..",
             reply_markup=InlineKeyboardMarkup(
                 [
                     [
