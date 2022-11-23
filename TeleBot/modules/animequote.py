@@ -138,5 +138,11 @@ async def anime_quote(_,CallbackQuery):
           InlineKeyboardButton (text="ᴄʜᴀɴɢᴇ ⚡",callback_data="anime_quote")
         ],
         ]))   
-__help__ = "anime"
-__mod_name__ = "animeh"
+__help__ = """
+*⸢ɢᴇᴛ ᴀᴍᴀᴢɪɴɢ ʀᴀɴᴅᴏᴍ ᴀᴍɪᴍᴇ ǫᴜᴏᴛᴇs⸥*
+
+「𝗖𝗢𝗠𝗠𝗔𝗡𝗗𝗦」 :
+๏ /quote : ɢᴇᴛ ʀᴀɴᴅᴏᴍ ᴛᴇxᴛ ǫᴜᴏᴛᴇs.
+๏ /animequotes : ɢᴇᴛ ʀᴀɴᴅᴏᴍ  ǫᴜᴏᴛᴇs ɪɴ ᴘɪᴄᴛᴜʀᴇ.
+"""
+__mod_name__ = "𝙰ɴɪᴍᴇ-ǫᴜᴏᴛᴇs"
