@@ -5,10 +5,10 @@ from pyrogram import filters
 
 @pgram.on_message(filters.command("wall"))
 async def wall(_,msg):
- #   if len(msg.command) < 2:
- #        await msg.reply_text("ʜᴇʏ ɴᴏᴏʙ ɢɪᴠᴇ sᴏᴍᴇᴛʜɪɴɢ ᴛᴏ sᴇᴀʀᴄʜ.")
- #    else:
- #        pass
+    if len(msg.command) < 2:
+         await msg.reply_text("ʜᴇʏ ɴᴏᴏʙ ɢɪᴠᴇ sᴏᴍᴇᴛʜɪɴɢ ᴛᴏ sᴇᴀʀᴄʜ.")
+     else:
+         pass
 
     query=(
        msg.text.split(None,1)[1]
