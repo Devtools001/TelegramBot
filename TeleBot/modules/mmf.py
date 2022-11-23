@@ -24,9 +24,9 @@ async def mmf_mod(_,msg):
 
         return
 
-    reply_message = msg.reply_to_message.id
+    reply_message = msg.reply_to_message.photo.file_id
 
-    if not msg.media:
+    if not msg.media.STICKER or msg.media.PHOTO:
 
         await msg.reply_text("```Reply to a image/sticker.```")
 
