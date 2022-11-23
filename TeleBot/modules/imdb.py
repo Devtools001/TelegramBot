@@ -21,17 +21,16 @@ async def IMDb(_,msg):
     runtime=re["runtime"]
     rating=re["rating"]
     releaseDate=re["releaseDate"]
-    list=re["genres"]    
-    for genres in list:                  
-        popularity=re["popularity"]
-        status=re["status"]
-        homepage=re["homepage"]
-        imdbId=re["imdbId"]
-        imdbLink=re["imdbLink"]
-        id=re["id"]        
-        overview=re["overview"]        
-        await msg.reply_photo(poster,
-        caption=f"""
+    genres=re["genres"]                    
+    popularity=re["popularity"]
+    status=re["status"]
+    homepage=re["homepage"]
+    imdbId=re["imdbId"]
+    imdbLink=re["imdbLink"]
+    id=re["id"]        
+    overview=re["overview"]        
+    await msg.reply_photo(poster,
+    caption=f"""
 📀 **ᴛɪᴛʟᴇ :** {title}
 
 ⏱️ **ʀᴜɴᴛɪᴍᴇ :** {runtime}ᴍɪɴ
@@ -47,7 +46,7 @@ async def IMDb(_,msg):
 
 🗒  **ᴘʟᴏᴛ :** `{overview}`
 """,
-        reply_markup=InlineKeyboardMarkup(
+    reply_markup=InlineKeyboardMarkup(
             [
                 [
                     InlineKeyboardButton(
@@ -60,3 +59,4 @@ async def IMDb(_,msg):
     )
 
        
+    
