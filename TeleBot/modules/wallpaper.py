@@ -34,7 +34,7 @@ async def wall(_,msg):
     preview=wallpaper.get("thumbUrl") 
     title = wallpaper.get("title")
     try:
-        await msg.reply_photo(preview, caption="⚡ ᴘʀɪᴠɪᴇᴡ", filter=enums.ChatAction.UPLOAD_PHOTO)
+        await msg.reply_photo(preview, caption="⚡ ᴘʀɪᴠɪᴇᴡ")
         await msg.reply_document(pic, caption=f"⚡ ᴛɪᴛʟᴇ - {title}")
     except Exception as error :
         await msg.reply_text(f"ᴀɴ ᴇʀʀᴏʀ ᴏᴄᴄᴜʀᴇᴅ.\n {error}")            
