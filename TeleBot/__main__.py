@@ -469,8 +469,7 @@ def main():
     dispatcher.add_error_handler(error_callback)
 
     if WEBHOOK:
-        URL="https://meow.herokuapp.com"
-        LOG.info("Using webhooks.")
+        LOGGER.info("Using webhooks.")
         updater.start_webhook(listen="0.0.0.0", port=PORT, url_path=TOKEN)
 
         if CERT_PATH:
@@ -479,8 +478,15 @@ def main():
             updater.bot.set_webhook(url=URL + TOKEN)
 
     else:
-        LOG.info(f"Himawari started, Using long polling. | SUPPORT: [@{SUPPORT_CHAT}]")
-        updater.start_polling(timeout=15, read_latency=4, drop_pending_updates=True, allowed_updates=Update.ALL_TYPES)
+        LOGGER.info("Using long polling.")
+        updater.start_polling(timeout=15, read_latency=4, clean=True)
+
+    if len(argv) not in (1, 3, 4):
+        telethn.disconnect()
+    else:
+        telethn.run_until_disconnected()
+
+    updater.idle()
 
 
 
