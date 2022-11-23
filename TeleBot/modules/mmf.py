@@ -28,7 +28,7 @@ async def mmf_mod(_,msg):
 
     if not msg.media:
 
-        await msg..reply_text("```Reply to a image/sticker.```")
+        await msg.reply_text("```Reply to a image/sticker.```")
 
         return
 
