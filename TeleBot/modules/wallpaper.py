@@ -2,8 +2,10 @@ import requests
 from .. import pgram
 from random import randint
 from pyrogram import filters,enums
-from TeleBot.modules.helper_funcs
+from TeleBot.modules.helper_funcs.alternate import typing_action
+from telegram import ChatAction
 
+@typing_action
 @pgram.on_message(filters.command("wall"))
 async def wall(_,msg):
     if len(msg.command) < 2:
