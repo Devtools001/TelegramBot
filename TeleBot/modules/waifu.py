@@ -1,5 +1,5 @@
 import requests 
-from TeleBot import pgram as app 
+from .. import pgram as app 
 from pyrogram import filters 
 
 @app.on_message(filters.command("waifu"))
@@ -9,7 +9,7 @@ async def waifu(_,msg):
     e=re.json()
     waifu=e["url"]
     await msg.reply_photo(waifu, caption="""
-     ᴀ ᴡᴀɪғᴜ ᴀᴘᴘᴇᴀᴅᴇᴅ!
+     **ᴀ ᴡᴀɪғᴜ ᴀᴘᴘᴇᴀᴅᴇᴅ!**
 ᴀᴅᴅ ᴛʜᴇᴍ ᴛᴏ ʏᴏᴜʀ ʜᴀʀᴇᴍ ʙʏ sᴇɴᴅɪɴɢ /protecc ᴄʜᴀʀᴀᴄᴛᴇʀ ɴᴀᴍᴇ.""")
 
 @app.on_message(filters.command("protecc"))
