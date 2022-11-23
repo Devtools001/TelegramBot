@@ -468,7 +468,7 @@ def main():
 
     dispatcher.add_error_handler(error_callback)
 
-        if WEBHOOK:
+    if WEBHOOK:
         URL="https://meow.herokuapp.com"
         LOG.info("Using webhooks.")
         updater.start_webhook(listen="0.0.0.0", port=PORT, url_path=TOKEN)
