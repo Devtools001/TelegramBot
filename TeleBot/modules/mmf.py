@@ -4,69 +4,54 @@
 #ɴᴇᴛᴡᴏʀᴋ :- @Otaku_Binge
 
 from PIL import Image, ImageFont, ImageDraw
-
 import textwrap
-
 import os
-
-from TeleBot.events import register
-
-from TeleBot import LOG as LOGGER
-
-    
-    
-
-
-
-from TeleBot import telethn as bot
+from TeleBot import LOG as LOGGER    
+from TeleBot import pgram
+from pyrogram import filters 
 
 TEMP_DOWNLOAD_DIRECTORY ="./"
 
 Credit = "SIXTH_H0KAGE" 
 
 
-@register(pattern="^/mmf ?(.*)")
+@pgram.on_message(filters.command("mmf")
+async def mmf_mod(_,msg):
 
-async def handler(event):
+    if not msg.reply_to_message.id:
 
-    if event.fwd_from:
-
-        return
-
-    if not event.reply_to_msg_id:
-
-        await event.reply("Provide Some Text To Draw!")
+        await msg.reply_text("Provide Some Text To Draw!")
 
         return
 
-    reply_message = await event.get_reply_message()
+    reply_message = msg.reply_to_message.id
 
-    if not reply_message.media:
+    if not msg.media:
 
-        await event.reply("```Reply to a image/sticker.```")
+        await msg..reply_text("```Reply to a image/sticker.```")
 
         return
 
-    file = await bot.download_media(reply_message)
+    file = await pgram.download_media(reply_message)
 
-    msg = await event.reply("```Memifying this image! ```")
+    msg = await msg.reply_text("```Memifying this image! ```")
 
     if "SIXTH_H0KAGE" in Credit:
        pass
 
     else: 
-       await event.reply("DON'T REMOVE CREDIT LINE MF")
+       await msg.reply_text("DON'T REMOVE CREDIT LINE MF")
 
 
     text = str(event.pattern_match.group(1)).strip()
 
-    if len(text) < 1:
+    if len(msg.command) < 2:
 
-        return await msg.reply("You might want to try `/mmf text`")
+        return await msg.reply_text("You might want to try `/mmf text`")
 
     meme = await drawText(file, text)
 
-    await bot.send_file(event.chat_id, file=meme, force_document=False)
+    await pgram.send_photo(msg.chat.id, file=meme, force_document=False)
     
     await msg.delete() 
     
