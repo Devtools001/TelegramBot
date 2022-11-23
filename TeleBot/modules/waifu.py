@@ -17,5 +17,5 @@ async def waifu_protecc(_,msg):
     await msg.reply_text("OᴡO ʏᴏᴜ ᴘʀᴏᴛᴇᴄᴄ'ᴅ ᴀ Wᴀɪғᴜ ᴛʜɪs ᴡᴀɪғᴜ ʜᴀs ʙᴇᴇɴ ᴀᴅᴅᴇᴅ ᴛᴏ ʏᴏᴜʀ ʜᴀʀᴇᴍ.")
 
 @app.on_message(filters.command("harem"))
-async def waifu_protecc(_,msg):
+async def waifu_harem(_,msg):
     await msg.reply_text("ʏᴏᴜ ʜᴀᴠᴇɴ'ᴛ ᴘʀᴏᴛᴇᴄᴄ'ᴅ ᴀɴʏ ᴡᴀɪғᴜ ʏᴇᴛ...")
