@@ -26,7 +26,7 @@ async def mmf_mod(_,msg):
 
     reply_message = msg.reply_to_message.photo.file_id
 
-    if not msg.media.PHOTO:
+    if not msg.repl_to_message.media.PHOTO:
 
         await msg.reply_text("```Reply to a image/sticker.```")
 
@@ -43,7 +43,7 @@ async def mmf_mod(_,msg):
        await msg.reply_text("DON'T REMOVE CREDIT LINE MF")
 
 
-    text = str(event.pattern_match.group(1)).strip()
+    text = str(msg.pattern_match.group(1)).strip()
 
     if len(msg.command) < 2:
 
