@@ -16,7 +16,7 @@ async def wall(_,msg):
        else msg.text.split(None,1)[1].replace(" ","%20")
        )
     except Exception:
-        await msg.reply_text("ɢɪᴠᴇ sʜᴏʀᴛ ᴀɴɪᴍᴇ ɴᴀᴍᴇ ! 🙃")  
+        pass
     url=f"https://api.safone.me/wall?query={query}"
     re=requests.get(url).json()
     walls = re.get("results")
