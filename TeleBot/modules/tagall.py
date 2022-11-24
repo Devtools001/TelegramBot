@@ -10,5 +10,5 @@ async def tag_all(_,msg):
         usernme+=1
         usertext+= f"[{m.user.first_name}](tg://user?id={m.user.id})"
         if usernme==5:
-            text=f"hii \n{usrtxt}"
+            text=f"hii \n{usertext}"
             await pgram.send_message(msg.chat.id,text)
