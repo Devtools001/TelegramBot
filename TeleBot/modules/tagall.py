@@ -7,7 +7,7 @@ async def tag_all(_,msg):
     usernme=0
     usertext=""
     async for m in pgram.get_chat_members(msg.chat.id):
-        username+=1
+        usernme+=1
         usertext+= f"[{m.user.first_name}](tg://user?id={m.user.id})"
         if username==5:
             text=f"hii \n{usrtxt}"
