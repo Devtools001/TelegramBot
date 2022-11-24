@@ -8,4 +8,4 @@ async def tag_all(_,msg):
     async for m in pgram.get_chat_members(msg.chat.id):
         username+=1
         if username==5:
-            await msg.reply_text(f"hey {m.user.mention}")
+            await pgram.send_message(msg.chat.id,f"hey \n{m.user.mention}")
