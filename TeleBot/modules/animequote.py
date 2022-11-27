@@ -85,8 +85,8 @@ async def quote(_, message):
 ⚡ **ǫᴜᴏᴛᴇ** :
 ❝ {quote} ❞
 
-📌 **ᴄʜᴀʀᴀᴄᴛᴇʀ** : **{anime}** 
-✨ **ᴀɴɪᴍᴇ** : **{character}**
+📌 **ᴄʜᴀʀᴀᴄᴛᴇʀ** : **{character}** 
+✨ **ᴀɴɪᴍᴇ** : **{anime}**
 """,
 reply_markup=InlineKeyboardMarkup(
         [
@@ -108,8 +108,8 @@ async def change_quote(_,CallbackQuery):
 ⚡ **ǫᴜᴏᴛᴇ** :
 ❝ {quote} ❞
 
-📌 **ᴄʜᴀʀᴀᴄᴛᴇʀ** : **{anime}** 
-✨ **ᴀɴɪᴍᴇ** : **{character}**
+📌 **ᴄʜᴀʀᴀᴄᴛᴇʀ** : **{character}** 
+✨ **ᴀɴɪᴍᴇ** : **{anime}**
 """,
 reply_markup=InlineKeyboardMarkup(
         [
