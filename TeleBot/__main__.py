@@ -121,7 +121,7 @@ all_modules = ""
 for module_name in ALL_MODULES:
     imported_module = importlib.import_module("TeleBot.modules." +
                                               module_name)
-    all_modules += "⦿" + module_name + "\n"
+    all_modules += "⦿ " + module_name + "\n"
     if not hasattr(imported_module, "__mod_name__"):
         imported_module.__mod_name__ = imported_module.__name__
 
@@ -433,7 +433,7 @@ def migrate_chats(update: Update, context: CallbackContext):
 def main():       
     LOG.print("Found {} Plugins".format(len(ALL_MODULES)) + "\n")
     LOG.print(
-                f"✨ [bold cyan]sᴜᴄᴄᴇssғᴜʟʟʏ ɪᴍᴘᴏʀᴛᴇᴅ: [green]{all_modules}.py"
+                f"✨ [bold cyan]sᴜᴄᴄᴇssғᴜʟʟʏ ɪᴍᴘᴏʀᴛᴇᴅ: [green]{all_modules}"
             )
 
     if SUPPORT_CHAT is not None and isinstance(SUPPORT_CHAT, str):
