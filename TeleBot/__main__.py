@@ -43,7 +43,8 @@ from TeleBot import (
     WEBHOOK,
     StartTime,
     dispatcher,
-    pgram,    
+    pgram,
+    telethn,    
     updater,
     get_readable_time
 )
@@ -476,6 +477,12 @@ def main():
     else:
         LOG.info("Using long polling.")
         updater.start_polling(timeout=15, read_latency=4, drop_pending_updates=True)
+   
+     if len(argv) not in (1, 3, 4):
+        telethn.disconnect()
+    else:
+        telethn.run_until_disconnected()
+
     
     updater.idle()
 
@@ -483,5 +490,6 @@ def main():
 
 if __name__ == "__main__":
     LOG.info("Successfully loaded modules: " + str(ALL_MODULES))    
+    telethn.start(bot_token=TOKEN)
     pgram.start()
     main()
