@@ -433,7 +433,7 @@ def migrate_chats(update: Update, context: CallbackContext):
 def main():       
     LOG.print("Found {} Plugins".format(len(ALL_MODULES)) + "\n")
     LOG.print(
-                f"✨ [bold cyan]sᴜᴄᴄᴇssғᴜʟʟʏ ɪᴍᴘᴏʀᴛᴇᴅ: [green]{module_name}.py"
+                f"✨ [bold cyan]sᴜᴄᴄᴇssғᴜʟʟʏ ɪᴍᴘᴏʀᴛᴇᴅ: [green]{all_modules}.py"
             )
 
     if SUPPORT_CHAT is not None and isinstance(SUPPORT_CHAT, str):
