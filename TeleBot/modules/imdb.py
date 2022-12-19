@@ -21,15 +21,16 @@ async def IMDb(_,msg):
     runtime=re["runtime"]
     rating=re["rating"]
     releaseDate=re["releaseDate"]
-    genres=re["genres"]                    
     popularity=re["popularity"]
     status=re["status"]
     homepage=re["homepage"]
     imdbId=re["imdbId"]
     imdbLink=re["imdbLink"]
     id=re["id"]        
-    overview=re["overview"]        
-    await msg.reply_photo(poster,
+    overview=re["overview"]     
+    gen=re["genres"]                              
+    for genres in gen:
+        await msg.reply_photo(poster,
     caption=f"""
 📀 **ᴛɪᴛʟᴇ :** {title}
 
