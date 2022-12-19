@@ -430,6 +430,12 @@ def migrate_chats(update: Update, context: CallbackContext):
 
 
 def main():   
+    MODS = ""
+    MODULES = str(ALL_MODULES)
+    for i in MODULES:
+        MODS += "⦿" + i + "\n"
+    LOG.print(f"[bold yellow]sᴜᴄᴄᴇssғᴜʟʟʏ ʟᴏᴀᴅᴇᴅ ᴍᴏᴅᴜʟᴇs :\n {MODS}")
+
     if SUPPORT_CHAT is not None and isinstance(SUPPORT_CHAT, str):
         try:
             dispatcher.bot.send_photo(
@@ -451,7 +457,8 @@ def main():
             )
         except BadRequest as e:
             LOG.print(f"[bold red]{e.message}")
-
+    
+    
     start_handler = CommandHandler("start", start,run_async=True)
     help_handler = CommandHandler("help", get_help,run_async=True)
     help_callback_handler = CallbackQueryHandler(help_button, pattern=r"help_.*",run_async=True)             
@@ -489,7 +496,6 @@ def main():
 
 
 if __name__ == "__main__":
-    LOG.print("[bold yellow]sᴜᴄᴄᴇssғᴜʟʟʏ ʟᴏᴀᴅᴇᴅ ᴍᴏᴅᴜʟᴇs:: " + str(ALL_MODULES) + "\n")    
     telethn.start(bot_token=TOKEN)
     pgram.start()
     main()
