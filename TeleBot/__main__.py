@@ -429,12 +429,11 @@ def migrate_chats(update: Update, context: CallbackContext):
     raise DispatcherHandlerStop
 
 
-def main():   
-    MODS = ""
-    MODULES = str(ALL_MODULES)
-    for i in MODULES:
-        MODS += "⦿" + i + "\n"
-    LOG.print(f"[bold yellow]sᴜᴄᴄᴇssғᴜʟʟʏ ʟᴏᴀᴅᴇᴅ ᴍᴏᴅᴜʟᴇs :\n {MODS}")
+def main():       
+    LOG.print("Found {} Plugins".format(len(ALL_MODULES)) + "\n")
+    LOG.print(
+                f"✨ [bold cyan]sᴜᴄᴄᴇssғᴜʟʟʏ ɪᴍᴘᴏʀᴛᴇᴅ: [green]{all_module}.py"
+            )
 
     if SUPPORT_CHAT is not None and isinstance(SUPPORT_CHAT, str):
         try:
