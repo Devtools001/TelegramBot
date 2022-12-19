@@ -16,7 +16,7 @@ async def IMDb(_,msg):
     )
     url=f"https://api.safone.me/tmdb?query={text}%20&limit=1"
     ok=requests.get(url).json()
-    if ok:
+    if not ok:
         await msg.reply_text("nothing")
     else:
         re=ok["results"][0]   
