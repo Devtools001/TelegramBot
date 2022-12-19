@@ -5,6 +5,8 @@ import sys
 import telegram.ext as Fday
 from pyrogram import Client
 from config import Friday as Config
+from rich.table import Table
+from rich.console import Console
 from telethon import TelegramClient 
 
 
