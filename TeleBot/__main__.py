@@ -446,11 +446,11 @@ def main():
                 parse_mode=ParseMode.MARKDOWN,
             )
         except Unauthorized:
-            LOG.warning(
-                f"Bot isn't able to send message to @{SUPPORT_CHAT}, go and check!"
+            LOG.print(
+                f"[bold red]ʙᴏᴛ ɪs'ɴᴛ ᴀʙʟᴇ ᴛᴏ sᴇɴᴅ ᴍᴇssᴀɢᴇ ᴛᴏ @{SUPPORT_CHAT} !"
             )
         except BadRequest as e:
-            LOG.warning(e.message)
+            LOG.print(f"[bold red]{e.message}")
 
     start_handler = CommandHandler("start", start,run_async=True)
     help_handler = CommandHandler("help", get_help,run_async=True)
@@ -466,7 +466,7 @@ def main():
     dispatcher.add_error_handler(error_callback)
 
     if WEBHOOK:
-        LOG.info("Using webhooks.")
+        LOG.print("[bold yellow]ᴜsɪɴɢ ᴡᴇʙʜᴏᴏᴋs.")
         updater.start_webhook(listen="0.0.0.0", port=PORT, url_path=TOKEN)
 
         if CERT_PATH:
@@ -475,7 +475,7 @@ def main():
             updater.bot.set_webhook(url=URL + TOKEN)
 
     else:
-        LOG.info("Using long polling.")
+        LOG.print("[bold yellow]ᴜsɪɴɢ ʟᴏɴɢ ᴘᴏʟʟɪɴɢ.")
         updater.start_polling(timeout=15, read_latency=4, drop_pending_updates=True)
    
     if len(argv) not in (1, 3, 4):
@@ -489,7 +489,7 @@ def main():
 
 
 if __name__ == "__main__":
-    LOG.info("Successfully loaded modules: " + str(ALL_MODULES))    
+    LOG.print("[bold yellow]sᴜᴄᴄᴇssғᴜʟʟʏ ʟᴏᴀᴅᴇᴅ ᴍᴏᴅᴜʟᴇs:: " + str(ALL_MODULES) + "\n")    
     telethn.start(bot_token=TOKEN)
     pgram.start()
     main()
