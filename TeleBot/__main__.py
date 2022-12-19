@@ -117,10 +117,11 @@ DATA_IMPORT = []
 DATA_EXPORT = []
 CHAT_SETTINGS = {}
 USER_SETTINGS = {}
-
+all_modules = ""
 for module_name in ALL_MODULES:
     imported_module = importlib.import_module("TeleBot.modules." +
                                               module_name)
+    all_modules += module_name
     if not hasattr(imported_module, "__mod_name__"):
         imported_module.__mod_name__ = imported_module.__name__
 
