@@ -28,8 +28,6 @@ from telegram.ext import (
 )
 from telegram.ext.dispatcher import DispatcherHandlerStop, run_async
 from telegram.utils.helpers import escape_markdown
-from telethon import __version__ as tlhver
-
 
 from TeleBot import (
     BOT_NAME,
@@ -45,8 +43,7 @@ from TeleBot import (
     WEBHOOK,
     StartTime,
     dispatcher,
-    pgram,
-    telethn,
+    pgram,    
     updater,
     get_readable_time
 )
@@ -442,7 +439,6 @@ def main():
 
 ┏•❅────✧❅✦❅✧────❅•┓
 ㅤ★ **ᴘʏᴛʜᴏɴ :** `{y()}`
-ㅤ★ **ʟɪʙʀᴀʀʏ :** `{telever}`
 ㅤ★ **ᴛᴇʟᴇᴛʜᴏɴ :** `{tlhver}`
 ㅤ★ **ᴩʏʀᴏɢʀᴀᴍ :** `{pyrover}`
 ┗•❅────✧❅✦❅✧────❅•┛""",
@@ -480,18 +476,12 @@ def main():
     else:
         LOG.info("Using long polling.")
         updater.start_polling(timeout=15, read_latency=4, drop_pending_updates=True)
-
-    if len(argv) not in (1, 3, 4):
-        telethn.disconnect()
-    else:
-        telethn.run_until_disconnected()
-
+    
     updater.idle()
 
 
 
 if __name__ == "__main__":
-    LOG.info("Successfully loaded modules: " + str(ALL_MODULES))
-    telethn.start(bot_token=TOKEN)
+    LOG.info("Successfully loaded modules: " + str(ALL_MODULES))    
     pgram.start()
     main()
