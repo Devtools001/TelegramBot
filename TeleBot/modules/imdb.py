@@ -28,9 +28,8 @@ async def IMDb(_,msg):
     imdbLink=re["imdbLink"]
     id=re["id"]        
     overview=re["overview"]     
-    gen=re["genres"]                              
-    for genres in gen:
-        await msg.reply_photo(poster,
+    genres=re["genres"]                                  
+    await msg.reply_photo(poster,
     caption=f"""
 📀 **ᴛɪᴛʟᴇ :** {title}
 
@@ -58,7 +57,7 @@ async def IMDb(_,msg):
             ],
         ),
     )
-
+    
        
 __help__="""
 「𝗖𝗢𝗠𝗠𝗔𝗡𝗗𝗦」 :
