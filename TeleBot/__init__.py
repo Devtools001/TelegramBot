@@ -10,21 +10,15 @@ from rich.console import Console
 from telethon import TelegramClient 
 
 
-logging.basicConfig(
-    style="{",format="{asctime} -- {name} -- {levelname} -- {message}",
-    handlers=[logging.FileHandler("log.txt"), logging.StreamHandler()],
-    level=logging.INFO,
-)
 
-LOG=logging.getLogger("Stark-industry")
 
-if sys.version_info[0] < 3 or sys.version_info[1] < 6:
-    LOG.error("you must have python version of atleast 3.6, bot quitting")
-    quit(1)
-else:
-  LOG.info("Noice you have python version greater than 3.6")
+LOG = Console()
+StartTime=time.time()
 
-StartTime = time.time()
+
+if sys.version_info[0] < 3 and sys.version_info[1] < 6:
+    LOG.print("[bold red]ʏᴏᴜ ᴍᴜsᴛ ʜᴀᴠᴇ ᴀ ᴘʏᴛʜᴏɴ ᴠᴇʀsɪᴏɴ ᴏғ 3.6. ᴇxɪᴛɪɴɢ.......\n")
+    sys.exit(1)
 
 def get_readable_time(seconds: int) -> str:
     count = 0
