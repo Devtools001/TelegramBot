@@ -15,11 +15,11 @@ async def IMDb(_,msg):
         else msg.text.split(None, 1)[1].replace(" ", "%20")
     )
     url=f"https://api.safone.me/tmdb?query={text}%20&limit=1"
-    ok=requests.get(url).json()
-    if not ok:
+    ok=requests.get(url).json()        
+    re=ok["results"][0]
+    if not re:       
         await msg.reply_text("nothing")
     else:
-        re=ok["results"][0]   
         title=re["title"]
         poster=re["poster"]
         runtime=re["runtime"]
