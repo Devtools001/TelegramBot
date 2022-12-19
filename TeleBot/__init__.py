@@ -86,6 +86,8 @@ else:
 updater=Fday.Updater(BOT_TOKEN,workers=WORKERS,use_context=True)
 dispatcher=updater.dispatcher
 
+telethn = TelegramClient("Fallen", API_ID, API_HASH)
+
 
 
 pgram = Client (
