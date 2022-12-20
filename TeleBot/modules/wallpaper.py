@@ -14,16 +14,18 @@ def typing_action(func):
 
     return command_func
 
-def send_action(chat_action):
-    """Sends typing action while processing func command."""
+def send_action(action):   
+    def decorator(func):
+        @wraps(func)
+        async def command_func(_,msg, *args, **kwargs):
+            await pgram.send_chat_action(
+                chat_id=msg.chat.id, action=action
+            )
+            return await func(_,msg, *args, **kwargs)
 
-    @wraps(func)
-    async def command_func(_,msg,*args, **kwargs):
-        await pgram.send_chat_action(msg.chat.id,chat_action)
-        return await func(_,msg,*args, **kwargs)
+        return await command_func
 
-    return command_func
-
+    return decorator
 
 @pgram.on_message(filters.command("wall"))
 @send_action(enums.ChatAction.UPLOAD_PHOTO)
