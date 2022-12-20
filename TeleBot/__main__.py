@@ -442,6 +442,7 @@ def main():
             print('width: ', im.width)
             print('height:', im.height)
             print(im.size)
+            await msg.reply_photo(user_dp)
             
             os.remove(user_dp)
         else:
