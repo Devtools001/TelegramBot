@@ -21,11 +21,12 @@ def PermissionCheck(mystic):
         if user.status == ChatMemberStatus.MEMBER:
             return await message.delete()
 
-        if user_id not in ADMINS:
-            return await message.reply_text("you are not admin")
+        else:
+            if user_id not in ADMINS:
+                return await message.reply_text("you are not admin")
 
-        if not user.privileges.can_restrict_members:           
-            return await message.reply_text("you don't have the permission")
+            if not user.privileges.can_restrict_members:           
+                return await message.reply_text("you don't have the permission")
                                             
         return await mystic(_, message)
 
