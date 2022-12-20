@@ -14,9 +14,19 @@ def typing_action(func):
 
     return command_func
 
+def send_action(func):
+    """Sends typing action while processing func command."""
+
+    @wraps(func)
+    async def command_func(_,msg,*args, **kwargs):
+        await pgram.send_chat_action(msg.chat.id)
+        return await func(_,msg,*args, **kwargs)
+
+    return command_func
+
 
 @pgram.on_message(filters.command("wall"))
-@typing_action
+@send_action(enums.ChatAction.UPLOAD_PHOTO)
 async def wall(_,msg):
     if len(msg.command) < 2:
          await msg.reply_text("ʜᴇʏ ɴᴏᴏʙ ɢɪᴠᴇ sᴏᴍᴇᴛʜɪɴɢ ᴛᴏ sᴇᴀʀᴄʜ.")
