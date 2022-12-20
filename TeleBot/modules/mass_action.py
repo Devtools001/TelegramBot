@@ -33,6 +33,9 @@ def bot_admin(stark):
         #user_id = BOT_ID
         member = await app.get_chat_member(chat_id, BOT_ID)
         print(member.status)
+        if user_id not in ADMINS:
+
+            return await message.reply_text("i'm not admin")
 
         if not member.privileges.can_restrict_members:           
             return await message.reply_text("you don't have the permission")
