@@ -436,7 +436,7 @@ def main():
     async def ok(_,msg):
         ff = msg.reply_to_message
         if ff.photo:
-            user_dp = await pgram.download_media(message=ff.photo.big_file_id)
+            user_dp = await pgram.download_media(message=ff.photo.file_id)
             print(user_dp)
             os.remove(user_dp)
         else:
