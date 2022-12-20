@@ -27,19 +27,21 @@ def PermissionCheck(mystic):
 
     return wrapper
 
+
 def bot_admin(stark):
     async def wrapper(_,message ):
         chat_id = message.chat.id
-        #user_id = BOT_ID
+        
         member = await app.get_chat_member(chat_id, BOT_ID)
-        print(member.status)
+        
         if not member.status.ADMINISTRATOR:
             return await message.reply_text("i'm not admin")
            
         if not member.privileges.can_restrict_members:           
-            return await message.reply_text("you don't have the permission")
+            return await message.reply_text("i don't have the permission")
 
         return await stark(_,message)
+
     return wrapper
          
 
@@ -49,9 +51,7 @@ def bot_admin(stark):
 @bot_admin
 @PermissionCheck
 async def mute_all(_,msg):
-    chat_id=msg.chat.id    
-    #bot=await app.get_chat_member(chat_id,BOT_ID)
-    #bot_permission=bot.privileges.can_restrict_members==True    
+    chat_id=msg.chat.id            
     if msg.reply_to_message:
         await app.restrict_chat_member(chat_id, msg.reply_to_message.from_user.id,ChatPermissions(can_send_messages=False))       
     else:
