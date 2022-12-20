@@ -9,7 +9,7 @@ def typing_action(func):
 
     @wraps(func)
     async def command_func(_,msg):
-        await pgram.send_chat_action(msg.chat.id, enums.ChatAction.PHOTO)
+        await pgram.send_chat_action(msg.chat.id, enums.ChatAction.UPLOAD_PHOTO)
         return await func(_,msg)
 
     return command_func
@@ -17,7 +17,7 @@ def typing_action(func):
 
 @pgram.on_message(filters.command("wall"))
 @typing_action
-async def okwall(_,msg):
+async def wall(_,msg):
     if len(msg.command) < 2:
          await msg.reply_text("ʜᴇʏ ɴᴏᴏʙ ɢɪᴠᴇ sᴏᴍᴇᴛʜɪɴɢ ᴛᴏ sᴇᴀʀᴄʜ.")
          return 
