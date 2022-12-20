@@ -32,7 +32,7 @@ def bot_admin(stark):
         chat_id = message.chat.id
         #user_id = BOT_ID
         member = await app.get_chat_member(chat_id, BOT_ID)
-        print(member)
+        print(member.status)
 
         if not member.privileges.can_restrict_members:           
             return await message.reply_text("you don't have the permission")
