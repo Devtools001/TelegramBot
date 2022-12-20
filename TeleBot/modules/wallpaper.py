@@ -2,6 +2,7 @@ import requests
 from .. import pgram
 from random import randint
 from pyrogram import filters,enums
+from functools import wraps
 
 def typing_action(func):
     """Sends typing action while processing func command."""
