@@ -31,11 +31,10 @@ def bot_admin(stark):
     async def wrapper(app : Client,message : Message):
         chat_id = message.chat.id
         user_id = message.from_user.id
-        BOTS = []
-        async for m in app.get_chat_members(chat_id, filter=enums.ChatMembersFilter.ADMINISTRATORS):
-            BOTS.append(m.user.id)
-        if user_id not in BOTS:
-            return await message.reply_text("I am not admin")
+        member = await app.get_chat_member(chat_id, user_id)
+
+        if not member.privileges.can_restrict_members:           
+            return await message.reply_text("you don't have the permission")
 
         return await stark(app,message)
     return wrapper
