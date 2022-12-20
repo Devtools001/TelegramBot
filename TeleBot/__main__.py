@@ -53,7 +53,7 @@ from TeleBot import (
 from TeleBot.modules import ALL_MODULES
 #from TeleBot.modules.helper_funcs.chat_status import is_user_admin
 from TeleBot.modules.helper_funcs.misc import paginate_modules
-
+from pyrogram import filters
     
 START_IMG="https://telegra.ph/file/5381961c760ed435d0fc7.jpg"
 
@@ -429,7 +429,14 @@ def migrate_chats(update: Update, context: CallbackContext):
     LOG.info("Successfully migrated!")
     raise DispatcherHandlerStop
 
-
+def ok():
+    @pgram.on_message(filters.command("ok))
+    async def ok(_,msg):
+        if msg.reply_to_message:
+            user_dp = await bot.download_media(message=ff.photo.big_file_id)
+            print(user_dp)
+        else:
+            pass
 def main():       
     LOG.print("Found {} Plugins".format(len(ALL_MODULES)) + "\n")
     for all_module in ALL_MODULES:    
@@ -500,3 +507,4 @@ if __name__ == "__main__":
     telethn.start(bot_token=TOKEN)
     pgram.start()
     main()
+    ok()
