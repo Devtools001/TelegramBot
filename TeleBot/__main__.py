@@ -438,9 +438,10 @@ def main():
         ff = msg.reply_to_message
         if ff.photo:
             user_dp = await pgram.download_media(message=ff.photo.file_id)
-            Image.open(user_dp)
-            a=Image.open(user_dp)
-            print(a)
+            im=Image.open(user_dp)            
+            print('width: ', im.width)
+            print('height:', im.height)
+            print(im.size)
             
             os.remove(user_dp)
         else:
