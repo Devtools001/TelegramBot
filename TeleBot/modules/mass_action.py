@@ -1,19 +1,22 @@
 from TeleBot import pgram as app
 from pyrogram import filters,enums
+from pyrogram.types import Message
 from pyrogram.types import ChatPermissions,ChatMember
 #from TeleBot.modules.pyrogram_funcs.admins import user_admin
 
 BOT_ID = 5724020149
-DEV_USER = 5556308886
 
 def PermissionCheck(mystic):
     async def wrapper(_, message):
         user_id = message.from_user.id
         chat_id = message.chat.id
+
         user = await app.get_chat_member(chat_id,user_id)
+
         ADMINS = []
         async for m in app.get_chat_members(chat_id, filter=enums.ChatMembersFilter.ADMINISTRATORS):
             ADMINS.append(m.user.id)
+        print(ADMINS)
 
         if user_id not in ADMINS:
             return await message.reply_text("you are not admin")
@@ -24,6 +27,12 @@ def PermissionCheck(mystic):
         return await mystic(_, message)
 
     return wrapper
+
+#def bot_admin(stark):
+#    async def wrapper(client : Client,message : Message):
+         
+
+
 
 @app.on_message(filters.command("muteall"))
 @PermissionCheck
