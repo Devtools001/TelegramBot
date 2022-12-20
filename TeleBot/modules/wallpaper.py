@@ -9,7 +9,7 @@ def typing_action(func):
 
     @wraps(func)
     async def command_func(_,msg):
-        await pgram.send_chat_action(msg.chat.id, enums.ChatAction.TYPING)
+        await pgram.send_chat_action(msg.chat.id, enums.ChatAction.PHOTO)
         return await func(_,msg)
 
     return command_func
