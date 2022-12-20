@@ -8,7 +8,7 @@ BOT_ID = 5724020149
 def PermissionCheck(mystic):
     async def wrapper(_, message):
         a = await app.get_chat_member(message.chat.id,message.from_user.id)
-        if a.status != "administrator":
+        if not a.status != ChatMemberStatus.ADMINISTRATOR:
             return await message.reply_text("you are not admin")
                 
         if not a.privileges.can_restrict_members:           
