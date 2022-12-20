@@ -37,12 +37,17 @@ def bot_admin(stark):
     async def wrapper(_,message ):
         chat_id = message.chat.id        
         bot = await app.get_chat_member(chat_id, BOT_ID)  
+        user = await app.get_chat_member(chat_id,user_id)
+
+        if user.status == ChatMemberStatus.MEMBER:
+            pass
       
-        if bot.status != ChatMemberStatus.ADMINISTRATOR:
-            return await message.reply_text("i'm not admin")
+        else:
+            if bot.status != ChatMemberStatus.ADMINISTRATOR:
+                return await message.reply_text("i'm not admin")
            
-        if not bot.privileges.can_restrict_members:           
-            return await message.reply_text("i don't have the permission")
+            if not bot.privileges.can_restrict_members:           
+                return await message.reply_text("i don't have the permission")
 
         return await stark(_,message)
 
