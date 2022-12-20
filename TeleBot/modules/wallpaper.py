@@ -23,7 +23,7 @@ def send_action(action):
             )
             return await func(_,msg, *args, **kwargs)
 
-        return await command_func
+        return command_func
 
     return decorator
 
