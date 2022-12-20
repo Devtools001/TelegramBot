@@ -14,7 +14,7 @@ def PermissionCheck(mystic):
 
         user = await app.get_chat_member(chat_id,user_id)
         
-        if user.status != ChatMemberStatus.ADMINISTRATOR or ChatMemberStatus.OWNER:
+        if user.status != ChatMemberStatus.ADMINISTRATOR or user.status != ChatMemberStatus.OWNER:
             return await message.reply_text("you are not admin")
 
         if not user.privileges.can_restrict_members:           
