@@ -1,4 +1,4 @@
-from TeleBot import pgram app,BOT_ID
+from TeleBot import pgram as app,BOT_ID
 from pyrogram import filters
 from pyrogram.types import ChatPermissions
 from TeleBot.modules.pyrogram_funcs.admins import user_admin
