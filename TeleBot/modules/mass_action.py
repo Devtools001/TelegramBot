@@ -11,7 +11,7 @@ def PermissionCheck(mystic):
      #   if a.status != "administrator":
      #       return await message.reply_text("you are not admin")
                 
-        if not a.can_restrict_members:           
+        if not a.can_restrict_members==False:           
             return await message.reply_text("you don't have the permission")
                         
         return await mystic(_, message)
