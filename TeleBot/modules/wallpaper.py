@@ -28,7 +28,7 @@ def send_action(action):
     return decorator
 
 @pgram.on_message(filters.command("wall"))
-@send_action(enums.ChatAction.UPLOAD_PHOTO)
+@send_action(enums.ChatAction.TYPING)
 async def wall(_,msg):
     if len(msg.command) < 2:
          await msg.reply_text("ʜᴇʏ ɴᴏᴏʙ ɢɪᴠᴇ sᴏᴍᴇᴛʜɪɴɢ ᴛᴏ sᴇᴀʀᴄʜ.")
