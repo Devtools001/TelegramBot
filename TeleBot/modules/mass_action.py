@@ -30,8 +30,9 @@ def PermissionCheck(mystic):
 def bot_admin(stark):
     async def wrapper(_,message ):
         chat_id = message.chat.id
-        user_id = BOT_ID
-        member = await app.get_chat_member(chat_id, user_id)
+        #user_id = BOT_ID
+        member = await app.get_chat_member(chat_id, BOT_ID)
+        print(member)
 
         if not member.privileges.can_restrict_members:           
             return await message.reply_text("you don't have the permission")
