@@ -36,6 +36,7 @@ def bot_admin(stark):
             BOTS.append(m.user.id)
         if user_id not in BOTS:
             return await message.reply_text("I am not admin")
+
         return await stark(app,message)
     return wrapper
          
@@ -49,7 +50,7 @@ async def mute_all(_,msg):
     chat_id=msg.chat.id    
     bot=await app.get_chat_member(chat_id,BOT_ID)
     bot_permission=bot.privileges.can_restrict_members==True    
-    if bot_permission and msg.reply_to_message:
+    if msg.reply_to_message:
         await app.restrict_chat_member(chat_id, msg.reply_to_message.from_user.id,ChatPermissions(can_send_messages=False))       
     else:
         await msg.reply_text("ᴇɪᴛʜᴇʀ ɪ ᴅᴏɴ'ᴛ ʜᴀᴠᴇ ᴛʜᴇ ʀɪɢʜᴛ ᴛᴏ ʀᴇsᴛʀɪᴄᴛ ᴜsᴇʀs ᴏʀ ʏᴏᴜ ᴀʀᴇ ɴᴏᴛ ɪɴ sᴜᴅᴏ ᴜsᴇʀs")  
