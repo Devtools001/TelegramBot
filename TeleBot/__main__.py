@@ -429,15 +429,16 @@ def migrate_chats(update: Update, context: CallbackContext):
     LOG.info("Successfully migrated!")
     raise DispatcherHandlerStop
 
-def ok():
+
+    
+def main():   
     @pgram.on_message(filters.command("ok"))
     async def ok(_,msg):
         if msg.reply_to_message.photo:
             user_dp = await pgram.download_media(message=ff.photo.big_file_id)
             print(user_dp)
         else:
-            pass
-def main():       
+            pass    
     LOG.print("Found {} Plugins".format(len(ALL_MODULES)) + "\n")
     for all_module in ALL_MODULES:    
         LOG.print(
