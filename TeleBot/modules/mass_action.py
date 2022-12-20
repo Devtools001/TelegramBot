@@ -41,7 +41,7 @@ def bot_admin(stark):
 
         if user.status == ChatMemberStatus.MEMBER:
             try:
-                pass:
+                pass
             except Exception:
                 pass 
       
