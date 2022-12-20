@@ -14,12 +14,12 @@ def typing_action(func):
 
     return command_func
 
-def send_action(func):
+def send_action(chat_action):
     """Sends typing action while processing func command."""
 
     @wraps(func)
     async def command_func(_,msg,*args, **kwargs):
-        await pgram.send_chat_action(msg.chat.id)
+        await pgram.send_chat_action(msg.chat.id,chat_action)
         return await func(_,msg,*args, **kwargs)
 
     return command_func
