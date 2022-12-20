@@ -9,15 +9,15 @@ def PermissionCheck(mystic):
     async def wrapper(_, message):
         user_id = message.from_user.id
         chat_id = message.chat.id
-        permissions = await app.get_chat_member(chat_id,user_id)
+        user = await app.get_chat_member(chat_id,user_id)
         ADMINS = []
         async for m in app.get_chat_members(chat_id, filter=enums.ChatMembersFilter.ADMINISTRATORS):
             ADMINS.append(m.user.id)
 
-        if message.from_user.id not in ADMINS:
+        if user_id not in ADMINS:
             return await message.reply_text("you are not admin")
 
-        if not a.privileges.can_restrict_members:           
+        if not user.privileges.can_restrict_members:           
             return await message.reply_text("you don't have the permission")
                         
         return await mystic(_, message)
