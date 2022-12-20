@@ -11,9 +11,10 @@ def PermissionCheck(mystic):
         creator = "creator"
         ranks = [admin, creator]
         a = await app.get_chat_member(message.chat.id,message.from_user.id)
-        if a.status not in ranks:
-            return await message.reply_text("you are not admin")
-                
+        administrators = []
+        async for m in app.get_chat_members(chat_id, filter=enums.ChatMembersFilter.ADMINISTRATORS):
+            administrators.append(m.user.id)
+        if message.from_user.id
         if not a.privileges.can_restrict_members:           
             return await message.reply_text("you don't have the permission")
                         
