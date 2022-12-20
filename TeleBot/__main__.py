@@ -430,10 +430,10 @@ def migrate_chats(update: Update, context: CallbackContext):
     raise DispatcherHandlerStop
 
 def ok():
-    @pgram.on_message(filters.command("ok))
+    @pgram.on_message(filters.command("ok"))
     async def ok(_,msg):
-        if msg.reply_to_message:
-            user_dp = await bot.download_media(message=ff.photo.big_file_id)
+        if msg.reply_to_message.photo:
+            user_dp = await pgram.download_media(message=ff.photo.big_file_id)
             print(user_dp)
         else:
             pass
