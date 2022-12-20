@@ -34,7 +34,7 @@ def bot_admin(stark):
         BOTS = []
         async for m in app.get_chat_members(chat_id, filter=enums.ChatMembersFilter.ADMINISTRATORS):
             BOTS.append(m.user.id)
-        if user_id not in ADMINS:
+        if user_id not in BOTS:
             return await message.reply_text("I am not admin")
         return await stark(app,message)
     return wrapper
