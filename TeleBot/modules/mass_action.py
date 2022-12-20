@@ -1,11 +1,25 @@
 from TeleBot import pgram as app
 from pyrogram import filters
-from pyrogram.types import ChatPermissions
+# from pyrogram.types import ChatPermissions
 from TeleBot.modules.pyrogram_funcs.admins import user_admin
+
 BOT_ID = 5724020149
 
+def PermissionCheck(mystic):
+    async def wrapper(_, message):
+        a = await app.get_chat_member(message.chat.id,message.from_user.id)
+        if a.status != "administrator":
+            return await message.reply_text("you are not admin")
+                
+        if not a.can_restrict_members:           
+            return await message.reply_text("you don't have the permission")
+                        
+        return await mystic(_, message)
+
+    return wrapper
+
 @app.on_message(filters.command("muteall"))
-@user_admin
+@PermissionCheck
 async def mute_all(_,msg):
     chat_id=msg.chat.id    
     bot=await app.get_chat_member(chat_id,BOT_ID)
