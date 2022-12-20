@@ -1,6 +1,6 @@
 from TeleBot import pgram as app
 from pyrogram import filters
-from pyrogram.types import ChatPermissions,ChatMemberStatus
+from pyrogram.types import ChatPermissions,ChatMember
 #from TeleBot.modules.pyrogram_funcs.admins import user_admin
 
 BOT_ID = 5724020149
