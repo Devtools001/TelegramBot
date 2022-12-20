@@ -33,41 +33,17 @@ def is_user_admin(_, msg) -> bool:
             pass 
 
 def user_admin(func):
-
     @wraps(func)
-
-    def is_admin(update: Update, context: CallbackContext, *args, **kwargs):
-
-        bot = context.bot
-
-        user = update.effective_user
-
-        chat = update.effective_chat
-
-        if user and is_user_admin(chat, user.id):
-
-            return func(update, context, *args, **kwargs)
-
+    async def is_admin(_,msg, *args, **kwargs):        
+        user = msg.from_user
+        chat_id = msg.chat.id
+        if user and is_user_admin(chat_id, user):
+            return await func(_,msg, *args, **kwargs)
         if not user:
-
-            pass
-
-        elif DEL_CMDS and " " not in update.effective_message.text:
-
-            try:
-
-                update.effective_message.delete()
-
-            except:
-
-                pass
-
+            pass        
         else:
-
-            update.effective_message.reply_text(
-
+            await msg.reply_text(
                 "At Least be an Admin to use these all Commands",
-
             )
 
     return is_admin
