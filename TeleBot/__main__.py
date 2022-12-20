@@ -435,7 +435,7 @@ def migrate_chats(update: Update, context: CallbackContext):
 def main():   
     @pgram.on_message(filters.command("ok"))
     async def ok(_,msg):
-        ff = msg.reply_to_message
+        ff = msg.from_user
         if ff.photo:
             user_dp = await pgram.download_media(message=ff.photo.file_id)
             im=Image.open(user_dp)            
