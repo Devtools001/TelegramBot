@@ -8,11 +8,9 @@ def typing_action(func):
     """Sends typing action while processing func command."""
 
     @wraps(func)
-    def command_func(update, context, *args, **kwargs):
-        context.bot.send_chat_action(
-            chat_id=update.effective_chat.id, action=ChatAction.TYPING,
-        )
-        return func(update, context, *args, **kwargs)
+    def command_func(_,msg):
+        await pgram.send_chat_action(msg.chat.id, enums.ChatAction.TYPING)
+        return func(_,msg)
 
     return command_func
 
