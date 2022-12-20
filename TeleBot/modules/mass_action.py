@@ -46,8 +46,8 @@ def bot_admin(stark):
 
 
 @app.on_message(filters.command("muteall"))
-@PermissionCheck
 @bot_admin
+@PermissionCheck
 async def mute_all(_,msg):
     chat_id=msg.chat.id            
     if msg.reply_to_message:
