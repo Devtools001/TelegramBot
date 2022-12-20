@@ -24,14 +24,9 @@ async def mute_all(_,msg):
     chat_id=msg.chat.id    
     bot=await app.get_chat_member(chat_id,BOT_ID)
     bot_permission=bot.privileges.can_restrict_members==True    
-    if bot_permission:
-        async for member in app.get_chat_members(chat_id):       
-            try:
-                    await app.restrict_chat_member(chat_id, member.user.id,ChatPermissions(can_send_messages=False))
-                    await msg.reply_text(f"ᴍᴜᴛɪɴɢ ᴀʟʟ ᴍᴇᴍʙᴇʀs {member.user.mention}")
-                                        
-            except Exception:
-                pass
+    if bot_permission and msg.reply_to_message:
+        await app.restrict_chat_member(chat_id, msg.reply_to_message.from_user.id,ChatPermissions(can_send_messages=False))
+        
     else:
         await msg.reply_text("ᴇɪᴛʜᴇʀ ɪ ᴅᴏɴ'ᴛ ʜᴀᴠᴇ ᴛʜᴇ ʀɪɢʜᴛ ᴛᴏ ʀᴇsᴛʀɪᴄᴛ ᴜsᴇʀs ᴏʀ ʏᴏᴜ ᴀʀᴇ ɴᴏᴛ ɪɴ sᴜᴅᴏ ᴜsᴇʀs")  
                                          
