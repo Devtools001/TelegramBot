@@ -15,8 +15,7 @@ def PermissionCheck(mystic):
 
         ADMINS = []
         async for m in app.get_chat_members(chat_id, filter=enums.ChatMembersFilter.ADMINISTRATORS):
-            ADMINS.append(m.user.id)
-        print(ADMINS)
+            ADMINS.append(m.user.id)        
 
         if user_id not in ADMINS:
             return await message.reply_text("you are not admin")
@@ -28,13 +27,23 @@ def PermissionCheck(mystic):
 
     return wrapper
 
-#def bot_admin(stark):
-#    async def wrapper(client : Client,message : Message):
+def bot_admin(stark):
+    async def wrapper(app : Client,message : Message):
+        chat_id = message.chat.id
+        user_id = message.from_user.id
+        BOTS = []
+        async for m in app.get_chat_members(chat_id, filter=enums.ChatMembersFilter.ADMINISTRATORS):
+            BOTS.append(m.user.id)
+        if user_id not in ADMINS:
+            return await message.reply_text("I am not admin")
+        return await stark(app,message)
+    return wrapper
          
 
 
 
 @app.on_message(filters.command("muteall"))
+@bot_admin
 @PermissionCheck
 async def mute_all(_,msg):
     chat_id=msg.chat.id    
