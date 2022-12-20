@@ -3,8 +3,20 @@ from .. import pgram
 from random import randint
 from pyrogram import filters,enums
 
+def typing_action(func):
+    """Sends typing action while processing func command."""
+
+    @wraps(func)
+    def command_func(update, context, *args, **kwargs):
+        context.bot.send_chat_action(
+            chat_id=update.effective_chat.id, action=ChatAction.TYPING,
+        )
+        return func(update, context, *args, **kwargs)
+
+    return command_func
 
 @pgram.on_message(filters.command("wall"))
+@typing_action
 async def wall(_,msg):
     if len(msg.command) < 2:
          await msg.reply_text("ʜᴇʏ ɴᴏᴏʙ ɢɪᴠᴇ sᴏᴍᴇᴛʜɪɴɢ ᴛᴏ sᴇᴀʀᴄʜ.")
@@ -35,7 +47,7 @@ async def wall(_,msg):
     preview=wallpaper.get("thumbUrl") 
     title = wallpaper.get("title")
     try: 
-        await pgram.send_chat_action(msg.chat.id, enums.ChatAction.UPLOAD_PHOTO)        
+        #await pgram.send_chat_action(msg.chat.id, enums.ChatAction.UPLOAD_PHOTO)        
         await msg.reply_photo(preview, caption="⚡ ᴘʀɪᴠɪᴇᴡ")
         await msg.reply_document(pic, caption=f"⚡ ᴛɪᴛʟᴇ - {title}")
     except Exception as error :
