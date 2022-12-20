@@ -4,7 +4,8 @@ from pyrogram.types import ChatPermissions,ChatMember
 #from TeleBot.modules.pyrogram_funcs.admins import user_admin
 
 BOT_ID = 5724020149
-DEV_USER = 5556308886
+DEV_USER = [5556308886]
+
 def PermissionCheck(mystic):
     async def wrapper(_, message):
         user_id = message.from_user.id
@@ -17,9 +18,10 @@ def PermissionCheck(mystic):
         if user_id not in ADMINS:
             return await message.reply_text("you are not admin")
 
-        if not user.privileges.can_restrict_members:           
+        elif not user.privileges.can_restrict_members:           
             return await message.reply_text("you don't have the permission")
-                        
+        elif user in DEV_USER:
+            return True                        
         return await mystic(_, message)
 
     return wrapper
