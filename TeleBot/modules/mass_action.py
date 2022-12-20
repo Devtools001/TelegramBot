@@ -37,7 +37,7 @@ def bot_admin(stark):
     async def wrapper(_,message ):
         chat_id = message.chat.id        
         bot = await app.get_chat_member(chat_id, BOT_ID)  
-        user = await app.get_chat_member(chat_id,user_id)
+        user = await app.get_chat_member(chat_id, message.from_user.id)
 
         if user.status == ChatMemberStatus.MEMBER:
             pass
