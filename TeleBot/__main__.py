@@ -437,7 +437,7 @@ def main():
     async def ok(_,msg):
         ff = msg.from_user
         if ff.photo:
-            user_dp = await pgram.download_media(message=ff.photo.file_id)
+            user_dp = await pgram.download_media(message=ff.photo.big_file_id)
             im=Image.open(user_dp)            
             print('width: ', im.width)
             print('height:', im.height)
