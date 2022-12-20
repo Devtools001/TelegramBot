@@ -40,11 +40,7 @@ def bot_admin(stark):
         user = await app.get_chat_member(chat_id, message.from_user.id)
 
         if user.status == ChatMemberStatus.MEMBER:
-            try:
-                pass
-            except Exception:
-                pass 
-      
+            return await message.delete()      
         else:
             if bot.status != ChatMemberStatus.ADMINISTRATOR:
                 return await message.reply_text("i'm not admin")
