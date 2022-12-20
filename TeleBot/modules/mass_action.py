@@ -40,7 +40,7 @@ def bot_admin(stark):
         user = await app.get_chat_member(chat_id, message.from_user.id)
 
         if user.status == ChatMemberStatus.MEMBER:
-            return 
+            pass 
       
         else:
             if bot.status != ChatMemberStatus.ADMINISTRATOR:
