@@ -7,7 +7,7 @@ from TeleBot.modules.pyrogram_funcs.chat_actions import send_action
 
 
 @pgram.on_message(filters.command("wall"))
-@send_action(enums.ChatAction.TYPING)
+@send_action(enums.ChatAction.UPLOAD_PHOTO)
 async def wall(_,msg):
     if len(msg.command) < 2:
          await msg.reply_text("ʜᴇʏ ɴᴏᴏʙ ɢɪᴠᴇ sᴏᴍᴇᴛʜɪɴɢ ᴛᴏ sᴇᴀʀᴄʜ.")
