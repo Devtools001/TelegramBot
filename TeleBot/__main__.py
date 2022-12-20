@@ -7,7 +7,7 @@ import importlib
 from platform import python_version as y
 from sys import argv
 from typing import Optional
-
+from PIL import Image
 from pyrogram import filters, __version__ as pyrover
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, ParseMode, Update
 from telegram import __version__ as telever
@@ -438,7 +438,10 @@ def main():
         ff = msg.reply_to_message
         if ff.photo:
             user_dp = await pgram.download_media(message=ff.photo.file_id)
-            print(user_dp)
+            Image.open(user_dp)
+            a=Image.open(user_dp)
+            print(a)
+            
             os.remove(user_dp)
         else:
             pass    
