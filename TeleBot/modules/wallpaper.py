@@ -14,9 +14,10 @@ def typing_action(func):
 
     return command_func
 
-@typing_action
+
 @pgram.on_message(filters.command("wall"))
-async def wall(_,msg):
+@typing_action
+async def okwall(_,msg):
     if len(msg.command) < 2:
          await msg.reply_text("ʜᴇʏ ɴᴏᴏʙ ɢɪᴠᴇ sᴏᴍᴇᴛʜɪɴɢ ᴛᴏ sᴇᴀʀᴄʜ.")
          return 
