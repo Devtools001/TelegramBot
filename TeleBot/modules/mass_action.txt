@@ -1,11 +1,11 @@
 from TeleBot import pgram app,BOT_ID
 from pyrogram import filters
 from pyrogram.types import ChatPermissions
-
+from TeleBot.modules.pyrogram_funcs.admins import user_admin
 BOT_ID = 5724020149
 
-async def
-@app.on_message(filters.command("muteall") & filters.user(ADMINS))
+@app.on_message(filters.command("muteall"))
+@user_admin
 async def mute_all(_,msg):
     chat_id=msg.chat.id    
     bot=await app.get_chat_member(chat_id,BOT_ID)
