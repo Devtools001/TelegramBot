@@ -2,30 +2,9 @@ import requests
 from .. import pgram
 from random import randint
 from pyrogram import filters,enums
-from functools import wraps
+from TeleBot.modules.pyrogram_funcs.chat_actions import send_action
 
-def typing_action(func):
-    """Sends typing action while processing func command."""
 
-    @wraps(func)
-    async def command_func(_,msg):
-        await pgram.send_chat_action(msg.chat.id, enums.ChatAction.UPLOAD_PHOTO)
-        return await func(_,msg)
-
-    return command_func
-
-def send_action(action):   
-    def decorator(func):
-        @wraps(func)
-        async def command_func(_,msg, *args, **kwargs):
-            await pgram.send_chat_action(
-                chat_id=msg.chat.id, action=action
-            )
-            return await func(_,msg, *args, **kwargs)
-
-        return command_func
-
-    return decorator
 
 @pgram.on_message(filters.command("wall"))
 @send_action(enums.ChatAction.TYPING)
