@@ -22,7 +22,7 @@ def PermissionCheck(mystic):
             return await message.reply_text("you don't have the permission")
 
         elif user_id == DEV_USER:
-            return True    
+            return    
                     
         return await mystic(_, message)
 
