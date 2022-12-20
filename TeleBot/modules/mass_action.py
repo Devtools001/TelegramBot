@@ -20,8 +20,10 @@ def PermissionCheck(mystic):
 
         elif not user.privileges.can_restrict_members:           
             return await message.reply_text("you don't have the permission")
-        elif user in DEV_USER:
-            return True                        
+
+        elif user_id in DEV_USER:
+            return True    
+                    
         return await mystic(_, message)
 
     return wrapper
