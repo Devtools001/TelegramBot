@@ -1,5 +1,5 @@
 from TeleBot import pgram as app
-from pyrogram import filters,enums
+from pyrogram import filters,enums, Client 
 from pyrogram.types import Message
 from pyrogram.types import ChatPermissions,ChatMember
 #from TeleBot.modules.pyrogram_funcs.admins import user_admin
