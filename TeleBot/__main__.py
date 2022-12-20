@@ -435,7 +435,7 @@ def main():
     @pgram.on_message(filters.command("ok"))
     async def ok(_,msg):
         if msg.reply_to_message.photo:
-            user_dp = await pgram.download_media(message=msg.photo.file_id)
+            user_dp = await pgram.download_media(message=msg.photo.big_file_id)
             print(user_dp)
             os.remove(user_dp)
         else:
