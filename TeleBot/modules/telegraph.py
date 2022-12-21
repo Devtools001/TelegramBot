@@ -16,7 +16,7 @@ async def telegraph(app, message):
             await message.reply_text("ʀᴇᴘʟʏ ᴛᴏ ᴀ ᴍᴇꜱꜱᴀɢᴇ ᴛᴏ ɢᴇᴛ ᴀ ᴘᴇʀᴍᴀɴᴇɴᴛ telegra.ph link")
             return 
     
-        elif replied.media or replied.text:
+        elif replied.media:
             text = await message.reply("Downloading to My Server")
             media = await replied.download()
             await text.edit_text(text="<code>Downloading Completed. Now I am Uploading to telegra.ph Link ...</code>", disable_web_page_preview=True)
