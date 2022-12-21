@@ -24,8 +24,8 @@ async def telegraph(app, message):
             text = await message.reply("Downloading to My Server")
             media = await replied.download()
             end = datetime.now()
-            ms = (end - start).seconds
-            await text.edit_text(text=f"<code>Downloading Completed in {ms} seconds. Now I am Uploading to telegra.ph Link ...</code>", disable_web_page_preview=True)
+            time = (end - start).seconds
+            await text.edit_text(text=f"<code>Downloading Completed in {time} seconds. Now I am Uploading to telegra.ph Link ...</code>", disable_web_page_preview=True)
             try:
                 downloaded_file = upload_file(media)
             except Exception as error:
@@ -40,17 +40,20 @@ async def telegraph(app, message):
             
             await text.edit(
         text=f"""
-        Link :- `https://graph.org{downloaded_file[0]}`
-        in :- {ms}
+        **➻ ʟɪɴᴋ:** `https://graph.org{downloaded_file[0]}`
+        **➻ ʀᴇϙᴜᴇꜱᴛᴇᴅ ʙʏ :** {message.from_user.mention}
+        **➻ ᴜᴘʟᴏᴀᴅ ʙʏ :** {BOT_NAME}
+        **➻ ᴛɪᴍᴇ ᴛᴀᴋᴇɴ :** `{time}` sᴇᴄᴏɴᴅs
+        
         """,
-        disable_web_page_preview=False,
+        disable_web_page_preview=True,
         reply_markup=InlineKeyboardMarkup( [
             [
-            InlineKeyboardButton(text="Open Link", url=f"https://graph.org{downloaded_file[0]}"),
-            InlineKeyboardButton(text="Share Link", url=f"https://telegram.me/share/url?url=https://graph.org{downloaded_file[0]}")
+            InlineKeyboardButton(text="ʙʀᴏᴡsᴇ ʟɪᴋᴇ", url=f"https://graph.org{downloaded_file[0]}"),
+            InlineKeyboardButton(text="sʜᴀʀᴇ ʟɪɴᴋ", url=f"https://telegram.me/share/url?url=https://graph.org{downloaded_file[0]}")
             ],
             [
-            InlineKeyboardButton(text="✗ Close ✗", callback_data="close")
+            InlineKeyboardButton(text="✗ ᴄʟᴏsᴇ ✗", callback_data="close")
             ],
           ]
         )
