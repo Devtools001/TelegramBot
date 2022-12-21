@@ -2,8 +2,7 @@ import requests
 import random
 from TeleBot import pgram as app
 from pyrogram import filters 
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup,CallbackQuery 
-
+from pyrogram.types import InlineKeyboardButton, CallbackQuery, InlineKeyboardMarkup 
 QUOTES_IMG = (
       "https://i.imgur.com/Iub4RYj.jpg", 
       "https://i.imgur.com/uvNMdIl.jpg", 
@@ -85,8 +84,8 @@ async def quote(_, message):
 ⚡ **ǫᴜᴏᴛᴇ** :
 ❝ {quote} ❞
 
-📌 **ᴄʜᴀʀᴀᴄᴛᴇʀ** : **{character}** 
-✨ **ᴀɴɪᴍᴇ** : **{anime}**
+📌 **ᴄʜᴀʀᴀᴄᴛᴇʀ** : **{anime}** 
+✨ **ᴀɴɪᴍᴇ** : **{character}**
 """,
 reply_markup=InlineKeyboardMarkup(
         [
@@ -108,8 +107,8 @@ async def change_quote(_,CallbackQuery):
 ⚡ **ǫᴜᴏᴛᴇ** :
 ❝ {quote} ❞
 
-📌 **ᴄʜᴀʀᴀᴄᴛᴇʀ** : **{character}** 
-✨ **ᴀɴɪᴍᴇ** : **{anime}**
+📌 **ᴄʜᴀʀᴀᴄᴛᴇʀ** : **{anime}** 
+✨ **ᴀɴɪᴍᴇ** : **{character}**
 """,
 reply_markup=InlineKeyboardMarkup(
         [
@@ -138,13 +137,4 @@ async def anime_quote(_,CallbackQuery):
           InlineKeyboardButton (text="ᴄʜᴀɴɢᴇ ⚡",callback_data="anime_quote")
         ],
         ]))   
-__help__ = """
-*⸢ɢᴇᴛ ᴀᴍᴀᴢɪɴɢ ʀᴀɴᴅᴏᴍ ᴀᴍɪᴍᴇ ǫᴜᴏᴛᴇs⸥*
 
-「𝗖𝗢𝗠𝗠𝗔𝗡𝗗𝗦」 :
-═───────◇───────═
-๏ /quote : ɢᴇᴛ ʀᴀɴᴅᴏᴍ ᴛᴇxᴛ ǫᴜᴏᴛᴇs.
-๏ /animequotes : ɢᴇᴛ ʀᴀɴᴅᴏᴍ  ǫᴜᴏᴛᴇs ɪɴ ᴘɪᴄᴛᴜʀᴇ.
-═───────◇───────═
-"""
-__mod_name__ = "𝙰ɴɪᴍᴇ-ǫᴜᴏᴛᴇs"
