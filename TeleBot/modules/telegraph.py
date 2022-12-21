@@ -79,8 +79,8 @@ async def upload_media_text_to_telegraph(app, message):
         disable_web_page_preview=True,
         reply_markup=InlineKeyboardMarkup( [
             [
-            InlineKeyboardButton(text="ʙʀᴏᴡsᴇ ʟɪᴋᴇ", url=f"https://graph.org{response["path"]}"),
-            InlineKeyboardButton(text="sʜᴀʀᴇ ʟɪɴᴋ", url=f"https://telegram.me/share/url?url=https://graph.org{response["path"]}")
+            InlineKeyboardButton(text="ʙʀᴏᴡsᴇ ʟɪᴋᴇ", url=f"https://graph.org{downloaded_file[0]}"),
+            InlineKeyboardButton(text="sʜᴀʀᴇ ʟɪɴᴋ", url=f"https://telegram.me/share/url?url=https://graph.org{downloaded_file[0]}")
             ],
             [
             InlineKeyboardButton(text="✗ ᴄʟᴏsᴇ ✗", callback_data="close")
