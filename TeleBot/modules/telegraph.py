@@ -70,17 +70,17 @@ async def upload_media_text_to_telegraph(app, message):
                                            
        # await text.edit("https://telegra.ph/{}".format(response["path"]))
         await text.edit(
-        text=f"""
+        text=f'''
 ᴅᴏɴᴇ!
 **➻ ʟɪɴᴋ:** `https://telegra.ph/{response["path"]}`
 **➻ ʀᴇϙᴜᴇꜱᴛᴇᴅ ʙʏ :** {message.from_user.mention}
 **➻ ᴜᴘʟᴏᴀᴅ ʙʏ :** [{BOT_NAME}](https://t.me/{BOT_USERNAME})                
-        """,
+        ''',
         disable_web_page_preview=True,
         reply_markup=InlineKeyboardMarkup( [
             [
-            InlineKeyboardButton(text="ʙʀᴏᴡsᴇ ʟɪᴋᴇ", url=f"https://telegra.ph/{response["path"]}"),
-            InlineKeyboardButton(text="sʜᴀʀᴇ ʟɪɴᴋ", url=f"https://telegram.me/share/url?url=https://telegra.ph/{response["path"]}")
+            InlineKeyboardButton(text="ʙʀᴏᴡsᴇ ʟɪᴋᴇ", url=f'https://telegra.ph/{response["path"]}'),
+            InlineKeyboardButton(text="sʜᴀʀᴇ ʟɪɴᴋ", url=f'https://telegram.me/share/url?url=https://telegra.ph/{response["path"]}')
             ],
             [
             InlineKeyboardButton(text="✗ ᴄʟᴏsᴇ ✗", callback_data="close")
