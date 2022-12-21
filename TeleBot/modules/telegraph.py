@@ -13,7 +13,7 @@ async def telegraph(app, message):
         return 
     
     elif replied.photo or replied.video:
-        text = await message.reply_text("Downloading to My Server")
+        text = await replied.reply_text("Downloading to My Server")
         media = await replied.download()
         await text.edit_text(text="<code>Downloading Completed. Now I am Uploading to telegra.ph Link ...</code>", disable_web_page_preview=True)
         try:
