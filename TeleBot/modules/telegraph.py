@@ -5,14 +5,7 @@ from telegraph import upload_file
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton,CallbackQuery
 
 
-@pgram.on_callback_query()
-async def callback(client : Client, query: CallbackQuery): 
-    if query.data == "close":
-        await query.message.delete()
-        try:
-            await query.message.reply_to_message.delete()
-        except:
-            pass
+
 
 @pgram.on_message(filters.command("tgm"))
 async def telegraph(app, message):
