@@ -57,9 +57,9 @@ async def telegraph(app, message):
         BOT_NAME, html_content=(replied.text.html).replace("\n", "<br>")
     ) 
                     
-            await text.edit(
+            
         return await message.reply(
         f"**Posted:** {page['url']}",reply_markup=InlineKeyboardMarkup([ 
         [InlineKeyboardButton('View 💫' , url=f"{page['url']}")]
     ]),disable_web_page_preview=True,
-    ))
+    )
