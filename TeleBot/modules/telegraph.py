@@ -25,7 +25,7 @@ async def upload_media_text_to_telegraph(app, message):
             media = await replied.download()
             end = datetime.now()
             time = (end - start).seconds
-            await text.edit_text(text=f"ᴅᴏᴡɴʟᴏᴀᴅ ᴄᴏᴍᴘʟᴇᴛᴇᴅ ɪɴ {time}. ɴᴏᴡ ᴜᴘʟᴏᴀᴅɪɴɢ....", disable_web_page_preview=True)
+            await text.edit_text(text=f"ᴅᴏᴡɴʟᴏᴀᴅ ᴄᴏᴍᴘʟᴇᴛᴇᴅ ɪɴ {time} sᴇᴄᴏɴᴅs. ɴᴏᴡ ᴜᴘʟᴏᴀᴅɪɴɢ....", disable_web_page_preview=True)
             try:
                 downloaded_file = upload_file(media)
             except Exception as error:
