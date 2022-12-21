@@ -3,7 +3,7 @@ from TeleBot import pgram
 from pyrogram import filters , Client 
 from telegraph import upload_file
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton,CallbackQuery
-
+from TeleBot.utils.shit import TELEGRAPH
 
 
 
@@ -32,12 +32,4 @@ async def telegraph(app, message):
         await text.edit(
         text=f"<b>Link :-</b>\n\n<code>https://graph.org{downloaded_file[0]}</code>",
         disable_web_page_preview=False,
-        reply_markup=InlineKeyboardMarkup( [[
-            InlineKeyboardButton(text="Open Link", url=f"https://graph.org{downloaded_file[0]}"),
-            InlineKeyboardButton(text="Share Link", url=f"https://telegram.me/share/url?url=https://graph.org{downloaded_file[0]}")
-            ],[
-            InlineKeyboardButton(text="✗ Close ✗", callback_data="close")
-            ]]
-        )
-    )  
-        
+        reply_markup=TELEGRAPH)
