@@ -16,26 +16,27 @@ async def upload_media_text_to_telegraph(app, message):
     replied = message.reply_to_message          
     if message.command[0] == "tgm":        
         if not replied:
-            await message.reply_text("ʀᴇᴘʟʏ ᴛᴏ ᴀ ᴍᴇꜱꜱᴀɢᴇ ᴛᴏ ɢᴇᴛ ᴀ ᴘᴇʀᴍᴀɴᴇɴᴛ telegra.ph link")
+            await message.reply_text("ʀᴇᴘʟʏ ᴛᴏ ᴀ ᴍᴇᴅɪᴀ ᴛᴏ ᴜᴘʟᴏᴀᴅ ɪᴛ ᴛᴏ ᴛᴇʟᴇɢʀᴀᴘʜ.")
             return 
     
         elif replied.media:
             start = datetime.now()
-            text = await message.reply("Downloading to My Server")
+            text = await message.reply("ᴅᴏᴡɴʟᴏᴀᴅɪɴɢ....")
             media = await replied.download()
             end = datetime.now()
             time = (end - start).seconds
-            await text.edit_text(text=f"<code>Downloading Completed in {time} seconds. Now I am Uploading to telegra.ph Link ...</code>", disable_web_page_preview=True)
+            await text.edit_text(text=f"ᴅᴏᴡɴʟᴏᴀᴅ ᴄᴏᴍᴘʟᴇᴛᴇᴅ ɪɴ {time}. ɴᴏᴡ ᴜᴘʟᴏᴀᴅɪɴɢ....", disable_web_page_preview=True)
             try:
                 downloaded_file = upload_file(media)
             except Exception as error:
-                print(error)
-                await text.edit(text=f"Error :- {error}", disable_web_page_preview=True)       
+                LOG.print(f"[bold red]{error})
+               # await pgram.send_message(ERROR_LOGS,error)
+                await text.edit(text=f"ᴇʀʀᴏʀ :- {error}", disable_web_page_preview=True)       
                 return    
             try:
                 os.remove(media)
             except Exception as error:
-                print(error)
+                LOG.print(f"[bold red]{error})
                 return  
             
             await text.edit(
@@ -60,11 +61,31 @@ async def upload_media_text_to_telegraph(app, message):
       )
     if message.command[0] == "tgt":        
         if not replied:
-            await message.reply_text("reply to a text")
+            await message.reply_text("ʀᴇᴘʟʏ ᴛᴏ ᴀ ᴛᴇxᴛ ᴛᴏ ᴜᴘʟᴏᴀᴅ ɪᴛ ᴛᴏ  ᴛᴇʟᴇɢʀᴀᴘʜ")
             return 
     
         elif replied.text:
-            text = await message.reply("Downloading to My Server")
+            text = await message.reply("ᴜᴘʟᴏᴀᴅɪɴɢ ᴛᴏ ᴛᴇʟᴇɢʀᴀᴘʜ....")
             response = telegraph.create_page(title=BOT_NAME,html_content=(replied.text.html).replace("\n", "<br>"),author_name=str(message.from_user.first_name),author_url = f'https://telegram.dog/{message.from_user.username}' if message.from_user.id else None)
                                            
-        await text.edit("https://telegra.ph/{}".format(response["path"]))
+       # await text.edit("https://telegra.ph/{}".format(response["path"]))
+        await text.edit(
+        text=f"""
+ᴅᴏɴᴇ!
+**➻ ʟɪɴᴋ:** `https://telegra.ph/{response["path"]}`
+**➻ ʀᴇϙᴜᴇꜱᴛᴇᴅ ʙʏ :** {message.from_user.mention}
+**➻ ᴜᴘʟᴏᴀᴅ ʙʏ :** [{BOT_NAME}](https://t.me/{BOT_USERNAME})
+**➻ ᴛɪᴍᴇ ᴛᴀᴋᴇɴ :** `{time}` sᴇᴄᴏɴᴅs                
+        """,
+        disable_web_page_preview=True,
+        reply_markup=InlineKeyboardMarkup( [
+            [
+            InlineKeyboardButton(text="ʙʀᴏᴡsᴇ ʟɪᴋᴇ", url=f"https://graph.org{downloaded_file[0]}"),
+            InlineKeyboardButton(text="sʜᴀʀᴇ ʟɪɴᴋ", url=f"https://telegram.me/share/url?url=https://graph.org{downloaded_file[0]}")
+            ],
+            [
+            InlineKeyboardButton(text="✗ ᴄʟᴏsᴇ ✗", callback_data="close")
+            ],
+          ]
+        )
+      )
