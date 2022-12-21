@@ -11,7 +11,7 @@ telegraph = Telegraph()
 new_user = telegraph.create_account(short_name=BOT_NAME)
 auth_url = new_user["auth_url"]
 
-@pgram.on_message(filters.command(["tgm","tgt"]))
+@pgram.on_message(filters.command(["tgm","tgt"]) filters.group & filters.private)
 async def telegraph(app, message):
     replied = message.reply_to_message          
     if message.command[0] == "tgm":        
