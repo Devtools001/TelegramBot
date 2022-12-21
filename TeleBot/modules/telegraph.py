@@ -6,7 +6,7 @@ from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton,CallbackQu
 from telegraph import Telegraph
 
 telegraph = Telegraph()
-telegraph.create_account(short_name=BOT_NAME)
+page = telegraph.create_account(short_name=BOT_NAME)
 
 @pgram.on_message(filters.command(["tgm","tgt"]))
 async def telegraph(app, message):          
@@ -45,3 +45,21 @@ async def telegraph(app, message):
           ]
         )
       )
+    if message.command[0] == "tgt":
+        replied = message.reply_to_message
+        if not replied or replied.text:
+            await message.reply_text("reply to a text")
+            return 
+    
+        elif replied.text:
+            text = await message.reply("Downloading to My Server")
+            page = telegraph.create_page(
+        BOT_NAME, html_content=(replied.text.html).replace("\n", "<br>")
+    ) 
+                    
+            await text.edit(
+        return await message.reply(
+        f"**Posted:** {page['url']}",reply_markup=InlineKeyboardMarkup([ 
+        [InlineKeyboardButton('View 💫' , url=f"{page['url']}")]
+    ]),disable_web_page_preview=True,
+    )
