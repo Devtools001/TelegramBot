@@ -28,7 +28,7 @@ async def telegraph(app, message):
             print(error)
             return  
         await text.edit_text(
-        text=f"<b>Link :-</b>\n\n<code>https://graph.org{response[0]}</code>",
+        text=f"<b>Link :-</b>\n\n<code>https://graph.org{downloaded_file[0]}</code>",
         disable_web_page_preview=True,
         reply_markup=InlineKeyboardMarkup( [[
             InlineKeyboardButton(text="Open Link", url=f"https://graph.org{downloaded_file[0]}"),
