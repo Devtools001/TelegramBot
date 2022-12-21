@@ -29,7 +29,7 @@ async def telegraph(app, message):
             return  
         await text.edit_text(
         text=f"<b>Link :-</b>\n\n<code>https://graph.org{downloaded_file[0]}</code>",
-        disable_web_page_preview=True,
+        disable_web_page_preview=False,
         reply_markup=InlineKeyboardMarkup( [[
             InlineKeyboardButton(text="Open Link", url=f"https://graph.org{downloaded_file[0]}"),
             InlineKeyboardButton(text="Share Link", url=f"https://telegram.me/share/url?url=https://graph.org{downloaded_file[0]}")
