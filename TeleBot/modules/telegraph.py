@@ -25,7 +25,7 @@ async def telegraph(app, message):
             media = await replied.download()
             end = datetime.now()
             ms = (end - start).seconds
-            await text.edit_text(text=f"<code>Downloading Completed in {ms}. Now I am Uploading to telegra.ph Link ...</code>", disable_web_page_preview=True)
+            await text.edit_text(text=f"<code>Downloading Completed in {ms} seconds. Now I am Uploading to telegra.ph Link ...</code>", disable_web_page_preview=True)
             try:
                 downloaded_file = upload_file(media)
             except Exception as error:
@@ -39,7 +39,10 @@ async def telegraph(app, message):
                 return  
             
             await text.edit(
-        text=f"t<b>Link :-</b>\n\n<code>https://graph.org{downloaded_file[0]}</code>",
+        text=f"""
+        Link :- `https://graph.org{downloaded_file[0]}`
+        in :- {ms}
+        """,
         disable_web_page_preview=False,
         reply_markup=InlineKeyboardMarkup( [
             [
