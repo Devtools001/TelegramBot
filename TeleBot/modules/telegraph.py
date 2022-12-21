@@ -6,8 +6,9 @@ from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton,CallbackQu
 from telegraph import Telegraph
 
 telegraph = Telegraph()
-page = telegraph.create_account(short_name=BOT_NAME)
-auth_url = page["auth_url"]
+new_user = telegraph.create_account(short_name=short_name)
+auth_url = new_user["auth_url"]
+
 @pgram.on_message(filters.command(["tgm","tgt"]))
 async def telegraph(app, message):
     replied = message.reply_to_message          
@@ -52,11 +53,8 @@ async def telegraph(app, message):
     
         elif replied.text:
             text = await message.reply("Downloading to My Server")
+            response = telegraph.create_page(title=BOT_NAME,html_content=(replied.text.html).replace("\n", "<br>"),author_name=str(message.from_user.first_name),author_url = f'https://telegram.dog/{message.from_user.username}' if m.from_user.id else None)
+)
+                                
             
-                    
-            
-        return await message.reply(
-        f"**Posted:** {page['url']}",reply_markup=InlineKeyboardMarkup([ 
-        [InlineKeyboardButton('View 💫' , url=f"{page['url']}")]
-    ]),disable_web_page_preview=True,
-    )
+        await text.edit("https://telegra.ph/{}".format(response["path"]))
