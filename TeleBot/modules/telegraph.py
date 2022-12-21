@@ -11,6 +11,7 @@ telegraph.create_account(short_name=BOT_NAME)
 @pgram.on_message(filters.command(["tgm","tgt"]))
 async def telegraph(app, message):   
         print(message.command)
+    if "tgm" in message.command:
         replied = message.reply_to_message
         if not replied:
             await message.reply_text("ʀᴇᴘʟʏ ᴛᴏ ᴀ ᴍᴇꜱꜱᴀɢᴇ ᴛᴏ ɢᴇᴛ ᴀ ᴘᴇʀᴍᴀɴᴇɴᴛ telegra.ph link")
