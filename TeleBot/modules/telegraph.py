@@ -61,6 +61,7 @@ async def upload_media_text_to_telegraph(app, message):
       )
         else:
             await message.reply_text("ɴᴏᴛ ꜱᴜᴘᴘᴏʀᴛᴇᴅ ғᴏʀᴍᴀᴛ ᴍᴇᴅɪᴀ!")
+            return 
 
     if message.command[0] == "tgt":        
         if not replied:
@@ -89,7 +90,8 @@ async def upload_media_text_to_telegraph(app, message):
           ]
         )
       )
+        else:
+            await message.reply_text("ɴᴏᴛ ꜱᴜᴘᴘᴏʀᴛᴇᴅ ғᴏʀᴍᴀᴛ ᴛᴇxᴛ!!")
+            return 
                                            
-       # await t.edit("https://telegra.ph/{}".format(response["path"]))
-        
-    
+       
