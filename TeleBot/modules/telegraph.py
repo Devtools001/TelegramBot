@@ -5,7 +5,6 @@ from telegraph import upload_file
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 
-
 @pgram.on_message(filters.command("tgm"))
 async def telegraph(app, message):
     replied = message.reply_to_message
@@ -32,8 +31,8 @@ async def telegraph(app, message):
         text=f"<b>Link :-</b>\n\n<code>https://graph.org{response[0]}</code>",
         disable_web_page_preview=True,
         reply_markup=InlineKeyboardMarkup( [[
-            InlineKeyboardButton(text="Open Link", url=f"https://graph.org{response[0]}"),
-            InlineKeyboardButton(text="Share Link", url=f"https://telegram.me/share/url?url=https://graph.org{response[0]}")
+            InlineKeyboardButton(text="Open Link", url=f"https://graph.org{downloaded_file[0]}"),
+            InlineKeyboardButton(text="Share Link", url=f"https://telegram.me/share/url?url=https://graph.org{downloaded_file[0]}")
             ],[
             InlineKeyboardButton(text="✗ Close ✗", url="ok")
             ]]
