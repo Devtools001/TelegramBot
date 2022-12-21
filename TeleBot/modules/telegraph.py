@@ -40,11 +40,10 @@ async def telegraph(app, message):
             
             await text.edit(
         text=f"""
-        **➻ ʟɪɴᴋ:** `https://graph.org{downloaded_file[0]}`
-        **➻ ʀᴇϙᴜᴇꜱᴛᴇᴅ ʙʏ :** {message.from_user.mention}
-        **➻ ᴜᴘʟᴏᴀᴅ ʙʏ :** {BOT_NAME}
-        **➻ ᴛɪᴍᴇ ᴛᴀᴋᴇɴ :** `{time}` sᴇᴄᴏɴᴅs
-        
+**➻ ʟɪɴᴋ:** `https://graph.org{downloaded_file[0]}`
+**➻ ʀᴇϙᴜᴇꜱᴛᴇᴅ ʙʏ :** {message.from_user.mention}
+**➻ ᴜᴘʟᴏᴀᴅ ʙʏ :** {BOT_NAME}
+**➻ ᴛɪᴍᴇ ᴛᴀᴋᴇɴ :** `{time}` sᴇᴄᴏɴᴅs                
         """,
         disable_web_page_preview=True,
         reply_markup=InlineKeyboardMarkup( [
