@@ -2,7 +2,7 @@ import requests
 import random
 from TeleBot import pgram as app
 from pyrogram import filters 
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup 
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup,CallbackQuery 
 
 QUOTES_IMG = (
       "https://i.imgur.com/Iub4RYj.jpg", 
