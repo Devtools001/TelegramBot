@@ -45,9 +45,8 @@ async def telegraph(app, message):
           ]
         )
       )
-    if message.command[0] == "tgt":
-        replied = message.reply_to_message
-        if not replied or replied.text:
+    if message.command[0] == "tgt":        
+        if not replied:
             await message.reply_text("reply to a text")
             return 
     
