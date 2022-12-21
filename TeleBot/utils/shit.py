@@ -1,4 +1,4 @@
-
+from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery 
 
 TELEGRAPH = InlineKeyboardMarkup( [
             [
