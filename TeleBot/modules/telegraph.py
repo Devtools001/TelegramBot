@@ -2,7 +2,7 @@ import os
 from TeleBot import pgram
 from pyrogram import filters 
 from telegraph import upload_file
-from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton,CallbackQuery
 
 
 @pgram.on_message(filters.command("tgm"))
@@ -34,7 +34,7 @@ async def telegraph(app, message):
             InlineKeyboardButton(text="Open Link", url=f"https://graph.org{downloaded_file[0]}"),
             InlineKeyboardButton(text="Share Link", url=f"https://telegram.me/share/url?url=https://graph.org{downloaded_file[0]}")
             ],[
-            InlineKeyboardButton(text="✗ Close ✗", url="https://t.me/HokagexRobot")
+            InlineKeyboardButton(text="✗ Close ✗", callback_data="close")
             ]]
         )
     )  
