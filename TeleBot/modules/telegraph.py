@@ -6,7 +6,7 @@ from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton,CallbackQu
 from telegraph import Telegraph
 
 telegraph = Telegraph()
-new_user = telegraph.create_account(short_name=short_name)
+new_user = telegraph.create_account(short_name=BOT_NAME)
 auth_url = new_user["auth_url"]
 
 @pgram.on_message(filters.command(["tgm","tgt"]))
