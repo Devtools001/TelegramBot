@@ -1,13 +1,14 @@
 import os
-from TeleBot import pgram
+from TeleBot import pgram, BOT_NAME
 from pyrogram import filters , Client 
 from telegraph import upload_file
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton,CallbackQuery
-#from TeleBot.utils.shit import TELEGRAPH
+from Telegraph import Telegraph
 
+telegraph = Telegraph
+telegraph.create_account(short_name=BOT_NAME)
 
-
-@pgram.on_message(filters.command("telegraph"))
+@pgram.on_message(filters.command(["tgm"]))
 async def telegraph(app, message):
     replied = message.reply_to_message
     if not replied:
