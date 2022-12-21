@@ -1,6 +1,6 @@
 import time
 import psutil
-from pyrogram import filters , __version__ as pyro 
+from pyrogram import filters , __version__ as pyro , Client 
 from TeleBot import pgram,StartTime,BOT_NAME,get_readable_time,BOT_USERNAME
 from pyrogram.types import CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery 
 
