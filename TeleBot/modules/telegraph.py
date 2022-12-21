@@ -12,7 +12,7 @@ new_user = telegraph.create_account(short_name=BOT_NAME)
 auth_url = new_user["auth_url"]
 
 @pgram.on_message(filters.command(["tgm","tgt"]))
-async def telegraph(app, message):
+async def upload_media_text_to_telegraph(app, message):
     replied = message.reply_to_message          
     if message.command[0] == "tgm":        
         if not replied:
