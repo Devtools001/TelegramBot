@@ -74,8 +74,7 @@ async def upload_media_text_to_telegraph(app, message):
 ᴅᴏɴᴇ!
 **➻ ʟɪɴᴋ:** `https://telegra.ph/{response["path"]}`
 **➻ ʀᴇϙᴜᴇꜱᴛᴇᴅ ʙʏ :** {message.from_user.mention}
-**➻ ᴜᴘʟᴏᴀᴅ ʙʏ :** [{BOT_NAME}](https://t.me/{BOT_USERNAME})
-**➻ ᴛɪᴍᴇ ᴛᴀᴋᴇɴ :** `{time}` sᴇᴄᴏɴᴅs                
+**➻ ᴜᴘʟᴏᴀᴅ ʙʏ :** [{BOT_NAME}](https://t.me/{BOT_USERNAME})                
         """,
         disable_web_page_preview=True,
         reply_markup=InlineKeyboardMarkup( [
