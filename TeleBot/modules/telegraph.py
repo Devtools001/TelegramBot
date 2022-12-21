@@ -1,6 +1,6 @@
 import os
 import datetime
-from TeleBot import pgram, BOT_NAME
+from TeleBot import pgram, BOT_NAME,BOT_USERNAME
 from pyrogram import filters , Client 
 from telegraph import upload_file
 from datetime import datetime
@@ -43,7 +43,7 @@ async def telegraph(app, message):
 ᴅᴏɴᴇ!
 **➻ ʟɪɴᴋ:** `https://graph.org{downloaded_file[0]}`
 **➻ ʀᴇϙᴜᴇꜱᴛᴇᴅ ʙʏ :** {message.from_user.mention}
-**➻ ᴜᴘʟᴏᴀᴅ ʙʏ :** {BOT_NAME}
+**➻ ᴜᴘʟᴏᴀᴅ ʙʏ :** [{BOT_NAME}](https://t.me/{BOT_USERNAME})
 **➻ ᴛɪᴍᴇ ᴛᴀᴋᴇɴ :** `{time}` sᴇᴄᴏɴᴅs                
         """,
         disable_web_page_preview=True,
