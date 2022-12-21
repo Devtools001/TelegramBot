@@ -53,8 +53,6 @@ async def telegraph(app, message):
     
         elif replied.text:
             text = await message.reply("Downloading to My Server")
-            response = telegraph.create_page(title=BOT_NAME,html_content=(replied.text.html).replace("\n", "<br>"),author_name=str(message.from_user.first_name),author_url = f'https://telegram.dog/{message.from_user.username}' if m.from_user.id else None)
-
-                                
-            
+            response = telegraph.create_page(title=BOT_NAME,html_content=(replied.text.html).replace("\n", "<br>"),author_name=str(message.from_user.first_name),author_url = f'https://telegram.dog/{message.from_user.username}' if message.from_user.id else None)
+                                           
         await text.edit("https://telegra.ph/{}".format(response["path"]))
