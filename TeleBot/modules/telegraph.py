@@ -59,6 +59,9 @@ async def upload_media_text_to_telegraph(app, message):
           ]
         )
       )
+        else:
+            await message.reply_text("ɴᴏᴛ ꜱᴜᴘᴘᴏʀᴛᴇᴅ ғᴏʀᴍᴀᴛ ᴍᴇᴅɪᴀ!")
+
     if message.command[0] == "tgt":        
         if not replied:
             await message.reply_text("ʀᴇᴘʟʏ ᴛᴏ ᴀ ᴛᴇxᴛ ᴛᴏ ᴜᴘʟᴏᴀᴅ ɪᴛ ᴛᴏ  ᴛᴇʟᴇɢʀᴀᴘʜ")
