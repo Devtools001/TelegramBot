@@ -57,4 +57,4 @@ async def telegraph(app, message):
 
                                 
             
-        await text.edit("https://telegra.ph/{}".format(response["path"])
+        await text.edit("https://telegra.ph/{}".format(response["path"]))
