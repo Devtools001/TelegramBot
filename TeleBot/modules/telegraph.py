@@ -40,6 +40,7 @@ async def telegraph(app, message):
             
             await text.edit(
         text=f"""
+ᴅᴏɴᴇ!
 **➻ ʟɪɴᴋ:** `https://graph.org{downloaded_file[0]}`
 **➻ ʀᴇϙᴜᴇꜱᴛᴇᴅ ʙʏ :** {message.from_user.mention}
 **➻ ᴜᴘʟᴏᴀᴅ ʙʏ :** {BOT_NAME}
