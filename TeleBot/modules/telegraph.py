@@ -5,7 +5,16 @@ from telegraph import upload_file
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton,CallbackQuery
 from TeleBot.utils.shit import TELEGRAPH
 
-
+TELEGRAPH = InlineKeyboardMarkup( [
+            [
+            InlineKeyboardButton(text="Open Link", url=f"https://graph.org{downloaded_file[0]}"),
+            InlineKeyboardButton(text="Share Link", url=f"https://telegram.me/share/url?url=https://graph.org{downloaded_file[0]}")
+            ],
+            [
+            InlineKeyboardButton(text="✗ Close ✗", callback_data="close")
+            ],
+          ]
+        )
 
 @pgram.on_message(filters.command("tgm"))
 async def telegraph(app, message):
