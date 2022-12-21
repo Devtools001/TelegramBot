@@ -7,7 +7,7 @@ from telegraph import Telegraph
 
 telegraph = Telegraph()
 page = telegraph.create_account(short_name=BOT_NAME)
-
+auth_url = page["auth_url"]
 @pgram.on_message(filters.command(["tgm","tgt"]))
 async def telegraph(app, message):
     replied = message.reply_to_message          
@@ -52,9 +52,7 @@ async def telegraph(app, message):
     
         elif replied.text:
             text = await message.reply("Downloading to My Server")
-            page = telegraph.create_page(
-        BOT_NAME, html_content=(replied.text.html).replace("\n", "<br>")
-    ) 
+            
                     
             
         return await message.reply(
