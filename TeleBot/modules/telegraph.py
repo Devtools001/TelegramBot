@@ -1,6 +1,6 @@
 import os
 import datetime
-from TeleBot import pgram, BOT_NAME,BOT_USERNAME
+from TeleBot import pgram, BOT_NAME,BOT_USERNAME,LOG
 from pyrogram import filters , Client 
 from telegraph import upload_file
 from datetime import datetime
