@@ -2,7 +2,7 @@ import time
 import psutil
 from pyrogram import filters , __version__ as pyro 
 from TeleBot import pgram,StartTime,BOT_NAME,get_readable_time,BOT_USERNAME
-from pyrogram.types import CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton 
+from pyrogram.types import CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery 
 
 
 PM_START_TEXT = """
@@ -62,3 +62,11 @@ async def Friday(client, callback_query : CallbackQuery):
 )
 
 
+@pgram.on_callback_query()
+async def callback(client : Client, query: CallbackQuery): 
+    if query.data == "close":
+        await query.message.delete()
+        try:
+            await query.message.reply_to_message.delete()
+        except:
+            pass
