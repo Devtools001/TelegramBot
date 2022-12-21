@@ -3,7 +3,7 @@ from TeleBot import pgram
 from pyrogram import filters , Client 
 from telegraph import upload_file
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton,CallbackQuery
-from TeleBot.utils.shit import TELEGRAPH
+#from TeleBot.utils.shit import TELEGRAPH
 
 TELEGRAPH = InlineKeyboardMarkup( [
             [
