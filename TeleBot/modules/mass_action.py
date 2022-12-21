@@ -6,8 +6,8 @@ from pyrogram.enums import ChatMemberStatus
 #from TeleBot.modules.pyrogram_funcs.admins import user_admin
 
 BOT_ID = 5724020149
-
-def PermissionCheck(mystic):
+SUDO = [5459540851,5556308886]
+def user_admin(mystic):
     async def wrapper(_, message):
         user_id = message.from_user.id
         chat_id = message.chat.id
@@ -37,8 +37,7 @@ def bot_admin(stark):
     async def wrapper(_,message ):
         chat_id = message.chat.id        
         bot = await app.get_chat_member(chat_id, BOT_ID)  
-        user = await app.get_chat_member(chat_id, message.from_user.id)
-
+        
         if bot.status != ChatMemberStatus.ADMINISTRATOR:
             return await message.reply_text("i'm not admin")
 
@@ -55,7 +54,7 @@ def bot_admin(stark):
 
 @app.on_message(filters.command("muteall"))
 @bot_admin
-@PermissionCheck
+@user_admin
 async def mute_all(_,msg):
     chat_id=msg.chat.id            
     if msg.reply_to_message:
