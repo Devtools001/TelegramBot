@@ -5,7 +5,7 @@ from telegraph import upload_file
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton,CallbackQuery
 from telegraph import Telegraph
 
-telegraph = Telegraph
+telegraph = Telegraph()
 telegraph.create_account(short_name=BOT_NAME)
 
 @pgram.on_message(filters.command(["tgm","tgt"]))
