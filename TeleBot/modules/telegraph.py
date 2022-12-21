@@ -29,14 +29,14 @@ async def upload_media_text_to_telegraph(app, message):
             try:
                 downloaded_file = upload_file(media)
             except Exception as error:
-                LOG.print(f"[bold red]{error})
+                LOG.print(f"[bold red]{error}")
                # await pgram.send_message(ERROR_LOGS,error)
                 await text.edit(text=f"ᴇʀʀᴏʀ :- {error}", disable_web_page_preview=True)       
                 return    
             try:
                 os.remove(media)
             except Exception as error:
-                LOG.print(f"[bold red]{error})
+                LOG.print(f"[bold red]{error}")
                 return  
             
             await text.edit(
