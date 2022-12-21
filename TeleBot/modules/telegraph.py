@@ -13,21 +13,21 @@ async def telegraph(app, message):
         return 
     
     elif replied.photo or replied.video:
-        text = await replied.reply_text("Downloading to My Server")
+        text = await message.reply("Downloading to My Server")
         media = await replied.download()
         await text.edit_text(text="<code>Downloading Completed. Now I am Uploading to telegra.ph Link ...</code>", disable_web_page_preview=True)
         try:
             downloaded_file = upload_file(media)
         except Exception as error:
             print(error)
-            await text.edit_text(text=f"Error :- {error}", disable_web_page_preview=True)       
+            await text.edit(text=f"Error :- {error}", disable_web_page_preview=True)       
             return    
         try:
             os.remove(media)
         except Exception as error:
             print(error)
             return  
-        await text.edit_text(
+        await text.edit(
         text=f"<b>Link :-</b>\n\n<code>https://graph.org{downloaded_file[0]}</code>",
         disable_web_page_preview=False,
         reply_markup=InlineKeyboardMarkup( [[
