@@ -47,7 +47,7 @@ async def upload_media_text_to_telegraph(app, message):
 ᴅᴏɴᴇ!
 **➻ ʟɪɴᴋ:** `https://graph.org{downloaded_file[0]}`
 **➻ ʀᴇϙᴜᴇꜱᴛᴇᴅ ʙʏ :** {message.from_user.mention}
-**➻ ᴜᴘʟᴏᴀᴅ ʙʏ :** {x.mention}
+**➻ ᴜᴘʟᴏᴀᴅ ʙʏ :** {MENTION_BOT}
 **➻ ᴛɪᴍᴇ ᴛᴀᴋᴇɴ :** `{time}` sᴇᴄᴏɴᴅs                
         """,
         disable_web_page_preview=True,
