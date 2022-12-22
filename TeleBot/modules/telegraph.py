@@ -1,6 +1,6 @@
 import os
 import datetime
-from TeleBot import pgram, BOT_NAME,BOT_USERNAME,LOG
+from TeleBot import pgram, BOT_NAME,BOT_USERNAME,LOG,MENTION_BOT
 from pyrogram import filters , Client 
 from telegraph import upload_file
 from datetime import datetime
@@ -8,7 +8,7 @@ from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton,CallbackQu
 from telegraph import Telegraph
 
 
-x = pgram.get_me()
+
 
 telegraph = Telegraph()
 new_user = telegraph.create_account(short_name=BOT_NAME)
