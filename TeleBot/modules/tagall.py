@@ -7,9 +7,7 @@ spam_chats = []
 @pgram.on_message(filters.command("tagall"))
 async def tag_all(_,message):  
  
-    logo_text = (
-            message.text.split(None, 1)[1]
-            if len(message.command) < 3 else None)
+    
 
     username=0
     usertext = ''
@@ -19,7 +17,7 @@ async def tag_all(_,message):
         username += 1
         usertext += f"\n[{m.user.first_name}](tg://user?id={m.user.id})"
         if username == 5:
-            await pgram.send_message(message.chat.id,f"{usertext}\n\n{logo_text}")
+            await pgram.send_message(message.chat.id,f"{usertext}\n\nhoi")
             
  #   for i in range(1000000000):
         
