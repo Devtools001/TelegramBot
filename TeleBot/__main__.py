@@ -54,7 +54,8 @@ from TeleBot import (
 from TeleBot.modules import ALL_MODULES
 #from TeleBot.modules.helper_funcs.chat_status import is_user_admin
 from TeleBot.modules.helper_funcs.misc import paginate_modules
-from pyrogram import filters
+
+from pyrogram.handlers import MessageHandler
 
 #loop = asyncio.get_event_loop()
 
