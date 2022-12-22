@@ -35,7 +35,7 @@ async def logo_make(_,message):
         try:
             randc = random.choice(LOGOES)
             logo = Image.open(io.BytesIO(requests.get(randc).content))
-            print(logo)
+            print(io.BytesIO(requests.get(randc).content))
             draw = ImageDraw.Draw(logo) 
             image_widthz, image_heightz = logo.size
             pointsize = 500
