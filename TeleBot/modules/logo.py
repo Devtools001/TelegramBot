@@ -302,9 +302,9 @@ async def logo_make(_,message):
 
                 os.remove(fname)
 
-     except Exception as e:
-
+    except Exception as e:
         await message.reply_text(e)
    
         
-
+        
+     
