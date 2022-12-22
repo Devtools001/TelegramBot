@@ -243,6 +243,7 @@ LOGO_LINKS = [
 
 @pgram.on_message(filters.command("logo") & filters.text)
 async def logo_make(_,message):
+    chat_id = message.chat.id
     if len(message.command) < 2 :
         await message.reply_text("give a text to generate logo")
         return 
