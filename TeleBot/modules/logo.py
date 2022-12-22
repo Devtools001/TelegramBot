@@ -30,6 +30,7 @@ async def logo_make(_,message):
             if len(message.command) < 3
             else message.text.split(None, 1)[1]
         )
+
     text = await message.reply("`ᴍᴀᴋɪɴɢ ʏᴏᴜʀ ʟᴏɢᴏ`")
         
     if not replied:
@@ -62,7 +63,7 @@ async def logo_make(_,message):
     
    
     if replied:
-        if replied.photo:             
+        if replied.photo or replied.sticker:             
             try:
                 downloaded = await replied.download()
                 uploaded_file = upload_file(downloaded)
@@ -93,8 +94,14 @@ async def logo_make(_,message):
                 try:
                     os.remove(downloaded)   
                 except Exception as e:
-                    print(e) 
+                    await message.reply_text(e)
+
             except Exception as e:
-                print(e)
+                await message.reply_text(e)
+      #  else:
+       #     await message.reply_text(
+    
+
+    
            
             
