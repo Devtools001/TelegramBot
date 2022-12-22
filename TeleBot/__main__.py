@@ -1,3 +1,4 @@
+import asyncio
 import os
 import re
 import time
@@ -54,7 +55,9 @@ from TeleBot.modules import ALL_MODULES
 #from TeleBot.modules.helper_funcs.chat_status import is_user_admin
 from TeleBot.modules.helper_funcs.misc import paginate_modules
 from pyrogram import filters
-    
+
+loop = asyncio.get_event_loop()   
+ 
 START_IMG="https://telegra.ph/file/5381961c760ed435d0fc7.jpg"
 
 PM_PHOTOS = (
@@ -513,7 +516,7 @@ def main():
 
 
 if __name__ == "__main__": 
-    telethn.start(bot_token=TOKEN)       
+    loop.run_until_complete(main())       
     main()
 
     
