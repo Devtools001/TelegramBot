@@ -16,7 +16,7 @@ async def tag_all(_,message):
         usertxt += f"\n[{m.user.first_name}](tg://user?id={m.user.id})"
         while True:
             if username == 5:
-            await pgram.send_message(message.chat.id,f"""
+                await pgram.send_message(message.chat.id,f"""
 {usertxt}\n\n hi
 """)
   #  try:
@@ -24,9 +24,7 @@ async def tag_all(_,message):
  #   except:
 #        pass
               
- #   for i in range(1000000000):
-        
-   
+
         
            
 
