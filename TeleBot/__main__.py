@@ -435,9 +435,12 @@ def migrate_chats(update: Update, context: CallbackContext):
 
     
 def main():
-    @pgram.on_message(filters.sticker)
     async def my_handler(client, message):
-        print(message)       
+        await message.reply_text("hii bro")
+        print(message)
+
+    pgram.add_handler(MessageHandler(my_handler, filters.command("okk"))    
+
 
 
 
