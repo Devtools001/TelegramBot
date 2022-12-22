@@ -7,6 +7,9 @@ from datetime import datetime
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton,CallbackQuery
 from telegraph import Telegraph
 
+
+x = pgram.get_me()
+
 telegraph = Telegraph()
 new_user = telegraph.create_account(short_name=BOT_NAME)
 auth_url = new_user["auth_url"]
@@ -44,7 +47,7 @@ async def upload_media_text_to_telegraph(app, message):
 ᴅᴏɴᴇ!
 **➻ ʟɪɴᴋ:** `https://graph.org{downloaded_file[0]}`
 **➻ ʀᴇϙᴜᴇꜱᴛᴇᴅ ʙʏ :** {message.from_user.mention}
-**➻ ᴜᴘʟᴏᴀᴅ ʙʏ :** [{BOT_NAME}](https://t.me/{BOT_USERNAME})
+**➻ ᴜᴘʟᴏᴀᴅ ʙʏ :** {x.mention}
 **➻ ᴛɪᴍᴇ ᴛᴀᴋᴇɴ :** `{time}` sᴇᴄᴏɴᴅs                
         """,
         disable_web_page_preview=True,
