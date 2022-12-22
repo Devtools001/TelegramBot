@@ -19,10 +19,8 @@ async def tag_all(_,message):
         username += 1
         usertext += f"\n[{m.user.first_name}](tg://user?id={m.user.id})"
         if username == 5:
-        
             await pgram.send_message(message.chat.id,f"{usertext}\n\n{logo_text}")
-            await asyncio.sleep(0.5)
-
+            
  #   for i in range(1000000000):
         
    
