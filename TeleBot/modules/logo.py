@@ -69,4 +69,5 @@ async def logo_make(_,message):
             print(file.name)
             a = os.getcwd()
             print(a)
+            os.remove(f"/home/ubuntu/TelegramBot/{file.name}")
            
