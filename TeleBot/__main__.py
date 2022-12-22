@@ -505,7 +505,7 @@ def main():
    
     
     loop = asyncio.get_event_loop()
-    loop.run_until_complete()        
+    loop.run_until_complete(None)        
     
     updater.idle()
 
