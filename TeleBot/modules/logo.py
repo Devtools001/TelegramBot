@@ -5,6 +5,7 @@ import random
 import glob
 
 from TeleBot import pgram
+from pyrogram import filters
 from PIL import Image,ImageDraw,ImageFont
 
 LOGO_LINKS = [
@@ -240,7 +241,7 @@ LOGO_LINKS = [
 ]
 
 
-@pgram.on_message(filter.command("logo") & filters.text)
+@pgram.on_message(filters.command("logo") & filters.text)
 async def logo_make(_,message):
     if len(message.command) < 2 :
         await message.reply_text("give a text to generate logo")
