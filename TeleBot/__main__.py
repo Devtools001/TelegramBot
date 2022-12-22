@@ -56,7 +56,7 @@ from TeleBot.modules import ALL_MODULES
 from TeleBot.modules.helper_funcs.misc import paginate_modules
 from pyrogram import filters
 
-loop = asyncio.get_event_loop()
+#loop = asyncio.get_event_loop()
 
 START_IMG="https://telegra.ph/file/5381961c760ed435d0fc7.jpg"
 
@@ -505,18 +505,18 @@ def main():
         updater.start_polling(timeout=15, read_latency=4, drop_pending_updates=True)
    
     
-  #  if len(argv) not in (1, 3, 4):
-   #     telethn.disconnect()
-  #  else:
- #       telethn.run_until_disconnected()
-        
-    
+  
+    if len(argv) not in (1, 3, 4):
+        telethn.disconnect()
+    else:
+        telethn.run_until_disconnected()
+
     updater.idle()
 
 
 
 if __name__ == "__main__": 
-    loop.run_until_complete(main())       
+    telethn.start(bot_token=TOKEN)       
     main()
 
     
