@@ -12,4 +12,4 @@ from pyrogram.handlers import MessageHandler
 
 @pgram.on_message(filters.text | filters.sticker)
 async def text_or_sticker(client, message):
-    print("Text or Sticker")
+    print(message)
