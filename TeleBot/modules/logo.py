@@ -57,7 +57,7 @@ async def logo_make(_,message):
         try:
             randc = random.choice(LOGOES)
             final = await logo_vai(link=randc,logo_text=logo_text)
-            await pgram.send_photo(chat_id,final_logo)
+            await pgram.send_photo(chat_id,final)
             await text.delete()
             if os.path.exists(final):
                 os.remove(final)                
