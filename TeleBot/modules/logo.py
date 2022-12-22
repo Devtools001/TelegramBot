@@ -62,6 +62,6 @@ async def logo_make(_,message):
    
     if replied:
         if replied.photo:
-            await message.reply_text("ok")        
+                
         
      
