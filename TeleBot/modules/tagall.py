@@ -8,7 +8,7 @@ spam_chats = []
 async def tag_all(_,message):      
     spam_chats.append(message.chat.id)
     usernum= 0
-    usertext = ''
+    usertxt = ''
     async for m in pgram.get_chat_members(message.chat.id):
        # if not message.chat.id in spam_chats:
      #       break
