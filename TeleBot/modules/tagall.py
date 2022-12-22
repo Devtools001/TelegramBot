@@ -17,11 +17,7 @@ async def tag_all(_,message):
             usertxt = ""
 
             
-                await pgram.send_message(message.chat.id,f"""
-{usertxt}\n\n hi
-""")
-  
-
+                
         
            
 
