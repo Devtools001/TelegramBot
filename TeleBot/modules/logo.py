@@ -35,6 +35,7 @@ async def logo_make(_,message):
         try:
             randc = random.choice(LOGOES)
             logo = Image.open(io.BytesIO(requests.get(randc).content))
+            print(logo)
             draw = ImageDraw.Draw(logo) 
             image_widthz, image_heightz = logo.size
             pointsize = 500
@@ -63,6 +64,8 @@ async def logo_make(_,message):
     if replied:
         if replied.photo:
             file = await replied.download()
+            a = io.BytesIO(file)
+            print(file)
            # file_name = file.name
           #  file_bytes = bytes(file.getbuffer())
          #   print(file_bytes)
