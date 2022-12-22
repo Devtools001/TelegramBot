@@ -2,28 +2,25 @@ import asyncio
 from TeleBot import pgram
 from pyrogram import filters
 
-spam_chats = []
 
 @pgram.on_message(filters.command("tagall"))
-async def tag_all(_,message):      
-    spam_chats.append(message.chat.id)
+async def tag_all(_,message):          
     usernum= 0
-    usertxt = ''
-    async for m in pgram.get_chat_members(message.chat.id):
-       # if not message.chat.id in spam_chats:
-     #       break
+    usertxt = ""
+    async for m in pgram.get_chat_members(message.chat.id):        
         usernum += 1
         usertxt += f"\n[{m.user.first_name}](tg://user?id={m.user.id})"
-        while True:
-            if usernum == 5:
+        if usrnum == 5:
+        await pgram.send_message(message.chat.id,f'{usertxt}\n\nhlo')
+        await asyncio.sleep(2)
+        usernum = 0
+        usertxt = ""
+
+            
                 await pgram.send_message(message.chat.id,f"""
 {usertxt}\n\n hi
 """)
-  #  try:
- #       spam_chats.remove(message.chat.id)
- #   except:
-#        pass
-              
+  
 
         
            
