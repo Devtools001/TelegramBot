@@ -434,21 +434,15 @@ def migrate_chats(update: Update, context: CallbackContext):
 
 
     
-def main():   
-    @pgram.on_message(filters.command("ok"))
-    async def ok(_,msg):
-        ff = msg.from_user
-        if ff.photo:
-            user_dp = await pgram.download_media(message=ff.photo.big_file_id)
-            im=Image.open(user_dp)            
-            print('width: ', im.width)
-            print('height:', im.height)
-            print(im.size)
-            await msg.reply_photo(user_dp)
-            
-            os.remove(user_dp)
-        else:
-            pass    
+def main():
+    @app.on_message(filters.sticker)
+    async def my_handler(client, message):
+        print(message)       
+
+
+
+    
+    
     LOG.print("Found {} Plugins".format(len(ALL_MODULES)) + "\n")
     for all_module in ALL_MODULES:    
         LOG.print(
