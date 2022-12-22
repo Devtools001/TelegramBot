@@ -1,3 +1,4 @@
+import asyncio
 from TeleBot import pgram
 from pyrogram import filters
 
@@ -14,9 +15,10 @@ async def tag_all(_,message):
     usertext = ''
     async for m in pgram.get_chat_members(message.chat.id):
         username += 1
-        usertext += m.user.mention
+        usertext += f"[{m.user.first_name}](tg://user?id={m.user.id}) "
         if username == 5:
-            await pgram.send_message(message.chat.id,f"{usertext} \n{logo_text}")
+            await pgram.send_message(message.chat.id,f"{usertext}\n\n{logo_text}")
+            await asyncio.sleep(2)
            
     
     
