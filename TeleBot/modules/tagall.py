@@ -7,16 +7,16 @@ spam_chats = []
 @pgram.on_message(filters.command("tagall"))
 async def tag_all(_,message):      
     spam_chats.append(message.chat.id)
-    mnum=0
+    usernum=0
     usertext = ''
     async for m in pgram.get_chat_members(message.chat.id):
         if not message.chat.id in spam_chats:
             break
-        mnum += 1
-        mtxt += f"\n[{m.user.first_name}](tg://user?id={m.user.id})"
+        usernum += 1
+        usertxt += f"\n[{m.user.first_name}](tg://user?id={m.user.id})"
         if username == 5:
             await pgram.send_message(message.chat.id,f"""
-{mtxt}\n\n hi
+{usertxt}\n\n hi
 """)
     try:
         spam_chats.remove(message.chat.id)
