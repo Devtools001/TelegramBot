@@ -11,7 +11,27 @@ from PIL import Image,ImageDraw,ImageFont
 from TeleBot.resources.LOGO_LINK.LOGO_LINKS import LOGOES
 from telegraph import upload_file
 
-
+async def logo_vai(link):
+                randc = link
+                logo = Image.open(io.BytesIO(requests.get(randc).content))                
+                draw = ImageDraw.Draw(logo) 
+                image_widthz, image_heightz = logo.size
+                pointsize = 500
+                fillcolor = "black"
+                shadowcolor = "blue"
+                fnt = glob.glob("./TeleBot/resources/Logo_fonts/*")
+                randf = random.choice(fnt)
+                font = ImageFont.truetype(randf, 120)
+                w, h = draw.textsize(logo_text, font=font)
+                h += int(h*0.21)
+                image_width, image_height = logo.size
+                draw.text(((image_widthz-w)/2, (image_heightz-h)/2), logo_text, font=font, fill=(255, 255, 255))
+                x = (image_widthz-w)/2
+                y = ((image_heightz-h)/2+6)
+                draw.text((x, y), logo_text, font=font, fill="white", stroke_width=1, stroke_fill="black")
+                final_logo = "friday.png"
+                logo.save(final_logo, "png")
+                return final_logo
 
 
 
@@ -63,38 +83,22 @@ async def logo_make(_,message):
     
    
     if replied:
-        if replied.photo:             
-            try:
-                downloaded = await replied.download()
-                uploaded_file = upload_file(downloaded)
-                telegraph_link = f"https://graph.org{uploaded_file[0]}" 
-                randc = telegraph_link
-                logo = Image.open(io.BytesIO(requests.get(randc).content))                
-                draw = ImageDraw.Draw(logo) 
-                image_widthz, image_heightz = logo.size
-                pointsize = 500
-                fillcolor = "black"
-                shadowcolor = "blue"
-                fnt = glob.glob("./TeleBot/resources/Logo_fonts/*")
-                randf = random.choice(fnt)
-                font = ImageFont.truetype(randf, 120)
-                w, h = draw.textsize(logo_text, font=font)
-                h += int(h*0.21)
-                image_width, image_height = logo.size
-                draw.text(((image_widthz-w)/2, (image_heightz-h)/2), logo_text, font=font, fill=(255, 255, 255))
-                x = (image_widthz-w)/2
-                y = ((image_heightz-h)/2+6)
-                draw.text((x, y), logo_text, font=font, fill="white", stroke_width=1, stroke_fill="black")
-                final_logo = "friday.png"
-                logo.save(final_logo, "png")
-                await pgram.send_photo(chat_id,final_logo)
+        if replied.photo:
+            downloaded = await replied.download()
+            uploaded_file = upload_file(downloaded)
+            telegraph_link = f"https://graph.org{uploaded_file[0]}" 
+
+            final = await logoo_vai(telegraph_link)
+            await pgram.send_photo(chat_id,final)
                 await text.delete()
-                if os.path.exists(final_logo):
-                    os.remove(final_logo) 
+                if os.path.exists(final):
+                    os.remove(final) 
                 try:
                     os.remove(downloaded)   
                 except Exception as e:
-                    await message.reply_text(e)
+                    await message.reply_text(e)                 
+            
+                
 
             except Exception as e:
                 await message.reply_text(e)
