@@ -5,9 +5,8 @@ from pyrogram import filters
 spam_chats = []
 
 @pgram.on_message(filters.command("tagall"))
-async def tag_all(_,message):  
-    chat_id = message.chat.id 
-    spam_chats.append(chat_id)
+async def tag_all(_,message):      
+    spam_chats.append(message.chat.id)
     username=0
     usertext = ''
     async for m in pgram.get_chat_members(message.chat.id):
@@ -17,7 +16,7 @@ async def tag_all(_,message):
         usertext += f"\n[{m.user.first_name}](tg://user?id={m.user.id})"
         if username == 5:
             await pgram.send_message(message.chat.id,f"{usertext}\n\nhoi")
-            continue 
+             
  #   for i in range(1000000000):
         
    
