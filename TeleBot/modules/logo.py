@@ -84,12 +84,13 @@ async def logo_make(_,message):
    
     if replied:
         if replied.photo:
-            downloaded = await replied.download()
-            uploaded_file = upload_file(downloaded)
-            telegraph_link = f"https://graph.org{uploaded_file[0]}" 
+            try:
+                downloaded = await replied.download()
+                uploaded_file = upload_file(downloaded)
+                telegraph_link = f"https://graph.org{uploaded_file[0]}" 
 
-            final = await logoo_vai(telegraph_link)
-            await pgram.send_photo(chat_id,final)
+                final = await logoo_vai(telegraph_link)
+                await pgram.send_photo(chat_id,final)
                 await text.delete()
                 if os.path.exists(final):
                     os.remove(final) 
@@ -99,7 +100,6 @@ async def logo_make(_,message):
                     await message.reply_text(e)                 
             
                 
-
             except Exception as e:
                 await message.reply_text(e)
       
