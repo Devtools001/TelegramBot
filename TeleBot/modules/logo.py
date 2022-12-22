@@ -270,16 +270,41 @@ async def logo_make(_,message):
 
         shadowcolor = "blue"
 
-        fnt = glob.glob("./TeleBot/Helpers/Logo/*")
+        fnt = glob.glob("./TeleBot/resources/Logo_fonts/*")
 
         randf = random.choice(fnt)
 
         font = ImageFont.truetype(randf, 120)
 
-        w, h = draw.textsize(text, font=font)
+        w, h = draw.textsize(logo_text, font=font)
 
         h += int(h*0.21)
 
+        image_width, image_height = logo.size
+
+        draw.text(((image_widthz-w)/2, (image_heightz-h)/2), logo_text, font=font, fill=(255, 255, 255))
+
+        x = (image_widthz-w)/2
+
+        y = ((image_heightz-h)/2+6)
+
+        draw.text((x, y), logo_text, font=font, fill="white", stroke_width=1, stroke_fill="black")
+
+        fname = "Himawari.png"
+
+        logo.save(fname, "png")
+
+        await pgram.send_photo(message.chat.id,fname)
+
+        await text.delete()
+
+        if os.path.exists(fname):
+
+                os.remove(fname)
+
+ except Exception as e:
+
+    await message.reply_text(e)
    
         
 
