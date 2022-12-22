@@ -3,13 +3,13 @@ from pyrogram import filters
 
 
 @pgram.on_message(filters.command("tagall"))
-async def tag_all(_,msg):
+async def tag_all(_,message):
     members = []
     usernme=0
     logo_text = (
             message.text.split(None, 1)[1]
             if len(message.command) < 3 else None)
-    async for m in pgram.get_chat_members(msg.chat.id):
+    async for m in pgram.get_chat_members(message.chat.id):
         members.append(m.user.mention) 
         print(members)   
 
