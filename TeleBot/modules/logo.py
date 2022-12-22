@@ -62,8 +62,8 @@ async def logo_make(_,message):
    
     if replied:
         if replied.photo:
-            photo = await replied.download()
-            try:
+                photo = await replied.download()
+           # try:
             #    randc = photo
            #     logo = Image.open(io.BytesIO(requests.get(randc).content))
                 logo = photo
@@ -90,11 +90,11 @@ async def logo_make(_,message):
                     os.remove(final_logo) 
                 try:
                     os.remove(photo)   
-                except Exception as e:
-                    print(e) 
+              #  except Exception as e:
+               #     print(e) 
            
-            except Exception as e:
-                print(e)
+           # except Exception as e:
+            #    print(e)
             
                 
         
