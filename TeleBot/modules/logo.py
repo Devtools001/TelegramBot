@@ -65,7 +65,7 @@ async def logo_make(_,message):
         if replied.photo:
             file = await replied.download()
             a = io.BytesIO(file)
-            print(file)
+            print(a)
            # file_name = file.name
           #  file_bytes = bytes(file.getbuffer())
          #   print(file_bytes)
