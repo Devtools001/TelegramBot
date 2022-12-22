@@ -506,7 +506,7 @@ def main():
    
     
   #  if len(argv) not in (1, 3, 4):
-        telethn.disconnect()
+   #     telethn.disconnect()
   #  else:
  #       telethn.run_until_disconnected()
         
