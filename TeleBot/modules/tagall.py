@@ -8,7 +8,7 @@ async def tag_all(_,msg):
     usernme=0
     logo_text = (
             message.text.split(None, 1)[1]
-            if len(message.command) < 3
+            if len(message.command) < 3 else None)
     async for m in pgram.get_chat_members(msg.chat.id):
         members.append(m.user.mention) 
         print(members)   
