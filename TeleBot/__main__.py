@@ -194,7 +194,7 @@ def start(update: Update, context: CallbackContext):
                     update.effective_chat.id,
                     HELPABLE[mod].__help__,
                     InlineKeyboardMarkup(
-                        [[InlineKeyboardButton(text="◁", callback_data="help_back")]]
+                        [[InlineKeyboardButton(text="ʙᴀᴄᴋ", callback_data="help_back")]]
                     ),
                 )
 
@@ -312,7 +312,7 @@ def help_button(update, context):
                 text,
                 parse_mode=ParseMode.MARKDOWN,                
                 reply_markup=InlineKeyboardMarkup(
-                    [[InlineKeyboardButton(text="◁", callback_data="help_back")]]
+                    [[InlineKeyboardButton(text="ʙᴀᴄᴋ", callback_data="help_back")]]
                 ),
             )
 
@@ -406,7 +406,7 @@ def get_help(update: Update, context: CallbackContext):
             chat.id,
             text,
             InlineKeyboardMarkup(
-                [[InlineKeyboardButton(text="◁", callback_data="help_back")]]
+                [[InlineKeyboardButton(text="ʙᴀᴄᴋ", callback_data="help_back")]]
             ),
         )
 
