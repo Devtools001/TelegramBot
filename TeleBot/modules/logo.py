@@ -98,10 +98,7 @@ async def logo_make(_,message):
 
             except Exception as e:
                 await message.reply_text(e)
-      #  else:
-       #     await message.reply_text(
-    
-
+      
     
            
             
