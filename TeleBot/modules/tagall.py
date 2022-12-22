@@ -10,11 +10,11 @@ async def tag_all(_,message):
     async for m in pgram.get_chat_members(message.chat.id):        
         usernum += 1
         usertxt += f"\n[{m.user.first_name}](tg://user?id={m.user.id})"
-        if usrnum == 5:
-        await pgram.send_message(message.chat.id,f'{usertxt}\n\nhlo')
-        await asyncio.sleep(2)
-        usernum = 0
-        usertxt = ""
+        if usernum == 5:
+            await pgram.send_message(message.chat.id,f'{usertxt}\n\nhlo')
+            await asyncio.sleep(2)
+            usernum = 0
+            usertxt = ""
 
             
                 await pgram.send_message(message.chat.id,f"""
