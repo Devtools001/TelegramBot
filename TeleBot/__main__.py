@@ -1,3 +1,4 @@
+import asyncio
 import os
 import re
 import time
@@ -502,18 +503,15 @@ def main():
         LOG.print("[bold yellow]ᴜsɪɴɢ ʟᴏɴɢ ᴘᴏʟʟɪɴɢ.")
         updater.start_polling(timeout=15, read_latency=4, drop_pending_updates=True)
    
-    if len(argv) not in (1, 3, 4):
-        telethn.disconnect()
-    else:
-        telethn.run_until_disconnected()
-
+    
+    loop = asyncio.get_event_loop()
+    loop.run_until_complete()        
     
     updater.idle()
 
 
 
-if __name__ == "__main__":
-    telethn.start(bot_token=TOKEN)    
+if __name__ == "__main__":        
     main()
 
     
