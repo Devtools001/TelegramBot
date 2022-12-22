@@ -18,7 +18,11 @@ async def tag_all(_,message):
             await pgram.send_message(message.chat.id,f"""
 {usertext}\n\n hi
 """)
-             
+        try:
+            spam_chats.remove(message.chat.id)
+        except:
+            pass
+              
  #   for i in range(1000000000):
         
    
