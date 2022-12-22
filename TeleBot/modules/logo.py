@@ -253,7 +253,7 @@ async def logo_make(_,message):
         if len(message.command) < 3
         else message.text.split(None, 1)[1]
     )
-    text = await message.reply("logo in process")
+    text = await message.reply("`ᴍᴀᴋɪɴɢ ʏᴏᴜʀ ʟᴏɢᴏ`")
 
     try :
         randc = random.choice(LOGO_LINKS)
@@ -290,17 +290,16 @@ async def logo_make(_,message):
 
         draw.text((x, y), logo_text, font=font, fill="white", stroke_width=1, stroke_fill="black")
 
-        fname = "Himawari.png"
+        final_logo = "friday.png"
 
         logo.save(fname, "png")
 
-        await pgram.send_photo(message.chat.id,fname)
+        await pgram.send_photo(chat_id,final_logo)
 
         await text.delete()
 
-        if os.path.exists(fname):
-
-                os.remove(fname)
+        if os.path.exists(final_name):
+                os.remove(final_logo)
 
     except Exception as e:
         await message.reply_text(e)
