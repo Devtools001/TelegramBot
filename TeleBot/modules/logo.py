@@ -62,11 +62,11 @@ async def logo_make(_,message):
    
     if replied:
         if replied.photo:
-            file = await pgram.download_media(replied.photo.file_id,in_memory=True)
+            file = await replied.download()
             file_name = file.name
             file_bytes = bytes(file.getbuffer())
             print(file_bytes)
             print(file.name)
             a = os.getcwd()
             print(a)
-            os.remove(str(file.name))
+            os.remove(file)
