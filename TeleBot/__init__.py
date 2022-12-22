@@ -85,9 +85,7 @@ dispatcher=updater.dispatcher
 
 telethn = TelegramClient("Fallen", API_ID, API_HASH)
 
-x = pgram.get_me()
 
-MENTION_BOT = x.mention
 
 pgram = Client (
       "TeleBot",
@@ -95,3 +93,8 @@ pgram = Client (
       api_hash=API_HASH,
       bot_token=BOT_TOKEN
       )
+
+x = pgram.get_me()
+
+MENTION_BOT = x.mention
+
