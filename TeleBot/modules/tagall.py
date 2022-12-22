@@ -14,9 +14,9 @@ async def tag_all(_,msg):
         print(members)   
 
     
-    usernme += 1
-        usertext += m.user.mention
-        if usernme==5:
-            text=f"hii \nlogo_text"
-            await pgram.send_message(msg.chat.id,text)
+  #  usernme += 1
+    #    usertext += m.user.mention
+    #    if usernme==5:
+      #      text=f"hii \nlogo_text"
+     #       await pgram.send_message(msg.chat.id,text)
         
