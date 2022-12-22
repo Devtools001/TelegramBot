@@ -55,7 +55,6 @@ from TeleBot.modules import ALL_MODULES
 #from TeleBot.modules.helper_funcs.chat_status import is_user_admin
 from TeleBot.modules.helper_funcs.misc import paginate_modules
 
-from pyrogram.handlers import MessageHandler
 
 #loop = asyncio.get_event_loop()
 
@@ -436,16 +435,7 @@ def migrate_chats(update: Update, context: CallbackContext):
 
     
 def main():
-    async def my_handler(client, message):
-        await message.reply_text("hii bro")
-        print(message)
-
-    pgram.add_handler(MessageHandler(my_handler, filters.command("okk")))    
-
-
-
-
-    
+        
     
     LOG.print("Found {} Plugins".format(len(ALL_MODULES)) + "\n")
     for all_module in ALL_MODULES:    
