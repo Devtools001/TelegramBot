@@ -14,7 +14,7 @@ from TeleBot.resources.LOGO_LINK.LOGO_LINKS import LOGOES
 
 
 
-@pgram.on_message(filters.command("logo") & filters.text & filters.photo)
+@pgram.on_message(filters.command("logo"))
 async def logo_make(_,message):
     chat_id = message.chat.id
     replied = message.reply_to_message
