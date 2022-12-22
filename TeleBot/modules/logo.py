@@ -11,7 +11,7 @@ from PIL import Image,ImageDraw,ImageFont
 from TeleBot.resources.LOGO_LINK.LOGO_LINKS import LOGOES
 from telegraph import upload_file
 
-async def logo_vai(link):
+async def logo_vai(link,logo_text):
                 randc = link
                 logo = Image.open(io.BytesIO(requests.get(randc).content))                
                 draw = ImageDraw.Draw(logo) 
@@ -89,7 +89,7 @@ async def logo_make(_,message):
                 uploaded_file = upload_file(downloaded)
                 telegraph_link = f"https://graph.org{uploaded_file[0]}" 
 
-                final = await logo_vai(telegraph_link)
+                final = await logo_vai(link=telegraph_link,logo_text=logo_text)
                 await pgram.send_photo(chat_id,final)
                 await text.delete()
                 if os.path.exists(final):
