@@ -245,4 +245,12 @@ LOGO_LINKS = [
 async def logo_make(_,message):
     if len(message.command) < 2 :
         await message.reply_text("give a text to generate logo")
+        return 
+
+    text = (
+        message.text.split(None, 1)[1]
+        if len(message.command) < 3
+        else message.text.split(None, 1)[1]
+    )
+    print(text)
 
