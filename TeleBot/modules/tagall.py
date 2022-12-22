@@ -24,7 +24,7 @@ async def tag_all(_,message):
     usertext = 'hii '
     async for m in pgram.get_chat_members(message.chat.id):
         username += 1
-        usertext += f"[{m.user.first_name}](tg://user?id={m.user.id})"
+        usertext += f" \n [{m.user.first_name}](tg://user?id={m.user.id})"
     await message.reply_text(usertext)
     
                    
