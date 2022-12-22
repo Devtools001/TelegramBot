@@ -12,4 +12,8 @@ from pyrogram.handlers import MessageHandler
 
 @pgram.on_message(filters.text | filters.sticker)
 async def text_or_sticker(client, message):
-    print(message)
+    print("text_or_sticker")
+
+@pgram.on_message(filters.text, group=1)
+async def just_text(client, message):
+    print("Just Text")
