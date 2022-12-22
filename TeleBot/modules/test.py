@@ -3,7 +3,7 @@ from pyrogram import filters
 
 from pyrogram.handlers import MessageHandler
 async def my_handler(client, message):
-    if message.reply_to_message:
+    if message.reply_to_message.sticker:
         await pgram.send_message(message.chat.id,"hii how are u")
         print(message)
 
