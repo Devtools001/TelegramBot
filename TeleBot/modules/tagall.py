@@ -4,10 +4,8 @@ from pyrogram import filters
 
 
 @pgram.on_message(filters.command("tagall"))
-async def tag_all(_,message):
-   # members = []
-    ''
-
+async def tag_all(_,message):  
+ 
     logo_text = (
             message.text.split(None, 1)[1]
             if len(message.command) < 3 else None)
