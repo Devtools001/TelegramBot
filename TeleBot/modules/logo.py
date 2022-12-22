@@ -8,7 +8,7 @@ from TeleBot import pgram
 from pyrogram import filters
 from PIL import Image,ImageDraw,ImageFont
 
-from TeleBot.resources.LOGO_LINK import LOGO_LINKS
+from TeleBot.resources.Logoes import logo_link
 
 
 
@@ -31,7 +31,7 @@ async def logo_make(_,message):
     text = await message.reply("`ᴍᴀᴋɪɴɢ ʏᴏᴜʀ ʟᴏɢᴏ`")
 
     try :
-        randc = random.choice(LOGO_LINKS)
+        randc = random.choice(logo_link)
 
         logo = Image.open(io.BytesIO(requests.get(randc).content))
 
