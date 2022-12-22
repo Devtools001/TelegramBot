@@ -79,12 +79,15 @@ else:
     CERT_PATH = Config.CERT_PATH
     WEBHOOK = Config.WEBHOOK
 
+
 updater=Fday.Updater(BOT_TOKEN,workers=WORKERS,use_context=True)
 dispatcher=updater.dispatcher
 
 telethn = TelegramClient("Fallen", API_ID, API_HASH)
 
+x = pgram.get_me()
 
+MENTION_BOT = x.mention
 
 pgram = Client (
       "TeleBot",
