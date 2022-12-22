@@ -68,5 +68,5 @@ async def logo_make(_,message):
             print(file_bytes)
             print(file.name)
             a = os.getcwd()
-            print(name)
+            print(a)
            
