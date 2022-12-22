@@ -31,7 +31,8 @@ async def logo_make(_,message):
         )
     text = await message.reply("`ᴍᴀᴋɪɴɢ ʏᴏᴜʀ ʟᴏɢᴏ`")
         
-    try:
+    else:
+        try:
             randc = random.choice(LOGOES)
             logo = Image.open(io.BytesIO(requests.get(randc).content))
             draw = ImageDraw.Draw(logo) 
@@ -55,7 +56,7 @@ async def logo_make(_,message):
             await text.delete()
             if os.path.exists(final_logo):
                 os.remove(final_logo)                
-    except Exception as e:
+        except Exception as e:
             await message.reply_text(e)
     
    
