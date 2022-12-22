@@ -35,8 +35,7 @@ async def logo_make(_,message):
     if not replied:
         try:
             randc = random.choice(LOGOES)
-            logo = Image.open(io.BytesIO(requests.get(randc).content))
-            print(io.BytesIO(requests.get(randc).content))
+            logo = Image.open(io.BytesIO(requests.get(randc).content))            
             draw = ImageDraw.Draw(logo) 
             image_widthz, image_heightz = logo.size
             pointsize = 500
@@ -69,8 +68,7 @@ async def logo_make(_,message):
                 uploaded_file = upload_file(downloaded)
                 telegraph_link = f"https://graph.org{uploaded_file[0]}" 
                 randc = telegraph_link
-                logo = Image.open(io.BytesIO(requests.get(randc).content))
-                logo = photo
+                logo = Image.open(io.BytesIO(requests.get(randc).content))                
                 draw = ImageDraw.Draw(logo) 
                 image_widthz, image_heightz = logo.size
                 pointsize = 500
