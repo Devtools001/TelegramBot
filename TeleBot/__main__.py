@@ -513,7 +513,7 @@ def main():
 
 
 if __name__ == "__main__":
-    telethn.start(bot_token=TOKEN)
-    pgram.start()
+    telethn.start(bot_token=TOKEN)    
     main()
-    ok()
+
+    
