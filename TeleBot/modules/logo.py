@@ -9,6 +9,7 @@ from pyrogram import filters
 from PIL import Image,ImageDraw,ImageFont
 
 from TeleBot.resources.LOGO_LINK.LOGO_LINKS import LOGOES
+from telegraph import upload_file
 
 
 
@@ -63,13 +64,39 @@ async def logo_make(_,message):
    
     if replied:
         if replied.photo:
-            file = await replied.download()
-            a = io.BytesIO(file.content)
-            print(a)
-           # file_name = file.name
-          #  file_bytes = bytes(file.getbuffer())
-         #   print(file_bytes)
-         #   print(file.name)
-         #   a = os.getcwd()
-         #   print(a)
-            os.remove(file)
+             
+             try:
+                downloaded = await replied.download()
+                uploaded_file = upload_file(downloaded)
+                telegraph_link = f"https://graph.org{uploaded_file[0]}" 
+                randc = telegraph_link
+                logo = Image.open(io.BytesIO(requests.get(randc).content))
+                logo = photo
+                draw = ImageDraw.Draw(logo) 
+                image_widthz, image_heightz = logo.size
+                pointsize = 500
+                fillcolor = "black"
+                shadowcolor = "blue"
+                fnt = glob.glob("./TeleBot/resources/Logo_fonts/*")
+                randf = random.choice(fnt)
+                font = ImageFont.truetype(randf, 120)
+                w, h = draw.textsize(logo_text, font=font)
+                h += int(h*0.21)
+                image_width, image_height = logo.size
+                draw.text(((image_widthz-w)/2, (image_heightz-h)/2), logo_text, font=font, fill=(255, 255, 255))
+                x = (image_widthz-w)/2
+                y = ((image_heightz-h)/2+6)
+                draw.text((x, y), logo_text, font=font, fill="white", stroke_width=1, stroke_fill="black")
+                final_logo = "friday.png"
+                logo.save(final_logo, "png")
+                await pgram.send_photo(chat_id,final_logo)
+                await text.delete()
+                if os.path.exists(final_logo):
+                    os.remove(final_logo) 
+                try:
+                    os.remove(downloaded)   
+                except Exception as e:
+                    print(e) 
+           
+            except Exception as e:
+                print(e)
