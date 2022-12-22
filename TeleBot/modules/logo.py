@@ -20,7 +20,7 @@ async def logo_make(_,message):
     replied = message.reply_to_message
     if len(message.command) < 2: 
         await message.reply_text("give a text to generate logo")
-            return
+        return
              
 
 
