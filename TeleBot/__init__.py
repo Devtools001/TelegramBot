@@ -94,6 +94,7 @@ pgram = Client (
       bot_token=BOT_TOKEN
       )
 
+pgram.start()
 x = pgram.get_me()
 
 MENTION_BOT = x.mention
