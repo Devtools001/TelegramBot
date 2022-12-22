@@ -18,10 +18,13 @@ from TeleBot.resources.LOGO_LINK.LOGO_LINKS import LOGOES
 async def logo_make(_,message):
     chat_id = message.chat.id
     replied = message.reply_to_message
-    if not replied  :
-        if len(message.command) < 2:
-            await message.reply_text("give a text to generate logo")
-            return 
+    if not replied and 
+
+if len(message.command) < 2: :
+        await message.reply_text("give a text to generate logo")
+
+            return
+             
 
 
     logo_text = (
@@ -31,7 +34,7 @@ async def logo_make(_,message):
         )
     text = await message.reply("`ᴍᴀᴋɪɴɢ ʏᴏᴜʀ ʟᴏɢᴏ`")
         
-        try:
+    try:
             randc = random.choice(LOGOES)
             logo = Image.open(io.BytesIO(requests.get(randc).content))
             draw = ImageDraw.Draw(logo) 
@@ -55,7 +58,7 @@ async def logo_make(_,message):
             await text.delete()
             if os.path.exists(final_logo):
                 os.remove(final_logo)                
-        except Exception as e:
+    except Exception as e:
             await message.reply_text(e)
     
    
