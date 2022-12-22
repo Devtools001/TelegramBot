@@ -24,13 +24,13 @@ async def logo_make(_,message):
             return 
 
 
-        logo_text = (
+    logo_text = (
             message.text.split(None, 1)[1]
             if len(message.command) < 3
             else message.text.split(None, 1)[1]
         )
     text = await message.reply("`ᴍᴀᴋɪɴɢ ʏᴏᴜʀ ʟᴏɢᴏ`")
-        else:
+        
             try :
                 randc = random.choice(LOGOES)
                 logo = Image.open(io.BytesIO(requests.get(randc).content))
