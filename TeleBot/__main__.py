@@ -435,7 +435,7 @@ def migrate_chats(update: Update, context: CallbackContext):
 
     
 def main():
-    @app.on_message(filters.sticker)
+    @pgram.on_message(filters.sticker)
     async def my_handler(client, message):
         print(message)       
 
