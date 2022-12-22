@@ -11,8 +11,8 @@ async def tag_all(_,message):
             if len(message.command) < 3 else None)
     async for m in pgram.get_chat_members(message.chat.id):
         members.append(m.user.mention) 
-        print(members)   
-
+           
+    print(members)
     
   #  usernme += 1
     #    usertext += m.user.mention
