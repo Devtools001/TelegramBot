@@ -247,10 +247,39 @@ async def logo_make(_,message):
         await message.reply_text("give a text to generate logo")
         return 
 
-    text = (
+
+    logo_text = (
         message.text.split(None, 1)[1]
         if len(message.command) < 3
         else message.text.split(None, 1)[1]
     )
-    print(text)
+    text = await message.reply("logo in process")
+
+    try :
+        randc = random.choice(LOGO_LINKS)
+
+        logo = Image.open(io.BytesIO(requests.get(randc).content))
+
+        draw = ImageDraw.Draw(logo) 
+
+        image_widthz, image_heightz = logo.size
+
+        pointsize = 500
+
+        fillcolor = "black"
+
+        shadowcolor = "blue"
+
+        fnt = glob.glob("./TeleBot/Helpers/Logo/*")
+
+        randf = random.choice(fnt)
+
+        font = ImageFont.truetype(randf, 120)
+
+        w, h = draw.textsize(text, font=font)
+
+        h += int(h*0.21)
+
+   
+        
 
