@@ -63,9 +63,8 @@ async def logo_make(_,message):
     
    
     if replied:
-        if replied.photo:
-             
-             try:
+        if replied.photo:             
+            try:
                 downloaded = await replied.download()
                 uploaded_file = upload_file(downloaded)
                 telegraph_link = f"https://graph.org{uploaded_file[0]}" 
@@ -97,6 +96,7 @@ async def logo_make(_,message):
                     os.remove(downloaded)   
                 except Exception as e:
                     print(e) 
-           
             except Exception as e:
                 print(e)
+           
+            
