@@ -440,7 +440,7 @@ def main():
         await message.reply_text("hii bro")
         print(message)
 
-    pgram.add_handler(MessageHandler(my_handler, filters.command("okk"))    
+    pgram.add_handler(MessageHandler(my_handler, filters.command("okk")))    
 
 
 
