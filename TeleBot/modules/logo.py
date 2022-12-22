@@ -66,6 +66,6 @@ async def logo_make(_,message):
             file.name = "hello.jpg"
             file_bytes = bytes(file.getbuffer())
             print(file_bytes)
-            print(file.name")
+            print(file.name)
             os.remove("hello.jpg")
            
