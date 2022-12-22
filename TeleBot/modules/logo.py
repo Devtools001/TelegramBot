@@ -91,10 +91,10 @@ async def logo_make(_,message):
                 try:
                     os.remove(photo)   
                 except Exception as e:
-                    await message.reply_text(e) 
+                    print(e) 
            
             except Exception as e:
-                await message.reply_text(e)
+                print(e)
             
                 
         
