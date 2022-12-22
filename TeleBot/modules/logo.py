@@ -63,7 +63,7 @@ async def logo_make(_,message):
     
    
     if replied:
-        if replied.photo or replied.sticker:             
+        if replied.photo:             
             try:
                 downloaded = await replied.download()
                 uploaded_file = upload_file(downloaded)
