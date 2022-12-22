@@ -292,7 +292,7 @@ async def logo_make(_,message):
 
         final_logo = "friday.png"
 
-        logo.save(fname, "png")
+        logo.save(final_logo, "png")
 
         await pgram.send_photo(chat_id,final_logo)
 
