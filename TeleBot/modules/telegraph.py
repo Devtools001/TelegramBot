@@ -1,6 +1,6 @@
 import os
 import datetime
-from TeleBot import pgram, BOT_NAME,BOT_USERNAME,LOG,MENTION_BOT
+from TeleBot import pgram, BOT_NAME,LOG,MENTION_BOT
 from pyrogram import filters , Client 
 from telegraph import upload_file
 from datetime import datetime
@@ -79,7 +79,7 @@ async def upload_media_text_to_telegraph(app, message):
 ᴅᴏɴᴇ!
 **➻ ʟɪɴᴋ:** `https://telegra.ph/{response["path"]}`
 **➻ ʀᴇϙᴜᴇꜱᴛᴇᴅ ʙʏ :** {message.from_user.mention}
-**➻ ᴜᴘʟᴏᴀᴅ ʙʏ :** [{BOT_NAME}](https://t.me/{BOT_USERNAME})                
+**➻ ᴜᴘʟᴏᴀᴅ ʙʏ :** {MENTION_BOT}                
         ''',
         disable_web_page_preview=True,
         reply_markup=InlineKeyboardMarkup( [
