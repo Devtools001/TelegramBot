@@ -1,5 +1,6 @@
 from pyrogram.types import InlineKeyboardButton
-
+from TeleBot import BOT_NAME,BOT_USERNAME
+    
 START_IMG="https://telegra.ph/file/5381961c760ed435d0fc7.jpg"
 
 PM_PHOTOS = (
