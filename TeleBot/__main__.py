@@ -105,7 +105,6 @@ async def main():
     pgram.add_handler(MessageHandler(start, filters.command("start")))
 
 if __name__ == "__main__" :
-    LOG.print("[yellow] bot started")
-    install()
-    asyncio.run(main())
+    LOG.print("[yellow] bot started")    
+    loop.run_until_complete(main())
 
