@@ -10,13 +10,14 @@ from config import Friday as Config
 from rich.table import Table
 from rich.console import Console
 from telethon import TelegramClient 
-
+from aiohttp import ClientSession
 
 
 
 LOG = Console()
 StartTime = time.time()
 loop = asyncio.get_event_loop()
+aiohttpsession = ClientSession()
 
 MOD_LOAD = []
 MOD_NOLOAD = []
