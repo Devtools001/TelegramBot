@@ -86,9 +86,10 @@ else:
     WEBHOOK = Config.WEBHOOK
 
 #SUDO_USERS = filters.user()
+
 BOT_NAME  = ""
 BOT_USERNAME = ""
-BOT_ID = ""
+BOT_ID = 0
 
 pgram = Client (
       "TeleBot",
