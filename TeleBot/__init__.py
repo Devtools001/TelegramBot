@@ -11,7 +11,7 @@ from rich.table import Table
 from rich.console import Console
 from telethon import TelegramClient 
 from aiohttp import ClientSession
-
+from redis import StrictRedis
 
 
 LOG = Console()
@@ -109,11 +109,26 @@ async def Friday():
         BOT_NAME = app.first_name
     MENTION_BOT = app.mention
 
+
+REDIS = StrictRedis.from_url(REDIS_URL, decode_responses=True)
+
+try:
+    REDIS.ping()
+    LOG.print("[bold red]Your redis server is now alive!")
+
+except BaseException:
+    raise Exception("Your redis server is not alive, please check again.")
+
+finally:
+    REDIS.ping()
+    LOG.print("[bold red]Your redis server is now alive!")
+
     
     
 loop.run_until_complete(Friday())    
 
 print(MENTION_BOT)
+
 
 #updater=Fday.Updater(BOT_TOKEN,workers=WORKERS,use_context=True)
 #dispatcher=updater.dispatcher
