@@ -228,9 +228,7 @@ async def start(_, message):
     parse_mode=ParseMode.MARKDOWN,
                     
             )     
-    
-
-              
+                  
 
 @app.on_message(filters.command("help") & filters.group)
 async def help_command(_, message):
@@ -262,8 +260,34 @@ async def help_command(_, message):
     return        
     
 
-
-
+@app.on_message(filters.command("help") & filters.private)
+async def help_command(_, message):
+    if len(message.command) >= 2:
+            name = (message.text.split(None, 1)[1]).replace(" ", "_").lower()
+            if str(name) in HELPABLE:
+                text = (
+                        f"Here is the help for {HELPABLE[name].mod_name}:\n"
+                        + HELPABLE[name].help
+                )
+                await message.reply(text, disable_web_page_preview=True)
+            else:
+                text, help_keyboard = await help_parser(
+                    message.from_user.first_name
+                )
+                await message.reply(
+                    text,
+                    reply_markup=help_keyboard,
+                    disable_web_page_preview=True,
+                )
+        else:
+            text, help_keyboard = await help_parser(
+                message.from_user.first_name
+            )
+            await message.reply(
+                text, reply_markup=help_keyboard, disable_web_page_preview=True
+            )
+    return        
+    
 
 
 @app.on_callback_query(filters.regex("bot_commands"))
