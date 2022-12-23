@@ -149,7 +149,7 @@ async def help_command(_, message):
                         [
                             InlineKeyboardButton(
                                 text="Click here",
-                                url=f"t.me/{BOT_USERNAME}?start=help_{name}",
+                                url=f"t.me/{BOT_USERNAME}?start=help",
                             )
                         ],
                     ]
