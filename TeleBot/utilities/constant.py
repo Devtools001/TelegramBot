@@ -37,7 +37,7 @@ NOTE: Fillings only works in greetings module.
 """
 
 
-@app.on_message(filters.command("markdownhelp") & ~filters.edited)
+@app.on_message(filters.command("markdownhelp"))
 async def mkdwnhelp(_, m: Message):
     keyb = InlineKeyboardMarkup(
         [
