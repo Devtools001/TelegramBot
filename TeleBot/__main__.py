@@ -10,17 +10,14 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
 from wbb import (
     BOT_NAME,
-    BOT_USERNAME,
-    LOG_GROUP_ID,
-    USERBOT_NAME,
+    BOT_USERNAME,        
     aiohttpsession,
     app,
-    log,
+    LOG,
 )
 from TeleBot.modules import ALL_MODULES
-from TeleBot.utils import paginate_modules
+from TeleBot.utilities.misc import paginate_modules
 from TeleBot.utils.constants import MARKDOWN
-from TeleBot.utils.dbfunctions import clean_restart_stage
 
 loop = asyncio.get_event_loop()
 
@@ -58,8 +55,8 @@ async def start_bot():
     print("+===============+===============+===============+===============+")
     print(bot_modules)
     print("+===============+===============+===============+===============+")
-    log.info(f"BOT STARTED AS {BOT_NAME}!")
-    log.info(f"USERBOT STARTED AS {USERBOT_NAME}!")
+    LOG.info(f"BOT STARTED AS {BOT_NAME}!")
+    LOG.print(f"USERBOT STARTED AS {USERBOT_NAME}!")
 
     restart_data = await clean_restart_stage()
 
