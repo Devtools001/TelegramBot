@@ -33,7 +33,7 @@ async def start_bot():
                 hasattr(imported_module, "__mod_name__")
                 and imported_module.__mod_name__
         ):
-            imported_module.__mod_name__ = imported_module.__MODULE__
+            imported_module.__mod_name__ = imported_module.__mod_name__
             if (
                     hasattr(imported_module, "__help__")
                     and imported_module.__help__
