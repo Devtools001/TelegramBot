@@ -67,9 +67,11 @@ buttons = [
 
 
 
+
 HELPABLE = {}
 
-for module in ALL_MODULES:
+async def bot():
+    for module in ALL_MODULES:
         imported_module = importlib.import_module("TeleBot.modules." + module)
         if (
                 hasattr(imported_module, "__mod_name__")
@@ -86,6 +88,7 @@ for module in ALL_MODULES:
 
 
 
+
 #async def send_help(chat_id, text, keyboard=None):
 #    if not keyboard:
 #        keyboard = InlineKeyboardMarkup(paginate_modules(0, HELPABLE, "help"))
@@ -97,17 +100,17 @@ for module in ALL_MODULES:
 #        reply_markup=keyboard,
 #    )
 
-#async def start(client : Client, message: Message):
+async def start(client : Client, message: Message):
     await message.reply_text("hii")
 
 
-#async def main():
-#    pgram.add_handler(MessageHandler(start, filters.command("start")))
 
-async def main():
-    @pgram.on_message(filters.command("start"))
-    async def start(_, message):
-        await message.reply_text("hii")
+pgram.add_handler(MessageHandler(start, filters.command("start")))
+
+
+#@pgram.on_message(filters.command("start"))
+#async def start(_, message):
+# await message.reply_text("hii")
 
 
 
