@@ -21,8 +21,9 @@ from TeleBot.modules import ALL_MODULES
 from TeleBot.utilities.misc import paginate_modules
 from TeleBot.utilities.constant import MARKDOWN
 from pyrogram.enums import ChatType
-loop = asyncio.get_event_loop()
 
+loop = asyncio.get_event_loop()
+uptime = get_readable_time((time.time() - StartTime))
 START_IMG="https://telegra.ph/file/5381961c760ed435d0fc7.jpg"
 
 HELPABLE = {}
@@ -150,8 +151,7 @@ Also you can ask anything in Support Group.
     )
 
 @app.on_message(filters.command("start") & filters.group)
-async def start(_, message):    
-    uptime = get_readable_time((time.time() - StartTime))
+async def start(_, message):       
     print(message.chat.type)    
     if len(message.text.split()) > 1:
         name = (message.text.split(None, 1)[1]).lower()
