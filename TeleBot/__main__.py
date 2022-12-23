@@ -152,7 +152,7 @@ Also you can ask anything in Support Group.
 async def start(_, message):    
     uptime = get_readable_time((time.time() - StartTime))
     print(message.chat.type)
-    if message.chat == ChatType.PRIVATE:        
+    if message.chat.type == PRIVATE:        
         if len(message.text.split()) >= 1:
             args = (message.text.split(None, 1)[1]).lower()
             if args == "help":
@@ -173,7 +173,7 @@ async def start(_, message):
                 await message.reply(
                     MARKDOWN, parse_mode="html", disable_web_page_preview=True
                 )
-        elif message.chat == ChatType.GROUP or message.chat == ChatType.SUPERGROUP:
+        else:
             await message.reply_text("2nd if")
     else:
         await message.reply_text("1st if")
