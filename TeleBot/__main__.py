@@ -148,7 +148,7 @@ Also you can ask anything in Support Group.
         keyboard,
     )
 
-@app.on_message(filters.command("start") & filters.private)
+@app.on_message(filters.command("start") & filters.group)
 async def start(_, message):    
     uptime = get_readable_time((time.time() - StartTime))
     print(message.chat.type)    
@@ -177,7 +177,11 @@ async def start(_, message):
             reply_markup=home_keyboard_pm,
         )
     return
-            
+
+@app.on_message(filters.command("start") & filters.private)
+async def start(_, message):  
+    await message.reply_text("private")
+              
 
 @app.on_message(filters.command("help"))
 async def help_command(_, message):
