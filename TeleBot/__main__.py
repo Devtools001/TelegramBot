@@ -106,7 +106,7 @@ for module in ALL_MODULES:
 
 async def main():
     @pgram.on_message(filters.command("start"))
-    async def start(client : Client, message: Message):
+    async def start(_, message):
         await message.reply_text("hii")
 
 
