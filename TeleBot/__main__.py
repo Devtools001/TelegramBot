@@ -255,10 +255,10 @@ async def help_command(_, message):
                 await message.reply(
                     "PM Me For More Details.", reply_markup=keyboard
                 )
-        else:
-            await message.reply(
-                "Pm Me For More Details.", reply_markup=keyboard
-            )
+    else:
+        await message.reply(
+            "Pm Me For More Details.", reply_markup=keyboard
+        )        
     return        
     
 
