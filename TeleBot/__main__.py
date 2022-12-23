@@ -265,7 +265,7 @@ async def commands_callbacc(_, CallbackQuery):
     text, keyboard = await help_parser(chat_id=CallbackQuery.message.chat.id,text=HELP_STRINGS, keyboard=InlineKeyboardMarkup(
                 [[InlineKeyboardButton(text="ʙᴀᴄᴋ", callback_data="help_back")]]
             ),
-        ))
+        )
     await app.send_message(
         CallbackQuery.message.chat.id,
         text=text,
