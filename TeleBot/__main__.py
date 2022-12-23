@@ -82,4 +82,26 @@ for module in ALL_MODULES:
 
 
 
+#async def send_help(chat_id, text, keyboard=None):
+#    if not keyboard:
+#        keyboard = InlineKeyboardMarkup(paginate_modules(0, HELPABLE, "help"))
+#    dispatcher.bot.send_photo(
+#        chat_id=chat_id,
+#        photo=random.choice(PM_PHOTOS),
+#        caption=text,
+#        parse_mode=ParseMode.MARKDOWN,      
+#        reply_markup=keyboard,
+#    )
+
+async def start(client : Client, message: Message):
+    await message.reply_text("hii")
+
+
+def main():
+    pgram.add_handler(MessageHandler(start, filters.command("start"))
+
+if __name__ == "__main__" :
+    LOG.print("[yellow] bot started")
+    install()
+    main()
 
