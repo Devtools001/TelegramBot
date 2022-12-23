@@ -242,7 +242,7 @@ async def help_command(_, message):
                 await message.reply(text, disable_web_page_preview=True)
             else:
                 text, help_keyboard = await help_parser(
-                    message.from_user.first_name
+                    chat_id=message.chat.id
                 )
                 await message.reply(
                     text,
@@ -251,7 +251,7 @@ async def help_command(_, message):
                 )
     else:
         text, help_keyboard = await help_parser(
-        message.from_user.first_name
+        chat_id=message.chat.id
             )
         await message.reply(
                 text, reply_markup=help_keyboard, disable_web_page_preview=True
@@ -262,14 +262,13 @@ async def help_command(_, message):
 
 @app.on_callback_query(filters.regex("bot_commands"))
 async def commands_callbacc(_, CallbackQuery):
-    text, keyboard = await help_parser(CallbackQuery.from_user.mention)
+    text, keyboard = await help_parser(chat_id=CallbackQuery.message.chat.id)
     await app.send_message(
         CallbackQuery.message.chat.id,
         text=text,
         reply_markup=keyboard,
     )
-    await CallbackQuery.message.delete()
-
+    
 
 
 
