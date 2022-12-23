@@ -10,7 +10,7 @@ async def afk(_, message):
     if not user:
         return
     args = message.text.split(None, 1)
-    stat_time = time.time()
+    start_time = time.time()
     if len(args) >= 2:
         reason=args[1]
     else:
