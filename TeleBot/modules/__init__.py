@@ -1,4 +1,4 @@
-from TeleBot import LOAD, LOG, NO_LOAD
+from TeleBot import MOD_LOAD, LOG,MOD_NOLOAD
 
 
 def __list_all_modules():
@@ -13,8 +13,8 @@ def __list_all_modules():
         if isfile(f) and f.endswith(".py") and not f.endswith('__init__.py')
     ]
 
-    if LOAD or NO_LOAD:
-        to_load = LOAD
+    if MOD_LOAD or MOD_NOLOAD:
+        to_load = MOD_LOAD
         if to_load:
             if not all(
                     any(mod == module_name
@@ -29,7 +29,7 @@ def __list_all_modules():
         else:
             to_load = all_modules
 
-        if NO_LOAD:
+        if MOD_NOLOAD:
             LOG.print(f"[bold yellow]ɴᴏᴛ ʟᴏᴀᴅɪɴɢ: {NO_LOAD}")
             return [item for item in to_load if item not in NO_LOAD]
 
