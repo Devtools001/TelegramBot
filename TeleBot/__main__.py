@@ -147,7 +147,7 @@ async def help_parser(chat_id,keyboard=None):
     await app.send_photo(
         chat_id=chat_id,
         photo=random.choice(PM_PHOTOS),
-        caption=text,
+        caption=HELP_STRINGS,
         parse_mode=ParseMode.MARKDOWN,      
         reply_markup=keyboard,
     )
