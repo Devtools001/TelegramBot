@@ -37,11 +37,10 @@ async def upload_media_text_to_telegraph(app, message):
                 await text.edit(text=f"ᴇʀʀᴏʀ :- {error}", disable_web_page_preview=True)       
                 return 
    
-            await text.delete()  
             
-            await message.reply_photo(
-        photo=media,
-        caption=f"""
+            await text.edit(
+        
+        text=f"""
 ᴅᴏɴᴇ!
 **➻ ʟɪɴᴋ:** `https://graph.org{downloaded_file[0]}`
 **➻ ʀᴇϙᴜᴇꜱᴛᴇᴅ ʙʏ :** {message.from_user.mention}
