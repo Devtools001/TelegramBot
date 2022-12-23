@@ -37,7 +37,7 @@ async def afk(_, message):
     if len(args) >= 2:
         reason=args[1]
     else:
-        reason = ""
+        reason = " "
 
     await start_afk(user.id, reason)
 
