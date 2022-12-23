@@ -1,7 +1,23 @@
+import time
 from TeleBot import pgram
 from pyrogram import filters 
+from TeleBot import REDIS
 @pgram.on_message(filters.command("afk"))
 async def afk(_, message):
+    user = message.from_user
+    if user.id == 777000:
+        return
+    if not user:
+        return
+    args = message.text.split(None, 1)
+    stat_time = time.time()
+    if len(args) >= 2:
+        reason=args[1]
+    else:
+        reason == None
+    a = REDIS.set(f'afk_time_{user.id}', start_time)   
+    print(a)
+
     await message.reply_text("you are now away")
 
 __help__ = """
