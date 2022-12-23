@@ -8,7 +8,7 @@ from uvloop import install
 from pyrogram import filters, idle
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
-from wbb import (
+from TeleBot import (
     BOT_NAME,
     BOT_USERNAME,        
     aiohttpsession,
