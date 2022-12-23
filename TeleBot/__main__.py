@@ -2,6 +2,7 @@ import time
 import asyncio
 import importlib
 import re
+import random
 from contextlib import closing, suppress
 
 from uvloop import install
@@ -24,7 +25,41 @@ from pyrogram.enums import ChatType, ParseMode
 
 loop = asyncio.get_event_loop()
 uptime = get_readable_time((time.time() - StartTime))
+
 START_IMG="https://telegra.ph/file/5381961c760ed435d0fc7.jpg"
+
+PM_PHOTOS = (
+"https://telegra.ph/file/9658f5c0f7d448ad4e0bd.jpg",
+"https://telegra.ph/file/4a94521e20c40195c9a9a.jpg",
+"https://telegra.ph/file/61c9b7921458f31260b0c.jpg",
+"https://telegra.ph/file/9e01586796e950cc8ddc6.jpg",
+"https://telegra.ph/file/0e068d1357c5a79c191e3.jpg",
+"https://telegra.ph/file/13b5bc8b84ee2ac687e3d.jpg",
+"https://telegra.ph/file/7517a65cab490e36d681c.jpg"
+         )
+
+PM_START_TEXT = """
+🥀 ʜᴇʏ *{}* ,
+        
+ᴛʜɪs ɪs *{}*
+➖➖➖➖➖➖➖➖➖➖➖➖➖
+๏ ɪ'ᴍ ᴜɴᴅᴇʀ ᴄʀᴇᴀᴛɪᴏɴ ʙʏ ⸢[𝚂𝚃𝙰𝚁𝙺](https://t.me/NoobStark_21)⸥
+๏ ᴄʟɪᴄᴋ ᴏɴ ᴛʜᴇ ʜᴇʟᴩ ʙᴜᴛᴛᴏɴ ᴛᴏ ɢᴇᴛ ɪɴғᴏʀᴍᴀᴛɪᴏɴ ᴀʙᴏᴜᴛ ᴍʏ ᴍᴏᴅᴜʟᴇs ᴀɴᴅ ᴄᴏᴍᴍᴀɴᴅsn.
+๏ *ᴅɪᴅɴ'ᴛ sʟᴇᴇᴘᴛ sɪɴᴄᴇ* {}
+"""
+
+START_BUTTONS = [
+    [
+        InlineKeyboardButton(
+            text="✨ᴀᴅᴅ ᴍᴇ ʙᴀʙʏ ✨",
+            url=f"https://t.me/{BOT_USERNAME}?startgroup=true",
+        ),
+    ],    
+    [
+        InlineKeyboardButton(text="⚡ ʜᴇʟᴘ ⚡", callback_data="bot_commands"),
+        InlineKeyboardButton(text="♻️ sᴛᴀᴛs ♻️", callback_data="Friday_stats")
+    ],    
+]
 
 HELPABLE = {}
 async def start_bot():
@@ -173,21 +208,27 @@ async def start(_, message):
                 reply_markup=keyb,
             )
     else:
-        await message.reply(
-            home_text_pm,
-            reply_markup=home_keyboard_pm,
-        )
-    return
-
-@app.on_message(filters.command("start") & filters.private)
-async def start(_, message):  
-    await message.reply_photo(
+        await message.reply_photo(
             START_IMG,
             caption="ɪ ᴀᴍ ᴀʟɪᴠᴇ ʙᴀʙʏ !\n<b>ɪ ᴅɪᴅɴ'ᴛ sʟᴇᴘᴛ sɪɴᴄᴇ​:</b> <code>{}</code>".format(
                 uptime
             ),
             parse_mode=ParseMode.HTML,
         )
+    return
+
+@app.on_message(filters.command("start") & filters.private)
+async def start(_, message):
+    first_name = message.from_user.first_name                        
+    await pgram.send_photo(
+    message.chat.id,    
+    photo=random.choice(PM_PHOTOSl
+    caption=PM_START_TEXT.format(first_name,BOT_NAME,uptime)
+    reply_markup=InlineKeyboardMarkup(START_BUTTONS),
+    parse_mode=ParseMode.MARKDOWN,
+    timeout=60,                
+            )     
+    
 
               
 
