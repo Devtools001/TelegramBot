@@ -3,9 +3,13 @@ from TeleBot import pgram
 from pyrogram import filters 
 from TeleBot import REDIS, get_readable_time
 
+async def strb(redis_string):
+    return str(redis_string)
+
 async def start_afk(userid, reason):
     REDIS.set(f'is_afk_{userid}', reason)
     
+
 async def is_user_afk(userid):
     rget = REDIS.get(f'is_afk_{userid}')
     if rget:
@@ -17,8 +21,9 @@ async def end_afk(userid):
     REDIS.delete(f'is_afk_{userid}')
     return True
 
-def strb(redis_string):
-    return str(redis_string)
+async def afk_reason(userid):
+    return await strb(REDIS.get(f'is_afk_{userid}'))
+
 
 @pgram.on_message(filters.command("afk"))
 async def afk(_, message):
@@ -58,7 +63,7 @@ async def afk(_, message):
         return
 
     end_afk_time = get_readable_time((time.time() - float(REDIS.get(f'afk_time_{user.id}'))))
-
+    reason = await afk_reason(user_id)
     REDIS.delete(f'afk_time_{user.id}')
     res = await end_afk(user.id)
     if res:
@@ -68,7 +73,7 @@ async def afk(_, message):
 
         try:
             await message.reply_text(
-                "{} is back online!\n\nYou were gone for {}.".format(firstname, end_afk_time))
+                "{} is back online!\n\nYou were gone for {}. reason {}".format(firstname, end_afk_time,reason))
         except Exception:
             return
     
