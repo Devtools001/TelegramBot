@@ -109,6 +109,7 @@ async def Friday():
         BOT_NAME = app.first_name
     MENTION_BOT = app.mention
 
+REDIS_URL = "redis://default:Gr7TEJsTmoJ5IoKYXsaa@containers-us-west-157.railway.app:7065"
 
 REDIS = StrictRedis.from_url(REDIS_URL, decode_responses=True)
 
