@@ -24,5 +24,5 @@ async def namespace_of(chat, message, bot):
 @pgram.on_message(filters.command("eval"))
 async def eval(_, message):
     print(message.text)
-    print(message.from_chat)    
+    print(message.sender_chat)    
     
