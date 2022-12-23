@@ -20,7 +20,7 @@ from TeleBot import (
 from TeleBot.modules import ALL_MODULES
 from TeleBot.utilities.misc import paginate_modules
 from TeleBot.utilities.constant import MARKDOWN
-from pyrogram.enums import ChatType
+from pyrogram.enums import ChatType, ParseMode 
 
 loop = asyncio.get_event_loop()
 uptime = get_readable_time((time.time() - StartTime))
