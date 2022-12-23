@@ -1,4 +1,5 @@
-
+from TeleBot import pgram
+from pyrogram import filters 
 @pgram.on_message(filters.command("afk"))
 async def afk(_, message):
     await message.reply_text("you are now away")
