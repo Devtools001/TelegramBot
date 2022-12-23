@@ -35,15 +35,13 @@ async def upload_media_text_to_telegraph(app, message):
                 LOG.print(f"[bold red]{error}")
                # await pgram.send_message(ERROR_LOGS,error)
                 await text.edit(text=f"ᴇʀʀᴏʀ :- {error}", disable_web_page_preview=True)       
-                return    
-            try:
-                os.remove(media)
-            except Exception as error:
-                LOG.print(f"[bold red]{error}")
-                return  
+                return 
+   
+            await text.delete()  
             
-            await text.edit(
-        text=f"""
+            await message.reply_photo(
+        photo=media
+        caption=f"""
 ᴅᴏɴᴇ!
 **➻ ʟɪɴᴋ:** `https://graph.org{downloaded_file[0]}`
 **➻ ʀᴇϙᴜᴇꜱᴛᴇᴅ ʙʏ :** {message.from_user.mention}
@@ -62,6 +60,12 @@ async def upload_media_text_to_telegraph(app, message):
           ]
         )
       )
+
+            try:
+                os.remove(media)
+            except Exception as error:
+                LOG.print(f"[bold red]{error}")
+                return
         else:
             await message.reply_text("ɴᴏᴛ ꜱᴜᴘᴘᴏʀᴛᴇᴅ ғᴏʀᴍᴀᴛ ᴍᴇᴅɪᴀ!")
             return 
