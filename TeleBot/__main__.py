@@ -232,33 +232,26 @@ async def help_command(_, message):
 
 @app.on_message(filters.command("help") & filters.private)
 async def help_command(_, message):
-    if len(message.command) >= 2:
-            name = (message.text.split(None, 1)[1]).replace(" ", "_").lower()
-            if str(name) in HELPABLE:
-                text = (
-                        f"Here is the help for {HELPABLE[name].__mod_name__}:\n"
-                        + HELPABLE[name].__help__
-                )
-                await message.reply(text, disable_web_page_preview=True)
-            else:
-                text, help_keyboard = await help_parser(
-                    chat_id=message.chat.id,text=HELP_STRINGS
-                )
-                await message.reply(
-                    text,
-                    reply_markup=help_keyboard,
-                    disable_web_page_preview=True,
-                )
-    else:
-        text, help_keyboard = await help_parser(
-        chat_id=message.chat.id,text=HELP_STRINGS
+    chat = message.chat
+    args = message.text.split(None, 1)
+    if len(args) >= 2 and any(args[1].lower() == x for x in HELPABLE):
+        module = args[1].lower()
+        text = (
+            "Here is the available help for the *{}* module:\n".format(
+                HELPABLE[module].__mod_name__
             )
-        await message.reply(
-                text, reply_markup=help_keyboard, disable_web_page_preview=True
-            )        
-    return        
-    
+            + HELPABLE[module].__help__
+        )
+        await help_parser(
+            chat.id,
+            text,
+            InlineKeyboardMarkup(
+                [[InlineKeyboardButton(text="ʙᴀᴄᴋ", callback_data="help_back")]]
+            ),
+        )
 
+    else:
+        await help_parser(chat.id, HELP_STRINGS)
 
 @app.on_callback_query(filters.regex("bot_commands"))
 async def commands_callbacc(_, CallbackQuery):
