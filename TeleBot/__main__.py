@@ -220,7 +220,7 @@ async def start(_, message):
 @app.on_message(filters.command("start") & filters.private)
 async def start(_, message):
     first_name = message.from_user.first_name                        
-    await pgram.send_photo(
+    await app.send_photo(
     message.chat.id,    
     photo=random.choice(PM_PHOTOS),
     caption=PM_START_TEXT.format(first_name,BOT_NAME,uptime),
