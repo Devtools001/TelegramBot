@@ -1,4 +1,4 @@
-from pyrogram.filters import command, edited
+from pyrogram import filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 
 from TeleBot import BOT_USERNAME,pgram as app
@@ -37,7 +37,7 @@ NOTE: Fillings only works in greetings module.
 """
 
 
-@app.on_message(command("markdownhelp") & ~edited)
+@app.on_message(filters.command("markdownhelp") & ~filters.edited)
 async def mkdwnhelp(_, m: Message):
     keyb = InlineKeyboardMarkup(
         [
