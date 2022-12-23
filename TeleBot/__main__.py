@@ -153,7 +153,7 @@ async def start(_, message):
     uptime = get_readable_time((time.time() - StartTime))
     print(message.chat.type)
     if message.chat == ChatType.PRIVATE:        
-        if len(message.text.split()) > 1:
+        if len(message.text.split()) >= 1:
             args = (message.text.split(None, 1)[1]).lower()
             if args == "help":
                 text, keyb = await help_parser(message.from_user.first_name)
