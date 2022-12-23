@@ -1,9 +1,11 @@
+
 import os
 import logging
 import time 
 import sys
+import asyncio
 import telegram.ext as Fday
-from pyrogram import Client
+from pyrogram import Client,filters
 from config import Friday as Config
 from rich.table import Table
 from rich.console import Console
@@ -13,8 +15,11 @@ from telethon import TelegramClient
 
 
 LOG = Console()
-StartTime=time.time()
+StartTime = time.time()
+loop = asyncio.get_event_loop()
 
+MOD_LOAD = []
+MOD_NOLOAD = []
 
 if sys.version_info[0] < 3 and sys.version_info[1] < 6:
     LOG.print("[bold red]ʏᴏᴜ ᴍᴜsᴛ ʜᴀᴠᴇ ᴀ ᴘʏᴛʜᴏɴ ᴠᴇʀsɪᴏɴ ᴏғ 3.6. ᴇxɪᴛɪɴɢ.......\n")
@@ -45,6 +50,7 @@ def get_readable_time(seconds: int) -> str:
     return ping_time
 
 ENV=bool(os.environ.get("ENV",False))
+
 if ENV:
     API_ID=int(os.environ.get("API_ID",None))
     API_HASH=str(os.environ.get("API_HASH",None))
@@ -79,13 +85,10 @@ else:
     CERT_PATH = Config.CERT_PATH
     WEBHOOK = Config.WEBHOOK
 
-
-updater=Fday.Updater(BOT_TOKEN,workers=WORKERS,use_context=True)
-dispatcher=updater.dispatcher
-
-telethn = TelegramClient("Fallen", API_ID, API_HASH)
-
-
+#SUDO_USERS = filters.user()
+BOT_NAME  = ""
+BOT_USERNAME = ""
+BOT_ID = ""
 
 pgram = Client (
       "TeleBot",
@@ -94,8 +97,35 @@ pgram = Client (
       bot_token=BOT_TOKEN
       )
 
-pgram.start()
-x = pgram.get_me()
+async def Friday():
+    global BOT_NAME,BOT_USERNAME,BOT_ID
+    LOG.print("[bold red]starting your bot")
+    await pgram.start()
+    app = pgram.get_me()
+    BOT_ID = app.id
+    BOT_USERNAME = app.username    
+    if app.last_name:
+            BOT_NAME = apl.first_name + " " + app.last_name
+        else:
+            BOT_NAME = app.first_name
 
-MENTION_BOT = x.mention
+    
+    
+loop.run_until_complete(Friday())    
+
+
+
+#updater=Fday.Updater(BOT_TOKEN,workers=WORKERS,use_context=True)
+#dispatcher=updater.dispatcher
+
+#telethn = TelegramClient("Fallen", API_ID, API_HASH)
+
+
+
+
+
+#pgram.start()
+#x = pgram.get_me()
+
+#MENTION_BOT = x.mention
 
