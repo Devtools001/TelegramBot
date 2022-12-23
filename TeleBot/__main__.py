@@ -159,17 +159,17 @@ async def start(_, message):
                 reply_markup=keyb,
             )         
             elif "_" in args:
-            module = args.split("_", 1)[1]
-            text = (
-                    f"Here is the help for **{HELPABLE[module].__mod_name__}**:\n"
-                    + HELPABLE[module].__help__
-            )
-            await message.reply(text, disable_web_page_preview=True)
+                module = args.split("_", 1)[1]
+                text = (
+                        f"Here is the help for **{HELPABLE[module].__mod_name__}**:\n"
+                        + HELPABLE[module].__help__
+                )
+                await message.reply(text, disable_web_page_preview=True)
 
             elif args == "mkdwn_help":
-            await message.reply(
-                MARKDOWN, parse_mode="html", disable_web_page_preview=True
-            )
+                await message.reply(
+                    MARKDOWN, parse_mode="html", disable_web_page_preview=True
+                )
         else:
             await message.reply_text("2nd if")
     else:
