@@ -40,7 +40,7 @@ async def upload_media_text_to_telegraph(app, message):
             await text.delete()  
             
             await message.reply_photo(
-        photo=media
+        photo=media,
         caption=f"""
 ᴅᴏɴᴇ!
 **➻ ʟɪɴᴋ:** `https://graph.org{downloaded_file[0]}`
