@@ -57,19 +57,10 @@ async def start_bot():
     print("+===============+===============+===============+===============+")
     LOG.print(f"[bold red]BOT STARTED AS {BOT_NAME}!")
     
-    restart_data = await clean_restart_stage()
-
+    
     try:
-        LOG.print("[yellow]Sending online status")
-        if restart_data:
-            await app.edit_message_text(
-                restart_data["chat_id"],
-                restart_data["message_id"],
-                "**Restarted Successfully**",
-            )
-
-        else:
-            await app.send_message(-1001698076323, "Bot started!")
+        LOG.print("[yellow]Sending online status")              
+        await app.send_message(-1001698076323, "Bot started!")
     except Exception:
         pass
 
