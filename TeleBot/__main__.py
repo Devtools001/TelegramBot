@@ -27,7 +27,9 @@ from TeleBot.resources.Data import *
 loop = asyncio.get_event_loop()
 uptime = get_readable_time((time.time() - StartTime))
 
-
+HELP_STRINGS = """
+ʜᴇʀᴇ ʏᴏᴜ ᴄᴀɴ ғɪɴᴅ ᴀʟʟ ᴄᴏᴍᴍᴀɴᴅs.
+"""
 
 HELPABLE = {}
 async def start_bot():
@@ -266,7 +268,6 @@ async def commands_callbacc(_, CallbackQuery):
         text=text,
         reply_markup=keyboard,
     )
-
     await CallbackQuery.message.delete()
 
 
@@ -300,8 +301,8 @@ General command are:
                 + HELPABLE[module].__help__
         )
 
-        await query.message.edit(
-            text=text,
+        await query.message.edit_caption(
+            text=HELP_STRINGS,
             reply_markup=InlineKeyboardMarkup(
                 [[InlineKeyboardButton("back", callback_data="help_back")]]
             ),
@@ -310,14 +311,14 @@ General command are:
     elif home_match:
         await app.send_message(
             query.from_user.id,
-            text=home_text_pm,
+            text=HELP_STRINGS,
             reply_markup=home_keyboard_pm,
         )
         await query.message.delete()
     elif prev_match:
         curr_page = int(prev_match.group(1))
-        await query.message.edit(
-            text=top_text,
+        await query.message.edit_caption(
+            text=HELP_STRINGS,
             reply_markup=InlineKeyboardMarkup(
                 paginate_modules(curr_page - 1, HELPABLE, "help")
             ),
@@ -326,8 +327,8 @@ General command are:
 
     elif next_match:
         next_page = int(next_match.group(1))
-        await query.message.edit(
-            text=top_text,
+        await query.message.edit_caption(
+            text=HELP_STRINGS,
             reply_markup=InlineKeyboardMarkup(
                 paginate_modules(next_page + 1, HELPABLE, "help")
             ),
@@ -335,8 +336,8 @@ General command are:
         )
 
     elif back_match:
-        await query.message.edit(
-            text=top_text,
+        await query.message.edit_caption(
+            text=HELP_STRINGS,
             reply_markup=InlineKeyboardMarkup(
                 paginate_modules(0, HELPABLE, "help")
             ),
@@ -345,8 +346,8 @@ General command are:
 
     elif create_match:
         text, keyboard = await help_parser(query)
-        await query.message.edit(
-            text=text,
+        await query.message.edit_caption(
+            text=HELP_STRINGS,
             reply_markup=keyboard,
             disable_web_page_preview=True,
         )
