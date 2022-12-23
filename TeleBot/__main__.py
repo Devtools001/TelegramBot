@@ -232,10 +232,9 @@ async def start(_, message):
 
               
 
-@app.on_message(filters.command("help"))
+@app.on_message(filters.command("help") & filters.group)
 async def help_command(_, message):
-    if message.chat.type != "private":
-        if len(message.command) >= 2:
+    if len(message.command) >= 2:
             name = (message.text.split(None, 1)[1]).replace(" ", "_").lower()
             if str(name) in HELPABLE:
                 key = InlineKeyboardMarkup(
@@ -260,32 +259,8 @@ async def help_command(_, message):
             await message.reply(
                 "Pm Me For More Details.", reply_markup=keyboard
             )
-    else:
-        if len(message.command) >= 2:
-            name = (message.text.split(None, 1)[1]).replace(" ", "_").lower()
-            if str(name) in HELPABLE:
-                text = (
-                        f"Here is the help for **{HELPABLE[name].__mod_name__}**:\n"
-                        + HELPABLE[name].__help__
-                )
-                await message.reply(text, disable_web_page_preview=True)
-            else:
-                text, help_keyboard = await help_parser(
-                    message.from_user.first_name
-                )
-                await message.reply(
-                    text,
-                    reply_markup=help_keyboard,
-                    disable_web_page_preview=True,
-                )
-        else:
-            text, help_keyboard = await help_parser(
-                message.from_user.first_name
-            )
-            await message.reply(
-                text, reply_markup=help_keyboard, disable_web_page_preview=True
-            )
-    return
+    return        
+    
 
 
 
