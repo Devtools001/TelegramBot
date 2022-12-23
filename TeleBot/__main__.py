@@ -236,13 +236,13 @@ async def help_command(_, message):
             name = (message.text.split(None, 1)[1]).replace(" ", "_").lower()
             if str(name) in HELPABLE:
                 text = (
-                        f"Here is the help for {HELPABLE[name].mod_name}:\n"
-                        + HELPABLE[name].help
+                        f"Here is the help for {HELPABLE[name].__mod_name__}:\n"
+                        + HELPABLE[name].__help__
                 )
                 await message.reply(text, disable_web_page_preview=True)
             else:
                 text, help_keyboard = await help_parser(
-                    chat_id=message.chat.id
+                    chat_id=message.chat.id,text=HELP_STRINGS
                 )
                 await message.reply(
                     text,
@@ -262,7 +262,7 @@ async def help_command(_, message):
 
 @app.on_callback_query(filters.regex("bot_commands"))
 async def commands_callbacc(_, CallbackQuery):
-    text, keyboard = await help_parser(chat_id=CallbackQuery.message.chat.id)
+    text, keyboard = await help_parser(chat_id=CallbackQuery.message.chat.id,text=HELP_STRINGS)
     await app.send_message(
         CallbackQuery.message.chat.id,
         text=text,
@@ -281,16 +281,7 @@ async def help_button(client, query):
     next_match = re.match(r"help_next\((.+?)\)", query.data)
     back_match = re.match(r"help_back", query.data)
     create_match = re.match(r"help_create", query.data)
-    top_text = f"""
-Hello {query.from_user.first_name}, My name is {BOT_NAME}.
-I'm a group management bot with some usefule features.
-You can choose an option below, by clicking a button.
-Also you can ask anything in Support Group.
 
-General command are:
- - /start: Start the bot
- - /help: Give this message
- """
     if mod_match:
         module = (mod_match.group(1)).replace(" ", "_")
         text = (
