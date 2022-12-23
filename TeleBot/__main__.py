@@ -173,7 +173,7 @@ async def start(_, message):
                 await message.reply(
                     MARKDOWN, parse_mode="html", disable_web_page_preview=True
                 )
-        else:
+        elif message.chat == ChatType.GROUP or message.chat == ChatType.SUPERGROUP:
             await message.reply_text("2nd if")
     else:
         await message.reply_text("1st if")
