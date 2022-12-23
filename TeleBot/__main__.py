@@ -141,7 +141,7 @@ keyboard = InlineKeyboardMarkup(
     ]
 )
 
-async def help_parser(name, message: Message keyboard=None):
+async def help_parser(name, message: Message,keyboard=None):
     if not keyboard:
         keyboard = InlineKeyboardMarkup(paginate_modules(0, HELPABLE, "help"))
     await app.send_photo(
