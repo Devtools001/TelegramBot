@@ -169,7 +169,7 @@ async def start(_, message):
 
 @app.on_message(filters.command("help"))
 async def help_command(_, message):
-    if message.chat.type == "private":
+    if message.chat.type != "private":
         if len(message.command) >= 2:
             name = (message.text.split(None, 1)[1]).replace(" ", "_").lower()
             if str(name) in HELPABLE:
