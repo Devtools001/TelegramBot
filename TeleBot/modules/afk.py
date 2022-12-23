@@ -78,8 +78,9 @@ async def afk(_, message):
             return
     
     
-    
-
+@pgram.on_message(filters.mentione | filters.reply):
+async def meion(_,msg):        
+    await msg.reply_text("hello")
     
 
         
