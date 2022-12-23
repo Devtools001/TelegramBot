@@ -141,13 +141,13 @@ keyboard = InlineKeyboardMarkup(
     ]
 )
 
-async def help_parser(chat_id,keyboard=None):
+async def help_parser(chat_id,,text,keyboard=None):
     if not keyboard:
         keyboard = InlineKeyboardMarkup(paginate_modules(0, HELPABLE, "help"))
     await app.send_photo(
         chat_id=chat_id,
         photo=random.choice(PM_PHOTOS),
-        caption=HELP_STRINGS,
+        caption=text,
         parse_mode=ParseMode.MARKDOWN,      
         reply_markup=keyboard,
     )
@@ -172,7 +172,7 @@ async def start(_, message):
             )
             await message.reply(text, disable_web_page_preview=True)
         elif name == "help":
-            text, keyb = await help_parser(message.from_user.first_name)
+            text, keyb = await help_parser(message.chat.id,HELP_STRINGS)
             await message.reply(
                 text,
                 reply_markup=keyb,
