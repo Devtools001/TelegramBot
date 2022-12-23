@@ -97,12 +97,19 @@ for module in ALL_MODULES:
 #        reply_markup=keyboard,
 #    )
 
-async def start(client : Client, message: Message):
+#async def start(client : Client, message: Message):
     await message.reply_text("hii")
 
 
+#async def main():
+#    pgram.add_handler(MessageHandler(start, filters.command("start")))
+
 async def main():
-    pgram.add_handler(MessageHandler(start, filters.command("start")))
+    @pgram.on_message(filters.command("start"))
+    async def start(client : Client, message: Message):
+        await message.reply_text("hii")
+
+
 
 if __name__ == "__main__" :
     LOG.print("[yellow] bot started")    
