@@ -67,7 +67,7 @@ async def afk(_, message):
         firstname = user.first_name
 
         try:
-            message.reply_text(
+            await message.reply_text(
                 "{} is back online!\n\nYou were gone for {}.".format(firstname, end_afk_time))
         except Exception:
             return
