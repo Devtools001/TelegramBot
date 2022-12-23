@@ -113,7 +113,7 @@ async def Friday():
     
 loop.run_until_complete(Friday())    
 
-
+print(MENTION_BOT)
 
 #updater=Fday.Updater(BOT_TOKEN,workers=WORKERS,use_context=True)
 #dispatcher=updater.dispatcher
