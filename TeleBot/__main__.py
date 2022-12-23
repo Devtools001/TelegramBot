@@ -107,5 +107,5 @@ def main():
 if __name__ == "__main__" :
     LOG.print("[yellow] bot started")
     install()
-    loop.run_until_complete(main())
+    main()
 
