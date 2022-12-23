@@ -143,7 +143,7 @@ keyboard = InlineKeyboardMarkup(
 async def help_parser(name, keyboard=None):
     if not keyboard:
         keyboard = InlineKeyboardMarkup(paginate_modules(0, HELPABLE, "help"))
-    pgram.send_photo(
+    await app.send_photo(
         chat_id=message.chat.id,
         photo=random.choice(PM_PHOTOS),
         caption=text,
