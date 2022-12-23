@@ -47,8 +47,7 @@ async def upload_media_text_to_telegraph(app, message):
 **➻ ʀᴇϙᴜᴇꜱᴛᴇᴅ ʙʏ :** {message.from_user.mention}
 **➻ ᴜᴘʟᴏᴀᴅ ʙʏ :** {MENTION_BOT}
 **➻ ᴛɪᴍᴇ ᴛᴀᴋᴇɴ :** `{time}` sᴇᴄᴏɴᴅs                
-        """,
-        disable_web_page_preview=True,
+        """,        
         reply_markup=InlineKeyboardMarkup( [
             [
             InlineKeyboardButton(text="ʙʀᴏᴡsᴇ ʟɪᴋᴇ", url=f"https://graph.org{downloaded_file[0]}"),
