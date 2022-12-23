@@ -23,8 +23,9 @@ from TeleBot.utilities.constant import MARKDOWN
 from pyrogram.enums import ChatType
 loop = asyncio.get_event_loop()
 
-HELPABLE = {}
+START_IMG="https://telegra.ph/file/5381961c760ed435d0fc7.jpg"
 
+HELPABLE = {}
 async def start_bot():
     global HELPABLE, IMPORTED
     for module in ALL_MODULES:
@@ -180,7 +181,14 @@ async def start(_, message):
 
 @app.on_message(filters.command("start") & filters.private)
 async def start(_, message):  
-    await message.reply_text("private")
+    await message.reply_photo(
+            START_IMG,
+            caption="ɪ ᴀᴍ ᴀʟɪᴠᴇ ʙᴀʙʏ !\n<b>ɪ ᴅɪᴅɴ'ᴛ sʟᴇᴘᴛ sɪɴᴄᴇ​:</b> <code>{}</code>".format(
+                uptime
+            ),
+            parse_mode=ParseMode.HTML,
+        )
+
               
 
 @app.on_message(filters.command("help"))
