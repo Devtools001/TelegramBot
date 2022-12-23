@@ -25,10 +25,8 @@ loop = asyncio.get_event_loop()
 
 HELPABLE = {}
 
-
 async def start_bot():
-    global HELPABLE
-
+    global HELPABLE, IMPORTED
     for module in ALL_MODULES:
         imported_module = importlib.import_module("TeleBot.modules." + module)
         if (
@@ -43,6 +41,7 @@ async def start_bot():
                 HELPABLE[
                     imported_module.__mod_name__.replace(" ", "_").lower()
                 ] = imported_module
+        
     bot_modules = ""
     j = 1
     for i in ALL_MODULES:
@@ -151,10 +150,10 @@ Also you can ask anything in Support Group.
 
 @app.on_message(filters.command("start"))
 async def start(_, message):
-    args = message.text.split()
+    args = message.text.split(None, 1)[1]
     uptime = get_readable_time((time.time() - StartTime))
     print(message.chat.type)
-    if message.chat == ChatType.PRIVATE:        
+    if message.chat.type == ChatType.PRIVATE:        
         if len(args) >= 1:
             if args[0].lower() == "help":
                 text, keyb = await help_parser(message.from_user.first_name)
