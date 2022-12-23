@@ -2,7 +2,7 @@ import re
 import asyncio
 import importlib
 from contextlib import closing, suppress
-
+from uvloop import install
 
 from TeleBot import (
     BOT_NAME,
