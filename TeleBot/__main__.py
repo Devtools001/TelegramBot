@@ -302,7 +302,7 @@ General command are:
         )
 
         await query.message.edit_caption(
-            text=HELP_STRINGS,
+            caption=HELP_STRINGS,
             reply_markup=InlineKeyboardMarkup(
                 [[InlineKeyboardButton("back", callback_data="help_back")]]
             ),
@@ -318,7 +318,7 @@ General command are:
     elif prev_match:
         curr_page = int(prev_match.group(1))
         await query.message.edit_caption(
-            text=HELP_STRINGS,
+            caption=HELP_STRINGS,
             reply_markup=InlineKeyboardMarkup(
                 paginate_modules(curr_page - 1, HELPABLE, "help")
             ),
@@ -328,7 +328,7 @@ General command are:
     elif next_match:
         next_page = int(next_match.group(1))
         await query.message.edit_caption(
-            text=HELP_STRINGS,
+            caption=HELP_STRINGS,
             reply_markup=InlineKeyboardMarkup(
                 paginate_modules(next_page + 1, HELPABLE, "help")
             ),
@@ -337,7 +337,7 @@ General command are:
 
     elif back_match:
         await query.message.edit_caption(
-            text=HELP_STRINGS,
+            caption=HELP_STRINGS,
             reply_markup=InlineKeyboardMarkup(
                 paginate_modules(0, HELPABLE, "help")
             ),
@@ -347,7 +347,7 @@ General command are:
     elif create_match:
         text, keyboard = await help_parser(query)
         await query.message.edit_caption(
-            text=HELP_STRINGS,
+            caption=HELP_STRINGS,
             reply_markup=keyboard,
             disable_web_page_preview=True,
         )
