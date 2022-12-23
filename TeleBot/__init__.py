@@ -97,7 +97,7 @@ pgram = Client (
       )
 
 async def Friday():
-    global BOT_NAME,BOT_USERNAME,BOT_ID
+    global BOT_NAME,BOT_USERNAME,BOT_ID,MENTION_BOT
     LOG.print("[bold red]starting your bot")
     await pgram.start()
     app = await pgram.get_me()
