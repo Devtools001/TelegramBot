@@ -101,11 +101,11 @@ async def start(client : Client, message: Message):
     await message.reply_text("hii")
 
 
-def main():
+async def main():
     await pgram.add_handler(MessageHandler(start, filters.command("start")))
 
 if __name__ == "__main__" :
     LOG.print("[yellow] bot started")
     install()
-    main()
+    asyncio.run(main())
 
