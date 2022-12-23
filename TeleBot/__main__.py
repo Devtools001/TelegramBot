@@ -106,9 +106,9 @@ async def start(client : Client, message: Message):
 pgram.add_handler(MessageHandler(start, filters.command("start")))
 
 
-#@pgram.on_message(filters.command("start"))
-#async def start(_, message):
-# await message.reply_text("hii")
+@pgram.on_message(filters.command("start"))
+async def start(_, message):
+    await message.reply_text("hii") 
 
 
 
