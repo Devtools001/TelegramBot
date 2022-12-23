@@ -247,7 +247,7 @@ General command are:
         module = (mod_match.group(1)).replace(" ", "_")
         text = (
                 "{} **{}**:\n".format(
-                    "Here is the help for", HELPABLE[module].__MODULE__
+                    "Here is the help for", HELPABLE[module].__mod_name__
                 )
                 + HELPABLE[module].__help__
         )
