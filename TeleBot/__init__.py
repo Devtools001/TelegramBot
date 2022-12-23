@@ -99,7 +99,7 @@ async def Friday():
     global BOT_NAME,BOT_USERNAME,BOT_ID
     LOG.print("[bold red]starting your bot")
     await pgram.start()
-    app = pgram.get_me()
+    app = await pgram.get_me()
     BOT_ID = app.id
     BOT_USERNAME = app.username    
     if app.last_name:
