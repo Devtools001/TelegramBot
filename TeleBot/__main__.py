@@ -21,7 +21,7 @@ from TeleBot.utilities.misc import paginate_modules
 from TeleBot.utilities.constant import MARKDOWN
 
 
-loop = asyncio.get_event_loop()
+#loop = asyncio.get_event_loop()
 
 START_IMG="https://telegra.ph/file/5381961c760ed435d0fc7.jpg"
 
@@ -103,8 +103,6 @@ async def bot():
 async def start(client : Client, message: Message):
     await message.reply_text("hii")
 
-
-
 pgram.add_handler(MessageHandler(start, filters.command("start")))
 
 
@@ -117,5 +115,5 @@ pgram.add_handler(MessageHandler(start, filters.command("start")))
 if __name__ == "__main__" :
     LOG.print("[yellow] bot started")
     install()    
-    loop.run_until_complete(bot())
+    
 
