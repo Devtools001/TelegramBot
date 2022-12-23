@@ -222,8 +222,8 @@ async def start(_, message):
     first_name = message.from_user.first_name                        
     await pgram.send_photo(
     message.chat.id,    
-    photo=random.choice(PM_PHOTOS)
-    caption=PM_START_TEXT.format(first_name,BOT_NAME,uptime)
+    photo=random.choice(PM_PHOTOS),
+    caption=PM_START_TEXT.format(first_name,BOT_NAME,uptime),
     reply_markup=InlineKeyboardMarkup(START_BUTTONS),
     parse_mode=ParseMode.MARKDOWN,
     timeout=60,                
