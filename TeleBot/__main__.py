@@ -13,6 +13,7 @@ from TeleBot import (
     aiohttpsession,
     pgram as app,
     LOG,
+    get_readable_time
 )
 from TeleBot.modules import ALL_MODULES
 from TeleBot.utilities.misc import paginate_modules
