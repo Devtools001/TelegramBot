@@ -231,7 +231,7 @@ async def commands_callbacc(_, CallbackQuery):
     await CallbackQuery.message.delete()
 
 
-@text, show_alert=True)
+
 
 
 @app.on_callback_query(filters.regex(r"help_(.*?)"))
