@@ -17,7 +17,7 @@ from wbb import (
 )
 from TeleBot.modules import ALL_MODULES
 from TeleBot.utilities.misc import paginate_modules
-from TeleBot.utils.constants import MARKDOWN
+from TeleBot.utilities.constant import MARKDOWN
 
 loop = asyncio.get_event_loop()
 
@@ -28,18 +28,18 @@ async def start_bot():
     global HELPABLE
 
     for module in ALL_MODULES:
-        imported_module = importlib.import_module("wbb.modules." + module)
+        imported_module = importlib.import_module("TeleBot.modules." + module)
         if (
-                hasattr(imported_module, "__MODULE__")
-                and imported_module.__MODULE__
+                hasattr(imported_module, "__mod_name__")
+                and imported_module.__mod_name__
         ):
-            imported_module.__MODULE__ = imported_module.__MODULE__
+            imported_module.__mod_name__ = imported_module.__MODULE__
             if (
-                    hasattr(imported_module, "__HELP__")
-                    and imported_module.__HELP__
+                    hasattr(imported_module, "__help__")
+                    and imported_module.__help__
             ):
                 HELPABLE[
-                    imported_module.__MODULE__.replace(" ", "_").lower()
+                    imported_module.__mod_name__.replace(" ", "_").lower()
                 ] = imported_module
     bot_modules = ""
     j = 1
@@ -55,9 +55,8 @@ async def start_bot():
     print("+===============+===============+===============+===============+")
     print(bot_modules)
     print("+===============+===============+===============+===============+")
-    LOG.info(f"BOT STARTED AS {BOT_NAME}!")
-    LOG.print(f"USERBOT STARTED AS {USERBOT_NAME}!")
-
+    LOG.print(f"[bold red]BOT STARTED AS {BOT_NAME}!")
+    
     restart_data = await clean_restart_stage()
 
     try:
@@ -70,7 +69,7 @@ async def start_bot():
             )
 
         else:
-            await app.send_message(LOG_GROUP_ID, "Bot started!")
+            await app.send_message(-1001698076323, "Bot started!")
     except Exception:
         pass
 
