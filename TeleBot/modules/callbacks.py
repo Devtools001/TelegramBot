@@ -43,8 +43,8 @@ STATS_MSG="""
 
 @pgram.on_callback_query(filters.regex("friday_back"))
 async def Friday(_, callback_query : CallbackQuery):
-    await query.message.delete()
     query= callback_query.message
+    await query.message.delete()
     first_name=callback_query.from_user.first_name
     uptime= get_readable_time((time.time() - StartTime))
     await query.reply_text(PM_START_TEXT.format(first_name,BOT_NAME,uptime),
