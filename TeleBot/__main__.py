@@ -22,44 +22,12 @@ from TeleBot.modules import ALL_MODULES
 from TeleBot.utilities.misc import paginate_modules
 from TeleBot.utilities.constant import MARKDOWN
 from pyrogram.enums import ChatType, ParseMode 
+from TeleBot.resources.Data import *
 
 loop = asyncio.get_event_loop()
 uptime = get_readable_time((time.time() - StartTime))
 
-START_IMG="https://telegra.ph/file/5381961c760ed435d0fc7.jpg"
 
-PM_PHOTOS = (
-"https://telegra.ph/file/9658f5c0f7d448ad4e0bd.jpg",
-"https://telegra.ph/file/4a94521e20c40195c9a9a.jpg",
-"https://telegra.ph/file/61c9b7921458f31260b0c.jpg",
-"https://telegra.ph/file/9e01586796e950cc8ddc6.jpg",
-"https://telegra.ph/file/0e068d1357c5a79c191e3.jpg",
-"https://telegra.ph/file/13b5bc8b84ee2ac687e3d.jpg",
-"https://telegra.ph/file/7517a65cab490e36d681c.jpg"
-         )
-
-PM_START_TEXT = """
-🥀 ʜᴇʏ **{}** ,
-        
-ᴛʜɪs ɪs **{}**
-➖➖➖➖➖➖➖➖➖➖➖➖➖
-๏ ɪ'ᴍ ᴜɴᴅᴇʀ ᴄʀᴇᴀᴛɪᴏɴ ʙʏ ⸢[𝚂𝚃𝙰𝚁𝙺](https://t.me/NoobStark_21)⸥
-๏ ᴄʟɪᴄᴋ ᴏɴ ᴛʜᴇ ʜᴇʟᴩ ʙᴜᴛᴛᴏɴ ᴛᴏ ɢᴇᴛ ɪɴғᴏʀᴍᴀᴛɪᴏɴ ᴀʙᴏᴜᴛ ᴍʏ ᴍᴏᴅᴜʟᴇs ᴀɴᴅ ᴄᴏᴍᴍᴀɴᴅsn.
-๏ **ᴅɪᴅɴ'ᴛ sʟᴇᴇᴘᴛ sɪɴᴄᴇ** {}
-"""
-
-START_BUTTONS = [
-    [
-        InlineKeyboardButton(
-            text="✨ᴀᴅᴅ ᴍᴇ ʙᴀʙʏ ✨",
-            url=f"https://t.me/{BOT_USERNAME}?startgroup=true",
-        ),
-    ],    
-    [
-        InlineKeyboardButton(text="⚡ ʜᴇʟᴘ ⚡", callback_data="bot_commands"),
-        InlineKeyboardButton(text="♻️ sᴛᴀᴛs ♻️", callback_data="Friday_stats")
-    ],    
-]
 
 HELPABLE = {}
 async def start_bot():
