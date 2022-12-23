@@ -80,7 +80,7 @@ async def afk(_, message):
     
 @pgram.on_message(filters.mentioned | filters.reply)
 async def meion(_,msg): 
-    if msg.reply_to_message      
+    if msg.reply_to_message:      
         await msg.reply_text("hello")
     
 
