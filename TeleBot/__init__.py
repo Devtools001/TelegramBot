@@ -74,10 +74,6 @@ else:
     BOT_TOKEN=Config.BOT_TOKEN
     WORKERS=Config.WORKERS
     URL=Config.URL
-    LOAD=Config.LOAD
-    NO_LOAD = Config.NO_LOAD
-    BOT_NAME = Config.BOT_NAME
-    BOT_USERNAME = Config.BOT_USERNAME
     DONATION_LINK = Config.DONATION_LINK
     OWNER_ID = Config.OWNER_ID
     PORT = Config.PORT
