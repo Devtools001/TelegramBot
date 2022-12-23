@@ -114,6 +114,6 @@ async def start(_, message):
 
 if __name__ == "__main__" :
     LOG.print("[yellow] bot started")
-    install()    
+        
     
 
