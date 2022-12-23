@@ -143,17 +143,16 @@ keyboard = InlineKeyboardMarkup(
 async def help_parser(name, keyboard=None):
     if not keyboard:
         keyboard = InlineKeyboardMarkup(paginate_modules(0, HELPABLE, "help"))
-    return (
-        """Hello {first_name}, My name is {bot_name}.
-I'm a group management bot with some useful features.
-You can choose an option below, by clicking a button.
-Also you can ask anything in Support Group.
-""".format(
-            first_name=name,
-            bot_name=BOT_NAME,
-        ),
-        keyboard,
+    pgram.send_photo(
+        chat_id=message.chat.id,
+        photo=random.choice(PM_PHOTOS),
+        caption=text,
+        parse_mode=ParseMode.MARKDOWN,      
+        reply_markup=keyboard,
     )
+
+
+
 
 @app.on_message(filters.command("start") & filters.group)
 async def start(_, message):       
