@@ -63,7 +63,7 @@ async def afk(_, message):
         return
 
     end_afk_time = get_readable_time((time.time() - float(REDIS.get(f'afk_time_{user.id}'))))
-    reason = await afk_reason(user_id)
+    reason = await afk_reason(user.id)
     REDIS.delete(f'afk_time_{user.id}')
     res = await end_afk(user.id)
     if res:
