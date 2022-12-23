@@ -115,6 +115,7 @@ pgram.add_handler(MessageHandler(start, filters.command("start")))
 
 
 if __name__ == "__main__" :
-    LOG.print("[yellow] bot started")    
-    loop.run_until_complete(main())
+    LOG.print("[yellow] bot started")
+    install()    
+    loop.run_until_complete(bot())
 
