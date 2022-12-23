@@ -14,7 +14,7 @@ async def afk(_, message):
     if len(args) >= 2:
         reason=args[1]
     else:
-        reason == "none"
+        reason = "none"
     a = REDIS.set(f'afk_time_{user.id}', start_time)   
     print(a)
 
