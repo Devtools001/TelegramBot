@@ -153,6 +153,7 @@ Also you can ask anything in Support Group.
 async def start(_, message):
     args = message.text.split()
     uptime = get_readable_time((time.time() - StartTime))
+    print(message.chat.type)
     if message.chat.type == "private":        
         if len(args) >= 1:
             if args[0].lower() == "help":
