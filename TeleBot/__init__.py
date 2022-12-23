@@ -103,9 +103,9 @@ async def Friday():
     BOT_ID = app.id
     BOT_USERNAME = app.username    
     if app.last_name:
-            BOT_NAME = apl.first_name + " " + app.last_name
-        else:
-            BOT_NAME = app.first_name
+        BOT_NAME = app.first_name + " " + app.last_name
+    else:
+        BOT_NAME = app.first_name
 
     
     
