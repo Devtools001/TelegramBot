@@ -306,7 +306,7 @@ General command are:
             reply_markup=InlineKeyboardMarkup(
                 [[InlineKeyboardButton("back", callback_data="help_back")]]
             ),
-            disable_web_page_preview=True,
+            
         )
     elif home_match:
         await app.send_message(
