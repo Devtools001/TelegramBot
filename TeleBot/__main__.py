@@ -98,7 +98,7 @@ async def start(client : Client, message: Message):
 
 
 def main():
-    pgram.add_handler(MessageHandler(start, filters.command("start"))
+    pgram.add_handler(MessageHandler(start, filters.command("start")))
 
 if __name__ == "__main__" :
     LOG.print("[yellow] bot started")
