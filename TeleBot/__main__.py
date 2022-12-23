@@ -251,7 +251,7 @@ async def help_command(_, message):
                 )
     else:
         text, help_keyboard = await help_parser(
-        chat_id=message.chat.id
+        chat_id=message.chat.id,text=HELP_STRINGS
             )
         await message.reply(
                 text, reply_markup=help_keyboard, disable_web_page_preview=True
