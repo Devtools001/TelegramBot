@@ -12,7 +12,7 @@ from wbb import (
     BOT_NAME,
     BOT_USERNAME,        
     aiohttpsession,
-    app,
+    pgram as app,
     LOG,
 )
 from TeleBot.modules import ALL_MODULES
@@ -60,7 +60,7 @@ async def start_bot():
     restart_data = await clean_restart_stage()
 
     try:
-        log.info("Sending online status")
+        LOG.print("[yellow]Sending online status")
         if restart_data:
             await app.edit_message_text(
                 restart_data["chat_id"],
@@ -75,13 +75,13 @@ async def start_bot():
 
     await idle()
 
-    await aiohttpsession.close()
-    log.info("Stopping clients")
+    await aiohttpsession.close()   
+    LOG.print("[yello] stopping client") 
     await app.stop()
-    log.info("Cancelling asyncio tasks")
+    LOG.print("[yellow]Cancelling asyncio tasks")
     for task in asyncio.all_tasks():
         task.cancel()
-    log.info("Dead!")
+    LOG.print("[yello]Dead!")
 
 
 home_keyboard_pm = InlineKeyboardMarkup(
@@ -144,35 +144,7 @@ keyboard = InlineKeyboardMarkup(
 
 @app.on_message(~filters.edited & filters.command("start"))
 async def start(_, message):
-    if message.chat.type != "private":
-        return await message.reply(
-            "Pm Me For More Details.", reply_markup=keyboard
-        )
-    if len(message.text.split()) > 1:
-        name = (message.text.split(None, 1)[1]).lower()
-        if name == "mkdwn_help":
-            await message.reply(
-                MARKDOWN, parse_mode="html", disable_web_page_preview=True
-            )
-        elif "_" in name:
-            module = name.split("_", 1)[1]
-            text = (
-                    f"Here is the help for **{HELPABLE[module].__MODULE__}**:\n"
-                    + HELPABLE[module].__HELP__
-            )
-            await message.reply(text, disable_web_page_preview=True)
-        elif name == "help":
-            text, keyb = await help_parser(message.from_user.first_name)
-            await message.reply(
-                text,
-                reply_markup=keyb,
-            )
-    else:
-        await message.reply(
-            home_text_pm,
-            reply_markup=home_keyboard_pm,
-        )
-    return
+    await message.reply_text("am started") 
 
 
 @app.on_message(~filters.edited & filters.command("help"))
@@ -208,8 +180,8 @@ async def help_command(_, message):
             name = (message.text.split(None, 1)[1]).replace(" ", "_").lower()
             if str(name) in HELPABLE:
                 text = (
-                        f"Here is the help for **{HELPABLE[name].__MODULE__}**:\n"
-                        + HELPABLE[name].__HELP__
+                        f"Here is the help for **{HELPABLE[name].__mod_name__}**:\n"
+                        + HELPABLE[name].__help__
                 )
                 await message.reply(text, disable_web_page_preview=True)
             else:
@@ -289,7 +261,7 @@ General command are:
                 "{} **{}**:\n".format(
                     "Here is the help for", HELPABLE[module].__MODULE__
                 )
-                + HELPABLE[module].__HELP__
+                + HELPABLE[module].__help__
         )
 
         await query.message.edit(
