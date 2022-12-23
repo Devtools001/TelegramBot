@@ -75,8 +75,7 @@ def paginate_modules(page_n, module_dict, prefix, chat=None):
                         ),
                         EqInlineKeyboardButton(
                             "Back",
-                            callback_data="{}_home({})".format(prefix,
-                                                               modulo_page),
+                            callback_data="Friday_back"),
                         ),
                         EqInlineKeyboardButton(
                             "❯",
