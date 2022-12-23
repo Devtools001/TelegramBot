@@ -12,12 +12,16 @@ from TeleBot import (
     LOG,
     get_readable_time,
 )
-from pyrogram import filters
+from pyrogram import filters,Client
+from pyrogram.types import Message
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from pyrogram.handlers import MessageHandler
 from TeleBot.modules import ALL_MODULES
 from TeleBot.utilities.misc import paginate_modules
 from TeleBot.utilities.constant import MARKDOWN
+
+
+loop = asyncio.get_event_loop()
 
 START_IMG="https://telegra.ph/file/5381961c760ed435d0fc7.jpg"
 
@@ -103,5 +107,5 @@ def main():
 if __name__ == "__main__" :
     LOG.print("[yellow] bot started")
     install()
-    main()
+    loop.run_until_complete(main())
 
