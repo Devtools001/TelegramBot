@@ -148,7 +148,7 @@ Also you can ask anything in Support Group.
         keyboard,
     )
 
-@app.on_message(filters.command("start") & filters.group)
+@app.on_message(filters.command("start") & filters.private)
 async def start(_, message):    
     uptime = get_readable_time((time.time() - StartTime))
     print(message.chat.type)    
