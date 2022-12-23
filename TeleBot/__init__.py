@@ -87,7 +87,7 @@ else:
 BOT_NAME  = ""
 BOT_USERNAME = ""
 BOT_ID = 0
-
+MENTION_BOT = ""
 
 pgram = Client (
       "TeleBot",
@@ -107,6 +107,7 @@ async def Friday():
         BOT_NAME = app.first_name + " " + app.last_name
     else:
         BOT_NAME = app.first_name
+    MENTION_BOT = app.mention
 
     
     
@@ -126,5 +127,5 @@ loop.run_until_complete(Friday())
 #pgram.start()
 #x = pgram.get_me()
 
-MENTION_BOT = app.mention
+#MENTION_BOT = app.mention
 
