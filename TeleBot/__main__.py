@@ -322,7 +322,7 @@ General command are:
             reply_markup=InlineKeyboardMarkup(
                 paginate_modules(curr_page - 1, HELPABLE, "help")
             ),
-            disable_web_page_preview=True,
+            
         )
 
     elif next_match:
@@ -332,7 +332,7 @@ General command are:
             reply_markup=InlineKeyboardMarkup(
                 paginate_modules(next_page + 1, HELPABLE, "help")
             ),
-            disable_web_page_preview=True,
+            
         )
 
     elif back_match:
@@ -341,7 +341,7 @@ General command are:
             reply_markup=InlineKeyboardMarkup(
                 paginate_modules(0, HELPABLE, "help")
             ),
-            disable_web_page_preview=True,
+            
         )
 
     elif create_match:
@@ -349,7 +349,7 @@ General command are:
         await query.message.edit_caption(
             caption=HELP_STRINGS,
             reply_markup=keyboard,
-            disable_web_page_preview=True,
+            
         )
 
     return await client.answer_callback_query(query.id)
