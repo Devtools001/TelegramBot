@@ -226,7 +226,7 @@ async def start(_, message):
     caption=PM_START_TEXT.format(first_name,BOT_NAME,uptime),
     reply_markup=InlineKeyboardMarkup(START_BUTTONS),
     parse_mode=ParseMode.MARKDOWN,
-    timeout=60,                
+                    
             )     
     
 
