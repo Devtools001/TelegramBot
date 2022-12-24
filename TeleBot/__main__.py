@@ -108,7 +108,9 @@ async def group_start(_, message):
             args = message.text.split(None,1)[1].lower()
             print(args)
             if args == "help":
-                await send_help(app=pgram,chat = chat_id,text = HELP_STRINGS)
+                await send_help(app=pgram,chat=message.chat.id,text=HELP_STRINGS) 
+                return
+
             elif args.startswith("ghelp_"):
                 mod = args.lower().split("_", 1)[1]
                 if not HELPABLE.get(mod, False):
