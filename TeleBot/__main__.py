@@ -246,7 +246,7 @@ async def get_help(_, message):
              text = "Pᴍ ᴍᴇ ғᴏʀ ᴛʜɪs",reply_markup=keyboard)                                                                                                                                   
             return            
     else:
-      await message.reply(  
+      await message.reply_photo(  
        photo=random.choice(HELP_IMG),
        caption=f" ᴄᴏɴᴛᴀᴄᴛ ᴍᴇ ɪɴ ᴘᴍ ᴛᴏ ɢᴇᴛ ᴛʜᴇ ʟɪsᴛ ᴏғ ᴘᴏssɪʙʟᴇ ᴄᴏᴍᴍᴀɴᴅs..",
        reply_markup=InlineKeyboardMarkup(
