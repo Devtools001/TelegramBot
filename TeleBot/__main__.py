@@ -251,7 +251,7 @@ async def get_help(_, message):
        caption=f" ᴄᴏɴᴛᴀᴄᴛ ᴍᴇ ɪɴ ᴘᴍ ᴛᴏ ɢᴇᴛ ᴛʜᴇ ʟɪsᴛ ᴏғ ᴘᴏssɪʙʟᴇ ᴄᴏᴍᴍᴀɴᴅs..",
        reply_markup=InlineKeyboardMarkup(
                    [[InlineKeyboardButton(
-                        text="ʜᴇʟᴘ​",
+                        text="ʜᴇʟᴘ",
                         url=f"https://t.me/{BOT_USERNAME}?start=help")
                      ],
                      InlineKeyboardButton(
