@@ -9,7 +9,7 @@ from typing import Optional
 from sys import argv
 from uvloop import install
 from contextlib import closing, suppress
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery 
 
 from pyrogram.errors import BadRequest 
 from pyrogram.types import CallbackQuery
@@ -179,6 +179,62 @@ async def start(_, message):
     parse_mode=ParseMode.MARKDOWN,                   
             )
     return 
+
+@pgram.on_callback_query(filters.regex(r"help_(.*?)"))
+async def help_button(app,query):    
+    mod_match = re.match(r"help_module\((.+?)\)", query.data)
+    prev_match = re.match(r"help_prev\((.+?)\)", query.data)
+    next_match = re.match(r"help_next\((.+?)\)", query.data)
+    back_match = re.match(r"help_back", query.data)                
+    try:
+        if mod_match:
+            module = mod_match.group(1)
+            text = (
+                "» *ᴀᴠᴀɪʟᴀʙʟᴇ ᴄᴏᴍᴍᴀɴᴅs ꜰᴏʀ* *{}* :\n".format(
+                    HELPABLE[module].__mod_name__
+                )
+                + HELPABLE[module].__help__
+            )
+            query.message.edit_caption(
+                text,
+                parse_mode=ParseMode.MARKDOWN,                
+                reply_markup=InlineKeyboardMarkup(
+                    [[InlineKeyboardButton(text="ʙᴀᴄᴋ", callback_data="help_back")]]
+                ),
+            )
+
+        elif prev_match:
+            curr_page = int(prev_match.group(1))
+            query.message.edit_caption(
+                HELP_STRINGS,
+                parse_mode=ParseMode.MARKDOWN,
+                reply_markup=InlineKeyboardMarkup(
+                    paginate_modules(curr_page - 1, HELPABLE, "help")
+                
+        
+        elif next_match:
+            next_page = int(next_match.group(1))
+            query.message.edit_caption(
+                HELP_STRINGS,
+                parse_mode=ParseMode.MARKDOWN,
+                reply_markup=InlineKeyboardMarkup(
+                    paginate_modules(next_page + 1, HELPABLE, "help")
+                ),
+            )                   
+
+        elif back_match:
+            query.message.edit_caption(
+                HELP_STRINGS,
+                parse_mode=ParseMode.MARKDOWN,
+                reply_markup=InlineKeyboardMarkup(
+                    paginate_modules(0, HELPABLE, "help")
+                ),
+            )            
+
+        return await client.answer_callback_query(query.id)
+
+    except Exception:
+        pass
 
 if __name__ == "__main__" :
     install()
