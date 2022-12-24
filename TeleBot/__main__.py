@@ -241,8 +241,8 @@ async def donate(_, message):
         await message.reply_text("I'ᴠᴇ PM'ᴇᴅ ʏᴏᴜ ᴀʙᴏᴜᴛ ᴅᴏɴᴀᴛɪɴɢ ᴛᴏ ᴍʏ ᴄʀᴇᴀᴛᴏʀ!")
         try:
             await pgram.send_message("[ʜᴇʀᴇ ɪs ᴛʜᴇ ᴅᴏɴᴀᴛɪᴏɴ ʟɪɴᴋ]({DONATION_LINK})")
-        except Exception:
-            print(Exception)
+        except Exception as e:
+            print(e)
       
 
     
