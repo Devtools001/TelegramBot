@@ -23,7 +23,8 @@ from TeleBot import (
     LOG,
     StartTime,
     get_readable_time,
-    StartTime)
+    DONATION_LINK,
+    OWNER_ID)
 
 from rich.table import Table
 from pyrogram.enums import ParseMode,ChatType
@@ -229,9 +230,21 @@ async def get_help(_, message):
         return                      
                 
                      
-#@pgram.on_message(filters.command("help") & filters.private)  
-#async def private_help(_, message):
-#    chat = message.chat
+@pgram.on_message(filters.command("donate"))  
+async def donate(_, message):
+    if message.chat.type == ChatType.PRIVATE: 
+        if message.from_user.id == OWNER_ID:
+            await message.reply_text("ɪ ᴀᴍ ғʀᴇᴇ ᴛᴏ ᴜsᴇ ┌⁠(⁠・⁠。⁠・⁠)⁠┘⁠♪")
+        else:
+            await message.reply_text(f"Yᴏᴜ ᴄᴀɴ ᴀʟsᴏ ᴅᴏɴᴀᴛᴇ ᴛᴏ ᴛʜᴇ ᴘᴇʀsᴏɴ ᴄᴜʀʀᴇɴᴛʟʏ ʀᴜɴɴɪɴɢ ᴍᴇ [ʜᴇʀᴇ]({DONATION_LINK}"))
+    else:
+        await message.reply_text("I'ᴠᴇ PM'ᴇᴅ ʏᴏᴜ ᴀʙᴏᴜᴛ ᴅᴏɴᴀᴛɪɴɢ ᴛᴏ ᴍʏ ᴄʀᴇᴀᴛᴏʀ!")
+        try:
+            await pgram.send_message("[ʜᴇʀᴇ ɪs ᴛʜᴇ ᴅᴏɴᴀᴛɪᴏɴ ʟɪɴᴋ]({DONATION_LINK}))
+        except Exception:
+            pass
+      
+
     
                     
                         
