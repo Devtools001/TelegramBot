@@ -185,7 +185,8 @@ async def help_button(app,query):
     mod_match = re.match(r"help_module\((.+?)\)", query.data)
     prev_match = re.match(r"help_prev\((.+?)\)", query.data)
     next_match = re.match(r"help_next\((.+?)\)", query.data)
-    back_match = re.match(r"help_back", query.data)                
+    back_match = re.match(r"help_back", query.data) 
+               
     try:
         if mod_match:
             module = mod_match.group(1)
@@ -195,7 +196,7 @@ async def help_button(app,query):
                 )
                 + HELPABLE[module].__help__
             )
-            query.message.edit_caption(
+            await query.message.edit_caption(
                 text,
                 parse_mode=ParseMode.MARKDOWN,                
                 reply_markup=InlineKeyboardMarkup(
@@ -205,7 +206,7 @@ async def help_button(app,query):
 
         elif prev_match:
             curr_page = int(prev_match.group(1))
-            query.message.edit_caption(
+            await query.message.edit_caption(
                 HELP_STRINGS,
                 parse_mode=ParseMode.MARKDOWN,
                 reply_markup=InlineKeyboardMarkup(paginate_modules(curr_page - 1, HELPABLE, "help")
@@ -214,7 +215,7 @@ async def help_button(app,query):
                                    
         elif next_match:
             next_page = int(next_match.group(1))
-            query.message.edit_caption(
+            await query.message.edit_caption(
                 HELP_STRINGS,
                 parse_mode=ParseMode.MARKDOWN,
                 reply_markup=InlineKeyboardMarkup(
@@ -223,7 +224,7 @@ async def help_button(app,query):
             )                   
 
         elif back_match:
-            query.message.edit_caption(
+           await query.message.edit_caption(
                 HELP_STRINGS,
                 parse_mode=ParseMode.MARKDOWN,
                 reply_markup=InlineKeyboardMarkup(
