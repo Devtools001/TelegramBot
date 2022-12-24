@@ -229,61 +229,32 @@ async def help_button(app,query):
 
 @pgram.on_message(filters.command("help") & filters.group)
 async def get_help(_, message):
-    chat = message.chat
-    args = message.text.split(None, 1)
-    if len(args) > 2 and any(args[1].lower() == x for x in HELPABLE):
-        module = args[1].lower()
-        await message.reply_photo(
-                photo=random.choice(HELP_IMG),
-                caption=f"ᴄᴏɴᴛᴀᴄᴛ ᴍᴇ ɪɴ ᴘᴍ ᴛᴏ ɢᴇᴛ ᴛʜᴇ ʟɪsᴛ ᴏғ {module.capitalize()}",
-                reply_markup=InlineKeyboardMarkup(
+    if len(message.command) >= 2:
+            name = (message.text.split(None, 1)[1]).replace(" ", "_").lower()
+            if str(name) in HELPABLE:
+                key = InlineKeyboardMarkup(
                     [
                         [
                             InlineKeyboardButton(
-                                text="ʜᴇʟᴘ​",
-                                url="https://t.me/{BOT_USERNAME}?start=help"
-                                ),
-                            
-                        ]
+                                text="Click here",
+                                url=f"t.me/{BOT_USERNAME}?start=help_{name}",
+                            )
+                        ],
                     ]
-                ),
-            )
-        return
-        await message.reply_photo(
-            photo=random.choice(HELP_IMG),
-            caption="» ᴄᴏɴᴛᴀᴄᴛ ᴍᴇ ɪɴ ᴘᴍ ᴛᴏ ɢᴇᴛ ᴛʜᴇ ʟɪsᴛ ᴏғ ᴘᴏssɪʙʟᴇ ᴄᴏᴍᴍᴀɴᴅs..",
-            reply_markup=InlineKeyboardMarkup(
-                [
-                    [
-                        InlineKeyboardButton(
-                            text="ᴏᴩᴇɴ ɪɴ ᴩʀɪᴠᴀᴛᴇ",
-                            url="https://t.me/{}?start=help".format(
-                                BOT_USERNAME
-                            ),
-                        )
-                    ],
+                )
+                await message.reply(
+                    f"Click on the below button to get help about {name}",
+                    reply_markup=key,
+                )
+            else:
+                await message.reply(
+                    "PM Me For More Details.2nd else",
+                )
+    else:
+        await message.reply(
+            "Pm Me For More Details. Group 1st else"
+        )            
                     
-                ]
-            ),
-        )
-        return
-    elif len(args) > 2 and any(args[1].lower() == x for x in HELPABLE):
-        module = args[1].lower()
-        text = (
-            "Here is the available help for the *{}* module:\n".format(
-                HELPABLE[module].__mod_name__
-            )
-            + HELPABLE[module].__help__
-        )
-        await send_help(
-            pgram,
-            chat.id,
-            text,
-            InlineKeyboardMarkup(
-                [[InlineKeyboardButton(text="ʙᴀᴄᴋ", callback_data="help_back")]]
-            ),
-        )
-        return        
 
 if __name__ == "__main__" :
     install()
