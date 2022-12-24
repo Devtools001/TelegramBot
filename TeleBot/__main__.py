@@ -7,7 +7,7 @@ import importlib
 from datetime import datetime
 from typing import Optional
 from sys import argv
-from uvloop import install
+import uvloop
 from contextlib import closing, suppress
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery 
 
@@ -246,8 +246,8 @@ async def get_help(_, message):
              text = "Pᴍ ᴍᴇ ғᴏʀ ᴛʜɪs",reply_markup=keyboard)                                                                                                                                   
             return            
     else:
-      await message.reply_photo(  
-        photo=random.choice(HELP_IMG),
+      await message.reply(  
+       photo=random.choice(HELP_IMG),
        caption=f" ᴄᴏɴᴛᴀᴄᴛ ᴍᴇ ɪɴ ᴘᴍ ᴛᴏ ɢᴇᴛ ᴛʜᴇ ʟɪsᴛ ᴏғ ᴘᴏssɪʙʟᴇ ᴄᴏᴍᴍᴀɴᴅs..",
        reply_markup=InlineKeyboardMarkup(
                    [[InlineKeyboardButton(
@@ -265,6 +265,6 @@ async def get_help(_, message):
                                                                     
          
 if __name__ == "__main__" :
-    install()
+    uvloop.install()
     loop.run_until_complete(Friday_Robot())
 
