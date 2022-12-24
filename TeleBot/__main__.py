@@ -234,7 +234,7 @@ async def get_help(_, message):
 async def donate(_, message):
     if message.chat.type == ChatType.PRIVATE:
         if message.from_user.id == OWNER_ID:
-        await message.reply_text("ɪ ᴀᴍ ғʀᴇᴇ ᴛᴏ ᴜsᴇ ┌⁠(⁠・⁠。⁠・⁠)⁠┘⁠♪") 
+            await message.reply_text("ɪ ᴀᴍ ғʀᴇᴇ ᴛᴏ ᴜsᴇ ┌⁠(⁠・⁠。⁠・⁠)⁠┘⁠♪") 
         else:
             await message.reply_text(f"Yᴏᴜ ᴄᴀɴ ᴀʟsᴏ ᴅᴏɴᴀᴛᴇ ᴛᴏ ᴛʜᴇ ᴘᴇʀsᴏɴ ᴄᴜʀʀᴇɴᴛʟʏ ʀᴜɴɴɪɴɢ ᴍᴇ [ʜᴇʀᴇ]({DONATION_LINK})")                                                
     else:
