@@ -25,14 +25,13 @@ async def wallpaper (_,msg):
     url=f"https://wallhaven.cc/api/v1/search?q={query}"
     re=requests.get(url).json()    
     stark=re["data"]
-    try:
-        wall = randint(0, len(stark) -1)
-        main = stark[wall]["path"]
-        preview = stark[wall]["thumbs"]["large"]
-        url = stark[wall]["url"]
-        category = stark[wall][category]
-        await msg.reply_photo(preview, caption="⚡ ᴘʀɪᴠɪᴇᴡ")
-        await pgram.send_document(main)
+    wall = randint(0, len(stark) -1)
+    main = stark[wall]["path"]
+    preview = stark[wall]["thumbs"]["large"]
+    url = stark[wall]["url"]
+    category = stark[wall][category]
+    await msg.reply_photo(preview, caption="⚡ ᴘʀɪᴠɪᴇᴡ")
+    await pgram.send_document(main)
 
   #  except Exception:
    #     await msg.reply_text("refine sone your search")
