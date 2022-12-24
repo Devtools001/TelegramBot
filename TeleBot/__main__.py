@@ -59,7 +59,7 @@ async def Friday_Robot():
     header = Table(show_header=True, header_style="bold yellow")
     header.add_column(LOG_MSG)
     LOG.print(header)
-       
+    await asyncio.sleep(2)       
     LOG.print("Found {} Plugins".format(len(ALL_MODULES)) + "\n")
     for all_module in ALL_MODULES:    
         LOG.print(
