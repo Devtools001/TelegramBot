@@ -110,10 +110,15 @@ async def Friday_Robot():
     print("+===============+===============+===============+===============+")
 
     LOG.print(f"[bold red]BOT STARTED AS {BOT_NAME}!")
-
+    
+    LOG.print("Found {} Plugins".format(len(ALL_MODULES)) + "\n")
+    for all_module in ALL_MODULES:    
+        LOG.print(
+                f"✨ [bold cyan]sᴜᴄᴄᴇssғᴜʟʟʏ ɪᴍᴘᴏʀᴛᴇᴅ: [green]{all_module}.py"
+            )
     try:
         LOG.print("[yellow]Sending online status")              
-        await app.send_message(-1001698076323, "Bot started!")
+        await pgram.send_message(-1001698076323, "Bot started!")
     except Exception:
         pass
     await idle()
