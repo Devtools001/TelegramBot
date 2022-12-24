@@ -26,9 +26,10 @@ async def wallpaper (_,msg):
     walls = re.get("data")
     try:
         wall_index = randint(0, len(walls) -1)
+        wallpaper = walls[wall_index]
     except Exception:
         await msg.reply_text("refine your search")
-    wallpaper = walls[wall_index]
+    
     print(wallpaper)
     
 
