@@ -120,8 +120,7 @@ async def send_help(app,chat, text, keyboard=None):
 
 
 @pgram.on_message(filters.command("start") & filters.group)
-async def group_start(_, message): 
-    uptime = get_readable_time((time.time() - StartTime))  
+async def group_start(_, message):    
     chat_id = message.chat.id    
     if len(message.text.split()) > 1:
         args = message.text.split(None,1)[1].lower()
@@ -151,6 +150,7 @@ async def group_start(_, message):
             
 @pgram.on_message(filters.command("start") & filters.private)
 async def start(_, message):
+    uptime = get_readable_time((time.time() - StartTime))  
     first_name = message.from_user.first_name                        
     await pgram.send_photo(
     message.chat.id,    
