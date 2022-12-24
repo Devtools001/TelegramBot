@@ -30,7 +30,7 @@ from TeleBot import (
 )
 from pyrogram.enums import ParseMode 
 
-uptime = get_readable_time((time.time() - StartTime))    
+
 loop = asyncio.get_event_loop() 
 
 HELP_STRINGS = """
@@ -138,6 +138,7 @@ async def send_help(app,chat, text, keyboard=None):
 
 @pgram.on_message(filters.command("start") & filters.group)
 async def group_start(_, message):
+    uptime = get_readable_time((time.time() - StartTime))  
     chat_id = message.chat.id    
     if len(message.text.split()) > 1:
         args = message.text.split(None,1)[1].lower()
@@ -168,6 +169,7 @@ async def group_start(_, message):
            
 @pgram.on_message(filters.command("start") & filters.private)
 async def start(_, message):
+    uptime = get_readable_time((time.time() - StartTime))  
     first_name = message.from_user.first_name                        
     await pgram.send_photo(
     message.chat.id,    
