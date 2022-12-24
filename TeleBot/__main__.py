@@ -67,11 +67,20 @@ async def Friday_Robot():
             )
     print()
     LOG.print(f"[bold red] ʙᴏᴛ sᴛᴀʀᴛᴇᴅ ᴀs {BOT_NAME}!")   
-    try:
-        LOG.print("[yellow]Sending online status")              
-        await pgram.send_message(-1001698076323, "Bot started!")
+    try:                    
+        await pgram.send_photo(f@{SUPPORT_CHAT},
+        photo=START_IMG,
+        caption=f"""
+        🥀 {BOT_NAME} ɪs ᴀʟɪᴠᴇ ʙᴀʙʏ...
+        ┏•❅────✧❅✦❅✧────❅•┓
+        ㅤ★ **ᴘʏᴛʜᴏɴ :** `{y()}`
+        ㅤ★ **ʟɪʙʀᴀʀʏ :** `{telever}`
+        ㅤ★ **ᴩʏʀᴏɢʀᴀᴍ :** `{pyrover}`
+        ┗•❅────✧❅✦❅✧────❅•┛
+ """
+       )
     except Exception:
-        pass
+        LOG.print("[bold red]ʙᴏᴛ ɪs'ɴᴛ ᴀʙʟᴇ ᴛᴏ sᴇɴᴅ ᴍᴇssᴀɢᴇ ᴛᴏ @{SUPPORT_CHAT} !")
     await idle()
     await aiohttpsession.close()   
     LOG.print("[yello] stopping client") 
