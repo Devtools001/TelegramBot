@@ -1,3 +1,4 @@
+import os
 import asyncio
 import re
 import time
@@ -36,7 +37,6 @@ async def Friday_Robot():
     for module_name in ALL_MODULES:
         imported_module = importlib.import_module("TeleBot.modules." +
                                               module_name)
-   # all_modules += "⦿ " + module_name + "\n"
         if not hasattr(imported_module, "__mod_name__"):
             imported_module.__mod_name__ = imported_module.__name__
 
@@ -53,6 +53,7 @@ async def Friday_Robot():
             HELPABLE[imported_module.__mod_name__.lower()] = imported_module
 
     
+    os.system("clear")
     
     LOG.print(f"[bold red]BOT STARTED AS {BOT_NAME}!")
     
