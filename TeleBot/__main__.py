@@ -46,6 +46,7 @@ async def Friday_Robot():
     global IMPORTED,MIGRATEABLE,HELPABLE
     global STATS, USER_INFO,DATA_IMPORT,DATA_EXPORT
     global CHAT_SETTINGS,USER_SETTINGS
+
     for module_name in ALL_MODULES:
         imported_module = importlib.import_module("TeleBot.modules." +
                                               module_name)
@@ -87,5 +88,34 @@ async def Friday_Robot():
         if hasattr(imported_module, "__user_settings__"):
             USER_SETTINGS[imported_module.__mod_name__.lower()] = imported_module
     
+    
+    bot_modules = ""
 
+    j = 1
+
+    for i in ALL_MODULES:
+
+        if j == 4:
+
+            bot_modules += "|{:<15}|\n".format(i)
+
+            j = 0
+
+        else:
+
+            bot_modules += "|{:<15}".format(i)
+
+        j += 1
+
+    print("+===============================================================+")
+
+    print("|                              WBB                              |")
+
+    print("+===============+===============+===============+===============+")
+
+    print(bot_modules)
+
+    print("+===============+===============+===============+===============+")
+
+    LOG.print(f"[bold red]BOT STARTED AS {BOT_NAME}!")
 
