@@ -16,7 +16,7 @@ from pyrogram.types import CallbackQuery
 from pyrogram import filters,idle
 
 from TeleBot.modules import ALL_MODULES
-from TeleBot.modules.utilities.misc import paginate_modules
+from TeleBot.utilities.misc import paginate_modules
 
 
  
