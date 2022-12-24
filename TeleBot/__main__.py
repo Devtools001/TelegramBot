@@ -227,6 +227,47 @@ async def help_button(app,query):
     except Exception:
         pass
 
+@pgram.on_message(filters.command("help")) & filters.group)
+async def get_help(_, message):
+    chat = message.chat
+    args = message.text.split(None, 1)
+    if len(args) >= 2 and any(args[1].lower() == x for x in HELPABLE):
+        module = args[1].lower()
+        await message.reply_photo(
+                photo=random.choice(HELP_IMG),
+                caption=f"ᴄᴏɴᴛᴀᴄᴛ ᴍᴇ ɪɴ ᴘᴍ ᴛᴏ ɢᴇᴛ ᴛʜᴇ ʟɪsᴛ ᴏғ {module.capitalize()}",
+                reply_markup=InlineKeyboardMarkup(
+                    [
+                        [
+                            InlineKeyboardButton(
+                                text="ʜᴇʟᴘ​",
+                                url="https://t.me/{BOT_USERNAME}?start=help"
+                                ),
+                            
+                        ]
+                    ]
+                ),
+            )
+            return
+        await message.reply_photo(
+            photo=random.choice(HELP_IMG),
+            caption="» ᴄᴏɴᴛᴀᴄᴛ ᴍᴇ ɪɴ ᴘᴍ ᴛᴏ ɢᴇᴛ ᴛʜᴇ ʟɪsᴛ ᴏғ ᴘᴏssɪʙʟᴇ ᴄᴏᴍᴍᴀɴᴅs..",
+            reply_markup=InlineKeyboardMarkup(
+                [
+                    [
+                        InlineKeyboardButton(
+                            text="ᴏᴩᴇɴ ɪɴ ᴩʀɪᴠᴀᴛᴇ",
+                            url="https://t.me/{}?start=help".format(
+                                BOT_USERNAME
+                            ),
+                        )
+                    ],
+                    
+                ]
+            ),
+        )
+        return
+
 if __name__ == "__main__" :
     install()
     loop.run_until_complete(Friday_Robot())
