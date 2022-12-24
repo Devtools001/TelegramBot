@@ -25,14 +25,9 @@ async def wallpaper (_,msg):
     url=f"https://wallhaven.cc/api/v1/search?q={query}"
 
     re=requests.get(url).json()
-    walls = re.get("data")
+    red=re["data"]
    # try:
-    wall_index = randint(0, len(walls) -1)
-    wallpaper = walls[wall_index]
-    pic = wallpaper.get["path"]
-    preview = wallpaper.get("thumbs")
-    print(wallpaper.get("large"))
-    print(pic)
+    print(red)
 
   #  except Exception:
   #      await msg.reply_text("refine your search")
