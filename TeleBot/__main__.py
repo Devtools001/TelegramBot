@@ -72,7 +72,7 @@ async def Friday_Robot():
     try:                    
         await pgram.send_photo(f"@{SUPPORT_CHAT}",
         photo=START_IMG,
-        caption=SUPPORT_SEND_MSG.format(pyrover)
+        caption=SUPPORT_SEND_MSG.format(BOT_NAME,pyrover)
        )
     except Exception as e:
         print(e)
