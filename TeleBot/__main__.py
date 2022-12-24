@@ -26,7 +26,8 @@ from TeleBot import (
     StartTime)
 
 from rich.table import Table
-from pyrogram.enums import ParseMode 
+from pyrogram.enums import ParseMode
+from pyrogram import __version__ as pyrover
 from TeleBot.modules import ALL_MODULES
 from TeleBot.resources.Data import *
 
@@ -74,13 +75,13 @@ async def Friday_Robot():
         caption=f"""
         🥀 {BOT_NAME} ɪs ᴀʟɪᴠᴇ ʙᴀʙʏ...
         ┏•❅────✧❅✦❅✧────❅•┓
-        ㅤ★ **ᴘʏᴛʜᴏɴ :** `{y()}`
-        ㅤ★ **ʟɪʙʀᴀʀʏ :** `{telever}`
+          ★ **ʙᴏᴛ ᴠᴇʀsɪᴏɴ :** `1.0`
         ㅤ★ **ᴩʏʀᴏɢʀᴀᴍ :** `{pyrover}`
         ┗•❅────✧❅✦❅✧────❅•┛
  """
        )
-    except Exception:
+    except Exception as e:
+        print(e)
         LOG.print("[bold red]ʙᴏᴛ ɪs'ɴᴛ ᴀʙʟᴇ ᴛᴏ sᴇɴᴅ ᴍᴇssᴀɢᴇ ᴛᴏ @{SUPPORT_CHAT} !")
     await idle()
     await aiohttpsession.close()   
