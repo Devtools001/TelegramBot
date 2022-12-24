@@ -3,5 +3,6 @@ pyrogram
 pillow
 rich
 redis
-uvloop
 tgcrypto
+telegraph 
+uvloop
