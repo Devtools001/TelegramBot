@@ -196,7 +196,7 @@ async def help_button(app,query):
     except BadRequest:
         pass
 
-@pgram.on_message(filters.command(["help",f"help@{BOT_USERNAME}]))
+@pgram.on_message(filters.command(["help",f"help@{BOT_USERNAME}"]))
 async def get_help(_, message):
     if message.chat.type != ChatType.PRIVATE:     
         if len(message.command) >= 2:
