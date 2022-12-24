@@ -30,15 +30,7 @@ from TeleBot.resources.Data import *
 loop = asyncio.get_event_loop() 
 
 IMPORTED = {}
-#MIGRATEABLE = []
 HELPABLE = {}
-#STATS = []
-#USER_INFO = []
-#DATA_IMPORT = []
-#DATA_EXPORT = []
-#CHAT_SETTINGS = {}
-#USER_SETTINGS = {}
-
 async def Friday_Robot():
     global IMPORTED,HELPABLE
     for module_name in ALL_MODULES:
@@ -60,27 +52,6 @@ async def Friday_Robot():
         if hasattr(imported_module, "get_help") and imported_module.get_help:
             HELPABLE[imported_module.__mod_name__.lower()] = imported_module
 
-    # Chats to migrate on chat_migrated events
-      #  if hasattr(imported_module, "__migrate__"):
-     #       MIGRATEABLE.append(imported_module)
-
-      #  if hasattr(imported_module, "__stats__"):
-        #    STATS.append(imported_module)
-
-      #  if hasattr(imported_module, "__user_info__"):
-        #    USER_INFO.append(imported_module)
-
-       # if hasattr(imported_module, "__import_data__"):
-         #   DATA_IMPORT.append(imported_module)
-
-      #  if hasattr(imported_module, "__export_data__"):
-        #    DATA_EXPORT.append(imported_module)
-
-       # if hasattr(imported_module, "__chat_settings__"):
-        #    CHAT_SETTINGS[imported_module.__mod_name__.lower()] = imported_module
-
-      #  if hasattr(imported_module, "__user_settings__"):
-         #   USER_SETTINGS[imported_module.__mod_name__.lower()] = imported_module
     
     
     LOG.print(f"[bold red]BOT STARTED AS {BOT_NAME}!")
