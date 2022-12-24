@@ -148,7 +148,7 @@ async def group_start(_, message):
             if not HELPABLE.get(mod, False):
                 return
             await send_help(
-                app = pgram
+                app = pgram,
                 chat=chat_id,
                 HELPABLE[mod].__help__,
                 InlineKeyboardMarkup(
