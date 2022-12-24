@@ -3,7 +3,7 @@ from pyrogram import filters
 
 from pyrogram.handlers import MessageHandler
 
-@app.on_messsge(filters.command("hii"))
+@app.on_message(filters.command("hii"))
 async def hii(_,msg):
     print(msg.sender_chat)
     if msg.chat.type != ChatType.PRIVATE:
