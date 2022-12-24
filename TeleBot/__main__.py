@@ -90,59 +90,34 @@ async def Friday_Robot():
     
     
     bot_modules = ""
-
     j = 1
-
     for i in ALL_MODULES:
-
         if j == 4:
-
             bot_modules += "|{:<15}|\n".format(i)
-
             j = 0
-
         else:
-
             bot_modules += "|{:<15}".format(i)
-
         j += 1
-
     print("+===============================================================+")
-
     print("|                              WBB                              |")
-
     print("+===============+===============+===============+===============+")
-
     print(bot_modules)
-
     print("+===============+===============+===============+===============+")
 
     LOG.print(f"[bold red]BOT STARTED AS {BOT_NAME}!")
 
     try:
-
         LOG.print("[yellow]Sending online status")              
-
         await app.send_message(-1001698076323, "Bot started!")
-
     except Exception:
-
         pass
-
     await idle()
-
     await aiohttpsession.close()   
-
     LOG.print("[yello] stopping client") 
-
     await pgram.stop()
-
     LOG.print("[yellow]Cancelling asyncio tasks")
-
     for task in asyncio.all_tasks():
-
         task.cancel()
-
     LOG.print("[yello]Dead!")
 
 if __name__ == "__main__" :
