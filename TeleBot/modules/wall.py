@@ -3,9 +3,8 @@ from TeleBot import pgram
 from pyrogram import filters
 from random import randint
 
-@pgram.on_message(filters.command("wal"))
-async def wallpaper (_,msg):
-  
+@pgram.on_message(filters.command("wallpaper"))
+async def wallpaper (_,msg):  
     try:
         url=f"https://wallhaven.cc/api/v1/search"
         re=requests.get(url).json()    
@@ -16,11 +15,10 @@ async def wallpaper (_,msg):
         url = stark[wall]["url"]
         category = stark[wall]["category"]
         await msg.reply_photo(preview, caption="⚡ ᴘʀɪᴠɪᴇᴡ")
-        await msg.reply_document(main, caption=f"ᴄᴀᴛᴇɢᴏʀʏ {category}")
+        await msg.reply_document(main, caption=f"💫 ᴄᴀᴛᴇɢᴏʀʏ :- {category}")
 
     except Exception:
-        await msg.reply_text("refine sone your search")
-    
+        pass
     
     
 
