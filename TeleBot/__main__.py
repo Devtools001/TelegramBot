@@ -264,7 +264,7 @@ async def get_help(_, message):
             )
             return            
     else:
-       await message.reply(  
+      await message.reply(  
         photo=random.choice(HELP_IMG),
                 caption=f"ᴄᴏɴᴛᴀᴄᴛ ᴍᴇ ɪɴ ᴘᴍ ᴛᴏ ɢᴇᴛ ᴛʜᴇ ʟɪsᴛ ᴏғ {module.capitalize()}",
                 reply_markup=InlineKeyboardMarkup(
