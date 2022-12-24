@@ -128,20 +128,10 @@ finally:
     
 loop.run_until_complete(Friday())    
 
-print(MENTION_BOT)
 
-
-#updater=Fday.Updater(BOT_TOKEN,workers=WORKERS,use_context=True)
-#dispatcher=updater.dispatcher
-
-#telethn = TelegramClient("Fallen", API_ID, API_HASH)
-
-
-
-
-
-#pgram.start()
-#x = pgram.get_me()
-
-#MENTION_BOT = app.mention
-
+import re
+test_str = 'geeksforgeeks'
+print("The original string is : " + str(test_str))
+res = (re.sub('.', lambda x: r'\u % 04X' % ord(x.group()), test_str))
+ 
+print("The unicode converted String : " + str(res))
