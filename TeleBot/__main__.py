@@ -227,7 +227,7 @@ async def help_button(app,query):
     except Exception:
         pass
 
-@pgram.on_message(filters.command("help")) & filters.group))
+@pgram.on_message(filters.command("help") & filters.group)
 async def get_help(_, message):
     chat = message.chat
     args = message.text.split(None, 1)
