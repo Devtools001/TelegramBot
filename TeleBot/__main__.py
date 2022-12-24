@@ -70,7 +70,7 @@ async def Friday_Robot():
     print()
     LOG.print(f"[bold red] ʙᴏᴛ sᴛᴀʀᴛᴇᴅ ᴀs {BOT_NAME}!")   
     try:                    
-        await pgram.send_photo(f@{SUPPORT_CHAT},
+        await pgram.send_photo(f"@{SUPPORT_CHAT}",
         photo=START_IMG,
         caption=f"""
         🥀 {BOT_NAME} ɪs ᴀʟɪᴠᴇ ʙᴀʙʏ...
