@@ -25,6 +25,7 @@ from TeleBot import (
 
 from pyrogram.enums import ParseMode 
 from TeleBot.modules import ALL_MODULES
+from TeleBot.resources.Data import *
 
 loop = asyncio.get_event_loop() 
 
