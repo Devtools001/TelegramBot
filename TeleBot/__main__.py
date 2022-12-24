@@ -276,7 +276,7 @@ async def get_help(_, message):
             + HELPABLE[module].__help__
         )
         await send_help(
-            pgram
+            pgram,
             chat.id,
             text,
             InlineKeyboardMarkup(
