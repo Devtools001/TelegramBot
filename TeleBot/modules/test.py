@@ -1,10 +1,12 @@
-from TeleBot import pgram
+from TeleBot import pgram as app
 from pyrogram import filters
 
 from pyrogram.handlers import MessageHandler
-async def my_handler(_, message):
-    r = await pgram.get_chat(-1001698076323)
-    await message.reply_text(str(r.invite_link))
 
-pgram.add_handler(MessageHandler(my_handler, filters.command("okk")))    
-
+@app.on_messsge(filters.command("hii"))
+async def hii(_,msg):
+    print(msg.sender_chat)
+    if msg.chat.type ! = ChatType.PRIVATE:
+        await msg.reply_text("public h")
+    else:
+        await msg.reply_text("private h")
