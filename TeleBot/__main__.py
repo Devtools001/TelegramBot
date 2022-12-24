@@ -24,6 +24,7 @@ from TeleBot import (
     get_readable_time,
     StartTime)
 
+from rich.table import Table
 from pyrogram.enums import ParseMode 
 from TeleBot.modules import ALL_MODULES
 from TeleBot.resources.Data import *
@@ -54,14 +55,17 @@ async def Friday_Robot():
 
     
     os.system("clear")
-    
-    LOG.print(f"[bold red]BOT STARTED AS {BOT_NAME}!")
-    
+    header = Table(show_header=True, header_style="bold yellow")
+    header.add_column(LOG_MSG)
+    LOG.print(header)
+       
     LOG.print("Found {} Plugins".format(len(ALL_MODULES)) + "\n")
     for all_module in ALL_MODULES:    
         LOG.print(
                 f"✨ [bold cyan]sᴜᴄᴄᴇssғᴜʟʟʏ ɪᴍᴘᴏʀᴛᴇᴅ: [green]{all_module}.py"
             )
+
+    LOG.print(f"[bold red]BOT STARTED AS {BOT_NAME}!")   
     try:
         LOG.print("[yellow]Sending online status")              
         await pgram.send_message(-1001698076323, "Bot started!")
