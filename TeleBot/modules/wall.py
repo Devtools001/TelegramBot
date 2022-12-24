@@ -21,20 +21,20 @@ async def wallpaper (_,msg):
         await msg.reply_text("ʜᴇʏ ɴᴏᴏʙ ɢɪᴠᴇ sᴏᴍᴇᴛʜɪɴɢ ᴛᴏ sᴇᴀʀᴄʜ.")
     else:
         pass  
+    try:
+        url=f"https://wallhaven.cc/api/v1/search?q={query}"
+        re=requests.get(url).json()    
+        stark=re["data"]
+        wall = randint(0, len(stark) -1)
+        main = stark[wall]["path"]
+        preview = stark[wall]["thumbs"]["large"]
+        url = stark[wall]["url"]
+        category = stark[wall]["category"]
+        await msg.reply_photo(preview, caption="⚡ ᴘʀɪᴠɪᴇᴡ")
+        await msg.reply_document(main)
 
-    url=f"https://wallhaven.cc/api/v1/search?q={query}"
-    re=requests.get(url).json()    
-    stark=re["data"]
-    wall = randint(0, len(stark) -1)
-    main = stark[wall]["path"]
-    preview = stark[wall]["thumbs"]["large"]
-    url = stark[wall]["url"]
-    category = stark[wall]["category"]
-    await msg.reply_photo(preview, caption="⚡ ᴘʀɪᴠɪᴇᴡ")
-    await msg.reply_document(main)
-
-  #  except Exception:
-   #     await msg.reply_text("refine sone your search")
+    except Exception:
+        await msg.reply_text("refine sone your search")
     
     
     
