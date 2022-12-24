@@ -238,14 +238,15 @@ async def donate(_, message):
         else:
             await message.reply_text(f"Yᴏᴜ ᴄᴀɴ ᴀʟsᴏ ᴅᴏɴᴀᴛᴇ ᴛᴏ ᴛʜᴇ ᴘᴇʀsᴏɴ ᴄᴜʀʀᴇɴᴛʟʏ ʀᴜɴɴɪɴɢ ᴍᴇ [ʜᴇʀᴇ]({DONATION_LINK})")                                                
     else:
-        if message.from_user.id != OWNER_ID:
+        if message.from_user.id == OWNER_ID:
+            await message.reply_text("ɪ ᴀᴍ ғʀᴇᴇ ᴛᴏ ᴜsᴇ ┌⁠(⁠・⁠。⁠・⁠)⁠┘⁠♪") 
+        else:
             await message.reply_text("I'ᴠᴇ PM'ᴇᴅ ʏᴏᴜ ᴀʙᴏᴜᴛ ᴅᴏɴᴀᴛɪɴɢ ᴛᴏ ᴍʏ ᴄʀᴇᴀᴛᴏʀ!")
             try:
                 await pgram.send_message(message.from_user.id,text=f"[ʜᴇʀᴇ ɪs ᴛʜᴇ ᴅᴏɴᴀᴛɪᴏɴ ʟɪɴᴋ]({DONATION_LINK})")
-            except Exception as a:
-                print(a)
+            except Unauthorized:                
                 await message.reply_text("Cᴏɴᴛᴀᴄᴛ ᴍᴇ ɪɴ PM ғɪʀsᴛ ᴛᴏ ɢᴇᴛ ᴅᴏɴᴀᴛɪᴏɴ ɪɴғᴏʀᴍᴀᴛɪᴏɴ")
-                    
+                                
  
 
     
