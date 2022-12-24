@@ -98,7 +98,7 @@ async def send_help(app,chat, text, keyboard=None):
     )
 
 
-@pgram.on_message(filters.command("start") & filters.group)
+@pgram.on_message(filters.command("start"))
 async def group_start(_, message):    
     uptime = get_readable_time((time.time() - StartTime))
     chat_id = message.chat.id  
