@@ -272,16 +272,15 @@ async def get_help(_, message):
                         [
                             InlineKeyboardButton(
                                 text="ʜᴇʟᴘ​",
-                                url="https://t.me/{BOT_USERNAME}?start=help"
+                                url=f"https://t.me/{BOT_USERNAME}?start=help"
                                 ),
                             
                         ]
                     ]
                 ),
             )
-                                
-                    
-
+                                                    
+        return 
 if __name__ == "__main__" :
     install()
     loop.run_until_complete(Friday_Robot())
