@@ -1,6 +1,7 @@
 aiohttp
 pyrogram
 pillow
+psutil
 rich
 redis
 tgcrypto
