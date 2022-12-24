@@ -243,7 +243,7 @@ async def get_help(_, message):
 
         else:
             await message.reply_text(
-             text = Pᴍ ᴍᴇ ғᴏʀ ᴛʜɪs,reply_markup=keyboar)                                                                                                                                   
+             text = "Pᴍ ᴍᴇ ғᴏʀ ᴛʜɪs",reply_markup=keyboard)                                                                                                                                   
             return            
     else:
       await message.reply_photo(  
