@@ -5,7 +5,7 @@ from random import randint
 
 @pgram.on_message(filters.command("wal"))
 async def wallpaper (_,msg):
-    url=f"https://api.safone.me/wall?query=Naruto"
+    url=f"https://wallhaven.cc/api/v1/search?q=Naruto"
     re=requests.get(url).json()
     print(re)
 
