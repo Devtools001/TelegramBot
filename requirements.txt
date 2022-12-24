@@ -1,5 +1,6 @@
 aiohttp
 pyrogram
+pillow
 rich
 redis
 uvloop
