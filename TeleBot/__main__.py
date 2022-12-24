@@ -94,21 +94,6 @@ async def Friday_Robot():
             USER_SETTINGS[imported_module.__mod_name__.lower()] = imported_module
     
     
-    bot_modules = ""
-    j = 1
-    for i in ALL_MODULES:
-        if j == 4:
-            bot_modules += "|{:<15}|\n".format(i)
-            j = 0
-        else:
-            bot_modules += "|{:<15}".format(i)
-        j += 1
-    print("+===============================================================+")
-    print("|                              WBB                              |")
-    print("+===============+===============+===============+===============+")
-    print(bot_modules)
-    print("+===============+===============+===============+===============+")
-
     LOG.print(f"[bold red]BOT STARTED AS {BOT_NAME}!")
     
     LOG.print("Found {} Plugins".format(len(ALL_MODULES)) + "\n")
@@ -196,7 +181,7 @@ async def help_button(app,query):
         if mod_match:
             module = mod_match.group(1)
             text = (
-                "» *ᴀᴠᴀɪʟᴀʙʟᴇ ᴄᴏᴍᴍᴀɴᴅs ꜰᴏʀ* *{}* :\n".format(
+                "» **ᴀᴠᴀɪʟᴀʙʟᴇ ᴄᴏᴍᴍᴀɴᴅs ꜰᴏʀ** **{}** :\n".format(
                     HELPABLE[module].__mod_name__
                 )
                 + HELPABLE[module].__help__
