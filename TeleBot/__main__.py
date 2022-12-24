@@ -198,37 +198,40 @@ async def help_button(app,query):
 
 @pgram.on_message(filters.command("help") & filters.group)
 async def get_help(_, message):
-    if len(message.command) >= 2:
-        mod_name = (message.text.split(None, 1)[1]).replace(" ", "_").lower()
-        if str(mod_name) in HELPABLE:
-            key = InlineKeyboardMarkup(
-               [[InlineKeyboardButton(
-                            text="Click here",
-                            url=f"t.me/{BOT_USERNAME}?start=help_{mod_name}")]])                                                                        
-            await message.reply(
-                f"ᴄʟɪᴄᴋ ᴛʜᴇ ʙᴇʟᴏᴡ ʙᴜᴛᴛᴏɴ ᴛᴏ ɢᴇᴛ ʜᴇʟᴘ ᴀʙᴏᴜᴛ {mod_name}",
-                reply_markup=key,
-             )
-
-        else:
-            await message.reply_text(
-             text = "Pᴍ ᴍᴇ ғᴏʀ ᴛʜɪs",reply_markup=keyboard)                                                                                                                                   
-            return            
-    else:
-      await message.reply_photo(  
-       photo=random.choice(HELP_IMG),
-       caption=f" ᴄᴏɴᴛᴀᴄᴛ ᴍᴇ ɪɴ ᴘᴍ ᴛᴏ ɢᴇᴛ ᴛʜᴇ ʟɪsᴛ ᴏғ ᴘᴏssɪʙʟᴇ ᴄᴏᴍᴍᴀɴᴅs..",
-       reply_markup=InlineKeyboardMarkup(
+    if message.chat.type != ChatType.PRIVATE :     
+        if len(message.command) >= 2:
+            mod_name = (message.text.split(None, 1)[1]).replace(" ", "_").lower()
+            if str(mod_name) in HELPABLE:
+                key = InlineKeyboardMarkup(
                    [[InlineKeyboardButton(
-                        text="ʜᴇʟᴘ",
-                        url=f"https://t.me/{BOT_USERNAME}?start=help")
-                     ]]))
+                                text="Click here",
+                                url=f"t.me/{BOT_USERNAME}?start=help_{mod_name}")]])                                                                        
+                await message.reply(
+                    f"ᴄʟɪᴄᴋ ᴛʜᴇ ʙᴇʟᴏᴡ ʙᴜᴛᴛᴏɴ ᴛᴏ ɢᴇᴛ ʜᴇʟᴘ ᴀʙᴏᴜᴛ {mod_name}",
+                    reply_markup=key,
+                 )
+
+            else:
+                await message.reply_text(
+                 text = "Pᴍ ᴍᴇ ғᴏʀ ᴛʜɪs",reply_markup=keyboard)                                                                                                                                   
+                return            
+        else:
+            await message.reply_photo(  
+            photo=random.choice(HELP_IMG),
+            caption=f" ᴄᴏɴᴛᴀᴄᴛ ᴍᴇ ɪɴ ᴘᴍ ᴛᴏ ɢᴇᴛ ᴛʜᴇ ʟɪsᴛ ᴏғ ᴘᴏssɪʙʟᴇ ᴄᴏᴍᴍᴀɴᴅs..",
+            reply_markup=InlineKeyboardMarkup(
+                       [[InlineKeyboardButton(
+                            text="ʜᴇʟᴘ",
+                            url=f"https://t.me/{BOT_USERNAME}?start=help")
+                         ]]))   
+    else:
+        await send_help(app=pgram,chat=message.chat.id,text=HELP_STRINGS)                       
+                
                      
-@pgram.on_message(filters.command("help") & filters.private)  
-async def private_help(_, message):
-    chat = message.chat
-    await send_help(app=pgram,chat=chat.id,text=HELP_STRINGS)                       
-            
+#@pgram.on_message(filters.command("help") & filters.private)  
+#async def private_help(_, message):
+#    chat = message.chat
+    
                     
                         
                     
