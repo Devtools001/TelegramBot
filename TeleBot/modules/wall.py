@@ -31,7 +31,7 @@ async def wallpaper (_,msg):
         preview = stark[wall]["thumbs"]["large"]
         url = stark[wall]["url"]
         category = stark[wall][category]
-        await msg.reply_photo(preview, caption="⚡ ᴘʀɪᴠɪᴇᴡ"
+        await msg.reply_photo(preview, caption="⚡ ᴘʀɪᴠɪᴇᴡ")
         await pgram.send_document(main)
 
     except Exception:
