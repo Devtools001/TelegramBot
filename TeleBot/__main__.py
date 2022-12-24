@@ -139,7 +139,7 @@ async def send_help(app,chat, text, keyboard=None):
 @pgram.on_message(filters.command("start") & filters.group)
 async def group_start(_, message):
     chat_id = message.chat.id    
-    if len(message.text.split()) >= 1:
+    if len(message.text.split()) > 1:
         args = message.text.split(None,1)[1].lower()
         if args == "help":
             await send_help(app=pgram,chat = chat_id,text = HELP_STRINGS)
