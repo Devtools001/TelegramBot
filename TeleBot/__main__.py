@@ -26,7 +26,7 @@ from TeleBot import (
     StartTime)
 
 from rich.table import Table
-from pyrogram.enums import ParseMode
+from pyrogram.enums import ParseMode,ChatType
 from pyrogram import __version__ as pyrover
 from TeleBot.modules import ALL_MODULES
 from TeleBot.resources.Data import *
@@ -101,45 +101,56 @@ async def send_help(app,chat, text, keyboard=None):
 @pgram.on_message(filters.command("start") & filters.group)
 async def group_start(_, message):    
     uptime = get_readable_time((time.time() - StartTime))
-    chat_id = message.chat.id    
-    if len(message.text.split()) > 1:
-        args = message.text.split(None,1)[1].lower()
-        if args == "help":
-            await send_help(app=pgram,chat = chat_id,text = HELP_STRINGS)
-        elif args.startswith("ghelp_"):
-            mod = args.lower().split("_", 1)[1]
-            if not HELPABLE.get(mod, False):
-                return
-            await send_help(
-                pgram,
-                chat_id,
-                HELPABLE[mod].__help__,
-                InlineKeyboardMarkup(
-                    [[InlineKeyboardButton(text="ʙᴀᴄᴋ", callback_data="help_back")]]
+    chat_id = message.chat.id  
+    if message.chat.type != ChatType.PRIVATE  
+        if len(message.text.split()) > 1:
+            args = message.text.split(None,1)[1].lower()
+            if args == "help":
+                await send_help(app=pgram,chat = chat_id,text = HELP_STRINGS)
+            elif args.startswith("ghelp_"):
+                mod = args.lower().split("_", 1)[1]
+                if not HELPABLE.get(mod, False):
+                    return
+                await send_help(
+                    pgram,
+                    chat_id,
+                    HELPABLE[mod].__help__,
+                    InlineKeyboardMarkup(
+                        [[InlineKeyboardButton(text="ʙᴀᴄᴋ", callback_data="help_back")]]
+                    ),
+                )                
+        else:
+            await message.reply_photo(
+                START_IMG,
+                caption="ɪ ᴀᴍ ᴀʟɪᴠᴇ ʙᴀʙʏ !\n<b>ɪ ᴅɪᴅɴ'ᴛ sʟᴇᴘᴛ sɪɴᴄᴇ:</b> <code>{}</code>".format(
+                    uptime
                 ),
-            )                
-    else:
-        await message.reply_photo(
-            START_IMG,
-            caption="ɪ ᴀᴍ ᴀʟɪᴠᴇ ʙᴀʙʏ !\n<b>ɪ ᴅɪᴅɴ'ᴛ sʟᴇᴘᴛ sɪɴᴄᴇ:</b> <code>{}</code>".format(
-                uptime
-            ),
             parse_mode=ParseMode.HTML,
-        )
-        return                
-            
-@pgram.on_message(filters.command("start") & filters.private)
-async def start(_, message):
-    uptime = get_readable_time((time.time() - StartTime))  
-    first_name = message.from_user.first_name                        
-    await pgram.send_photo(
-    message.chat.id,    
-    photo=random.choice(PM_PHOTOS),
-    caption=PM_START_TEXT.format(first_name,BOT_NAME,uptime),
-    reply_markup=InlineKeyboardMarkup(START_BUTTONS),
-    parse_mode=ParseMode.MARKDOWN,                   
             )
-    return 
+            return     
+    else:
+       first_name = message.from_user.first_name                        
+       await pgram.send_photo(
+       message.chat.id,    
+       photo=random.choice(PM_PHOTOS),
+       caption=PM_START_TEXT.format(first_name,BOT_NAME,uptime),
+       reply_markup=InlineKeyboardMarkup(START_BUTTONS),
+       parse_mode=ParseMode.MARKDOWN,                   
+            )
+       return            
+            
+#@pgram.on_message(filters.command("start") & filters.private)
+#async def start(_, message):
+#    uptime = get_readable_time((time.time() - StartTime))  
+#    first_name = message.from_user.first_name                        
+#    await pgram.send_photo(
+#    message.chat.id,    
+#    photo=random.choice(PM_PHOTOS),
+#    caption=PM_START_TEXT.format(first_name,BOT_NAME,uptime),
+ #   reply_markup=InlineKeyboardMarkup(START_BUTTONS),
+#    parse_mode=ParseMode.MARKDOWN,                   
+#            )
+ #   return 
 @pgram.on_callback_query(filters.regex(r"help_(.*?)"))
 async def help_button(app,query):    
     mod_match = re.match(r"help_module\((.+?)\)", query.data)
