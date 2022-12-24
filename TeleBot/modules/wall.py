@@ -27,7 +27,7 @@ async def wallpaper (_,msg):
     try:
         wall_index = randint(0, len(walls) -1)
     except Exception:
-        await message.reply_text("refine your search")
+        await msg.reply_text("refine your search")
     wallpaper = walls[wall_index]
     print(wallpaper)
     
