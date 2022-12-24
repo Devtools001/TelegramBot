@@ -4,6 +4,7 @@ pillow
 psutil
 rich
 redis
+requests
 tgcrypto
 telegraph 
 uvloop
