@@ -28,11 +28,13 @@ from TeleBot import (
     get_readable_time
 
 )
-
 from pyrogram.enums import ParseMode 
 
 loop = asyncio.get_event_loop() 
 
+HELP_STRINGS = """
+ʜᴇʀᴇ ʏᴏᴜ ᴄᴀɴ ғɪɴᴅ ᴀʟʟ ᴄᴏᴍᴍᴀɴᴅs.
+"""
 
 IMPORTED = {}
 MIGRATEABLE = []
