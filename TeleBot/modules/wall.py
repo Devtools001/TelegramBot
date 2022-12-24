@@ -16,7 +16,7 @@ async def wallpaper (_,msg):
         url = stark[wall]["url"]
         category = stark[wall]["category"]
         await msg.reply_photo(preview, caption="⚡ ᴘʀɪᴠɪᴇᴡ")
-        await msg.reply_document(main)
+        await msg.reply_document(main, caption=f"ᴄᴀᴛᴇɢᴏʀʏ {category}")
 
     except Exception:
         await msg.reply_text("refine sone your search")
