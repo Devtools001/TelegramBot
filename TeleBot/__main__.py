@@ -106,6 +106,7 @@ async def group_start(_, message):
     if message.chat.type != ChatType.PRIVATE : 
         if len(message.text.split()) > 1:
             args = message.text.split(None,1)[1].lower()
+            print(args)
             if args == "help":
                 await send_help(app=pgram,chat = chat_id,text = HELP_STRINGS)
             elif args.startswith("ghelp_"):
