@@ -4,7 +4,7 @@ import logging
 import time 
 import sys
 import asyncio
-import telegram.ext as Fday
+#import telegram.ext as Fday
 from pyrogram import Client,filters
 from config import Friday as Config
 from rich.table import Table
