@@ -230,49 +230,34 @@ async def help_button(app,query):
 @pgram.on_message(filters.command("help") & filters.group)
 async def get_help(_, message):
     if len(message.command) >= 2:
-        name = (message.text.split(None, 1)[1]).replace(" ", "_").lower()
-        if str(name) in HELPABLE:
+        mod_name = (message.text.split(None, 1)[1]).replace(" ", "_").lower()
+        if str(mod_name) in HELPABLE:
             key = InlineKeyboardMarkup(
-                [
-                    [
-                        InlineKeyboardButton(
+               [[InlineKeyboardButton(
                             text="Click here",
-                            url=f"t.me/{BOT_USERNAME}?start=help_{name}",
-                        )
-                    ],
-                ]
-            )
+                            url=f"t.me/{BOT_USERNAME}?start=help_{mod_name}")]])                                                                        
             await message.reply(
-                f"Click on the below button to get help about {name}",
+                f"ᴄʟɪᴄᴋ ᴛʜᴇ ʙᴇʟᴏᴡ ʙᴜᴛᴛᴏɴ ᴛᴏ ɢᴇᴛ ʜᴇʟᴘ ᴀʙᴏᴜᴛ {mod_name}",
                 reply_markup=key,
              )
+
         else:
-            await message.reply_photo(
-                photo=random.choice(HELP_IMG),
-                caption=f"ᴄᴏɴᴛᴀᴄᴛ ᴍᴇ ɪɴ ᴘᴍ ᴛᴏ ɢᴇᴛ ᴛʜᴇ ʟɪsᴛ ᴏғ {name}",
-                reply_markup=InlineKeyboardMarkup(
-                    [
-                        [
-                            InlineKeyboardButton(
-                                text="ʜᴇʟᴘ​",
-                                url="https://t.me/{BOT_USERNAME}?start=help"
-                                ),
-                            
-                        ]
-                    ]
-                ),
-            )
+            await message.reply_text(
+             text = Pᴍ ᴍᴇ ғᴏʀ ᴛʜɪs,reply_markup=keyboar)                                                                                                                                   
             return            
     else:
       await message.reply_photo(  
         photo=random.choice(HELP_IMG),
                 caption=f" ᴄᴏɴᴛᴀᴄᴛ ᴍᴇ ɪɴ ᴘᴍ ᴛᴏ ɢᴇᴛ ᴛʜᴇ ʟɪsᴛ ᴏғ ᴘᴏssɪʙʟᴇ ᴄᴏᴍᴍᴀɴᴅs..",
                 reply_markup=InlineKeyboardMarkup(
-                    [
-                        [
-                            InlineKeyboardButton(
-                                text="ʜᴇʟᴘ​",
-                                url=f"https://t.me/{BOT_USERNAME}?start=help")]]))
+                   [[InlineKeyboardButton(
+                        text="ʜᴇʟᴘ​",
+                        url=f"https://t.me/{BOT_USERNAME}?start=help")
+                     ]
+                     InlineKeyboardButton(
+                        text="ᴄʟɪᴄᴋ ʜᴇʀᴇ",
+                        callback_data="help_back")]))
+                     
             
                     
                         
