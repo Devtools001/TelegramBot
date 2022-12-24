@@ -60,13 +60,13 @@ async def Friday_Robot():
     header.add_column(LOG_MSG)
     LOG.print(header)
     await asyncio.sleep(2)       
-    LOG.print("Found {} Plugins".format(len(ALL_MODULES)) + "\n")
+    LOG.print("ғᴏᴜɴᴅ {} ᴍᴏᴅᴜʟᴇs".format(len(ALL_MODULES)) + "\n")
     for all_module in ALL_MODULES:    
         LOG.print(
                 f"✨ [bold cyan]sᴜᴄᴄᴇssғᴜʟʟʏ ɪᴍᴘᴏʀᴛᴇᴅ: [green]{all_module}.py"
             )
 
-    LOG.print(f"[bold red]BOT STARTED AS {BOT_NAME}!")   
+    LOG.print(f"[bold red] ʙᴏᴛ sᴛᴀʀᴛᴇᴅ ᴀs {BOT_NAME}!")   
     try:
         LOG.print("[yellow]Sending online status")              
         await pgram.send_message(-1001698076323, "Bot started!")
