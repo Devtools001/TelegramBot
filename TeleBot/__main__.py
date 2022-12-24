@@ -231,7 +231,7 @@ async def help_button(app,query):
 async def get_help(_, message):
     chat = message.chat
     args = message.text.split(None, 1)
-    if len(args) >= 2 and any(args[1].lower() == x for x in HELPABLE):
+    if len(args) > 2 and any(args[1].lower() == x for x in HELPABLE):
         module = args[1].lower()
         await message.reply_photo(
                 photo=random.choice(HELP_IMG),
@@ -267,7 +267,7 @@ async def get_help(_, message):
             ),
         )
         return
-    elif len(args) >= 2 and any(args[1].lower() == x for x in HELPABLE):
+    elif len(args) > 2 and any(args[1].lower() == x for x in HELPABLE):
         module = args[1].lower()
         text = (
             "Here is the available help for the *{}* module:\n".format(
