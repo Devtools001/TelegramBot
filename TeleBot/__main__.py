@@ -98,7 +98,7 @@ async def send_help(app,chat, text, keyboard=None):
     )
 
 
-@pgram.on_message(filters.command("start"))
+@pgram.on_message(filters.command(["start",f"start@{BOT_USERNAME}]))
 async def group_start(_, message):    
     uptime = get_readable_time((time.time() - StartTime))
     chat_id = message.chat.id  
@@ -138,19 +138,7 @@ async def group_start(_, message):
        parse_mode=ParseMode.MARKDOWN,                   
             )
        return            
-            
-#@pgram.on_message(filters.command("start") & filters.private)
-#async def start(_, message):
-#    uptime = get_readable_time((time.time() - StartTime))  
-#    first_name = message.from_user.first_name                        
-#    await pgram.send_photo(
-#    message.chat.id,    
-#    photo=random.choice(PM_PHOTOS),
-#    caption=PM_START_TEXT.format(first_name,BOT_NAME,uptime),
- #   reply_markup=InlineKeyboardMarkup(START_BUTTONS),
-#    parse_mode=ParseMode.MARKDOWN,                   
-#            )
- #   return 
+             
 @pgram.on_callback_query(filters.regex(r"help_(.*?)"))
 async def help_button(app,query):    
     mod_match = re.match(r"help_module\((.+?)\)", query.data)
