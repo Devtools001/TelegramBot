@@ -119,3 +119,7 @@ async def Friday_Robot():
 
     LOG.print(f"[bold red]BOT STARTED AS {BOT_NAME}!")
 
+if __name__ == "__main__" :
+    install()
+    loop.run_until_complete(Friday_Robot())
+
