@@ -255,7 +255,10 @@ async def get_help(_, message):
                         url=f"https://t.me/{BOT_USERNAME}?start=help")
                      ]]))
                      
-                     
+@pgram.on_message(filters.command("help") & filters.private)  
+async def private_help(_, message):
+    chat = message.chat
+    await get_help(app=pgram,chat=chat.id,text=HELP_STRINGS)                       
             
                     
                         
