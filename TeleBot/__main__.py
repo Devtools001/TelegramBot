@@ -119,6 +119,32 @@ async def Friday_Robot():
 
     LOG.print(f"[bold red]BOT STARTED AS {BOT_NAME}!")
 
+    try:
+
+        LOG.print("[yellow]Sending online status")              
+
+        await app.send_message(-1001698076323, "Bot started!")
+
+    except Exception:
+
+        pass
+
+    await idle()
+
+    await aiohttpsession.close()   
+
+    LOG.print("[yello] stopping client") 
+
+    await pgram.stop()
+
+    LOG.print("[yellow]Cancelling asyncio tasks")
+
+    for task in asyncio.all_tasks():
+
+        task.cancel()
+
+    LOG.print("[yello]Dead!")
+
 if __name__ == "__main__" :
     install()
     loop.run_until_complete(Friday_Robot())
