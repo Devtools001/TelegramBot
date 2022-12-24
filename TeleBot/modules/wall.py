@@ -34,8 +34,8 @@ async def wallpaper (_,msg):
         await msg.reply_photo(preview, caption="⚡ ᴘʀɪᴠɪᴇᴡ")
         await pgram.send_document(main)
 
-    except Exception:
-        await msg.reply_text("refine sone your search")
+  #  except Exception:
+   #     await msg.reply_text("refine sone your search")
     
     
     
