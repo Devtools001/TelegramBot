@@ -1,5 +1,5 @@
 from math import ceil
-
+from typing import Dict, List
 from pyrogram.types import InlineKeyboardButton
 
 from TeleBot import MOD_LOAD, MOD_NOLOAD
