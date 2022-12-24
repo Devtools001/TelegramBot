@@ -242,7 +242,7 @@ async def donate(_, message):
         try:
             await pgram.send_message("[ʜᴇʀᴇ ɪs ᴛʜᴇ ᴅᴏɴᴀᴛɪᴏɴ ʟɪɴᴋ]({DONATION_LINK})")
         except Exception:
-            pass
+            print(Exception)
       
 
     
