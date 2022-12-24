@@ -266,7 +266,7 @@ async def get_help(_, message):
                 ]
             ),
         )
-       return
+        return
     elif len(args) >= 2 and any(args[1].lower() == x for x in HELPABLE):
         module = args[1].lower()
         text = (
