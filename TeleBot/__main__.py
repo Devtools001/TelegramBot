@@ -11,7 +11,7 @@ from pyrogram.types import (
     InlineKeyboardMarkup,
     CallbackQuery)
 
-from pyrogram.errors import BadRequest 
+from pyrogram.errors import BadRequest,Unauthorized 
 from pyrogram import filters,idle
 from TeleBot.utilities.misc import paginate_modules
 from TeleBot import (
@@ -242,8 +242,8 @@ async def donate(_, message):
             await message.reply_text("I'ᴠᴇ PM'ᴇᴅ ʏᴏᴜ ᴀʙᴏᴜᴛ ᴅᴏɴᴀᴛɪɴɢ ᴛᴏ ᴍʏ ᴄʀᴇᴀᴛᴏʀ!")
             try:
                 await pgram.send_message(message.from_user.id,text=f"[ʜᴇʀᴇ ɪs ᴛʜᴇ ᴅᴏɴᴀᴛɪᴏɴ ʟɪɴᴋ]({DONATION_LINK})")
-            except Exception as e:
-                print(e)
+            except Unauthorized:
+                await message.reply_text("Cᴏɴᴛᴀᴄᴛ ᴍᴇ ɪɴ PM ғɪʀsᴛ ᴛᴏ ɢᴇᴛ ᴅᴏɴᴀᴛɪᴏɴ ɪɴғᴏʀᴍᴀᴛɪᴏɴ")
                     
  
 
