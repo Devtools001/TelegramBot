@@ -253,7 +253,7 @@ async def get_help(_, message):
                    [[InlineKeyboardButton(
                         text="ʜᴇʟᴘ​",
                         url=f"https://t.me/{BOT_USERNAME}?start=help")
-                     ]
+                     ],
                      InlineKeyboardButton(
                         text="ᴄʟɪᴄᴋ ʜᴇʀᴇ",
                         callback_data="help_back")]))
