@@ -11,6 +11,7 @@ STATS_MSG="""
 ʜɪɪ {},
 
 ๏ ʜᴇʀᴇ ɪs ᴍʏ sᴛᴀᴛs:
+» ʙᴏᴛ : {} MB
 » ᴜᴘᴛɪᴍᴇ : {}
 » ʀᴀᴍ : {}
 » ᴅɪsᴋ : {}
@@ -32,6 +33,7 @@ async def Friday(client, callback_query : CallbackQuery):
     uptime= get_readable_time((time.time() - StartTime))   
     rem = psutil.virtual_memory().percent
     disk = psutil.disk_usage("/").percent
+    mb= round(process.memory_info()[0] / 1024 ** 2) MB
     await client.answer_callback_query(
     callback_query.id,
     text=STATS_MSG.format(first_name, uptime,rem,disk,pyro),
