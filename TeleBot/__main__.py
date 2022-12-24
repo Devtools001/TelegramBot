@@ -240,10 +240,10 @@ async def donate(_, message):
     else:
         if message.from_user.id != OWNER_ID:
             await message.reply_text("I'ᴠᴇ PM'ᴇᴅ ʏᴏᴜ ᴀʙᴏᴜᴛ ᴅᴏɴᴀᴛɪɴɢ ᴛᴏ ᴍʏ ᴄʀᴇᴀᴛᴏʀ!")
-                try:
-                    await pgram.send_message(message.from_user.id,text=f"[ʜᴇʀᴇ ɪs ᴛʜᴇ ᴅᴏɴᴀᴛɪᴏɴ ʟɪɴᴋ]({DONATION_LINK})")
-                except Exception as e:
-                    print(e)
+            try:
+                await pgram.send_message(message.from_user.id,text=f"[ʜᴇʀᴇ ɪs ᴛʜᴇ ᴅᴏɴᴀᴛɪᴏɴ ʟɪɴᴋ]({DONATION_LINK})")
+            except Exception as e:
+                print(e)
                     
  
 
