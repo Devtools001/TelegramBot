@@ -110,8 +110,8 @@ async def group_start(_, message):
 
             if args == "help":
                 text, keyboard = await send_help(pgram,chat_id,text)
-                await message.reply(
-                    
+                await pgram.send_message(
+                    chat_id
                     text,
                     reply_markup=keyboard,
                 )
