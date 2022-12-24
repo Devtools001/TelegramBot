@@ -29,6 +29,10 @@ PM_START_TEXT = """
 ๏ **ᴅɪᴅɴ'ᴛ sʟᴇᴇᴘᴛ sɪɴᴄᴇ** {}
 """
 
+HELP_STRINGS = """
+ʜᴇʀᴇ ʏᴏᴜ ᴄᴀɴ ғɪɴᴅ ᴀʟʟ ᴄᴏᴍᴍᴀɴᴅs.
+"""
+
 START_BUTTONS = [
     [
         InlineKeyboardButton(
