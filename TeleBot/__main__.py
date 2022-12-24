@@ -55,6 +55,7 @@ async def Friday_Robot():
 
     
     os.system("clear")
+    await asyncio.sleep(2)
     header = Table(show_header=True, header_style="bold yellow")
     header.add_column(LOG_MSG)
     LOG.print(header)
