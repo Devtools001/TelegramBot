@@ -248,7 +248,7 @@ async def get_help(_, message):
                     ]
                 ),
             )
-            return
+        return
         await message.reply_photo(
             photo=random.choice(HELP_IMG),
             caption="» ᴄᴏɴᴛᴀᴄᴛ ᴍᴇ ɪɴ ᴘᴍ ᴛᴏ ɢᴇᴛ ᴛʜᴇ ʟɪsᴛ ᴏғ ᴘᴏssɪʙʟᴇ ᴄᴏᴍᴍᴀɴᴅs..",
