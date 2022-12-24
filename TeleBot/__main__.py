@@ -107,22 +107,22 @@ async def group_start(_, message):
         if len(message.text.split()) > 1:
             args = message.text.split(None,1)[1].lower()
             print(args)
-            if args == "help":
-                await send_help(app=pgram,chat=message.chat.id,text=HELP_STRINGS) 
-                return
 
-            elif args.startswith("ghelp_"):
-                mod = args.lower().split("_", 1)[1]
-                if not HELPABLE.get(mod, False):
-                    return
-                await send_help(
-                    pgram,
-                    chat_id,
-                    HELPABLE[mod].__help__,
-                    InlineKeyboardMarkup(
-                        [[InlineKeyboardButton(text="ʙᴀᴄᴋ", callback_data="help_back")]]
-                    ),
-                )                
+            if args == "help":
+                text, keyb = await send_help(pgram,chat_id,text)
+                await message.reply(
+                    
+                    text,
+                    reply_markup=keyb,
+                )
+
+            elif "_" in args:
+                module = args.split("_", 1)[1]
+                text = (
+                        f"Here is the help for **{HELPABLE[module].__mod_name__}**:\n"
+                        + HELPABLE[module].__help__
+                )
+                await message.reply(text, disable_web_page_preview=True)                
         else:
             await message.reply_photo(
                 START_IMG,
