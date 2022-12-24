@@ -13,6 +13,12 @@ PM_PHOTOS = (
 "https://telegra.ph/file/7517a65cab490e36d681c.jpg"
          )
 
+HELP_IMG=(
+"https://telegra.ph/file/74f547d4dd635432ea1b0.jpg",
+"https://telegra.ph/file/b846cc2a4326a9dab5a2d.jpg",
+"https://telegra.ph/file/1c58b1a72044ba6b6e644.jpg"
+   )
+
 PM_START_TEXT = """
 🥀 ʜᴇʏ **{}** ,
         
