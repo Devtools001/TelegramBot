@@ -248,8 +248,8 @@ async def get_help(_, message):
     else:
       await message.reply_photo(  
         photo=random.choice(HELP_IMG),
-                caption=f" ᴄᴏɴᴛᴀᴄᴛ ᴍᴇ ɪɴ ᴘᴍ ᴛᴏ ɢᴇᴛ ᴛʜᴇ ʟɪsᴛ ᴏғ ᴘᴏssɪʙʟᴇ ᴄᴏᴍᴍᴀɴᴅs..",
-                reply_markup=InlineKeyboardMarkup(
+       caption=f" ᴄᴏɴᴛᴀᴄᴛ ᴍᴇ ɪɴ ᴘᴍ ᴛᴏ ɢᴇᴛ ᴛʜᴇ ʟɪsᴛ ᴏғ ᴘᴏssɪʙʟᴇ ᴄᴏᴍᴍᴀɴᴅs..",
+       reply_markup=InlineKeyboardMarkup(
                    [[InlineKeyboardButton(
                         text="ʜᴇʟᴘ​",
                         url=f"https://t.me/{BOT_USERNAME}?start=help")
