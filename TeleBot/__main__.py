@@ -29,6 +29,8 @@ from TeleBot import (
 
 )
 
+from pyrogram.enums import ParseMode 
+
 loop = asyncio.get_event_loop() 
 
 
@@ -119,6 +121,50 @@ async def Friday_Robot():
     for task in asyncio.all_tasks():
         task.cancel()
     LOG.print("[yello]Dead!")
+
+async def send_help(app,chat, text, keyboard=None):
+    if not keyboard:
+        keyboard = InlineKeyboardMarkup(paginate_modules(0, HELPABLE, "help"))
+    await app.send_photo(
+        chat_id=chat,
+        photo=random.choice(PM_PHOTOS),
+        caption=text,
+        parse_mode=ParseMode.MARKDOWN,      
+        reply_markup=keyboard,
+    )
+
+@pgram.on_message(filters.command("start") & filters.group)
+async def group_start(_, message):
+    chat_id = message.chat.id
+    if len(message.text.split()) >= 1:
+        args = message.text.split(None,1)[1]
+        if args[0].lower() == "help":
+            await send_help(app=pgram,chat = chat_id,text=HELP_STRINGS)
+
+        elif args[0].lower().startswith("ghelp_"):
+            mod = args[0].lower().split("_", 1)[1]
+            if not HELPABLE.get(mod, False):
+                return
+            await send_help(
+                app = pgram
+                chat=chat_id,
+                HELPABLE[mod].__help__,
+                InlineKeyboardMarkup(
+                    [[InlineKeyboardButton(text="ʙᴀᴄᴋ", callback_data="help_back")]]
+                ),
+            )
+                
+    else:
+        await message.reply_photo(
+            START_IMG,
+            caption="ɪ ᴀᴍ ᴀʟɪᴠᴇ ʙᴀʙʏ !\n<b>ɪ ᴅɪᴅɴ'ᴛ sʟᴇᴘᴛ sɪɴᴄᴇ:</b> <code>{}</code>".format(
+                uptime
+            ),
+            parse_mode=ParseMode.HTML,
+        )
+        return                
+           
+
 
 if __name__ == "__main__" :
     install()
