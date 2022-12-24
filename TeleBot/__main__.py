@@ -1,20 +1,18 @@
 import asyncio
 import re
 import time
+import uvloop
 import random 
 import importlib
-#from sys import argv
-import uvloop
 from contextlib import closing, suppress
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery 
+from pyrogram.types import (
+    InlineKeyboardButton, 
+    InlineKeyboardMarkup,
+    CallbackQuery)
 
 from pyrogram.errors import BadRequest 
-from pyrogram.types import CallbackQuery
 from pyrogram import filters,idle
-
-from TeleBot.modules import ALL_MODULES
 from TeleBot.utilities.misc import paginate_modules
-from TeleBot.resources.Data import *
 from TeleBot import (
     BOT_NAME,
     BOT_USERNAME,        
@@ -23,17 +21,14 @@ from TeleBot import (
     LOG,
     StartTime,
     get_readable_time,
-    StartTime
-)
+    StartTime)
 
 from pyrogram.enums import ParseMode 
-
+from TeleBot.modules import ALL_MODULES
 
 loop = asyncio.get_event_loop() 
 
-HELP_STRINGS = """
-ʜᴇʀᴇ ʏᴏᴜ ᴄᴀɴ ғɪɴᴅ ᴀʟʟ ᴄᴏᴍᴍᴀɴᴅs.
-"""
+
 
 IMPORTED = {}
 MIGRATEABLE = []
@@ -221,7 +216,7 @@ async def help_button(app,query):
 
         return await client.answer_callback_query(query.id)
 
-    except Exception:
+    except BadRequest:
         pass
 
 @pgram.on_message(filters.command("help") & filters.group)
