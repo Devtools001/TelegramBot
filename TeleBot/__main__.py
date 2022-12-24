@@ -198,7 +198,7 @@ async def help_button(app,query):
 
 @pgram.on_message(filters.command("help") & filters.group)
 async def get_help(_, message):
-    if message.chat.type != ChatType.PRIVATE :     
+    if message.chat.type != ChatType.PRIVATE:     
         if len(message.command) >= 2:
             mod_name = (message.text.split(None, 1)[1]).replace(" ", "_").lower()
             if str(mod_name) in HELPABLE:
@@ -225,7 +225,8 @@ async def get_help(_, message):
                             url=f"https://t.me/{BOT_USERNAME}?start=help")
                          ]]))   
     else:
-        await send_help(app=pgram,chat=message.chat.id,text=HELP_STRINGS)                       
+        await send_help(app=pgram,chat=message.chat.id,text=HELP_STRINGS) 
+        return                      
                 
                      
 #@pgram.on_message(filters.command("help") & filters.private)  
