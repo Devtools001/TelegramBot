@@ -242,7 +242,8 @@ async def donate(_, message):
             await message.reply_text("I'ᴠᴇ PM'ᴇᴅ ʏᴏᴜ ᴀʙᴏᴜᴛ ᴅᴏɴᴀᴛɪɴɢ ᴛᴏ ᴍʏ ᴄʀᴇᴀᴛᴏʀ!")
             try:
                 await pgram.send_message(message.from_user.id,text=f"[ʜᴇʀᴇ ɪs ᴛʜᴇ ᴅᴏɴᴀᴛɪᴏɴ ʟɪɴᴋ]({DONATION_LINK})")
-            except Unauthorized:
+            except Exception as a:
+                print(a)
                 await message.reply_text("Cᴏɴᴛᴀᴄᴛ ᴍᴇ ɪɴ PM ғɪʀsᴛ ᴛᴏ ɢᴇᴛ ᴅᴏɴᴀᴛɪᴏɴ ɪɴғᴏʀᴍᴀᴛɪᴏɴ")
                     
  
