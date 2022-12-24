@@ -31,7 +31,7 @@ START_BUTTONS = [
         ),
     ],    
     [
-        InlineKeyboardButton(text="⚡ ʜᴇʟᴘ ⚡", callback_data="bot_commands"),
+        InlineKeyboardButton(text="⚡ ʜᴇʟᴘ ⚡", callback_data="help_back"),
         InlineKeyboardButton(text="♻️ sᴛᴀᴛs ♻️", callback_data="Friday_stats")
     ],    
 ]
