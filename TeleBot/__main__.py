@@ -102,7 +102,7 @@ async def send_help(app,chat, text, keyboard=None):
 async def group_start(_, message):    
     uptime = get_readable_time((time.time() - StartTime))
     chat_id = message.chat.id  
-    if message.chat.type != ChatType.PRIVATE  
+    if message.chat.type != ChatType.PRIVATE : 
         if len(message.text.split()) > 1:
             args = message.text.split(None,1)[1].lower()
             if args == "help":
