@@ -208,7 +208,7 @@ async def help_button(app,query):
             query.message.edit_caption(
                 HELP_STRINGS,
                 parse_mode=ParseMode.MARKDOWN,
-                reply_markup=InlineKeyboardMarkup(paginate_modules(curr_page - 1, HELPABLE, "help")
+                reply_markup=InlineKeyboardMarkup(paginate_modules(curr_page - 1, HELPABLE, "help"))
                 
                    
         elif next_match:
