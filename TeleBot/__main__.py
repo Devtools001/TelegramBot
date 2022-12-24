@@ -258,7 +258,7 @@ async def get_help(_, message):
 @pgram.on_message(filters.command("help") & filters.private)  
 async def private_help(_, message):
     chat = message.chat
-    await get_help(app=pgram,chat=chat.id,text=HELP_STRINGS)                       
+    await send_help(app=pgram,chat=chat.id,text=HELP_STRINGS)                       
             
                     
                         
