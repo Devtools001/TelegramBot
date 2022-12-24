@@ -28,6 +28,7 @@ async def wallpaper (_,msg):
     red=re["data"]
     wall = randint(0, len(red) -1)
     print(red[wall]["path"])
+    print(red[wall]["thumbs"]["large"]
 
   #  except Exception:
   #      await msg.reply_text("refi sone your search")
