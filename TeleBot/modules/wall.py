@@ -28,7 +28,7 @@ async def wallpaper (_,msg):
         wall_index = randint(0, len(walls) -1)
         wallpaper = walls[wall_index]
         pic = wallpaper.get("path")
-        preview = wallpaper.get("thumbs")
+        preview = wallpaper.get("thumbs")("large")
         print(preview)
     except Exception:
         await msg.reply_text("refine your search")
