@@ -279,7 +279,7 @@ async def get_help(_, message):
                     ]
                 ),
             )
-        return                        
+                                
                     
 
 if __name__ == "__main__" :
