@@ -15,8 +15,8 @@ class Config (object):
     OWNER_ID = 5459540851
     SUPPORT_CHAT = "Testing_support_group"
 
-  #  BOT_NAME = "• ғ ʀ ɪ ᴅ ᴀ ʏ •"
-  #  BOT_USERNAME = "Friday_Ro_Bot"
+    BOT_NAME = "• ғ ʀ ɪ ᴅ ᴀ ʏ •"
+    BOT_USERNAME = "Friday_Ro_Bot"
     DONATION_LINK = "https://t.me/NoobStark_21"
     
 
