@@ -30,20 +30,17 @@ from TeleBot.resources.Data import *
 loop = asyncio.get_event_loop() 
 
 IMPORTED = {}
-MIGRATEABLE = []
+#MIGRATEABLE = []
 HELPABLE = {}
-STATS = []
-USER_INFO = []
-DATA_IMPORT = []
-DATA_EXPORT = []
-CHAT_SETTINGS = {}
-USER_SETTINGS = {}
+#STATS = []
+#USER_INFO = []
+#DATA_IMPORT = []
+#DATA_EXPORT = []
+#CHAT_SETTINGS = {}
+#USER_SETTINGS = {}
 
 async def Friday_Robot():
-    global IMPORTED,MIGRATEABLE,HELPABLE
-    global STATS, USER_INFO,DATA_IMPORT,DATA_EXPORT
-    global CHAT_SETTINGS,USER_SETTINGS
-
+    global IMPORTED,HELPABLE
     for module_name in ALL_MODULES:
         imported_module = importlib.import_module("TeleBot.modules." +
                                               module_name)
@@ -213,7 +210,7 @@ async def help_button(app,query):
                 ),
             )            
 
-        return await client.answer_callback_query(query.id)
+        return await app.answer_callback_query(query.id)
 
     except BadRequest:
         pass
