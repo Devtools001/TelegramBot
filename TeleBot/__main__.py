@@ -25,11 +25,12 @@ from TeleBot import (
     pgram,
     LOG,
     StartTime,
-    get_readable_time
-
+    get_readable_time,
+    StartTime
 )
 from pyrogram.enums import ParseMode 
 
+uptime = get_readable_time((time.time() - StartTime))    
 loop = asyncio.get_event_loop() 
 
 HELP_STRINGS = """
@@ -137,14 +138,14 @@ async def send_help(app,chat, text, keyboard=None):
 
 @pgram.on_message(filters.command("start") & filters.group)
 async def group_start(_, message):
-    chat_id = message.chat.id
+    chat_id = message.chat.id    
     if len(message.text.split()) >= 1:
-        args = message.text.split(None,1)
-        if args[0].lower() == "help":
-            await send_help(app=pgram,chat = chat_id,text=HELP_STRINGS)
+        args = message.text.split(None,1)[1].lower()
+        if args == "help":
+            await send_help(app=pgram,chat = chat_id,text = HELP_STRINGS)
 
-        elif args[0].lower().startswith("ghelp_"):
-            mod = args[0].lower().split("_", 1)[1]
+        elif args.startswith("ghelp_"):
+            mod = args.lower().split("_", 1)[1]
             if not HELPABLE.get(mod, False):
                 return
             await send_help(
@@ -154,8 +155,7 @@ async def group_start(_, message):
                 InlineKeyboardMarkup(
                     [[InlineKeyboardButton(text="ʙᴀᴄᴋ", callback_data="help_back")]]
                 ),
-            )
-                
+            )                
     else:
         await message.reply_photo(
             START_IMG,
