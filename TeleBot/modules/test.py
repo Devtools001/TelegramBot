@@ -1,5 +1,6 @@
 from TeleBot import pgram as app
 from pyrogram import filters
+from pyrogram.enums import ChatType
 
 from pyrogram.handlers import MessageHandler
 
