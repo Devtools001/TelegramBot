@@ -16,7 +16,8 @@ from pyrogram import filters,idle
 from TeleBot.utilities.misc import paginate_modules
 from TeleBot import (
     BOT_NAME,
-    BOT_USERNAME,        
+    BOT_USERNAME,  
+    SUPPORT_CHAT,      
     aiohttpsession,
     pgram,
     LOG,
