@@ -232,21 +232,20 @@ async def get_help(_, message):
                      
 @pgram.on_message(filters.command("donate"))  
 async def donate(_, message):
-    if message.from_user.id == OWNER_ID:
-        await message.reply_text("ɪ ᴀᴍ ғʀᴇᴇ ᴛᴏ ᴜsᴇ ┌⁠(⁠・⁠。⁠・⁠)⁠┘⁠♪")
-        if message.chat.type == ChatType.PRIVATE:         
-            await message.reply_text(f"Yᴏᴜ ᴄᴀɴ ᴀʟsᴏ ᴅᴏɴᴀᴛᴇ ᴛᴏ ᴛʜᴇ ᴘᴇʀsᴏɴ ᴄᴜʀʀᴇɴᴛʟʏ ʀᴜɴɴɪɴɢ ᴍᴇ [ʜᴇʀᴇ]({DONATION_LINK})")
+    if message.chat.type == ChatType.PRIVATE:
+        if message.from_user.id == OWNER_ID:
+        await message.reply_text("ɪ ᴀᴍ ғʀᴇᴇ ᴛᴏ ᴜsᴇ ┌⁠(⁠・⁠。⁠・⁠)⁠┘⁠♪") 
         else:
-            await message.reply_text("I'ᴠᴇ PM'ᴇᴅ ʏᴏᴜ ᴀʙᴏᴜᴛ ᴅᴏɴᴀᴛɪɴɢ ᴛᴏ ᴍʏ ᴄʀᴇᴀᴛᴏʀ!")
-            try:
-                await pgram.send_message(message.from_user.id,text="[ʜᴇʀᴇ ɪs ᴛʜᴇ ᴅᴏɴᴀᴛɪᴏɴ ʟɪɴᴋ]({DONATION_LINK})")
-            except Exception as e:
-                print(e)
+            await message.reply_text(f"Yᴏᴜ ᴄᴀɴ ᴀʟsᴏ ᴅᴏɴᴀᴛᴇ ᴛᴏ ᴛʜᴇ ᴘᴇʀsᴏɴ ᴄᴜʀʀᴇɴᴛʟʏ ʀᴜɴɴɪɴɢ ᴍᴇ [ʜᴇʀᴇ]({DONATION_LINK})")                                                
     else:
-        pass
+        if message.from_user.id != OWNER_ID:
+            await message.reply_text("I'ᴠᴇ PM'ᴇᴅ ʏᴏᴜ ᴀʙᴏᴜᴛ ᴅᴏɴᴀᴛɪɴɢ ᴛᴏ ᴍʏ ᴄʀᴇᴀᴛᴏʀ!")
+                try:
+                    await pgram.send_message(message.from_user.id,text=f"[ʜᴇʀᴇ ɪs ᴛʜᴇ ᴅᴏɴᴀᴛɪᴏɴ ʟɪɴᴋ]({DONATION_LINK})")
+                except Exception as e:
+                    print(e)
                     
-            
-      
+ 
 
     
                     
