@@ -9,7 +9,7 @@ from pyrogram import Client,filters
 from config import Friday as Config
 from rich.table import Table
 from rich.console import Console
-from telethon import TelegramClient 
+#from telethon import TelegramClient 
 from aiohttp import ClientSession
 from redis import StrictRedis
 
