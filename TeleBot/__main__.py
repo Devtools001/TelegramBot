@@ -121,6 +121,7 @@ async def send_help(app,chat, text, keyboard=None):
 
 @pgram.on_message(filters.command("start") & filters.group)
 async def group_start(_, message):    
+    uptime = get_readable_time((time.time() - StartTime))
     chat_id = message.chat.id    
     if len(message.text.split()) > 1:
         args = message.text.split(None,1)[1].lower()
