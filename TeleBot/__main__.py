@@ -3,8 +3,7 @@ import re
 import time
 import random 
 import importlib
-#from typing import Optional
-from sys import argv
+#from sys import argv
 import uvloop
 from contextlib import closing, suppress
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery 
