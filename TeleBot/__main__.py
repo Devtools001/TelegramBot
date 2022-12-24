@@ -64,26 +64,26 @@ async def Friday_Robot():
             HELPABLE[imported_module.__mod_name__.lower()] = imported_module
 
     # Chats to migrate on chat_migrated events
-        if hasattr(imported_module, "__migrate__"):
-            MIGRATEABLE.append(imported_module)
+      #  if hasattr(imported_module, "__migrate__"):
+     #       MIGRATEABLE.append(imported_module)
 
-        if hasattr(imported_module, "__stats__"):
-            STATS.append(imported_module)
+      #  if hasattr(imported_module, "__stats__"):
+        #    STATS.append(imported_module)
 
-        if hasattr(imported_module, "__user_info__"):
-            USER_INFO.append(imported_module)
+      #  if hasattr(imported_module, "__user_info__"):
+        #    USER_INFO.append(imported_module)
 
-        if hasattr(imported_module, "__import_data__"):
-            DATA_IMPORT.append(imported_module)
+       # if hasattr(imported_module, "__import_data__"):
+         #   DATA_IMPORT.append(imported_module)
 
-        if hasattr(imported_module, "__export_data__"):
-            DATA_EXPORT.append(imported_module)
+      #  if hasattr(imported_module, "__export_data__"):
+        #    DATA_EXPORT.append(imported_module)
 
-        if hasattr(imported_module, "__chat_settings__"):
-            CHAT_SETTINGS[imported_module.__mod_name__.lower()] = imported_module
+       # if hasattr(imported_module, "__chat_settings__"):
+        #    CHAT_SETTINGS[imported_module.__mod_name__.lower()] = imported_module
 
-        if hasattr(imported_module, "__user_settings__"):
-            USER_SETTINGS[imported_module.__mod_name__.lower()] = imported_module
+      #  if hasattr(imported_module, "__user_settings__"):
+         #   USER_SETTINGS[imported_module.__mod_name__.lower()] = imported_module
     
     
     LOG.print(f"[bold red]BOT STARTED AS {BOT_NAME}!")
@@ -118,9 +118,10 @@ async def send_help(app,chat, text, keyboard=None):
         reply_markup=keyboard,
     )
 
-uptime = get_readable_time((time.time() - StartTime))  
+
 @pgram.on_message(filters.command("start") & filters.group)
 async def group_start(_, message): 
+    uptime = get_readable_time((time.time() - StartTime))  
     chat_id = message.chat.id    
     if len(message.text.split()) > 1:
         args = message.text.split(None,1)[1].lower()
