@@ -65,7 +65,7 @@ async def Friday_Robot():
         LOG.print(
                 f"✨ [bold cyan]sᴜᴄᴄᴇssғᴜʟʟʏ ɪᴍᴘᴏʀᴛᴇᴅ: [green]{all_module}.py"
             )
-
+    print()
     LOG.print(f"[bold red] ʙᴏᴛ sᴛᴀʀᴛᴇᴅ ᴀs {BOT_NAME}!")   
     try:
         LOG.print("[yellow]Sending online status")              
