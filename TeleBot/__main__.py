@@ -28,8 +28,6 @@ from TeleBot.modules import ALL_MODULES
 
 loop = asyncio.get_event_loop() 
 
-
-
 IMPORTED = {}
 MIGRATEABLE = []
 HELPABLE = {}
@@ -119,9 +117,9 @@ async def send_help(app,chat, text, keyboard=None):
         reply_markup=keyboard,
     )
 
+uptime = get_readable_time((time.time() - StartTime))  
 @pgram.on_message(filters.command("start") & filters.group)
-async def group_start(_, message):
-    uptime = get_readable_time((time.time() - StartTime))  
+async def group_start(_, message): 
     chat_id = message.chat.id    
     if len(message.text.split()) > 1:
         args = message.text.split(None,1)[1].lower()
@@ -148,10 +146,9 @@ async def group_start(_, message):
             parse_mode=ParseMode.HTML,
         )
         return                
-           
+            
 @pgram.on_message(filters.command("start") & filters.private)
 async def start(_, message):
-    uptime = get_readable_time((time.time() - StartTime))  
     first_name = message.from_user.first_name                        
     await pgram.send_photo(
     message.chat.id,    
@@ -161,7 +158,6 @@ async def start(_, message):
     parse_mode=ParseMode.MARKDOWN,                   
             )
     return 
-
 @pgram.on_callback_query(filters.regex(r"help_(.*?)"))
 async def help_button(app,query):    
     mod_match = re.match(r"help_module\((.+?)\)", query.data)
