@@ -11,7 +11,7 @@ async def wallpaper (_,msg):
         stark=re["data"]
         wall = randint(0, len(stark) -1)
         main = stark[wall]["path"]
-        preview = stark[wall]["thumbs"]["large"]
+        preview = stark[wall]["thumbs"]["original"]
         url = stark[wall]["url"]
         category = stark[wall]["category"]
         await msg.reply_photo(preview, caption="⚡ ᴘʀɪᴠɪᴇᴡ")
