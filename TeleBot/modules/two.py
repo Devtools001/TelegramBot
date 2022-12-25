@@ -14,8 +14,10 @@ owner = 5459540851
 @app.on_message(filters.user(owner) & filters.command("eval"))
 async def eval(client, message):
     status_message = await message.reply_text("Processing ...")
-    cmd = message.text.split(" ", maxsplit=1)[1]
-
+    try:
+        cmd = message.text.split(" ", maxsplit=1)[1]
+    except IndexError:
+        return await message.delete()
     reply_to_ = message
     if message.reply_to_message:
         reply_to_ = message.reply_to_message
