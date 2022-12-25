@@ -54,9 +54,9 @@ async def eval(client, message):
         evaluation = "Success"
     end = datetime.now()
     ping = (end-start).microseconds / 1000
-    final_output = "<b>🎣 Input</b>: "
+    final_output = "<b>📎 Input</b>: "
     final_output += f"<code>{cmd}</code>\n\n"
-    final_output += "<b>📑 Output</b>:\n"
+    final_output += "<b>📒 Output</b>:\n"
     final_output += f"<code>{evaluation.strip()}</code> \n\n"
     final_output += f"<b>✨ Taken Time</b>: {ping}<b>ms</b>"
     if len(final_output) > 4096:
