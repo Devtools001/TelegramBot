@@ -10,6 +10,7 @@ import subprocess
 from datetime import datetime
 
 DEV_USERS = [5459540851]
+
 async def aexec(code, client, message):
     exec(
         "async def __aexec(client, message): "
@@ -19,7 +20,7 @@ async def aexec(code, client, message):
 
 @app.on_message(filters.command(["run","eval", "e"]))
 async def eval(client, message):
-    if not message.from_user.id in DEV_USERS:
+    if not message.from_user.id in [5459540851]:
          return await message.reply_text("`You Don't Have Enough Rights To Run This!`")
     if len(message.text.split()) <2:
           return await message.reply_text("`Input Not Found!`")
