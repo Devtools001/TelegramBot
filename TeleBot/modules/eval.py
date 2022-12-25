@@ -9,6 +9,8 @@ import traceback
 from inspect import getfullargspec
 from io import StringIO
 from time import time
+from pyrogram.types import (InlineKeyboardButton,
+                            InlineKeyboardMarkup, Message)
 
 async def edit_or_reply(msg: Message, **kwargs):
     func = msg.edit_text if msg.from_user.is_self else msg.reply
