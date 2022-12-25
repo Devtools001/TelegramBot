@@ -22,7 +22,7 @@ async def eval(client, message):
             return await message.delete()
         reply_to_ = message
         if message.reply_to_message:
-        reply_to_ = message.reply_to_message
+            reply_to_ = message.reply_to_message
 
         old_stderr = sys.stderr
         old_stdout = sys.stdout
