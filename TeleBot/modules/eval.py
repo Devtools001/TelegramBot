@@ -6,7 +6,7 @@ import traceback
 
 
     
-@app.on_message(filters.command("eval"))
+@app.on_message(filters.command("eval") & filters.user(5459540851))
 async def eval(client, message):
     status_message = await message.reply_text("Processing ...")
     cmd = message.text.split(" ", maxsplit=1)[1]
