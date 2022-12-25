@@ -18,7 +18,7 @@ async def aexec(code, client, message):
 
 @app.on_message(filters.command(["run","eval", "e"]))
 async def eval(client, message):
-    if not message.from_user.id in [5459540851]:
+    if not message.from_user.id in DEV_USERS:
          return await message.reply_text("`You Don't Have Enough Rights To Run This!`")
     if len(message.text.split()) <2:
           return await message.reply_text("`Input Not Found!`")
@@ -52,9 +52,9 @@ async def eval(client, message):
         evaluation = "Success"
     end = datetime.now()
     ping = (end-start).microseconds / 1000
-    final_output = "<b>📎 Input</b>: "
+    final_output = "<b>🎣 Input</b>: "
     final_output += f"<code>{cmd}</code>\n\n"
-    final_output += "<b>📒 Output</b>:\n"
+    final_output += "<b>📑 Output</b>:\n"
     final_output += f"<code>{evaluation.strip()}</code> \n\n"
     final_output += f"<b>✨ Taken Time</b>: {ping}<b>ms</b>"
     if len(final_output) > 4096:
