@@ -13,14 +13,13 @@ from rich.console import Console
 from aiohttp import ClientSession
 from redis import StrictRedis
 
-#import logging
 logging.basicConfig(
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
     handlers=[logging.FileHandler("log.txt"), logging.StreamHandler()],
     level=logging.INFO,
 )
 
-LOGGER = logging.getLogger(__name__)
+LOGGER = logging.getLogger("FRIDAY")
 
 LOG = Console()
 StartTime = time.time()
