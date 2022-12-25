@@ -1,3 +1,13 @@
+import io
+from re import sub
+import sys
+import traceback
+from TeleBot import pgram as app
+from pyrogram import filters
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
+from pyrogram.errors import RPCError
+import subprocess
+
 async def aexec(code, client, message):
     exec(
         "async def __aexec(client, message): "
@@ -5,7 +15,7 @@ async def aexec(code, client, message):
     )
     return await locals()["__aexec"](client, message)
 
-@pgram.on_message(filters.command(["run","eval", "e"]))
+@app.on_message(filters.command(["run","eval", "e"]))
 async def eval(client, message):
     if not message.from_user.id in [5459540851]:
          return await message.reply_text("`You Don't Have Enough Rights To Run This!`")
