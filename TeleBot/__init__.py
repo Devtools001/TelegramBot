@@ -13,6 +13,8 @@ from rich.console import Console
 from aiohttp import ClientSession
 from redis import StrictRedis
 
+#import logging
+logging.basicConfig(level=logging.INFO)
 
 LOG = Console()
 StartTime = time.time()
