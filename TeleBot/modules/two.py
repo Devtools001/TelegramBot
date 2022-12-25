@@ -15,7 +15,7 @@ async def eval(client, message):
     if message.from_user.id not in DEV_USERS:
         await message.reply_text("you r not dev of the bot")
     else:
-            status_message = await message.reply_text("Processing ...")
+        status_message = await message.reply_text("Processing ...")
         try:
             cmd = message.text.split(" ", maxsplit=1)[1]
         except IndexError:
