@@ -7,6 +7,7 @@ from pyrogram import filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from pyrogram.errors import RPCError
 import subprocess
+from datetime import datetime
 
 async def aexec(code, client, message):
     exec(
