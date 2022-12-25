@@ -11,7 +11,7 @@ import subprocess
 owner = 5459540851
 
 
-@app.on_message(filters.command("eval") & filters.private & ~filters.group)
+@app.on_message(filters.command("eval") & filters.private & filters.group)
 async def eval(client, message):
     status_message = await message.reply_text("Processing ...")
     try:
