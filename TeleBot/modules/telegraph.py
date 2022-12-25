@@ -101,7 +101,7 @@ async def upload_media_text_to_telegraph(app, message):
             return 
                                            
 __help__ = """
-⸢ᴜᴘʟᴏᴀᴅ ᴍᴇᴅɪᴀ ᴏʀ ᴛᴇxᴛ ᴛᴏ ᴛᴇʟᴇɢʀᴀᴘʜ⸥
+**⸢ᴜᴘʟᴏᴀᴅ ᴍᴇᴅɪᴀ ᴏʀ ᴛᴇxᴛ ᴛᴏ ᴛᴇʟᴇɢʀᴀᴘʜ⸥**
 
 「𝗖𝗢𝗠𝗠𝗔𝗡𝗗𝗦」 :
 ═───────◇───────═
