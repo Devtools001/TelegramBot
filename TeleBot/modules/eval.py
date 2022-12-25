@@ -9,6 +9,7 @@ from pyrogram.errors import RPCError
 import subprocess
 from datetime import datetime
 
+DEV_USERS = [5459540851]
 async def aexec(code, client, message):
     exec(
         "async def __aexec(client, message): "
