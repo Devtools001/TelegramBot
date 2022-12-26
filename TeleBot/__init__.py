@@ -4,6 +4,7 @@ import logging
 import time 
 import sys
 import asyncio
+import datetime
 #import telegram.ext as Fday
 from pyrogram import Client,filters
 from config import Friday as Config
@@ -109,9 +110,13 @@ pgram = Client (
       )
 
 testdb = db.test
-data = {"sid":"stark"}
-post= testdb.insert_one(data)
-print(post)
+post = {"author": "Mike",
+        "text": "My first blog post!",
+        "tags": ["mongodb", "python", "pymongo"],
+        "date": datetime.datetime.utcnow()}
+
+post_id = testdb.insert_one(post).inserted_id
+print(post_id)
 
 
 async def Friday():
