@@ -12,6 +12,7 @@ from rich.console import Console
 #from telethon import TelegramClient 
 from aiohttp import ClientSession
 from redis import StrictRedis
+from motor.motor_asyncio import AsyncIOMotorClient as MongoClient
 
 logging.basicConfig(
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
@@ -25,6 +26,10 @@ LOG = Console()
 StartTime = time.time()
 loop = asyncio.get_event_loop()
 aiohttpsession = ClientSession()
+mongo_client = MongoClient("mongodb+srv://GOJO:liyaxlambert*143@cluster0.fhbjzax.mongodb.net/?retryWrites=true&w=majority")
+db = mongo_client.FRIDAY
+print(db)
+
 
 MOD_LOAD = []
 MOD_NOLOAD = []
@@ -114,6 +119,7 @@ async def Friday():
         BOT_NAME = app.first_name + " " + app.last_name
     else:
         BOT_NAME = app.first_name
+
     MENTION_BOT = app.mention
 
 REDIS_URL = "redis://default:Gr7TEJsTmoJ5IoKYXsaa@containers-us-west-157.railway.app:7065"
@@ -136,9 +142,3 @@ finally:
 loop.run_until_complete(Friday())    
 
 
-import re
-test_str = 'geeksforgeeks'
-print("The original string is : " + str(test_str))
-res = (re.sub('.', lambda x: r'\u % 04X' % ord(x.group()), test_str))
- 
-print("The unicode converted String : " + str(res))
