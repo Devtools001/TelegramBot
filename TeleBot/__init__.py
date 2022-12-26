@@ -115,7 +115,7 @@ post = {"author": "Mike",
         "tags": ["mongodb", "python", "pymongo"],
         "date": datetime.datetime.utcnow()}
 
-post_id = testdb.insert_one(post).inserted_id
+post_id = testdb.insert_one(post)
 print(post_id)
 
 
