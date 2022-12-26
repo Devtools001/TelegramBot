@@ -98,6 +98,27 @@ async def send_help(app,chat, text, keyboard=None):
         reply_markup=keyboard,
     )
 
+keyboard = InlineKeyboardMarkup(
+    [
+        [
+            InlineKeyboardButton(
+                text="Help ❓",
+                url=f"t.me/{BOT_USERNAME}?start=help",
+            ),
+            InlineKeyboardButton(
+                text="Repo 🛠",
+                url="https://github.com/thehamkercat/WilliamButcherBot",
+            ),
+        ],
+        [
+            InlineKeyboardButton(
+                text="System Stats 💻",
+                callback_data="stats_callback",
+            ),
+            InlineKeyboardButton(text="Support 👨", url="t.me/WBBSupport"),
+        ],
+    ]
+)
 
 @pgram.on_message(filters.command(["start",f"start@{BOT_USERNAME}"]))
 async def group_start(_, message):    
