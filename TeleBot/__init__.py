@@ -110,7 +110,7 @@ pgram = Client (
 
 testdb = db.test
 data = {"sid":"stark"}
-post= testdb.insert_one(data).inserted_id
+post= testdb.insert_one(data)
 print(post)
 
 
