@@ -145,8 +145,8 @@ async def group_start(_, message):
             print(args)
 
             if args == "help":
-            text, keyb = await help_parser(message.from_user.first_name)
-            await message.reply(
+                text, keyb = await help_parser(message.from_user.first_name)
+                await message.reply(
                 text,
                 reply_markup=keyb,
             )
