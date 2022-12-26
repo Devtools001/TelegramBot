@@ -200,35 +200,59 @@ async def help_button(app,query):
 
 @pgram.on_message(filters.command(["help",f"help@{BOT_USERNAME}"]))
 async def get_help(_, message):
-    if message.chat.type != ChatType.PRIVATE:     
+    if message.chat.type != ChatType.PRIVATE:
         if len(message.command) >= 2:
-            mod_name = (message.text.split(None, 1)[1]).replace(" ", "_").lower()
-            if str(mod_name) in HELPABLE:
+            name = (message.text.split(None, 1)[1]).replace(" ", "_").lower()
+            if str(name) in HELPABLE:
                 key = InlineKeyboardMarkup(
-                   [[InlineKeyboardButton(
+                    [
+                        [
+                            InlineKeyboardButton(
                                 text="Click here",
-                                url=f"t.me/{BOT_USERNAME}?start=help_{mod_name}")]])                                                                        
+                                url=f"t.me/{BOT_USERNAME}?start=help_{name}",
+                            )
+                        ],
+                    ]
+                )
                 await message.reply(
-                    f"ᴄʟɪᴄᴋ ᴛʜᴇ ʙᴇʟᴏᴡ ʙᴜᴛᴛᴏɴ ᴛᴏ ɢᴇᴛ ʜᴇʟᴘ ᴀʙᴏᴜᴛ {mod_name}",
+                    f"Click on the below button to get help about {name}",
                     reply_markup=key,
-                 )
-
+                )
             else:
-                await message.reply_text(
-                 text = "Pᴍ ᴍᴇ ғᴏʀ ᴛʜɪs",reply_markup=keyboard)                                                                                                                                   
-                return            
+                await message.reply(
+                    "PM Me For More Details.", reply_markup=keyboard
+                )
         else:
-            await message.reply_photo(  
-            photo=random.choice(HELP_IMG),
-            caption=f" ᴄᴏɴᴛᴀᴄᴛ ᴍᴇ ɪɴ ᴘᴍ ᴛᴏ ɢᴇᴛ ᴛʜᴇ ʟɪsᴛ ᴏғ ᴘᴏssɪʙʟᴇ ᴄᴏᴍᴍᴀɴᴅs..",
-            reply_markup=InlineKeyboardMarkup(
-                       [[InlineKeyboardButton(
-                            text="ʜᴇʟᴘ",
-                            url=f"https://t.me/{BOT_USERNAME}?start=help")
-                         ]]))   
+            await message.reply(
+                "Pm Me For More Details.", reply_markup=keyboard
+            )
     else:
-        await send_help(app=pgram,chat=message.chat.id,text=HELP_STRINGS) 
-        return                      
+        if len(message.command) >= 2:
+            name = (message.text.split(None, 1)[1]).replace(" ", "_").lower()
+            if str(name) in HELPABLE:
+                text = (
+                        f"Here is the help for **{HELPABLE[name].__MODULE__}**:\n"
+                        + HELPABLE[name].__HELP__
+                )
+                await message.reply(text, disable_web_page_preview=True)
+            else:
+                text, help_keyboard = await send_help(
+                    pgram,message.chat.id,text
+                )
+                await message.reply(
+                    text,
+                    reply_markup=help_keyboard,
+                    disable_web_page_preview=True,
+                )
+        else:
+            text, help_keyboard = await send_help(
+                    pgram,message.chat.id,text
+                )
+            await message.reply(
+                text, reply_markup=help_keyboard, disable_web_page_preview=True
+            )
+    return
+                      
                 
                      
 @pgram.on_message(filters.command("donate"))  
