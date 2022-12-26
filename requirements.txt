@@ -1,4 +1,5 @@
 aiohttp
+motor
 pyrogram
 pillow
 psutil
