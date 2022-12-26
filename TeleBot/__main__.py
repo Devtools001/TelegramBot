@@ -108,7 +108,7 @@ async def group_start(_, message):
             args = message.text.split(None,1)[1].lower()
             print(args)
 
-            if args == "help":
+            if args[0:4] == "help":
                 text, keyboard = await send_help(pgram,chat_id,text)
                 await pgram.send_message(
                     chat_id,
