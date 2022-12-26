@@ -110,8 +110,8 @@ pgram = Client (
       )
 
 testdb = db.test
-post = {"author": "Mike",
-        "text": "My first blog post!",
+post = {"owner" : "Steve",
+        "user_id" : 29292929,
         "tags": ["mongodb", "python", "pymongo"],
         "date": datetime.datetime.utcnow()}
 
