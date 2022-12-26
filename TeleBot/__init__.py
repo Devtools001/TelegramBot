@@ -117,6 +117,8 @@ post = {"owner" : "Steve",
 
 post_id = testdb.insert_one(post)
 print(post_id)
+hey = testdb.fint({})
+print(hey)
 
 
 async def Friday():
