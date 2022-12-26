@@ -28,7 +28,7 @@ loop = asyncio.get_event_loop()
 aiohttpsession = ClientSession()
 mongo_client = MongoClient("mongodb+srv://GOJO:liyaxlambert*143@cluster0.fhbjzax.mongodb.net/?retryWrites=true&w=majority")
 db = mongo_client.FRIDAY
-print(db)
+#print(db)
 
 
 MOD_LOAD = []
