@@ -108,6 +108,12 @@ pgram = Client (
       bot_token=BOT_TOKEN
       )
 
+testdb = db.test
+data = {"sid":"stark"}
+post= testdb.insert_one(data).inserted_id
+print(post)
+
+
 async def Friday():
     global BOT_NAME,BOT_USERNAME,BOT_ID,MENTION_BOT
     LOG.print("[bold red]starting your bot")
