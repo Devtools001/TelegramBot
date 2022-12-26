@@ -120,6 +120,21 @@ keyboard = InlineKeyboardMarkup(
     ]
 )
 
+async def help_parser(name, keyboard=None):
+    if not keyboard:
+        keyboard = InlineKeyboardMarkup(paginate_modules(0, HELPABLE, "help"))
+    return (
+        """Hello {first_name}, My name is {bot_name}.
+I'm a group management bot with some useful features.
+You can choose an option below, by clicking a button.
+Also you can ask anything in Support Group.
+""".format(
+            first_name=name,
+            bot_name=BOT_NAME,
+        ),
+        keyboard,
+    )
+
 @pgram.on_message(filters.command(["start",f"start@{BOT_USERNAME}"]))
 async def group_start(_, message):    
     uptime = get_readable_time((time.time() - StartTime))
@@ -128,13 +143,13 @@ async def group_start(_, message):
         if len(message.text.split()) > 1:
             args = message.text.split(None,1)[1].lower()
             print(args)
+
             if args == "help":
-                app,chat,text, keyboard = await send_help(pgram,chat_id,HELP_STRINGS)
-                await pgram.send_message(
-                    chat_id,
-                    HELP_STRINGS,
-                    reply_markup=keyboard,
-                )
+            text, keyb = await help_parser(message.from_user.first_name)
+            await message.reply(
+                text,
+                reply_markup=keyb,
+            )
             elif "_" in args:
                 module = args.split("_", 1)[1]
                 text = (
