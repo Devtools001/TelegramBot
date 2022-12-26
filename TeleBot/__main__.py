@@ -57,7 +57,7 @@ async def Friday_Robot():
             HELPABLE[imported_module.__mod_name__.lower()] = imported_module
 
     
-    os.system("clear")
+  #  os.system("clear")
     await asyncio.sleep(2)
     header = Table(show_header=True, header_style="bold yellow")
     header.add_column(LOG_MSG)
