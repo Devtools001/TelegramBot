@@ -272,18 +272,18 @@ async def get_help(_, message):
                 )
                 await message.reply(text, disable_web_page_preview=True)
             else:
-                text, help_keyboard = await send_help(
-                    pgram,message.chat.id,text
-                )
+                text, help_keyboard = await help_parser(
+                message.from_user.first_name
+            )
                 await message.reply(
                     HELP_STRINGS,
                     reply_markup=help_keyboard,
                     disable_web_page_preview=True,
                 )
         else:
-            text, help_keyboard = await send_help(
-                    pgram,message.chat.id,HELP_STRINGS
-                )
+            text, help_keyboard = await help_parser(
+                message.from_user.first_name
+            )
             await message.reply(
                 text, reply_markup=help_keyboard, disable_web_page_preview=True
             )
