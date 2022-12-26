@@ -242,8 +242,9 @@ async def get_help(_, message):
                  text = "Pᴍ ᴍᴇ ғᴏʀ ᴛʜɪs",reply_markup=keyboard)                                                                                                                                   
                 return            
         else:
-            await send_help(app=pgram,chat=message.chat.id,text=HELP_STRINGS) 
-            return       
+            await message.reply_text("hii")
+          #  await send_help(app=pgram,chat=message.chat.id,text=HELP_STRINGS) 
+          #  return       
     else:
         await send_help(app=pgram,chat=message.chat.id,text=HELP_STRINGS) 
         return
