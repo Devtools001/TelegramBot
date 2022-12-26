@@ -120,20 +120,6 @@ keyboard = InlineKeyboardMarkup(
     ]
 )
 
-async def help_parser(name, keyboard=None):
-    if not keyboard:
-        keyboard = InlineKeyboardMarkup(paginate_modules(0, HELPABLE, "help"))
-    return (
-        """Hello {first_name}, My name is {bot_name}.
-I'm a group management bot with some useful features.
-You can choose an option below, by clicking a button.
-Also you can ask anything in Support Group.
-""".format(
-            first_name=name,
-            bot_name=BOT_NAME,
-        ),
-        keyboard,
-    )
 
 @pgram.on_message(filters.command(["start",f"start@{BOT_USERNAME}"]))
 async def group_start(_, message):    
@@ -145,11 +131,13 @@ async def group_start(_, message):
             print(args)
 
             if args == "help":
-                text, keyb = await help_parser(message.from_user.first_name)
-                await message.reply(
-                text,
-                reply_markup=keyb,
-            )
+                app,chat,text, keyboard = await send_help(pgram,chat_id,HELP_STRINGS)
+                await pgram.send_message(
+                    chat_id,
+                    HELP_STRINGS,
+                    reply_markup=keyboard,
+                )
+
             elif "_" in args:
                 module = args.split("_", 1)[1]
                 text = (
@@ -236,58 +224,36 @@ async def help_button(app,query):
 
 @pgram.on_message(filters.command(["help",f"help@{BOT_USERNAME}"]))
 async def get_help(_, message):
-    if message.chat.type != ChatType.PRIVATE:
+if message.chat.type != ChatType.PRIVATE:     
         if len(message.command) >= 2:
-            name = (message.text.split(None, 1)[1]).replace(" ", "_").lower()
-            if str(name) in HELPABLE:
+            mod_name = (message.text.split(None, 1)[1]).replace(" ", "_").lower()
+            if str(mod_name) in HELPABLE:
                 key = InlineKeyboardMarkup(
-                    [
-                        [
-                            InlineKeyboardButton(
+                   [[InlineKeyboardButton(
                                 text="Click here",
-                                url=f"t.me/{BOT_USERNAME}?start=help_{name}",
-                            )
-                        ],
-                    ]
-                )
+                                url=f"t.me/{BOT_USERNAME}?start=help_{mod_name}")]])                                                                        
                 await message.reply(
-                    f"Click on the below button to get help about {name}",
+                    f"ᴄʟɪᴄᴋ ᴛʜᴇ ʙᴇʟᴏᴡ ʙᴜᴛᴛᴏɴ ᴛᴏ ɢᴇᴛ ʜᴇʟᴘ ᴀʙᴏᴜᴛ {mod_name}",
                     reply_markup=key,
-                )
+                 )
+
             else:
-                await message.reply(
-                    "PM Me For More Details.", reply_markup=keyboard
-                )
+                await message.reply_text(
+                 text = "Pᴍ ᴍᴇ ғᴏʀ ᴛʜɪs",reply_markup=keyboard)                                                                                                                                   
+                return            
         else:
-            await message.reply(
-                "Pm Me For More Details.", reply_markup=keyboard
-            )
+            await message.reply_photo(  
+            photo=random.choice(HELP_IMG),
+            caption=f" ᴄᴏɴᴛᴀᴄᴛ ᴍᴇ ɪɴ ᴘᴍ ᴛᴏ ɢᴇᴛ ᴛʜᴇ ʟɪsᴛ ᴏғ ᴘᴏssɪʙʟᴇ ᴄᴏᴍᴍᴀɴᴅs..",
+            reply_markup=InlineKeyboardMarkup(
+                       [[InlineKeyboardButton(
+                            text="ʜᴇʟᴘ",
+                            url=f"https://t.me/{BOT_USERNAME}?start=help")
+                         ]]))   
     else:
-        if len(message.command) >= 2:
-            name = (message.text.split(None, 1)[1]).replace(" ", "_").lower()
-            if str(name) in HELPABLE:
-                text = (
-                        f"Here is the help for **{HELPABLE[name].__MODULE__}**:\n"
-                        + HELPABLE[name].__HELP__
-                )
-                await message.reply(text, disable_web_page_preview=True)
-            else:
-                text, help_keyboard = await help_parser(
-                message.from_user.first_name
-            )
-                await message.reply(
-                    HELP_STRINGS,
-                    reply_markup=help_keyboard,
-                    disable_web_page_preview=True,
-                )
-        else:
-            text, help_keyboard = await help_parser(
-                message.from_user.first_name
-            )
-            await message.reply(
-                text, reply_markup=help_keyboard, disable_web_page_preview=True
-            )
-    return
+        await send_help(app=pgram,chat=message.chat.id,text=HELP_STRINGS) 
+        return
+
                       
                 
                      
