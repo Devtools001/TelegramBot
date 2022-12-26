@@ -129,10 +129,10 @@ async def group_start(_, message):
             args = message.text.split(None,1)[1].lower()
             print(args)
             if args == "help":
-                app,chat,text, keyboard = await send_help(pgram,chat_id,text)
+                app,chat,text, keyboard = await send_help(pgram,chat_id,HELP_STRINGS)
                 await pgram.send_message(
                     chat_id,
-                    text,
+                    HELP_STRINGS,
                     reply_markup=keyboard,
                 )
             elif "_" in args:
@@ -261,13 +261,13 @@ async def get_help(_, message):
                     pgram,message.chat.id,text
                 )
                 await message.reply(
-                    text,
+                    HELP_STRINGS,
                     reply_markup=help_keyboard,
                     disable_web_page_preview=True,
                 )
         else:
             text, help_keyboard = await send_help(
-                    pgram,message.chat.id,text
+                    pgram,message.chat.id,HELP_STRINGS
                 )
             await message.reply(
                 text, reply_markup=help_keyboard, disable_web_page_preview=True
