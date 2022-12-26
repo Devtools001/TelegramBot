@@ -118,7 +118,8 @@ post = {"owner" : "Steve",
 post_id = testdb.insert_one(post)
 print(post_id)
 hey = testdb.find({})
-print(hey)
+for i in hey:
+    print(i)
 
 
 async def Friday():
