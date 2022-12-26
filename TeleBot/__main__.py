@@ -242,9 +242,14 @@ async def get_help(_, message):
                  text = "Pᴍ ᴍᴇ ғᴏʀ ᴛʜɪs",reply_markup=keyboard)                                                                                                                                   
                 return            
         else:
-            await message.reply_text("hii")
-          #  await send_help(app=pgram,chat=message.chat.id,text=HELP_STRINGS) 
-          #  return       
+            await message.reply_photo(  
+            photo=random.choice(HELP_IMG),
+            caption=f" ᴄᴏɴᴛᴀᴄᴛ ᴍᴇ ɪɴ ᴘᴍ ᴛᴏ ɢᴇᴛ ᴛʜᴇ ʟɪsᴛ ᴏғ ᴘᴏssɪʙʟᴇ ᴄᴏᴍᴍᴀɴᴅs..",
+            reply_markup=InlineKeyboardMarkup(
+                       [[InlineKeyboardButton(
+                            text="ʜᴇʟᴘ",
+                            url=f"https://t.me/{BOT_USERNAME}?start=help")
+                         ]]))       
     else:
         await send_help(app=pgram,chat=message.chat.id,text=HELP_STRINGS) 
         return
