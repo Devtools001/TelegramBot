@@ -224,7 +224,7 @@ async def help_button(app,query):
 
 @pgram.on_message(filters.command(["help",f"help@{BOT_USERNAME}"]))
 async def get_help(_, message):
-if message.chat.type != ChatType.PRIVATE:     
+    if message.chat.type != ChatType.PRIVATE:     
         if len(message.command) >= 2:
             mod_name = (message.text.split(None, 1)[1]).replace(" ", "_").lower()
             if str(mod_name) in HELPABLE:
@@ -242,14 +242,8 @@ if message.chat.type != ChatType.PRIVATE:
                  text = "Pᴍ ᴍᴇ ғᴏʀ ᴛʜɪs",reply_markup=keyboard)                                                                                                                                   
                 return            
         else:
-            await message.reply_photo(  
-            photo=random.choice(HELP_IMG),
-            caption=f" ᴄᴏɴᴛᴀᴄᴛ ᴍᴇ ɪɴ ᴘᴍ ᴛᴏ ɢᴇᴛ ᴛʜᴇ ʟɪsᴛ ᴏғ ᴘᴏssɪʙʟᴇ ᴄᴏᴍᴍᴀɴᴅs..",
-            reply_markup=InlineKeyboardMarkup(
-                       [[InlineKeyboardButton(
-                            text="ʜᴇʟᴘ",
-                            url=f"https://t.me/{BOT_USERNAME}?start=help")
-                         ]]))   
+            await send_help(app=pgram,chat=message.chat.id,text=HELP_STRINGS) 
+            return       
     else:
         await send_help(app=pgram,chat=message.chat.id,text=HELP_STRINGS) 
         return
