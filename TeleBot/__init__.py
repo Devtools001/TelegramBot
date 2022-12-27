@@ -32,6 +32,21 @@ db = mongo_client.FRIDAY
 #print(db)
 
 
+
+
+
+import openai
+
+openai.api_key="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"
+openai.model.list()
+ok = openai.Image.create(
+prompt="elephant eating snacks",
+n=2,
+size = "1024x1024"
+)
+print(ok)
+
+
 MOD_LOAD = []
 MOD_NOLOAD = []
 
