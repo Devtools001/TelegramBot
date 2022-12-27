@@ -115,11 +115,7 @@ post = {"owner" : "Steve",
         "tags": ["mongodb", "python", "pymongo"],
         "date": datetime.datetime.utcnow()}
 
-post_id = testdb.insert_one(post)
-print(post_id)
-hey = testdb.find({})
-for i in hey:
-    print(i)
+
 
 
 async def Friday():
