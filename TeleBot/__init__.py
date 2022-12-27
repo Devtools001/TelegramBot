@@ -38,7 +38,7 @@ db = mongo_client.FRIDAY
 import openai
 
 openai.api_key="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"
-openai.model.list()
+openai.Model.list()
 ok = openai.Image.create(
 prompt="elephant eating snacks",
 n=2,
