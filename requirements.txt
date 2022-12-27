@@ -3,6 +3,7 @@ motor
 pyrogram
 pillow
 psutil
+openai
 rich
 redis
 requests
