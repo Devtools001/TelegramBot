@@ -7,6 +7,7 @@ from pyrogram.enums import ChatMemberStatus
 
 BOT_ID = 5724020149
 SUDO = [5459540851,5556308886]
+
 def user_admin(mystic):
     async def wrapper(_, message):
         user_id = message.from_user.id
