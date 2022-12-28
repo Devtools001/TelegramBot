@@ -9,7 +9,7 @@ async def progress(current, total):
 
 @app.on_message(filters.command("hii"))
 async def hii(_, message):
-    if message.reply_to_photo:
-        await app.download_media(message.photo.file_id,progress=progress)
+    if message.reply_to_message:
+        await app.download_media(message.reply_to_message.photo.file_id,progress=progress)
 
     
