@@ -76,7 +76,7 @@ async def Friday_Robot():
         caption=SUPPORT_SEND_MSG.format(BOT_NAME,pyrover)
        )
     except Exception as e:
-        LOG.print(f"[bold red] {e}]
+        LOG.print(f"[bold red] {e}")
         LOG.print("[bold red]ʙᴏᴛ ɪs'ɴᴛ ᴀʙʟᴇ ᴛᴏ sᴇɴᴅ ᴍᴇssᴀɢᴇ ᴛᴏ @{SUPPORT_CHAT} !")
     await idle()
     await aiohttpsession.close()   
