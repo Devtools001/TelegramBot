@@ -21,7 +21,7 @@ async def aexec(code, client, message):
 
 @app.on_message(filters.command(["run","eval", "e"]))
 async def eval(client, message):
-    if not message.from_user.id in config.DEVS:
+    if not message.from_user.id in DEVS:
          return await message.reply_text("`You Don't Have Enough Rights To Run This!`")
     if len(message.text.split()) <2:
           return await message.reply_text("`Input Not Found!`")
