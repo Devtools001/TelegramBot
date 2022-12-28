@@ -9,9 +9,5 @@ async def progress(current, total):
 
 @app.on_message(filters.command("hii"))
 async def hii(_, message):
-    a = "BAACAgUAAxkBAAIL92OsCoRS4TIx_8g7ffRf6LYRgMCoAAJkCAAC5clgVZGuzEuQfZLYHgQ"
-    if message.reply_to_message:
-        await app.download_media(a,progress=progress)
-        await message.reply_text(str(message.reply_to_message.video.file_id))
-
-    
+    print(message.sender_chat.id)
+    print(message.from_user.id)
