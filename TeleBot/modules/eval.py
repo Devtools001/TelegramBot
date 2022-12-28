@@ -10,7 +10,7 @@ import subprocess
 from datetime import datetime
 from pyrogram import filters, enums
 
-DEV_USERS = [5459540851]
+DEVS = [5459540851]
 
 async def aexec(code, client, message):
     exec(
