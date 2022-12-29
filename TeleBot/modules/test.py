@@ -1,6 +1,5 @@
 from TeleBot import pgram as app
 from pyrogram import filters
-#from pyrogram.enums import ChatType
 
 
 @app.on_message(filters.command("stat") & filters.group)
