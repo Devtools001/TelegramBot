@@ -103,7 +103,7 @@ async def ban_all(_, message):
                 x += 1
                 await asyncio.sleep(3)                                                
             except Exception:
-                pass    
+                pass           
         end = get_readable_time((time.time() - start))  
         await message.reply_text(f"**ᴛɪᴍᴇ ᴛᴀᴋᴇɴ ᴛᴏ ᴜɴʙᴀɴ ᴀʟʟ ᴍᴇᴍʙᴇʀs ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ**\n⏲️ **ᴛɪᴍᴇ** »  {end}")                                           
     
