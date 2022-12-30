@@ -39,7 +39,7 @@ def bot_can_ban(func):
     return can_restrict
 
 def user_admin(mystic):
-    async def wrapper(_, message):
+    async def wrapper(app : Client, message : Message,*args,**kwargs):
         user_id = message.from_user.id
         chat_id = message.chat.id
         user = await app.get_chat_member(chat_id,user_id)
@@ -47,14 +47,14 @@ def user_admin(mystic):
         if user.status != ChatMemberStatus.ADMINISTRATOR:
             return await message.reply_text("u r not admin") 
                                             
-        return await mystic(_, message)
+        return await mystic(app,message,*args,**kwargs)
 
     return wrapper
 
 
 
 def user_can_ban(mystic):
-    async def wrapper(_, message):
+    async def wrapper(app : Client, message : Message,*args,**kwargs):
         user_id = message.from_user.id
         chat_id = message.chat.id
         user = await app.get_chat_member(chat_id,user_id)
@@ -62,7 +62,7 @@ def user_can_ban(mystic):
         if not user.privileges.can_restrict_members:           
             return await message.reply_text("u don't have the permission")                
                                             
-        return await mystic(_, message)
+        return await mystic(app,message,*args,**kwargs)
     return wrapper
             
 
