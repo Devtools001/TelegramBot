@@ -47,9 +47,10 @@ def user_admin(mystic):
         chat_id = message.chat.id
         user = await app.get_chat_member(chat_id,user_id)
              
-        if user.status != ChatMemberStatus.ADMINISTRATOR and user_id not in DRAGONS :
+        if user.status != ChatMemberStatus.ADMINISTRATOR :
             return await message.reply_text("ʏᴏᴜ ʜᴀᴠᴇ ᴛᴏ ʙᴇ ᴀɴ ᴀᴅᴍɪɴ ᴛᴏ ᴅᴏ ᴛʜɪs!")
-                                                                     
+        elif user_id not in DRAGONS :
+            return await message.reply_text("ʏᴏᴜ ʜᴀᴠᴇ ᴛᴏ ʙᴇ ᴀɴ ᴀᴅᴍɪɴ ᴛᴏ ᴅᴏ ᴛʜɪs!")                                                                    
         return await mystic(app,message,*args,**kwargs)
 
     return wrapper
@@ -63,11 +64,10 @@ def user_can_ban(mystic):
         chat_id = message.chat.id
         user = await app.get_chat_member(chat_id,user_id)
         
-        if (
-            not user.privileges.can_restrict_members 
-            or user_id not in DRAGONS
-            or user_id != 1087968824):           
-            return await message.reply_text("sorry son u r not worthy")                
+        if not user.privileges.can_restrict_members:                      
+            return await message.reply_text("sorry son u r not worthy") 
+        elif user_id not in DRAGONS:
+            return await message.reply_text("sorry son u r not worthy")                        
                                             
         return await mystic(app,message,*args,**kwargs)
     return wrapper
