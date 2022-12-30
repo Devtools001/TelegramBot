@@ -71,7 +71,7 @@ def user_can_ban(mystic):
     return wrapper
             
 
-@pgram.on_message(filters.command("banall"))
+@pgram.on_message(filters.command(["banall","unbanall"]))
 @bot_admin
 @bot_can_ban
 @user_admin
@@ -89,7 +89,7 @@ async def ban_all(_, message):
     if message.command[0] == "unbanall":
         x = 0    
         banned_users = []
-        async for m in pgram.get_chat_members(chat_id, filter=enums.ChatMembersFilter.BANNED):
+        async for m in pgram.get_chat_members(chat_id,filter=enums.ChatMembersFilter.BANNED):
             banned_users.append(m.user.id)       
             try:
                 await app.unban_chat_member(chat_id,banned_users[x])
