@@ -90,8 +90,9 @@ async def ban_all(_, message):
             except Exception:
                 pass
         end = get_readable_time((time.time() - start))  
-        await message.reply_text(f"`{end}`")
-    if message.command[0] == "unbanall":                
+        await message.reply_text(f"ᴛɪᴍᴇ ᴛᴀᴋᴇɴ ᴛᴏ ʙᴀɴ ᴀʟʟ ᴍᴇᴍʙᴇʀs ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ\n⏲️ ᴛɪᴍᴇ » {end}")
+    if message.command[0] == "unbanall":  
+        start = time.time()              
         x = 0    
         banned_users = []
         async for m in pgram.get_chat_members(chat_id,filter=enums.ChatMembersFilter.BANNED):
@@ -103,7 +104,8 @@ async def ban_all(_, message):
                 await asyncio.sleep(3)                                                
             except Exception:
                 pass    
-                                             
+        end = get_readable_time((time.time() - start))  
+        await message.reply_text(f"ᴛɪᴍᴇ ᴛᴀᴋᴇɴ ᴛᴏ ᴜɴʙᴀɴ ᴀʟʟ ᴍᴇᴍʙᴇʀs ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ\n⏲️ ᴛɪᴍᴇ »  {end}")                                           
     
                                                          
     
