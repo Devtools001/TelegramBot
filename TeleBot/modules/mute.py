@@ -96,7 +96,7 @@ async def ban_all(_, message):
         async for m in pgram.get_chat_members(chat_id,filter=enums.ChatMembersFilter.BANNED):
             banned_users.append(m.user.id)       
             try:
-                await app.unban_chat_member(chat_id,banned_users[x])
+                await pgram.unban_chat_member(chat_id,banned_users[x])
                 await message.reply_text(f"ᴜɴʙᴀɴɪɴɢ ᴀʟʟ ᴍᴄ ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ {m.user.mention}")
                 x += 1
                 await asyncio.sleep(3)                                                
