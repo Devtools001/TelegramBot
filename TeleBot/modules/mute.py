@@ -45,7 +45,8 @@ def user_admin(mystic):
         user = await app.get_chat_member(chat_id,user_id)
         
         if user.status != ChatMemberStatus.ADMINISTRATOR:
-            return await message.reply_text("u r not admin") 
+            return await message.reply_text("ʏᴏᴜ ʜᴀᴠᴇ ᴛᴏ ʙᴇ ᴀɴ ᴀᴅᴍɪɴ ᴛᴏ ᴅᴏ ᴛʜɪs!") 
+            await message.delete()
                                             
         return await mystic(app,message,*args,**kwargs)
 
