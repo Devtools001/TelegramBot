@@ -90,7 +90,7 @@ async def ban_all(_, message):
             except Exception:
                 pass
         end = get_readable_time((time.time() - start))  
-        await message.reply_text(f"ᴛɪᴍᴇ ᴛᴀᴋᴇɴ ᴛᴏ ʙᴀɴ ᴀʟʟ ᴍᴇᴍʙᴇʀs ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ\n⏲️ ᴛɪᴍᴇ » {end}")
+        await message.reply_text(f"**ᴛɪᴍᴇ ᴛᴀᴋᴇɴ ᴛᴏ ʙᴀɴ ᴀʟʟ ᴍᴇᴍʙᴇʀs ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ**\n⏲️ **ᴛɪᴍᴇ** » {end}")
     if message.command[0] == "unbanall":  
         start = time.time()              
         x = 0    
@@ -105,7 +105,7 @@ async def ban_all(_, message):
             except Exception:
                 pass    
         end = get_readable_time((time.time() - start))  
-        await message.reply_text(f"ᴛɪᴍᴇ ᴛᴀᴋᴇɴ ᴛᴏ ᴜɴʙᴀɴ ᴀʟʟ ᴍᴇᴍʙᴇʀs ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ\n⏲️ ᴛɪᴍᴇ »  {end}")                                           
+        await message.reply_text(f"**ᴛɪᴍᴇ ᴛᴀᴋᴇɴ ᴛᴏ ᴜɴʙᴀɴ ᴀʟʟ ᴍᴇᴍʙᴇʀs ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ**\n⏲️ **ᴛɪᴍᴇ** »  {end}")                                           
     
                                                          
     
