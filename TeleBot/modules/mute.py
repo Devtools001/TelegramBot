@@ -8,7 +8,7 @@ from pyrogram.types import Message
 
 
 
-def bot_admins(func):
+def bot_admin(func):
     @wraps(func)
     async def is_bot_admin(app : Client, message : Message,*args,**kwargs):
         BOT = await app.get_chat_member(message.chat.id,BOT_ID)
@@ -37,11 +37,40 @@ def bot_can_ban(func):
                 return 
         return await func(app,message,*args,**kwargs)
     return can_restrict
+
+def user_admin(mystic):
+    async def wrapper(_, message):
+        user_id = message.from_user.id
+        chat_id = message.chat.id
+        user = await app.get_chat_member(chat_id,user_id)
+        
+        if user.status != ChatMemberStatus.ADMINISTRATOR:
+            return await message.reply_text("u r not admin") 
+                                            
+        return await mystic(_, message)
+
+    return wrapper
+
+
+
+def user_can_ban(mystic):
+    async def wrapper(_, message):
+        user_id = message.from_user.id
+        chat_id = message.chat.id
+        user = await app.get_chat_member(chat_id,user_id)
+        
+        if not user.privileges.can_restrict_members:           
+            return await message.reply_text("u don't have the permission")                
+                                            
+        return await mystic(_, message)
+    return wrapper
             
 
 @pgram.on_message(filters.command("muteall"))
 @bot_admin
+@bot_can_ban
 @user_admin
+@user_can_ban
 async def mute_all(_,msg):
     chat_id=msg.chat.id            
     if msg.reply_to_message:
