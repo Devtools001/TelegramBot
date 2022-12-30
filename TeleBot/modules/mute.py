@@ -45,12 +45,9 @@ def user_admin(mystic):
         user_id = message.from_user.id
         chat_id = message.chat.id
         user = await app.get_chat_member(chat_id,user_id)
-        
-      #  if user.status != ChatMemberStatus.ADMINISTRATOR:
-      #      return await message.reply_text("ʏᴏᴜ ʜᴀᴠᴇ ᴛᴏ ʙᴇ ᴀɴ ᴀᴅᴍɪɴ ᴛᴏ ᴅᴏ ᴛʜɪs!")
-        if (user_id not in DRAGONS
-            or user.status != ChatMemberStatus.ADMINISTRATOR):
-            reuters await message.reply_text("sorry son u Don't have the power to wield hammer")
+             
+        if user_id not in DRAGONS or user.status != ChatMemberStatus.ADMINISTRATOR:
+            reuters await message.reply_text("ʏᴏᴜ ʜᴀᴠᴇ ᴛᴏ ʙᴇ ᴀɴ ᴀᴅᴍɪɴ ᴛᴏ ᴅᴏ ᴛʜɪs!")
                                                                      
         return await mystic(app,message,*args,**kwargs)
 
@@ -64,8 +61,8 @@ def user_can_ban(mystic):
         chat_id = message.chat.id
         user = await app.get_chat_member(chat_id,user_id)
         
-        if not user.privileges.can_restrict_members:           
-            return await message.reply_text("u don't have the permission")                
+        if user_id not in DEV_USERS or not user.privileges.can_restrict_members:           
+            return await message.reply_text("sorry son")                
                                             
         return await mystic(app,message,*args,**kwargs)
     return wrapper
