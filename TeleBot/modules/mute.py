@@ -81,13 +81,14 @@ def user_can_ban(mystic):
 async def ban_all(_, message):
     chat_id = message.chat.id    
     if message.command[0] == "banall":
-        start = datetime.now()                    
+        start = time.time()                    
         async for member in pgram.get_chat_members(chat_id):       
             try:
                 await pgram.ban_chat_member(chat_id, member.user.id)
                 await message.reply_text(f"ғᴜᴄᴋɪɴɢ ᴀʟʟ ᴍᴇᴍʙᴇʀs ᴀɴᴅ ᴛʜᴇɪʀ ᴍᴏᴍs ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ {member.user.mention}") 
                 await asyncio.sleep(3) 
-        time = (datetime.now() - start).secons                
+        end = get_readable_time((time.time() - start))  
+        await message.reply_text(f"`{end}`")             
             except Exception:
                 pass
     if message.command[0] == "unbanall":                
