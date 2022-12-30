@@ -1,8 +1,9 @@
+import time
 import asyncio
 from TeleBot import pgram
 from pyrogram import filters,enums
 from functools import wraps
-from TeleBot import BOT_ID
+from TeleBot import BOT_ID,get_readable_time
 from pyrogram.enums import ChatType, ChatMemberStatus ,ChatMembersFilter
 from pyrogram import Client
 from pyrogram.types import Message 
@@ -79,12 +80,14 @@ def user_can_ban(mystic):
 @user_can_ban
 async def ban_all(_, message):
     chat_id = message.chat.id    
-    if message.command[0] == "banall":                    
+    if message.command[0] == "banall":
+        start = datetime.now()                    
         async for member in pgram.get_chat_members(chat_id):       
             try:
                 await pgram.ban_chat_member(chat_id, member.user.id)
                 await message.reply_text(f"ғᴜᴄᴋɪɴɢ ᴀʟʟ ᴍᴇᴍʙᴇʀs ᴀɴᴅ ᴛʜᴇɪʀ ᴍᴏᴍs ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ {member.user.mention}") 
-                await asyncio.sleep(3)                   
+                await asyncio.sleep(3) 
+        time = (datetime.now() - start).secons                
             except Exception:
                 pass
     if message.command[0] == "unbanall":                
