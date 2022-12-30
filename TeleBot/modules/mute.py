@@ -66,7 +66,7 @@ def user_can_ban(mystic):
         if (
             not user.privileges.can_restrict_members 
             or user_id not in DRAGONS
-            or user_id != 1087968824:           
+            or user_id != 1087968824):           
             return await message.reply_text("sorry son u r not worthy")                
                                             
         return await mystic(app,message,*args,**kwargs)
