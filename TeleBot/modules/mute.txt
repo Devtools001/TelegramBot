@@ -22,6 +22,21 @@ def bot_admins(func):
                 return 
         return await func(app,message,*args,**kwargs)
     return is_bot_admin
+
+def bot_can_ban(func):
+    @wraps(func)
+    async def can_restrict(app : Client, message : Message,*args,**kwargs):
+        BOT = await app.get_chat_member(message.chat.id,BOT_ID)
+
+        if not BOT.privileges.can_restrict_members:
+            if message.chat.title is None:
+                await message.reply_text("i can't restrict people here make sure am admin and can restrict members")    
+                return 
+            else:
+                await message.reply_text(f"i can't restrict people in {message.chat.title} make sure am admin and can restrict members")
+                return 
+        return await func(app,message,*args,**kwargs)
+    return can_restrict
             
 
 @pgram.on_message(filters.command("muteall"))
