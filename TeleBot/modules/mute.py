@@ -77,7 +77,7 @@ def user_can_ban(mystic):
 @user_admin
 @user_can_ban
 async def ban_all(_, message):
-    chat_id=msg.chat.id            
+    chat_id=message.chat.id            
     async for member in pgram.get_chat_members(chat_id):       
         try:
             await pgram.ban_chat_member(chat_id, member.user.id)
