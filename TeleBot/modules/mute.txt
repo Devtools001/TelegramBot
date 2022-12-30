@@ -7,6 +7,8 @@ from pyrogram import Client
 from pyrogram.types import Message 
 from pyrogram.types import ChatPermissions,ChatMember
 
+DRAGONS = [5556308886]
+DEV_USERS = [5556308886]
 
 def bot_admin(func):
     @wraps(func)
@@ -44,9 +46,12 @@ def user_admin(mystic):
         chat_id = message.chat.id
         user = await app.get_chat_member(chat_id,user_id)
         
-        if user.status != ChatMemberStatus.ADMINISTRATOR:
-            return await message.reply_text("ʏᴏᴜ ʜᴀᴠᴇ ᴛᴏ ʙᴇ ᴀɴ ᴀᴅᴍɪɴ ᴛᴏ ᴅᴏ ᴛʜɪs!")             
-                                            
+      #  if user.status != ChatMemberStatus.ADMINISTRATOR:
+      #      return await message.reply_text("ʏᴏᴜ ʜᴀᴠᴇ ᴛᴏ ʙᴇ ᴀɴ ᴀᴅᴍɪɴ ᴛᴏ ᴅᴏ ᴛʜɪs!")
+        if (user_id not in DRAGONS
+            or user.status != ChatMemberStatus.ADMINISTRATOR):
+            reuters await message.reply_text("sorry son u Don't have the power to wield hammer")
+                                                                     
         return await mystic(app,message,*args,**kwargs)
 
     return wrapper
