@@ -47,7 +47,7 @@ def user_admin(mystic):
         chat_id = message.chat.id
         user = await app.get_chat_member(chat_id,user_id)
              
-        if user_id not in DRAGONS or user.status != ChatMemberStatus.ADMINISTRATOR:
+        if user.status != ChatMemberStatus.ADMINISTRATOR:
             return await message.reply_text("ʏᴏᴜ ʜᴀᴠᴇ ᴛᴏ ʙᴇ ᴀɴ ᴀᴅᴍɪɴ ᴛᴏ ᴅᴏ ᴛʜɪs!")
                                                                      
         return await mystic(app,message,*args,**kwargs)
@@ -79,7 +79,5 @@ async def mute_all(_,msg):
     chat_id=msg.chat.id            
     if msg.reply_to_message:
         await pgram.restrict_chat_member(chat_id, msg.reply_to_message.from_user.id,ChatPermissions(can_send_messages=False))       
-    else:
-        await msg.reply_text("ᴇɪᴛʜᴇʀ ɪ ᴅᴏɴ'ᴛ ʜᴀᴠᴇ ᴛʜᴇ ʀɪɢʜᴛ ᴛᴏ ʀᴇsᴛʀɪᴄᴛ ᴜsᴇʀs ᴏʀ ʏᴏᴜ ᴀʀᴇ ɴᴏᴛ ɪɴ sᴜᴅᴏ ᴜsᴇʀs")  
-                                         
+                                             
     
