@@ -1,5 +1,5 @@
 from TeleBot import pgram 
-from pyrogram import Client
+from pyrogram import Client, filters 
 from pyrogram.types import Message 
 from pyrogram.enums import ChatMemberStatus
 from TeleBot import BOT_ID
