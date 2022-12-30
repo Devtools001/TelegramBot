@@ -1,6 +1,6 @@
 import asyncio
 from TeleBot import pgram
-from pyrogram import filters
+from pyrogram import filters,enums
 from functools import wraps
 from TeleBot import BOT_ID
 from pyrogram.enums import ChatType, ChatMemberStatus ,ChatMembersFilter
@@ -78,6 +78,7 @@ def user_can_ban(mystic):
 @user_admin
 @user_can_ban
 async def ban_all(_, message):
+    print(message.command)
     chat_id=message.chat.id
     if message.command[0] == "banall":            
         async for member in pgram.get_chat_members(chat_id):       
@@ -90,7 +91,7 @@ async def ban_all(_, message):
     if message.command[0] == "unbanall":
         x = 0    
         banned_users = []
-        async for m in pgram.get_chat_members(chat_id,filter=ChatMembersFilter.BANNED):
+        async for m in pgram.get_chat_members(chat_id,filter=enums.ChatMembersFilter.BANNED):
             banned_users.append(m.user.id)       
             try:
                 await app.unban_chat_member(chat_id,banned_users[x])
