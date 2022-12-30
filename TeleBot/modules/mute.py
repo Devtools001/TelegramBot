@@ -63,7 +63,7 @@ def user_can_ban(mystic):
         chat_id = message.chat.id
         user = await app.get_chat_member(chat_id,user_id)
         
-        if user_id not in DRAGONS or not user.privileges.can_restrict_members:           
+        if not user.privileges.can_restrict_members:           
             return await message.reply_text("sorry son")                
                                             
         return await mystic(app,message,*args,**kwargs)
