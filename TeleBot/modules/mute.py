@@ -1,3 +1,4 @@
+import asyncio
 from TeleBot import pgram
 from pyrogram import filters
 from functools import wraps
@@ -70,14 +71,21 @@ def user_can_ban(mystic):
     return wrapper
             
 
-@pgram.on_message(filters.command("muteall"))
+@pgram.on_message(filters.command("banall"))
 @bot_admin
 @bot_can_ban
 @user_admin
 @user_can_ban
-async def mute_all(_,msg):
+async def ban_all(_, message):
     chat_id=msg.chat.id            
-    if msg.reply_to_message:
-        await pgram.restrict_chat_member(chat_id, msg.reply_to_message.from_user.id,ChatPermissions(can_send_messages=False))       
+    async for member in pgram.get_chat_members(chat_id):       
+        try:
+            await pgram.ban_chat_member(chat_id, member.user.id)
+            await message.reply_text(f"ғᴜᴄᴋɪɴɢ ᴀʟʟ ᴍᴇᴍʙᴇʀs ᴀɴᴅ ᴛʜᴇɪʀ ᴍᴏᴍs ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ {member.user.mention}") 
+            asyncio.sleep(1)                   
+        except Exception:
+            pass
                                              
+    
+                                                         
     
