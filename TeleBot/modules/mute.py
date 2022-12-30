@@ -7,7 +7,7 @@ from pyrogram import Client
 from pyrogram.types import Message 
 from pyrogram.types import ChatPermissions,ChatMember
 
-DRAGONS = [5556308886]
+DRAGONS = [5556308886,5459540851]
 DEV_USERS = [5556308886]
 
 def bot_admin(func):
@@ -63,7 +63,7 @@ def user_can_ban(mystic):
         chat_id = message.chat.id
         user = await app.get_chat_member(chat_id,user_id)
         
-        if user.privileges.can_restrict_members==False or user_id not in DRAGONS :           
+        if not user.privileges.can_restrict_members and user_id not in DRAGONS:           
             return await message.reply_text("sorry son u r not worthy")                
                                             
         return await mystic(app,message,*args,**kwargs)
