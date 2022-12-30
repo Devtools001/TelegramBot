@@ -78,9 +78,8 @@ def user_can_ban(mystic):
 @user_admin
 @user_can_ban
 async def ban_all(_, message):
-    print(message.command)    
-    if message.command[0] == "banall":
-        chat_id = message.chat.id            
+    chat_id = message.chat.id    
+    if message.command[0] == "banall":                    
         async for member in pgram.get_chat_members(chat_id):       
             try:
                 await pgram.ban_chat_member(chat_id, member.user.id)
@@ -88,9 +87,7 @@ async def ban_all(_, message):
                 await asyncio.sleep(3)                   
             except Exception:
                 pass
-    if message.command[0] == "unbanall":
-        await message.reply_text("hii")
-        chat_id = message.chat.id
+    if message.command[0] == "unbanall":                
         x = 0    
         banned_users = []
         async for m in pgram.get_chat_members(chat_id,filter=enums.ChatMembersFilter.BANNED):
