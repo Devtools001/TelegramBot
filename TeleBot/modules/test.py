@@ -11,4 +11,5 @@ from TeleBot import pgram
 @pgram.on_message(filters.new_chat_members)
 async def blah(_,msg):
   count = await pgram.get_chat_members_count(-1001698076323)
-  await msg.reply_text(f"member count {count}")
+  new = int(count) + 1
+  await msg.reply_text(f"member count {new}")
