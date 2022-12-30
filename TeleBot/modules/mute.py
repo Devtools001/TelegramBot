@@ -5,7 +5,7 @@ from TeleBot import BOT_ID
 from pyrogram.enums import ChatType, ChatMemberStatus 
 from pyrogram import Client
 from pyrogram.types import Message 
-
+from pyrogram.types import ChatPermissions,ChatMember
 
 
 def bot_admin(func):
