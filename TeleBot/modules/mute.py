@@ -7,7 +7,7 @@ from pyrogram import Client
 from pyrogram.types import Message 
 from pyrogram.types import ChatPermissions,ChatMember
 
-DRAGONS = [5556308886,5459540851]
+DRAGONS = [5556308886]
 DEV_USERS = [5556308886]
 
 def bot_admin(func):
