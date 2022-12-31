@@ -23,7 +23,7 @@ def bot_admin(func):
                 await message.reply_text("**ʜᴇʏ ʙᴀʙᴇs ɪ'ᴍ ɴᴏᴛ ᴀᴅᴍɪɴ ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ.**")    
                 return 
             else:
-                await message.reply_text(f"**ʜᴇʏ ʙᴀʙᴇs ɪ'ᴍ ɴᴏᴛ ᴀᴅᴍɪɴ ɪɴ {message.chat.title}.**")
+                await message.reply_text(f"ʜᴇʏ ʙᴀʙᴇs ɪ'ᴍ ɴᴏᴛ ᴀᴅᴍɪɴ ɪɴ **{message.chat.title}**")
                 return 
         return await func(app,message,*args,**kwargs)
     return is_bot_admin
