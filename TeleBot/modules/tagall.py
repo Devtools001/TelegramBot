@@ -18,7 +18,9 @@ async def tag_all_users(_,message):
         start = time.time()        
         usernum= 0
         usertxt = ""
-        async for m in pgram.get_chat_members(message.chat.id):        
+        async for m in pgram.get_chat_members(message.chat.id): 
+            if message.chat.id not in SPAM_CHATS:
+                break       
             usernum += 1
             usertxt += f"\t✨ [{m.user.first_name}](tg://user?id={m.user.id})"
             if usernum == 5:
@@ -42,7 +44,9 @@ async def tag_all_users(_,message):
         start = time.time()
         usernum= 0
         usertxt = ""
-        async for m in pgram.get_chat_members(message.chat.id):        
+        async for m in pgram.get_chat_members(message.chat.id):       
+            if message.chat.id not in SPAM_CHATS:
+                break 
             usernum += 1
             usertxt += f"\t✨ [{m.user.first_name}](tg://user?id={m.user.id})"
             if usernum == 5:
