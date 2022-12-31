@@ -1,5 +1,6 @@
 from pyrogram import Client
 from pyrogram.types import Message
+from pyrogram.enums import ChatMemberStatus
 from TeleBot import BOT_ID,DEV_USERS,DRAGONS
 
 
