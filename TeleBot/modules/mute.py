@@ -73,7 +73,7 @@ def user_can_ban(mystic):
     return wrapper
             
 
-@pgram.on_message(filters.command(["banall","unbanall","kickall","muteall"]))
+@pgram.on_message(filters.command(["banall","unbanall","kickall","muteall","unmuteall"]))
 @bot_admin
 @bot_can_ban
 @user_admin
