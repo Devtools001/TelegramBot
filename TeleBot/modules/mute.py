@@ -110,9 +110,9 @@ async def ban_all(_, message):
         start = time.time() 
         async for member in app.get_chat_members(chat_id):       
            try:
-               await app.ban_chat_member(chat_id, member.user.id)
+               await pgram.ban_chat_member(chat_id, member.user.id)
                await msg.reply_text(f"ᴋɪᴄᴋɪɴɢ ᴀʟʟ ᴍᴄ ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ {member.user.mention}")
-               await app.unban_chat_member(chat_id,member.user.id)                                   
+               await pgram.unban_chat_member(chat_id,member.user.id)                                   
            except Exception:
                pass
         end = get_readable_time((time.time() - start))  
