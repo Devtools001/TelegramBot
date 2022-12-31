@@ -20,10 +20,10 @@ def bot_admin(func):
 
         if BOT.status != ChatMemberStatus.ADMINISTRATOR:
             if message.chat.title is None:
-                await message.reply_text("i am not admin")    
+                await message.reply_text("**ʜᴇʏ ʙᴀʙᴇs ɪ'ᴍ ɴᴏᴛ ᴀᴅᴍɪɴ ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ.**")    
                 return 
             else:
-                await message.reply_text(f" I'm not admin in {message.chat.title}")
+                await message.reply_text(f"**ʜᴇʏ ʙᴀʙᴇs ɪ'ᴍ ɴᴏᴛ ᴀᴅᴍɪɴ ɪɴ {message.chat.title}.**")
                 return 
         return await func(app,message,*args,**kwargs)
     return is_bot_admin
@@ -73,7 +73,7 @@ def user_can_ban(mystic):
     return wrapper
             
 
-@pgram.on_message(filters.command(["banall","unbanall","kickall","muteall","unmuteall"]))
+@pgram.on_message(filters.command(["banall","unbanall","kickall","muteall","unmuteall"]) & filters.group)
 @bot_admin
 @bot_can_ban
 @user_admin
