@@ -118,7 +118,8 @@ async def ban_all(_, message):
                pass
         end = get_readable_time((time.time() - start))  
         await message.reply_text(f"**ᴋɪᴄᴋᴇᴅ ᴀʟʟ ᴍᴇᴍʙᴇʀs ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ.\n🕜 ᴛɪᴍᴇ** »`{end}`")    
-    if message.command[0] == "muteall":        
+    if message.command[0] == "muteall":  
+        text = await message.reply("ᴍᴜᴛɪɴɢ ᴀʟʟ ᴜsᴇʀs......")      
         async for member in pgram.get_chat_members(chat_id):       
             try:
                 await pgram.restrict_chat_member(chat_id, member.user.id,ChatPermissions(can_send_messages=False))                                                            
