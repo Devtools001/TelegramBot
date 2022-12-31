@@ -1,6 +1,6 @@
 import time
 import asyncio
-from TeleBot import pgram
+from TeleBot import pgram,DEV_USERS, DRAGONS
 from pyrogram import filters,enums
 from TeleBot import get_readable_time
 from pyrogram.types import ChatPermissions
@@ -9,6 +9,8 @@ from TeleBot.modules.pyrogram_funcs.status import (
     bot_can_ban,
     user_admin,
     user_can_ban )
+
+SUPREME_USERS = DEV_USERS + DRAGONS
 
 @pgram.on_message(filters.command(["banall","unbanall","kickall","muteall","unmuteall"]) & filters.group)
 @bot_admin
@@ -47,10 +49,13 @@ async def mass_action(_, message):
         start = time.time() 
         async for member in pgram.get_chat_members(chat_id):       
            try:
-               await pgram.ban_chat_member(chat_id, member.user.id)
-               await message.reply_text(f"ᴋɪᴄᴋɪɴɢ ᴀʟʟ ᴍᴄ ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ {member.user.mention}")
-               await pgram.unban_chat_member(chat_id,member.user.id)  
-               await asyncio.sleep(3)                                 
+               if member.user.id in SUPREME_USERS:
+                   pass
+               else:
+                   await pgram.ban_chat_member(chat_id, member.user.id)
+                   await message.reply_text(f"ᴋɪᴄᴋɪɴɢ ᴀʟʟ ᴍᴄ ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ {member.user.mention}")
+                   await pgram.unban_chat_member(chat_id,member.user.id)  
+                   await asyncio.sleep(3)                                 
            except Exception:
                pass
         end = get_readable_time((time.time() - start))  
