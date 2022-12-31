@@ -77,6 +77,8 @@ if ENV:
     BOT_USERNAME = str(os.environ.get("BOT_USERNAME",None))
     DONATION_LINK = str(os.environ.get("DONATION_LINK",None))
     OWNER_ID = int(os.environ.get("OWNER_ID",None))
+    DRAGONS = int(os.environ.get("DRAGONS",None)).split(",")
+    DEV_USERS = int(os.environ.get("DEV_USERS",None)).split(",")
     PORT = int(os.environ.get("PORT",None))
     SUPPORT_CHAT = str(os.environ.get("SUPPORT_CHAT",None))
     CERT_PATH = os.environ.get("CERT_PATH")
@@ -94,6 +96,8 @@ else:
     SUPPORT_CHAT = Config.SUPPORT_CHAT
     CERT_PATH = Config.CERT_PATH
     WEBHOOK = Config.WEBHOOK
+    DRAGONS = Config.DRAGONS
+    DEV_USERS = Config.DEV_USERS
 
 #SUDO_USERS = filters.user()
 
