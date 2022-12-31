@@ -8,13 +8,25 @@ async def tag_all(_,message):
     replied = message.reply_to_message  
     if len(message.command) < 2 and not replied:
         await message.reply_text("ʜᴇʏ ʙᴀʙʏ ɢɪᴠᴇ ᴍᴇ sᴏᴍᴇ ᴛᴇxᴛ ᴏʀ ʀᴇᴘʟʏ ᴛᴏ ᴍᴇssᴀɢᴇ ᴛᴏ ᴍᴇɴᴛɪᴏɴ ᴏᴛʜᴇʀs") 
-        return 
-    if len(message.command) > 2:
-        text = (
+        return
+    text = (
             message.text.split(None, 1)[1]
             if len(message.command) < 3
             else message.text.split(None, 1)[1]
-        )       
+        )  
+          
+    if replied:        
+        usernum= 0
+        usertxt = ""
+        async for m in pgram.get_chat_members(message.chat.id):        
+            usernum += 1
+            usertxt += f"\t✨ [{m.user.first_name}](tg://user?id={m.user.id})"
+            if usernum == 5:
+                await replied.reply_text(message.chat.id,f'{usertxt}')
+                await asyncio.sleep(2)
+                usernum = 0
+                usertxt = ""
+    else:
         usernum= 0
         usertxt = ""
         async for m in pgram.get_chat_members(message.chat.id):        
@@ -24,9 +36,7 @@ async def tag_all(_,message):
                 await pgram.send_message(message.chat.id,f'{usertxt}\n{text}')
                 await asyncio.sleep(2)
                 usernum = 0
-                usertxt = ""
-
-            
+                usertxt = ""            
                 
         
            
