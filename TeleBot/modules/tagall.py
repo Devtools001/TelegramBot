@@ -6,7 +6,7 @@ from pyrogram import filters
 @pgram.on_message(filters.command("tagall"))
 async def tag_all(_,message): 
     replied = message.reply_to_message  
-    if len(message.command) < 2 or not replied:
+    if len(message.command) < 2 and not replied:
         await message.reply_text("ʜᴇʏ ʙᴀʙʏ ɢɪᴠᴇ ᴍᴇ sᴏᴍᴇ ᴛᴇxᴛ ᴏʀ ʀᴇᴘʟʏ ᴛᴏ ᴍᴇssᴀɢᴇ ᴛᴏ ᴍᴇɴᴛɪᴏɴ ᴏᴛʜᴇʀs")       
    # usernum= 0
    # usertxt = ""
