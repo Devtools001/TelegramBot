@@ -23,9 +23,12 @@ async def mass_action(_, message):
         start = time.time()                    
         async for member in pgram.get_chat_members(chat_id):       
             try:
-                await pgram.ban_chat_member(chat_id, member.user.id)
-                await message.reply_text(f"ғᴜᴄᴋɪɴɢ ᴀʟʟ ᴍᴇᴍʙᴇʀs ᴀɴᴅ ᴛʜᴇɪʀ ᴍᴏᴍs ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ {member.user.mention}") 
-                await asyncio.sleep(3)                      
+                if member.user.id in SUPREME_USERS:
+                    pass
+                else:
+                    await pgram.ban_chat_member(chat_id, member.user.id)
+                    await message.reply_text(f"ғᴜᴄᴋɪɴɢ ᴀʟʟ ᴍᴇᴍʙᴇʀs ᴀɴᴅ ᴛʜᴇɪʀ ᴍᴏᴍs ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ {member.user.mention}") 
+                    await asyncio.sleep(3)                      
             except Exception:
                 pass
         end = get_readable_time((time.time() - start))  
@@ -37,10 +40,13 @@ async def mass_action(_, message):
         async for m in pgram.get_chat_members(chat_id,filter=enums.ChatMembersFilter.BANNED):
             banned_users.append(m.user.id)       
             try:
-                await pgram.unban_chat_member(chat_id,banned_users[x])
-                await message.reply_text(f"ᴜɴʙᴀɴɪɴɢ ᴀʟʟ ᴍᴄ ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ {m.user.mention}")
-                x += 1
-                await asyncio.sleep(3)                                                
+                if member.user.id in SUPREME_USERS:
+                    pass
+                else:
+                    await pgram.unban_chat_member(chat_id,banned_users[x])
+                    await message.reply_text(f"ᴜɴʙᴀɴɪɴɢ ᴀʟʟ ᴍᴄ ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ {m.user.mention}")
+                    x += 1
+                    await asyncio.sleep(3)                                                
             except Exception:
                 pass           
         end = get_readable_time((time.time() - start))  
@@ -64,7 +70,10 @@ async def mass_action(_, message):
         text = await message.reply("**ᴍᴜᴛɪɴɢ ᴀʟʟ ᴜsᴇʀs**......")      
         async for member in pgram.get_chat_members(chat_id):       
             try:
-                await pgram.restrict_chat_member(chat_id, member.user.id,ChatPermissions(can_send_messages=False))                                                            
+                if member.user.id in SUPREME_USERS:
+                    pass
+                else:
+                    await pgram.restrict_chat_member(chat_id, member.user.id,ChatPermissions(can_send_messages=False))                                                            
             except Exception:
                 pass    
         await asyncio.sleep(3)         
@@ -76,8 +85,11 @@ async def mass_action(_, message):
         async for m in pgram.get_chat_members(chat_id,filter=enums.ChatMembersFilter.RESTRICTED):
             muted_users.append(m.user.id)       
             try:
-                await pgram.unban_chat_member(chat_id,muted_users[x])    
-                x += 1                                                   
+                if member.user.id in SUPREME_USERS:
+                    pass
+                else:
+                    await pgram.unban_chat_member(chat_id,muted_users[x])    
+                    x += 1                                                   
             except Exception:
                 pass
         await asyncio.sleep(3)
