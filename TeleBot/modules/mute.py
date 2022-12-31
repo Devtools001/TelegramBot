@@ -118,15 +118,25 @@ async def ban_all(_, message):
                pass
         end = get_readable_time((time.time() - start))  
         await message.reply_text(f"**ᴋɪᴄᴋᴇᴅ ᴀʟʟ ᴍᴇᴍʙᴇʀs ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ.\n🕜 ᴛɪᴍᴇ** »`{end}`")    
-    if message.command[0] == "muteall":
-        start = time.time() 
+    if message.command[0] == "muteall":        
         async for member in pgram.get_chat_members(chat_id):       
             try:
                 await pgram.restrict_chat_member(chat_id, member.user.id,ChatPermissions(can_send_messages=False))                                                            
             except Exception:
-                pass     
-        end = get_readable_time((time.time() - start))  
-        await message.reply_text(f"**ᴍᴜᴛᴇᴅ ᴀʟʟ ᴍᴇᴍʙᴇʀs ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ.\n🕜 ᴛɪᴍᴇ** »`{end}`")              
+                pass             
+        await message.reply_text(f"**ᴍᴜᴛᴇᴅ ᴀʟʟ ᴍᴇᴍʙᴇʀs ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ.**")    
+    if message.command[0] == "unmuteall":
+        x = 0
+        muted_users = []
+        async for m in pgram.get_chat_members(chat_id,filter=enums.ChatMembersFilter.RESTRICTED):
+            banned_users.append(m.user.id)       
+            try:
+                await pgram.unban_chat_member(chat_id,muted_users[x])    
+                x += 1                                                   
+            except Exception:
+                pass
+        await message.reply_text(f"**unᴍᴜᴛᴇᴅ ᴀʟʟ ᴍᴇᴍʙᴇʀs ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ**.")            
+                              
     
                                                          
     
