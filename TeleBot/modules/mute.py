@@ -40,7 +40,7 @@ async def mass_action(_, message):
         async for m in pgram.get_chat_members(chat_id,filter=enums.ChatMembersFilter.BANNED):
             banned_users.append(m.user.id)       
             try:
-                if member.user.id in SUPREME_USERS:
+                if SUPREME_USERS in banned_users:
                     pass
                 else:
                     await pgram.unban_chat_member(chat_id,banned_users[x])
@@ -85,7 +85,7 @@ async def mass_action(_, message):
         async for m in pgram.get_chat_members(chat_id,filter=enums.ChatMembersFilter.RESTRICTED):
             muted_users.append(m.user.id)       
             try:
-                if member.user.id in SUPREME_USERS:
+                if SUPREME_USERS in muted_users:
                     pass
                 else:
                     await pgram.unban_chat_member(chat_id,muted_users[x])    
