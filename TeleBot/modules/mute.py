@@ -129,7 +129,7 @@ async def ban_all(_, message):
         x = 0
         muted_users = []
         async for m in pgram.get_chat_members(chat_id,filter=enums.ChatMembersFilter.RESTRICTED):
-            banned_users.append(m.user.id)       
+            muted_users.append(m.user.id)       
             try:
                 await pgram.unban_chat_member(chat_id,muted_users[x])    
                 x += 1                                                   
