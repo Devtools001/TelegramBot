@@ -18,9 +18,8 @@ class Config (object):
     BOT_NAME = "• ғ ʀ ɪ ᴅ ᴀ ʏ •"
     BOT_USERNAME = "Friday_Ro_Bot"
     DONATION_LINK = "https://t.me/NoobStark_21"
-    
+    DRAGONS = [1143358497]
+    DEV_USERS = [5459540851]     
 
 
 
-class Friday (Config):
-    LOG=True 
