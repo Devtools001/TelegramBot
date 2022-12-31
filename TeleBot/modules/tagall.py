@@ -29,7 +29,7 @@ async def tag_all_users(_,message):
                 usernum = 0
                 usertxt = ""
         end = get_readable_time((time.time() - start))
-        await message.reply_text(f"**ᴍᴇɴᴛɪᴏɴᴇᴅ ᴀʟʟ ᴜsᴇʀs ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ\n🕜 ᴛɪᴍᴇ ᴛᴀᴋᴇɴ »** `{end}`")
+        await message.reply_text(f"**ᴍᴇɴᴛɪᴏɴᴇᴅ ᴜsᴇʀs ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ\n🕜 ᴛɪᴍᴇ ᴛᴀᴋᴇɴ »** `{end}`")
         try :
             SPAM_CHATS.remove(message.chat.id)
         except Exception:
@@ -55,7 +55,7 @@ async def tag_all_users(_,message):
                 usernum = 0
                 usertxt = ""            
         end = get_readable_time((time.time() - start))
-        await message.reply_text(f"**ᴍᴇɴᴛɪᴏɴᴇᴅ ᴀʟʟ ᴜsᴇʀs ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ\n🕜 ᴛɪᴍᴇ ᴛᴀᴋᴇɴ »** `{end}`")                
+        await message.reply_text(f"**ᴍᴇɴᴛɪᴏɴᴇᴅ ᴜsᴇʀs ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ\n🕜 ᴛɪᴍᴇ ᴛᴀᴋᴇɴ »** `{end}`")                
         try :
             SPAM_CHATS.remove(message.chat.id)
         except Exception:
