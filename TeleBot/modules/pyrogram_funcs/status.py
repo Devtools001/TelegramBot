@@ -1,3 +1,4 @@
+from functools import wraps 
 from pyrogram import Client
 from pyrogram.types import Message
 from pyrogram.enums import ChatMemberStatus
