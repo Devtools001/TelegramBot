@@ -35,10 +35,10 @@ def bot_can_ban(func):
 
         if not BOT.privileges.can_restrict_members:
             if message.chat.title is None:
-                await message.reply_text("i can't restrict people here make sure am admin and can restrict members")    
+                await message.reply_text("**ʜᴇʏ ʙᴀʙʏ ɪ ᴅᴏɴ'ᴛ ʜᴀᴠᴇ ʀɪɢʜᴛs ᴛᴏ ʀᴇsᴛʀɪᴄᴛ ᴜsᴇʀ ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ. ᴄʜᴇᴄᴋ ᴀɴᴅ ɢɪᴠᴇ ᴍᴇ ᴛʜᴇ ʀɪɢʜᴛ ᴘʟᴇᴀsᴇ.**🥺")    
                 return 
             else:
-                await message.reply_text(f"i can't restrict people in {message.chat.title} make sure am admin and can restrict members")
+                await message.reply_text(f"**ʜᴇʏ ʙᴀʙʏ ɪ ᴅᴏɴ'ᴛ ʜᴀᴠᴇ ʀɪɢʜᴛs ᴛᴏ ʀᴇsᴛʀɪᴄᴛ ᴜsᴇʀ ɪɴ {message.chat.title}. ᴄʜᴇᴄᴋ ᴀɴᴅ ɢɪᴠᴇ ᴍᴇ ᴛʜᴇ ʀɪɢʜᴛ ᴘʟᴇᴀsᴇ**.🥺")
                 return 
         return await func(app,message,*args,**kwargs)
     return can_restrict
