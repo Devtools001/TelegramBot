@@ -54,7 +54,17 @@ async def tag_all_admins(_,message):
             usertext += f"\n✨ [{m.user.first_name}](tg://user?id={m.user.id})"
         await replied.reply_text(usertext)
     else:
-        await message.reply_text("ntg")
+        text = (
+            message.text.split(None, 1)[1]
+            if len(message.command) < 3
+            else message.text.split(None, 1)[1]
+        ) 
+        username=0
+        usertext = ''
+        async for m in pgram.get_chat_members(message.chat.id,filter=enums.ChatMembersFilter.ADMINISTRATORS):
+            username += 1
+            usertext += f"\n✨ [{m.user.first_name}](tg://user?id={m.user.id})"
+        await pgram.send_message(message.chat.id,f'{usertext}\n{text}')        
 
     
     
