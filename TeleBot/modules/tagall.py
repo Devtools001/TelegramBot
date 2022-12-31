@@ -1,9 +1,10 @@
 import asyncio
 from TeleBot import pgram
 from pyrogram import filters, enums 
-
+from TeleBot.modules.pyrogram_funcs.status import user_admin
 
 @pgram.on_message(filters.command("tagall") & filters.group)
+@user_admin
 async def tag_all_users(_,message): 
     replied = message.reply_to_message  
     if len(message.command) < 2 and not replied:
