@@ -7,7 +7,7 @@ import asyncio
 import datetime
 #import telegram.ext as Fday
 from pyrogram import Client,filters
-from config import Friday as Config
+from config import Config
 from rich.table import Table
 from rich.console import Console
 #from telethon import TelegramClient 
