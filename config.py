@@ -1,4 +1,4 @@
-class Config (object):
+class Config:
     LOG=True
     LOAD=""
     NO_LOAD="translation"
