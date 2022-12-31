@@ -1,13 +1,13 @@
 import asyncio
 from TeleBot import pgram
-from pyrogram import filters
+from pyrogram import filters, enums 
 
 
 @pgram.on_message(filters.command("tagall") & filters.group)
 async def tag_all_users(_,message): 
     replied = message.reply_to_message  
     if len(message.command) < 2 and not replied:
-        await message.reply_text("ʜᴇʏ ʙᴀʙʏ ɢɪᴠᴇ ᴍᴇ sᴏᴍᴇ ᴛᴇxᴛ ᴏʀ ʀᴇᴘʟʏ ᴛᴏ ᴍᴇssᴀɢᴇ ᴛᴏ ᴍᴇɴᴛɪᴏɴ ᴏᴛʜᴇʀs") 
+        await message.reply_text("ʜᴇʏ ʙᴀʙʏ ɢɪᴠᴇ ᴍᴇ sᴏᴍᴇ ᴛᴇxᴛ ᴏʀ ʀᴇᴘʟʏ ᴛᴏ ᴍᴇssᴀɢᴇ ᴛᴏ ᴍᴇɴᴛɪᴏɴ ᴏᴛʜᴇʀs.") 
         return              
     if replied:        
         usernum= 0
@@ -41,20 +41,21 @@ async def tag_all_users(_,message):
            
 
 @pgram.on_message(filters.command("atag") & filters.group)
-async def tag_all_admins(_,message):       
-    username=0
-    usertext = 'hii '
-    async for m in pgram.get_chat_members(message.chat.id):
-        username += 1
-        usertext += f" \n [{m.user.first_name}](tg://user?id={m.user.id})"
-    await message.reply_text(f"""
-{usertext}
-⸢ʀᴇᴘᴏʀᴛ sᴏᴍᴇᴛʜɪɴɢ ᴛᴏ ᴀᴅᴍɪɴs⸥
-""")
-    
-                   
-            
-           
+async def tag_all_admins(_,message):
+    replied = message.reply_to_message  
+    if len(message.command) < 2 and not replied:
+        await message.reply_text("ʜᴇʏ ʙᴀʙʏ ɢɪᴠᴇ ᴍᴇ sᴏᴍᴇ ᴛᴇxᴛ ᴏʀ ʀᴇᴘʟʏ ᴛᴏ ᴍᴇssᴀɢᴇ ᴛᴏ ᴍᴇɴᴛɪᴏɴ **ᴀᴅᴍɪɴs**.") 
+        return  
+    if replied:                   
+        username=0
+        usertext = ''
+        async for m in pgram.get_chat_members(message.chat.id,):
+            username += 1
+            usertext += f" \n {m.user.first_name}"
+        await replied.reply_text(usertext)
+    else:
+    await message.reply_text("ntg")
+
     
     
 
