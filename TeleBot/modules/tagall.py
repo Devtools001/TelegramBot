@@ -3,7 +3,7 @@ from TeleBot import pgram
 from pyrogram import filters
 
 
-@pgram.on_message(filters.command("tagall"))
+@pgram.on_message(filters.command("tagall") & filters.group)
 async def tag_all(_,message): 
     replied = message.reply_to_message  
     if len(message.command) < 2 and not replied:
@@ -22,7 +22,7 @@ async def tag_all(_,message):
         usernum += 1
         usertxt += f"\n[{m.user.first_name}](tg://user?id={m.user.id})"
         if usernum == 5:
-            await pgram.send_message(message.chat.id,f'{usertxt}\n\n{text}')
+            await pgram.send_message(message.chat.id,f'{usertxt}\n{text}')
             await asyncio.sleep(2)
             usernum = 0
             usertxt = ""
