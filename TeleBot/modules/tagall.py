@@ -54,7 +54,7 @@ async def tag_all_admins(_,message):
             usertext += f" \n {m.user.first_name}"
         await replied.reply_text(usertext)
     else:
-    await message.reply_text("ntg")
+        await message.reply_text("ntg")
 
     
     
