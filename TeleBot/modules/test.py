@@ -8,6 +8,7 @@ from functools import wraps
 
 
 from TeleBot import pgram 
+
 @pgram.on_message(filters.command("okk"))
 async def blah(_, message):
-  await message.reply_to_message.reply_to_message.reply_text("hi")
+  await message.reply_to_message.reply_text("hi")
