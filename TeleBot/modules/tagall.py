@@ -1,5 +1,6 @@
+import time 
 import asyncio
-from TeleBot import pgram
+from TeleBot import pgram,get_readable_time
 from pyrogram import filters, enums 
 from TeleBot.modules.pyrogram_funcs.status import user_admin
 
@@ -10,7 +11,8 @@ async def tag_all_users(_,message):
     if len(message.command) < 2 and not replied:
         await message.reply_text("ʜᴇʏ ʙᴀʙʏ ɢɪᴠᴇ ᴍᴇ sᴏᴍᴇ ᴛᴇxᴛ ᴏʀ ʀᴇᴘʟʏ ᴛᴏ ᴍᴇssᴀɢᴇ ᴛᴏ ᴍᴇɴᴛɪᴏɴ ᴏᴛʜᴇʀs.") 
         return              
-    if replied:        
+    if replied:
+        start = time.time()        
         usernum= 0
         usertxt = ""
         async for m in pgram.get_chat_members(message.chat.id):        
@@ -21,12 +23,15 @@ async def tag_all_users(_,message):
                 await asyncio.sleep(2)
                 usernum = 0
                 usertxt = ""
+        end = get_readable_time((time.time() - start))
+        await message.reply_text(f"ᴍᴇɴᴛɪᴏɴᴇᴅ ᴀʟʟ ᴜsᴇʀs ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ\n🕜 ᴛɪᴍᴇ ᴛᴀᴋᴇɴ » `{end}`")
     else:
         text = (
             message.text.split(None, 1)[1]
             if len(message.command) < 3
             else message.text.split(None, 1)[1]
         )  
+        start = time.time()
         usernum= 0
         usertxt = ""
         async for m in pgram.get_chat_members(message.chat.id):        
@@ -37,7 +42,8 @@ async def tag_all_users(_,message):
                 await asyncio.sleep(2)
                 usernum = 0
                 usertxt = ""            
-                
+        end = get_readable_time((time.time() - start))
+        await message.reply_text(f"ᴍᴇɴᴛɪᴏɴᴇᴅ ᴀʟʟ ᴜsᴇʀs ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ\n🕜 ᴛɪᴍᴇ ᴛᴀᴋᴇɴ » `{end}`")                
         
            
 
