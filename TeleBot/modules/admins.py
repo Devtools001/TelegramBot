@@ -6,25 +6,38 @@ from TeleBot.modules.pyrogram_funcs.status import (
     user_admin,
     user_can_change_info )
 
-@pgram.on_message(filters.command("setgtitle") & ~filters.private)
+@pgram.on_message(filters.command(["setgtitle","setgdesc"]) & ~filters.private)
 @bot_admin
 @bot_can_change_info
 @user_admin
 @user_can_change_info
 async def g_title(_,message):  
-    chat_id = message.chat.id  
+    chat_id = message.chat.id
+    mention = message.from_user.mention
     if not message.from_user:
-        return 
-    if len(message.command) < 2:
-        await message.reply_text(f"ʜᴇʏ **{message.from_user.mention}** ɢɪᴠᴇ ᴍᴇ sᴏᴍᴇ ᴛᴇxᴛ ᴛᴏ sᴇᴛ ɪᴛ ᴀs ᴀ ɢʀᴏᴜᴘ ᴛɪᴛʟᴇ.")  
-        return
-    else:
-        get_new_title = message.text.split(None,1)[1]
-        try:                    
-            await pgram.set_chat_title(chat_id,get_new_title)      
-            await message.reply_text("sᴜᴄᴄᴇssғᴜʟʟʏ ᴄʜᴀɴɢᴇᴅ ɢʀᴏᴜᴘ ᴛɪᴛʟᴇ.")
-        except Exception:
-            pass      
+            return   
+    if message.command[0] == "setgtitle":       
+        if len(message.command) < 2:
+            await message.reply_text(f"ʜᴇʏ **{mention}** ɢɪᴠᴇ ᴍᴇ sᴏᴍᴇ ᴛᴇxᴛ ᴛᴏ sᴇᴛ ɪᴛ ᴀs ᴀ ɢʀᴏᴜᴘ ᴛɪᴛʟᴇ.")  
+            return
+        else:
+            get_new_title = message.text.split(None,1)[1]
+            try:                    
+                await pgram.set_chat_title(chat_id,get_new_title)      
+                await message.reply_text("sᴜᴄᴄᴇssғᴜʟʟʏ ᴄʜᴀɴɢᴇᴅ ɢʀᴏᴜᴘ ᴛɪᴛʟᴇ.")
+            except Exception:
+                pass    
+    if message.command[0] == "setgdesc":
+        if len(message.command) < 2:
+            await message.reply_text(f"ʜᴇʏ **{mention}** ɢɪᴠᴇ ᴍᴇ sᴏᴍᴇ ᴛᴇxᴛ ᴛᴏ sᴇᴛ ɪᴛ ᴀs ᴀ ɢʀᴏᴜᴘ ᴅᴇsᴄʀɪᴘᴛɪᴏɴ.")  
+            return 
+        else:
+            get_new_desc = message.text.split(None,1)[1]   
+            try:                    
+                await pgram.set_chat_description(chat_id,get_new_desc)      
+                await message.reply_text("sᴜᴄᴄᴇssғᴜʟʟʏ ᴄʜᴀɴɢᴇᴅ ɢʀᴏᴜᴘ ᴅᴇsᴄʀɪᴘᴛɪᴏɴ.")
+            except Exception:
+                pass       
 
 
 __help__ = """
