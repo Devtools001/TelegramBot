@@ -4,4 +4,4 @@ import yaml
 commands = {}
 
 def get_command(value: str) -> List:
-    return commands["cmd"][value]
+    return commands["command"][value]
