@@ -1,3 +1,4 @@
+import os
 from TeleBot import pgram
 from pyrogram import filters
 from TeleBot.modules.pyrogram_funcs.status import (
@@ -14,6 +15,7 @@ from TeleBot.modules.pyrogram_funcs.status import (
 async def g_title(_,message):  
     chat_id = message.chat.id
     mention = message.from_user.mention
+    replied = message.reply_message
     if not message.from_user:
             return   
     if message.command[0] == "setgtitle":       
@@ -39,16 +41,21 @@ async def g_title(_,message):
             except Exception:
                 pass       
     if message.command[0] == "setgpic":
-        if len(message.command) < 2:
-            await message.reply_text(f"ʜᴇʏ **{mention}** ɢɪᴠᴇ ᴍᴇ sᴏᴍᴇ ᴛᴇxᴛ ᴛᴏ sᴇᴛ ɪᴛ ᴀs ᴀ ɢʀᴏᴜᴘ ᴅᴇsᴄʀɪᴘᴛɪᴏɴ.")  
-            return 
+        if replied :            
+            if replied.photo:
+                text = await message.reply("ᴅᴏᴡɴʟᴏᴀᴅɪɴɢ....")
+                try:
+                    g_pic = await replied.download()
+                    await pgram.set_chat_photo(chat_id, photo=g_pic)
+                    await text.edit("sᴜᴄᴄᴇssғᴜʟʟʏ ᴄʜᴀɴɢᴇᴅ ɢʀᴏᴜᴘ ᴘɪᴄ.")
+                    os.remove(g_pic)
+                except Exception as error:
+                    await message.reply_text(error)
+            else:
+                await message.reply_text(f"ʜᴇʏ **{mention}** ʀᴇᴘʟʏ ᴛᴏ ᴀ ɪᴍᴀɢᴇ ᴛᴏ sᴇᴛ ɪᴛ ᴀs ᴀ ɢʀᴏᴜᴘ ᴘɪᴄ.")
         else:
-            get_new_desc = message.text.split(None,1)[1]   
-            try:                    
-                await pgram.set_chat_description(chat_id,get_new_desc)      
-                await message.reply_text("sᴜᴄᴄᴇssғᴜʟʟʏ ᴄʜᴀɴɢᴇᴅ ɢʀᴏᴜᴘ ᴅᴇsᴄʀɪᴘᴛɪᴏɴ.")
-            except Exception:
-                pass       
+            await message.reply_text("ʀᴇᴘʟʏ ᴛᴏ ᴀ ɪᴍᴀɢᴇ ʙʀᴜʜ.")
+                                   
 
 
 __help__ = """
