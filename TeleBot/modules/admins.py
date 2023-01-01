@@ -7,12 +7,12 @@ from TeleBot.modules.pyrogram_funcs.status import (
     user_admin,
     user_can_change_info )
 
-@pgram.on_message(filters.command(["setgtitle","setgdesc","setgpic"]) & ~filters.private)
+@pgram.on_message(filters.command(["setgtitle","setgdesc"]) & ~filters.private)
 @bot_admin
 @bot_can_change_info
 @user_admin
 @user_can_change_info
-async def g_title(_,message):  
+async def g_title_desc(_,message):  
     chat_id = message.chat.id
     mention = message.from_user.mention
     replied = message.reply_to_message
@@ -40,6 +40,21 @@ async def g_title(_,message):
                 await message.reply_text("sᴜᴄᴄᴇssғᴜʟʟʏ ᴄʜᴀɴɢᴇᴅ ɢʀᴏᴜᴘ ᴅᴇsᴄʀɪᴘᴛɪᴏɴ.")
             except Exception:
                 pass       
+    
+                                   
+@pgram.on_message(filters.command(["setgpic","setgvid"]) & ~filters.private)
+@bot_admin
+@bot_can_change_info
+@user_admin
+@user_can_change_info
+async def g_pic_vid(_,message):
+    chat_id = message.chat.id
+    mention = message.from_user.mention
+    replied = message.reply_to_message
+
+    if not message.from_user:
+            return 
+  
     if message.command[0] == "setgpic":
         if replied :            
             if replied.photo:
@@ -54,26 +69,31 @@ async def g_title(_,message):
                     await message.reply_text(error)
 
                 os.remove(g_pic)
-                
-            if replied.video:   
-                text = await message.reply_text("ᴊᴜsᴛ ᴀ sᴇᴄ..... ")               
-                g_vid = await replied.download()       
+
+            else:
+                await message.reply_text("ʜᴇʏ ʙᴀʙʏ ʏᴏᴜ ɴᴇᴇᴅ ᴛᴏ ʀᴇᴘʟʏ ᴛᴏ ᴀn ɪᴍᴀɢᴇ ᴜsɪɴɢ ᴛʜɪs ᴄᴏᴍᴍᴀɴᴅ. ɪғ ʏᴏᴜ ᴀʀᴇ ʀᴇᴘʟʏɪɴɢ ᴛᴏ ᴀ ᴠɪᴅᴇᴏ ᴛʜᴇɴ ᴜsᴇ /setgvid ᴄᴏᴍᴍᴀɴᴅ.")
+        else:
+            await message.reply_text("ʏᴏᴜ ɴᴇᴇᴅ ᴛᴏ ʀᴇᴘʟʏ ᴛᴏ ᴀ ᴍᴇᴅɪᴀ.")
+
+    if message.command[0] == "setgvid":
+        if replied:
+            if replied.video:           
+                text = await message.reply_text("ᴡᴀɪᴛᴏᴏ.....")  
+                g_vid = await replied.download()  
                 try:                                
                     await pgram.set_chat_photo(chat_id, video=g_vid)
                     await text.delete()
                     await message.reply_text("sᴜᴄᴄᴇssғᴜʟʟʏ ᴄʜᴀɴɢᴇᴅ ɢʀᴏᴜᴘ ᴘɪᴄ.")                    
                 except Exception as error:
-                    await message.reply_text(error)
+                    await message.reply_text("ʜᴇʏ ʜᴇʏ ʜᴇʏ....\nᴛʜᴇʀᴇ ᴀʀᴇ sᴏᴍᴇ ʟɪᴍɪᴛᴀᴛɪᴏɴs\nʏᴏᴜʀ ᴠɪᴅᴇᴏ ʀᴀᴛɪᴏ ᴍᴜsᴛ ʙᴇ 1:1 ᴀɴᴅ sɪᴢᴇ ᴜɴᴅᴇʀ 2ᴍʙ + ʟᴇss ᴛʜᴇɴ 10 sᴇᴄᴏɴs ᴏғ ʟᴇɴɢᴛʜ.")
                 
                 os.remove(g_vid)
                    
             else:
-                await message.reply_text(f"ʜᴇʏ video**{mention}** ɪ ᴛʜɪɴɢ ʏᴏᴜ sʜᴏᴜʟᴅ ʀᴇᴘʟʏ ᴛᴏ ᴀ ɪᴍᴀɢᴇ.")
+                await message.reply_text("ʜᴇʏ ʙᴀʙʏ ʏᴏᴜ ɴᴇᴇᴅ ᴛᴏ ʀᴇᴘʟʏ ᴛᴏ ᴀ ᴠɪᴅᴇᴏ ᴜsɪɴɢ ᴛʜɪs ᴄᴏᴍᴍᴀɴᴅ. ɪғ ʏᴏᴜ ᴀʀᴇ ʀᴇᴘʟʏɪɴɢ ᴛᴏ ᴀn ɪᴍᴀɢᴇ ᴛʜᴇɴ ᴜsᴇ /setgpic ᴄᴏᴍᴍᴀɴᴅ.")
         else:
-            await message.reply_text("ʀᴇᴘʟʏ ᴛᴏ ᴀ ɪᴍᴀɢᴇ ʙʀᴜʜ.")
-                                   
-
-
+            await message.reply_text("ʏᴏᴜ ɴᴇᴇᴅ ᴛᴏ ʀᴇᴘʟʏ ᴛᴏ ᴀ ᴍᴇᴅɪᴀ.")  
+            
 __help__ = """
 **⸢ᴡʜᴇɴ sᴏᴍᴇᴏɴᴇ ᴍᴇɴᴛɪᴏɴs ʏᴏᴜ ɪɴ ᴀ ᴄʜᴀᴛ, ᴛʜᴇ ᴜsᴇʀ ᴡɪʟʟ ʙᴇ ɴᴏᴛɪғɪᴇᴅ ʏᴏᴜ ᴀʀᴇ AFK. ʏᴏᴜ ᴄᴀɴ ᴇᴠᴇɴ ᴘʀᴏᴠɪᴅᴇ ᴀ ʀᴇᴀsᴏɴ ғᴏʀ ɢᴏɪɴɢ AFK, ᴡʜɪᴄʜ ᴡɪʟʟ ʙᴇ ᴘʀᴏᴠɪᴅᴇᴅ ᴛᴏ ᴛʜᴇ ᴜsᴇʀ ᴀs ᴡᴇʟʟ.⸥**
 
