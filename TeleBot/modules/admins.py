@@ -42,7 +42,7 @@ async def g_title_desc(_,message):
                 pass       
     
                                    
-@pgram.on_message(filters.command(["setgpic","setgvid"]) & ~filters.private)
+@pgram.on_message(filters.command(["setgpic","setgvid","delgpic"]) & ~filters.private)
 @bot_admin
 @bot_can_change_info
 @user_admin
@@ -98,6 +98,12 @@ async def g_pic_vid(_,message):
                 await message.reply_text("ʜᴇʏ ʙᴀʙʏ ʏᴏᴜ ɴᴇᴇᴅ ᴛᴏ ʀᴇᴘʟʏ ᴛᴏ ᴀ ᴠɪᴅᴇᴏ ᴜsɪɴɢ ᴛʜɪs ᴄᴏᴍᴍᴀɴᴅ. ɪғ ʏᴏᴜ ᴀʀᴇ ʀᴇᴘʟʏɪɴɢ ᴛᴏ ᴀn ɪᴍᴀɢᴇ ᴛʜᴇɴ ᴜsᴇ /setgpic ᴄᴏᴍᴍᴀɴᴅ.")
         else:
             await message.reply_text("ʏᴏᴜ ɴᴇᴇᴅ ᴛᴏ ʀᴇᴘʟʏ ᴛᴏ ᴀ ᴠɪᴅᴇᴏ.")  
+    if message.command[0] == "delgpic"
+        try:
+            await pgram.delete_chat_photo(chat_id)
+            await message.reply_text("sᴜᴄᴄᴇssғᴜʟʟʏ  ʀᴇᴍᴏᴠᴇᴅ ɢʀᴏᴜᴘ ᴘғᴘ.")
+        except Exception as e:
+            await message.reply_text(e)
             
 __help__ = """
 **⸢ᴡʜᴇɴ sᴏᴍᴇᴏɴᴇ ᴍᴇɴᴛɪᴏɴs ʏᴏᴜ ɪɴ ᴀ ᴄʜᴀᴛ, ᴛʜᴇ ᴜsᴇʀ ᴡɪʟʟ ʙᴇ ɴᴏᴛɪғɪᴇᴅ ʏᴏᴜ ᴀʀᴇ AFK. ʏᴏᴜ ᴄᴀɴ ᴇᴠᴇɴ ᴘʀᴏᴠɪᴅᴇ ᴀ ʀᴇᴀsᴏɴ ғᴏʀ ɢᴏɪɴɢ AFK, ᴡʜɪᴄʜ ᴡɪʟʟ ʙᴇ ᴘʀᴏᴠɪᴅᴇᴅ ᴛᴏ ᴛʜᴇ ᴜsᴇʀ ᴀs ᴡᴇʟʟ.⸥**
