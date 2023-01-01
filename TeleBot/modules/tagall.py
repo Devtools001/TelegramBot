@@ -3,7 +3,6 @@ import asyncio
 from TeleBot import pgram,get_readable_time
 from pyrogram import filters, enums 
 from TeleBot.modules.pyrogram_funcs.status import user_admin
-from Telegram import get_command
 
 
 SPAM_CHATS = []
