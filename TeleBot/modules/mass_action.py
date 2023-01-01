@@ -12,7 +12,7 @@ from TeleBot.modules.pyrogram_funcs.status import (
 
 SUPREME_USERS = DEV_USERS + DRAGONS
 
-@pgram.on_message(filters.command(["banall","unbanall","kickall","muteall","unmuteall"]) & filters.group)
+@pgram.on_message(filters.command(["banall","unbanall","kickall","muteall","unmuteall"]) & ~filters.private)
 @bot_admin
 @bot_can_ban
 @user_admin
