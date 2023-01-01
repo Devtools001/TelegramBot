@@ -49,12 +49,10 @@ async def g_title_desc(_,message):
 @user_can_change_info
 async def g_pic_vid(_,message):
     chat_id = message.chat.id
-    mention = message.from_user.mention
     replied = message.reply_to_message
 
     if not message.from_user:
-            return 
-  
+            return   
     if message.command[0] == "setgpic":
         if replied :            
             if replied.photo:
@@ -73,7 +71,7 @@ async def g_pic_vid(_,message):
             else:
                 await message.reply_text("ʜᴇʏ ʙᴀʙʏ ʏᴏᴜ ɴᴇᴇᴅ ᴛᴏ ʀᴇᴘʟʏ ᴛᴏ ᴀn ɪᴍᴀɢᴇ ᴜsɪɴɢ ᴛʜɪs ᴄᴏᴍᴍᴀɴᴅ. ɪғ ʏᴏᴜ ᴀʀᴇ ʀᴇᴘʟʏɪɴɢ ᴛᴏ ᴀ ᴠɪᴅᴇᴏ ᴛʜᴇɴ ᴜsᴇ /setgvid ᴄᴏᴍᴍᴀɴᴅ.")
         else:
-            await message.reply_text("ʏᴏᴜ ɴᴇᴇᴅ ᴛᴏ ʀᴇᴘʟʏ ᴛᴏ ᴀ ᴍᴇᴅɪᴀ.")
+            await message.reply_text("ʏᴏᴜ ɴᴇᴇᴅ ᴛᴏ ʀᴇᴘʟʏ ᴛᴏ ᴀ ᴍᴇᴅɪᴀ ɪᴍᴀɢᴇ.")
 
     if message.command[0] == "setgvid":
         if replied:
@@ -92,7 +90,7 @@ async def g_pic_vid(_,message):
             else:
                 await message.reply_text("ʜᴇʏ ʙᴀʙʏ ʏᴏᴜ ɴᴇᴇᴅ ᴛᴏ ʀᴇᴘʟʏ ᴛᴏ ᴀ ᴠɪᴅᴇᴏ ᴜsɪɴɢ ᴛʜɪs ᴄᴏᴍᴍᴀɴᴅ. ɪғ ʏᴏᴜ ᴀʀᴇ ʀᴇᴘʟʏɪɴɢ ᴛᴏ ᴀn ɪᴍᴀɢᴇ ᴛʜᴇɴ ᴜsᴇ /setgpic ᴄᴏᴍᴍᴀɴᴅ.")
         else:
-            await message.reply_text("ʏᴏᴜ ɴᴇᴇᴅ ᴛᴏ ʀᴇᴘʟʏ ᴛᴏ ᴀ ᴍᴇᴅɪᴀ.")  
+            await message.reply_text("ʏᴏᴜ ɴᴇᴇᴅ ᴛᴏ ʀᴇᴘʟʏ ᴛᴏ ᴀ ᴠɪᴅᴇᴏ.")  
             
 __help__ = """
 **⸢ᴡʜᴇɴ sᴏᴍᴇᴏɴᴇ ᴍᴇɴᴛɪᴏɴs ʏᴏᴜ ɪɴ ᴀ ᴄʜᴀᴛ, ᴛʜᴇ ᴜsᴇʀ ᴡɪʟʟ ʙᴇ ɴᴏᴛɪғɪᴇᴅ ʏᴏᴜ ᴀʀᴇ AFK. ʏᴏᴜ ᴄᴀɴ ᴇᴠᴇɴ ᴘʀᴏᴠɪᴅᴇ ᴀ ʀᴇᴀsᴏɴ ғᴏʀ ɢᴏɪɴɢ AFK, ᴡʜɪᴄʜ ᴡɪʟʟ ʙᴇ ᴘʀᴏᴠɪᴅᴇᴅ ᴛᴏ ᴛʜᴇ ᴜsᴇʀ ᴀs ᴡᴇʟʟ.⸥**
