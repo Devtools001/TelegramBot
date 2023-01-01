@@ -8,7 +8,7 @@ from Telegram import get_command
 
 SPAM_CHATS = []
 
-@pgram.on_message(filters.command(TAG_ALL) & filters.group)
+@pgram.on_message(filters.command("tagall") & filters.group)
 @user_admin
 async def tag_all_users(_,message): 
     replied = message.reply_to_message  
