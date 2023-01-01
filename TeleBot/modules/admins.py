@@ -52,6 +52,17 @@ async def g_title(_,message):
                     os.remove(g_pic)
                 except Exception as error:
                     await message.reply_text(error)
+                
+            if replied.video:
+                text = await message.reply_text("ᴊᴜsᴛ ᴀ sᴇᴄ..... ")         
+                try:
+                    g_vid = await replied.download()
+                    await pgram.set_chat_photo(chat_id, video=g_vid)
+                    await text.delete()
+                    await message.reply_text("sᴜᴄᴄᴇssғᴜʟʟʏ ᴄʜᴀɴɢᴇᴅ ɢʀᴏᴜᴘ ᴘɪᴄ.")
+                    os.remove(g_pic)
+                except Exception as error:
+                    await message.reply_text(error)
             else:
                 await message.reply_text(f"ʜᴇʏ **{mention}** ɪ ᴛʜɪɴɢ ʏᴏᴜ sʜᴏᴜʟᴅ ʀᴇᴘʟʏ ᴛᴏ ᴀ ɪᴍᴀɢᴇ.")
         else:
