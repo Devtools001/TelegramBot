@@ -3,10 +3,12 @@ import asyncio
 from TeleBot import pgram,get_readable_time
 from pyrogram import filters, enums 
 from TeleBot.modules.pyrogram_funcs.status import user_admin
+from Telegram import get_command
 
+TAG_ALL = get_command("TAG_ALL")
 SPAM_CHATS = []
 
-@pgram.on_message(filters.command("tagall") & filters.group)
+@pgram.on_message(filters.command(TAG_ALL) & filters.group)
 @user_admin
 async def tag_all_users(_,message): 
     replied = message.reply_to_message  
