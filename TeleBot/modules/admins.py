@@ -37,7 +37,7 @@ async def g_title(_,message):
                 await pgram.set_chat_description(chat_id,get_new_desc)      
                 await message.reply_text("sᴜᴄᴄᴇssғᴜʟʟʏ ᴄʜᴀɴɢᴇᴅ ɢʀᴏᴜᴘ ᴅᴇsᴄʀɪᴘᴛɪᴏɴ.")
             except Exception:
-                pass       
+                print(Exception)       
 
 
 __help__ = """
