@@ -6,7 +6,7 @@ from TeleBot.modules.pyrogram_funcs.status import (
     user_admin,
     user_can_change_info )
 
-@pgram.on_message(filters.command("setgtitle") & filters.group)
+@pgram.on_message(filters.command("setgtitle") & ~filters.private)
 @bot_admin
 @bot_can_change_info
 @user_admin
