@@ -15,7 +15,7 @@ async def g_title(_,message):
     chat_id = message.chat.id  
     if not message.from_user:
         return 
-    if len(message.command) < 2
+    if len(message.command) < 2:
         await message.reply_text(f"ʜᴇʏ **{message.from_user.mention}** ɢɪᴠᴇ ᴍᴇ sᴏᴍᴇ ᴛᴇxᴛ ᴛᴏ sᴇᴛ ɪᴛ ᴀs ᴀ ɢʀᴏᴜᴘ ᴛɪᴛʟᴇ.")  
         return
     else:
