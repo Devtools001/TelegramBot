@@ -76,8 +76,9 @@ async def g_pic_vid(_,message):
     if message.command[0] == "setgvid":
         if replied:
             if replied.video:           
-                text = await message.reply_text("ᴡᴀɪᴛᴏᴏ.....")  
-                if replied.video.file_size > 5000000 :
+                text = await message.reply_text("ᴡᴀɪᴛᴏᴏ.....") 
+                file = replied.photo or reply.document or reply.animation  
+                if file.file_size > 5000000 :
                     await message.reply_text("ғɪʟᴇ ɪs ᴛᴏᴏ ʙᴏɢ. 🙄")
                 else:
                     g_vid = await replied.download()                 
