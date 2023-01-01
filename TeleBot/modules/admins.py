@@ -23,8 +23,8 @@ async def g_title(_,message):
         try:                    
             await pgram.set_chat_title(chat_id,get_new_title)      
             await message.reply_text("sᴜᴄᴄᴇssғᴜʟʟʏ ᴄʜᴀɴɢᴇᴅ ɢʀᴏᴜᴘ ᴛɪᴛʟᴇ.")
-        except Exception as error:
-            await message.reply_text(error)      
+        except Exception:
+            pass      
 
 
 __help__ = """
