@@ -77,7 +77,7 @@ async def g_pic_vid(_,message):
         if replied:
             if replied.video:           
                 text = await message.reply_text("ᴡᴀɪᴛᴏᴏ.....") 
-                file = replied.photo or reply.document or reply.animation 
+                file = replied.video or replied.document or replied.animation 
                 if not file:
                     return await message.reply_text(
                     "Reply to a photo or document to set it as chat_photo"
