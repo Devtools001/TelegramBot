@@ -43,16 +43,17 @@ async def g_title(_,message):
     if message.command[0] == "setgpic":
         if replied :            
             if replied.photo:
-                text = await message.reply("ᴅᴏᴡɴʟᴏᴀᴅɪɴɢ....")
+                text = await message.reply_text("ᴊᴜsᴛ ᴀ sᴇᴄ..... ")         
                 try:
                     g_pic = await replied.download()
                     await pgram.set_chat_photo(chat_id, photo=g_pic)
-                    await text.edit("sᴜᴄᴄᴇssғᴜʟʟʏ ᴄʜᴀɴɢᴇᴅ ɢʀᴏᴜᴘ ᴘɪᴄ.")
+                    await text.delete()
+                    await message.reply_text("sᴜᴄᴄᴇssғᴜʟʟʏ ᴄʜᴀɴɢᴇᴅ ɢʀᴏᴜᴘ ᴘɪᴄ.")
                     os.remove(g_pic)
                 except Exception as error:
                     await message.reply_text(error)
             else:
-                await message.reply_text(f"ʜᴇʏ **{mention}** ʀᴇᴘʟʏ ᴛᴏ ᴀ ɪᴍᴀɢᴇ ᴛᴏ sᴇᴛ ɪᴛ ᴀs ᴀ ɢʀᴏᴜᴘ ᴘɪᴄ.")
+                await message.reply_text(f"ʜᴇʏ **{mention}** ɪ ᴛʜɪɴɢ ʏᴏᴜ sʜᴏᴜʟᴅ ʀᴇᴘʟʏ ᴛᴏ ᴀ ɪᴍᴀɢᴇ.")
         else:
             await message.reply_text("ʀᴇᴘʟʏ ᴛᴏ ᴀ ɪᴍᴀɢᴇ ʙʀᴜʜ.")
                                    
