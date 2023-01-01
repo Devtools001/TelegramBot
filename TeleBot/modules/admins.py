@@ -1,6 +1,6 @@
 from TeleBot import pgram
 from pyrogram import filters
-from TeleBot.modules.pyrogram_funcs.status(
+from TeleBot.modules.pyrogram_funcs.status import (
     bot_admin,
     bot_can_change_info,
     user_admin,
