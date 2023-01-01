@@ -5,7 +5,7 @@ from pyrogram import filters, enums
 from TeleBot.modules.pyrogram_funcs.status import user_admin
 from Telegram import get_command
 
-TAG_ALL = get_command("TAG_ALL")
+
 SPAM_CHATS = []
 
 @pgram.on_message(filters.command(TAG_ALL) & filters.group)
