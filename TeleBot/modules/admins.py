@@ -77,15 +77,18 @@ async def g_pic_vid(_,message):
         if replied:
             if replied.video:           
                 text = await message.reply_text("ᴡᴀɪᴛᴏᴏ.....")  
-                g_vid = await replied.download()  
-                try:                                
-                    await pgram.set_chat_photo(chat_id, video=g_vid)
-                    await text.delete()
-                    await message.reply_text("sᴜᴄᴄᴇssғᴜʟʟʏ ᴄʜᴀɴɢᴇᴅ ɢʀᴏᴜᴘ ᴘɪᴄ.")                    
-                except Exception as error:
-                    await message.reply_text("ʜᴇʏ ʜᴇʏ ʜᴇʏ....\nᴛʜᴇʀᴇ ᴀʀᴇ sᴏᴍᴇ ʟɪᴍɪᴛᴀᴛɪᴏɴs\nʏᴏᴜʀ ᴠɪᴅᴇᴏ ʀᴀᴛɪᴏ ᴍᴜsᴛ ʙᴇ 1:1 ᴀɴᴅ sɪᴢᴇ ᴜɴᴅᴇʀ 2ᴍʙ + ʟᴇss ᴛʜᴇɴ 10 sᴇᴄᴏɴs ᴏғ ʟᴇɴɢᴛʜ.")
+                if replied.video.file_size > 5000000 :
+                    await message.reply_text("ғɪʟᴇ ɪs ᴛᴏᴏ ʙᴏɢ. 🙄")
+                else:
+                    g_vid = await replied.download()                 
+                    try:                                
+                        await pgram.set_chat_photo(chat_id, video=g_vid)
+                        await text.delete()
+                        await message.reply_text("sᴜᴄᴄᴇssғᴜʟʟʏ ᴄʜᴀɴɢᴇᴅ ɢʀᴏᴜᴘ ᴘɪᴄ.")                    
+                    except Exception:
+                        await message.reply_text("ʜᴇʏ ʜᴇʏ ʜᴇʏ....\nᴛʜᴇʀᴇ ᴀʀᴇ sᴏᴍᴇ ʟɪᴍɪᴛᴀᴛɪᴏɴs\nʏᴏᴜʀ ᴠɪᴅᴇᴏ ʀᴀᴛɪᴏ ᴍᴜsᴛ ʙᴇ 1:1 ᴀɴᴅ sɪᴢᴇ ᴜɴᴅᴇʀ 2ᴍʙ + ʟᴇss ᴛʜᴇɴ 10 sᴇᴄᴏɴs ᴏғ ʟᴇɴɢᴛʜ.")
                 
-                os.remove(g_vid)
+                    os.remove(g_vid)
                    
             else:
                 await message.reply_text("ʜᴇʏ ʙᴀʙʏ ʏᴏᴜ ɴᴇᴇᴅ ᴛᴏ ʀᴇᴘʟʏ ᴛᴏ ᴀ ᴠɪᴅᴇᴏ ᴜsɪɴɢ ᴛʜɪs ᴄᴏᴍᴍᴀɴᴅ. ɪғ ʏᴏᴜ ᴀʀᴇ ʀᴇᴘʟʏɪɴɢ ᴛᴏ ᴀn ɪᴍᴀɢᴇ ᴛʜᴇɴ ᴜsᴇ /setgpic ᴄᴏᴍᴍᴀɴᴅ.")
