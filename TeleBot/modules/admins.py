@@ -11,7 +11,20 @@ from TeleBot.modules.pyrogram_funcs.status(
 @bot_can_change_info
 @user_admin
 @user_can_change_info
-async def 
+async def g_title(_,message):  
+    chat_id = message.chat.id  
+    if not message.from_user:
+        return 
+    if len(message.command) < 2
+        await message.reply_text(f"ʜᴇʏ **{message.from_user.mention}** ɢɪᴠᴇ ᴍᴇ sᴏᴍᴇ ᴛᴇxᴛ ᴛᴏ sᴇᴛ ɪᴛ ᴀs ᴀ ɢʀᴏᴜᴘ ᴛɪᴛʟᴇ.")  
+        return
+    else:
+        get_new_title = message.text.split(None,1)[1]
+        try:                    
+            await pgram.set_chat_title(chat_id,get_new_title)      
+            await message.reply_text("sᴜᴄᴄᴇssғᴜʟʟʏ ᴄʜᴀɴɢᴇᴅ ɢʀᴏᴜᴘ ᴛɪᴛʟᴇ.")
+        except Exception as error:
+            await message.reply_text(error)      
 
 
 __help__ = """
