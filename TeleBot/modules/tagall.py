@@ -63,7 +63,7 @@ async def tag_all_users(_,message):
             pass        
            
 
-@pgram.on_message(filters.command("atag") & filters.group)
+@pgram.on_message(filters.command("atag") & ~filters.private)
 async def tag_all_admins(_,message):
     replied = message.reply_to_message  
     if len(message.command) < 2 and not replied:
@@ -89,7 +89,7 @@ async def tag_all_admins(_,message):
             usertext += f"✨ [{m.user.first_name}](tg://user?id={m.user.id})"
         await pgram.send_message(message.chat.id,f'{usertext}\n{text}')        
 
-@pgram.on_message(filters.command("cancel"))
+@pgram.on_message(filters.command("cancel") & ~filters.private)
 @user_admin
 async def cancelcmd(_, message):
     chat_id = message.chat.id
