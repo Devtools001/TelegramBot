@@ -68,7 +68,7 @@ async def g_title(_,message):
                 os.remove(g_vid)
                    
             else:
-                await message.reply_text(f"ʜᴇʏ **{mention}** ɪ ᴛʜɪɴɢ ʏᴏᴜ sʜᴏᴜʟᴅ ʀᴇᴘʟʏ ᴛᴏ ᴀ ɪᴍᴀɢᴇ.")
+                await message.reply_text(f"ʜᴇʏ video**{mention}** ɪ ᴛʜɪɴɢ ʏᴏᴜ sʜᴏᴜʟᴅ ʀᴇᴘʟʏ ᴛᴏ ᴀ ɪᴍᴀɢᴇ.")
         else:
             await message.reply_text("ʀᴇᴘʟʏ ᴛᴏ ᴀ ɪᴍᴀɢᴇ ʙʀᴜʜ.")
                                    
