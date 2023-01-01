@@ -41,7 +41,7 @@ def bot_can_ban(func):
 
 def bot_can_change_info(func):
     @wraps(func)
-    async def can_change.info(app : Client, message : Message,*args,**kwargs):
+    async def can_change_info(app : Client, message : Message,*args,**kwargs):
         BOT = await app.get_chat_member(message.chat.id,BOT_ID)
 
         if not BOT.privileges.can_change_info:
@@ -52,7 +52,7 @@ def bot_can_change_info(func):
                 await message.reply_text(f"ʜᴇʏ ʙᴀʙʏ ɪ ᴅᴏɴ'ᴛ ʜᴀᴠᴇ ʀɪɢʜᴛs ᴛᴏ ʀɪɢʜᴛs ᴛᴏ ᴄʜᴀɴɢᴇ ɪɴғᴏ ᴏғ **{message.chat.title}**. ᴄʜᴇᴄᴋ ᴀɴᴅ ɢɪᴠᴇ ᴍᴇ ᴛʜᴇ ʀɪɢʜᴛ ᴘʟᴇᴀsᴇ.🥺")
                 return 
         return await func(app,message,*args,**kwargs)
-    return can_change.info
+    return can_change_info
 
 def user_admin(mystic):
     @wraps(mystic)
