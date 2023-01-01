@@ -15,7 +15,7 @@ from TeleBot.modules.pyrogram_funcs.status import (
 async def g_title(_,message):  
     chat_id = message.chat.id
     mention = message.from_user.mention
-    replied = message.reply_message
+    replied = message.reply_to_message
     if not message.from_user:
             return   
     if message.command[0] == "setgtitle":       
