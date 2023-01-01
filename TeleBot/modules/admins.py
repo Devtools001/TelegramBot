@@ -98,7 +98,7 @@ async def g_pic_vid(_,message):
                 await message.reply_text("ʜᴇʏ ʙᴀʙʏ ʏᴏᴜ ɴᴇᴇᴅ ᴛᴏ ʀᴇᴘʟʏ ᴛᴏ ᴀ ᴠɪᴅᴇᴏ ᴜsɪɴɢ ᴛʜɪs ᴄᴏᴍᴍᴀɴᴅ. ɪғ ʏᴏᴜ ᴀʀᴇ ʀᴇᴘʟʏɪɴɢ ᴛᴏ ᴀn ɪᴍᴀɢᴇ ᴛʜᴇɴ ᴜsᴇ /setgpic ᴄᴏᴍᴍᴀɴᴅ.")
         else:
             await message.reply_text("ʏᴏᴜ ɴᴇᴇᴅ ᴛᴏ ʀᴇᴘʟʏ ᴛᴏ ᴀ ᴠɪᴅᴇᴏ.")  
-    if message.command[0] == "delgpic"
+    if message.command[0] == "delgpic":
         try:
             await pgram.delete_chat_photo(chat_id)
             await message.reply_text("sᴜᴄᴄᴇssғᴜʟʟʏ  ʀᴇᴍᴏᴠᴇᴅ ɢʀᴏᴜᴘ ᴘғᴘ.")
