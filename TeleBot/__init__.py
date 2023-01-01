@@ -136,22 +136,6 @@ async def Friday():
 
     MENTION_BOT = app.mention
 
-REDIS_URL = "redis://default:Gr7TEJsTmoJ5IoKYXsaa@containers-us-west-157.railway.app:7065"
-
-REDIS = StrictRedis.from_url(REDIS_URL, decode_responses=True)
-
-try:
-    REDIS.ping()
-    LOG.print("[bold red]Your redis server is now alive!")
-
-except BaseException:
-    raise Exception("Your redis server is not alive, please check again.")
-
-finally:
-    REDIS.ping()
-    LOG.print("[bold red]Your redis server is now alive!")
-
-    
     
 loop.run_until_complete(Friday())    
 
