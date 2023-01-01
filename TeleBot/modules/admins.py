@@ -37,7 +37,18 @@ async def g_title(_,message):
                 await pgram.set_chat_description(chat_id,get_new_desc)      
                 await message.reply_text("sᴜᴄᴄᴇssғᴜʟʟʏ ᴄʜᴀɴɢᴇᴅ ɢʀᴏᴜᴘ ᴅᴇsᴄʀɪᴘᴛɪᴏɴ.")
             except Exception:
-                print(Exception)       
+                pass       
+    if message.command[0] == "setgpic":
+        if len(message.command) < 2:
+            await message.reply_text(f"ʜᴇʏ **{mention}** ɢɪᴠᴇ ᴍᴇ sᴏᴍᴇ ᴛᴇxᴛ ᴛᴏ sᴇᴛ ɪᴛ ᴀs ᴀ ɢʀᴏᴜᴘ ᴅᴇsᴄʀɪᴘᴛɪᴏɴ.")  
+            return 
+        else:
+            get_new_desc = message.text.split(None,1)[1]   
+            try:                    
+                await pgram.set_chat_description(chat_id,get_new_desc)      
+                await message.reply_text("sᴜᴄᴄᴇssғᴜʟʟʏ ᴄʜᴀɴɢᴇᴅ ɢʀᴏᴜᴘ ᴅᴇsᴄʀɪᴘᴛɪᴏɴ.")
+            except Exception:
+                pass       
 
 
 __help__ = """
