@@ -87,7 +87,6 @@ if ENV:
 else:
     API_ID=Config.API_ID
     API_HASH=Config.API_HASH
-    BOT_TOKEN=Config.BOT_TOKEN
     WORKERS=Config.WORKERS
     URL=Config.URL
     DONATION_LINK = Config.DONATION_LINK
@@ -98,7 +97,7 @@ else:
     WEBHOOK = Config.WEBHOOK
     DRAGONS = Config.DRAGONS
     DEV_USERS = Config.DEV_USERS
-
+    BOT_TOKEN = Config.BOT_TOKEN 
 #SUDO_USERS = filters.user()
 
 BOT_NAME  = ""
