@@ -88,11 +88,13 @@ async def promote(_, message):
     replied = message.reply_to_message
     if not user:
         return 
-    if replied.from_user.id == BOT_ID:
-        return await message.reply_text("how can I promote myself")
-    if replied.from_user.status in COMMANDERS:
-        return await message.reply_text("he is already a Admin bro")
+    if replied:
+        if replied.from_user.id == BOT_ID:
+            return await message.reply_text("how can I promote myself")
+        if replied.from_user.status in COMMANDERS:
+            return await message.reply_text("he is already a Admin bro")
 
+        
     
     
 
