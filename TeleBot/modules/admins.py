@@ -87,7 +87,7 @@ async def promote_demote(_, message):
     
     user_id = await extract_user(message)
     user,rank=await get_id_reason_or_rank(message)
-    umention = (await app.get_users(user_id)).mention
+    umention = (await pgram.get_users(user_id)).mention
     print(user_id)
     print(user,rank)
     print(umention)
