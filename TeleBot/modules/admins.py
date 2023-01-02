@@ -10,7 +10,7 @@ from TeleBot.modules.pyrogram_funcs.status import (
     user_can_promote )
 
 from pyrogram.enums import MessageEntityType, ChatMemberStatus
-
+from pyrogram.types import ChatPrivileges
 
 COMMANDERS = [ChatMemberStatus.ADMINISTRATOR,ChatMemberStatus.OWNER]
 
@@ -101,7 +101,7 @@ async def promote(_, message):
             return await message.reply_text("he is already a Admin bro")
         else:
             try:
-                await pgram.promote_chat_member(chat_id,replied.from_user.id,can_manage_chat=True)
+                await pgram.promote_chat_member(chat_id,replied.from_user.id,ChatPrivileges(can_manage_chat=True))
             except Exception as e:
                print(e)
 
