@@ -87,14 +87,14 @@ async def promote(_, message):
     user= message.from_user
     replied = message.reply_to_message
     id_ = replied.from_user.id
-    member = await app.get_chat_member(chat_id,id_)
-    print(member)
+    member = await pgram.get_chat_member(chat_id,id_)
+    
     if not user:
         return 
     if replied:
         if replied.from_user.id == BOT_ID:
             return await message.reply_text("how can I promote myself")
-        if replied.from_user.status in COMMANDERS:
+        if member.status in COMMANDERS:
             return await message.reply_text("he is already a Admin bro")
 
         
