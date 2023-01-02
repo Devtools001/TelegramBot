@@ -99,6 +99,9 @@ async def promote(_, message):
             return await message.reply_text("how can I promote myself")
         if member.status in COMMANDERS:
             return await message.reply_text("he is already a Admin bro")
+        else:
+            try:
+                await pgram.promote_chat_member(chat_id,replied.from_user.id,can_manage_chat=True)
 
         
     
