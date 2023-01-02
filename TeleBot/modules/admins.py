@@ -72,7 +72,7 @@ async def get_id_reason_or_rank(message,sender_chat=False):
     return user, reason
 
 async def extract_user(message):
-    return (await extract_user_and_reason(message))[0]
+    return (await get_id_reason_or_rank(message))[0]
 
 
 @pgram.on_message(filters.command("promote") & ~filters.private)
@@ -83,9 +83,9 @@ async def extract_user(message):
 async def promote_demote(_, message):
     chat_id = message.chat.id
     user = message.from_user
-    user_id = await get_user_id(message)
+    user_id = await extract_user(message)
     user,rank=await get_id_reason_or_rank(message)
-    print(user,rank)
+    print(user,rank,user_id)
     if not user:
         return 
     if user_id == BOT_ID:
