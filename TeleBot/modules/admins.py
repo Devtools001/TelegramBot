@@ -29,7 +29,7 @@ async def promote_demote(_, message):
     async for m in pgram.get_chat_members(chat_id, filter=enums.ChatMembersFilter.ADMINISTRATORS):
         administrators.append(m.user.id)
     replied = message.reply_to_message
-    print(message.command,"and", message.text)
+    print(message.command,"and", message.text.split(None,2)[1])
     if not user:
         return
 
