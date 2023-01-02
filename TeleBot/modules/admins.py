@@ -29,11 +29,14 @@ async def promote_demote(_, message):
     async for m in pgram.get_chat_members(chat_id, filter=enums.ChatMembersFilter.ADMINISTRATORS):
         administrators.append(m.user.id)
     replied = message.reply_to_message
-    
+    print(message.command)
     if not user:
-        return 
+        return
+
     if len(message.command) < 2 and not replied:
         return await message.reply_text("ʜᴇʏ ʀᴇᴘʟʏ ᴛᴏ ᴀ ᴜsᴇʀ ᴏʀ ɢɪᴠᴇ ᴍᴇ ᴜsᴇʀ's ɪᴅ ᴛᴏ ᴘʀᴏᴍᴏᴛᴇ ʜɪᴍ.")
+    
+
 
     
     
