@@ -85,7 +85,7 @@ async def extract_user(message):
 @user_can_promote
 async def promote_demote(_, message):
     
-    user_id = await extract_user(message)
+    user_id = await get_user_id(message)
     user,rank=await get_id_reason_or_rank(message)
     umention = (await pgram.get_users(user_id)).mention
     print(user_id)
