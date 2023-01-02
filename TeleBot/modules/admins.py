@@ -5,7 +5,9 @@ from TeleBot.modules.pyrogram_funcs.status import (
     bot_admin,
     bot_can_change_info,
     user_admin,
-    user_can_change_info )
+    user_can_change_info,
+    bot_can_promote,
+    user_can_promote )
 
 
 
