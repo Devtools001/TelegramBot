@@ -1,6 +1,6 @@
 import os
 from TeleBot import pgram,LOG,BOT_ID
-from pyrogram import filters
+from pyrogram import filters,enums
 from TeleBot.modules.pyrogram_funcs.status import (
     bot_admin,
     bot_can_change_info,
