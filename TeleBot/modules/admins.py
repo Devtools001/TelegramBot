@@ -26,7 +26,7 @@ async def promote_demote(_, message):
     chat_id = message.chat.id
     user = message.from_user
     administrators = []
-    async for m in app.get_chat_members(chat_id, filter=enums.ChatMembersFilter.ADMINISTRATORS):
+    async for m in pgram.get_chat_members(chat_id, filter=enums.ChatMembersFilter.ADMINISTRATORS):
         administrators.append(m.user.id)
     replied = message.reply_to_message
     print(replied.user.id)
