@@ -14,68 +14,7 @@ from pyrogram.enums import MessageEntityType, ChatMemberStatus
 
 COMMANDERS = [ChatMemberStatus.ADMINISTRATOR,ChatMemberStatus.OWNER]
 
-async def get_user_id(message, text:str):
-    def is_digit(text : str):
-        try:
-            int(text)
-        except ValueError:
-            return False
-        return True
-    
-    text = text.strip()
-    if is_digit(text):
-        return int(text)
 
-    entities = message.entities
-    app = message._client
-    if len(entities) < 2:
-        return (await app.get_users(text)).id
-    entity = entities[1]
-    if entity.type == MessageEntityType.MENTION:
-        return (await app.get_users(text)).id
-    if entity.type == MessageEntityType.TEXT_MENTION:
-        return entity.user.id
-    return None
-    
-
-async def get_id_reason_or_rank(message,sender_chat=False):
-    args = message.text.strip().split()
-    text = message.text
-    user = None
-    reason = None
-    replied = message.reply_to_message
-    if replied:
-                
-        if not replied.from_user:
-            if (
-                    replied.sender_chat
-                    and replied.sender_chat != message.chat.id
-                    and sender_chat
-            ):
-                id_ = replied.sender_chat.id
-            else:
-                return None, None
-        else:
-            id_ = replied.from_user.id
-
-        if len(args) < 2:
-            reason = None
-        else:
-            reason = text.split(None, 1)[1]
-        return id_, reason
-    
-    if len(args) == 2:
-        user = text.split(None, 1)[1]
-        return await get_user_id(message, user), None
-
-    if len(args) > 2:
-        user, reason = text.split(None, 2)[1:]
-        return await get_user_id(message, user), reason
-
-    return user, reason
-
-async def extract_user(message):
-    return (await get_id_reason_or_rank(message))[0]
 
 
 @pgram.on_message(filters.command("promote") & ~filters.private)
@@ -86,24 +25,14 @@ async def extract_user(message):
 async def promote_demote(_, message):
     chat_id = message.chat.id
     user = message.from_user
-    user_id = await extract_user(message)
-    user,rank=await get_id_reason_or_rank(message)
     administrators = []
-    async for m in pgram.get_chat_members(chat_id, filter=enums.ChatMembersFilter.ADMINISTRATORS):
+    async for m in app.get_chat_members(chat_id, filter=enums.ChatMembersFilter.ADMINISTRATORS):
         administrators.append(m.user.id)
-
-    print(user,rank,user_id)
+    replied = message.reply_to_message
+    print(replied.user.id)
     if not user:
         return 
-    if user_id == BOT_ID:
-        await message.reply_text("ʙʀᴜʜ ʜᴏᴡ ᴄᴀɴ ɪ ᴘʀᴏᴍᴏᴛᴇ ᴍʏsᴇʟғ.") 
-        return
-    if user_id in administrators:
-        await message.reply_text("ᴡᴛғ ʙʀᴏ ʜᴇ ɪs ᴀʟʀᴇᴀᴅʏ ᴀɴ ᴀᴅᴍɪɴ.")
-        return 
-    if user.id in administrators:
-        await message.reply_text("ʏᴏᴜ ᴀʀᴇ ᴀʟʀᴇᴀᴅʏ ᴀɴ ᴀᴅᴍɪɴ".)
-        return    
+    
     
     
     
