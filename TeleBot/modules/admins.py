@@ -86,6 +86,9 @@ async def extract_user_id(message):
 async def promote(_, message):
     user= message.from_user
     replied = message.reply_to_message
+    id_ = replied.from_user.id
+    member = await app.get_chat_member(chat_id,id_)
+    print(member)
     if not user:
         return 
     if replied:
