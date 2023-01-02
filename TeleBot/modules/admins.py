@@ -84,13 +84,15 @@ async def extract_user_id(message):
 @user_admin
 @user_can_promote
 async def promote(_, message):
-    
-    user_id = await extract_user_id(message)
-    user,rank=await get_id_reason_or_rank(message)
-    t_user = await pgram.get_users(user_id)
-    umention = t_user.mention
-    print(user_id)
-    print(user,rank)
+    user= message.from_user
+    replied = message.reply_to_message
+    if not user:
+        return 
+    if replied.from_user.id == BOT_ID:
+        return await message.reply_text("how can I promote myself")
+    if replied.from_user.status in COMMANDERS:
+        return await message.reply_text("he is already a Admin bro")
+
     
     
 
