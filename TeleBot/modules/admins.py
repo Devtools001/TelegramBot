@@ -9,7 +9,10 @@ from TeleBot.modules.pyrogram_funcs.status import (
     bot_can_promote,
     user_can_promote )
 
-from pyrogram.enums import MessageEntityType
+from pyrogram.enums import MessageEntityType, ChatMemberStatus
+
+
+COMMANDERS = [ChatMemberStatus.ADMINISTRATOR,ChatMemberStatus.OWNER]
 
 async def get_user_id(message, text:str):
     def is_digit(text : str):
@@ -85,13 +88,22 @@ async def promote_demote(_, message):
     user = message.from_user
     user_id = await extract_user(message)
     user,rank=await get_id_reason_or_rank(message)
+    administrators = []
+    async for m in pgram.get_chat_members(chat_id, filter=enums.ChatMembersFilter.ADMINISTRATORS):
+        administrators.append(m.user.id)
+
     print(user,rank,user_id)
     if not user:
         return 
     if user_id == BOT_ID:
         await message.reply_text("ʙʀᴜʜ ʜᴏᴡ ᴄᴀɴ ɪ ᴘʀᴏᴍᴏᴛᴇ ᴍʏsᴇʟғ.") 
         return
-    
+    if user_id in administrators:
+        await message.reply_text("ᴡᴛғ ʙʀᴏ ʜᴇ ɪs ᴀʟʀᴇᴀᴅʏ ᴀɴ ᴀᴅᴍɪɴ.")
+        return 
+    if user.id in administrators:
+        await message.reply_text("ʏᴏᴜ ᴀʀᴇ ᴀʟʀᴇᴀᴅʏ ᴀɴ ᴀᴅᴍɪɴ".)
+        return    
     
     
     
