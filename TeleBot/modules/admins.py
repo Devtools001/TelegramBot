@@ -83,11 +83,12 @@ async def extract_user_id(message):
 @bot_can_promote
 @user_admin
 @user_can_promote
-async def promote_demote(_, message):
+async def promote(_, message):
     
     user_id = await extract_user_id(message)
     user,rank=await get_id_reason_or_rank(message)
-    umention = (await pgram.get_users(user_id)).mention
+    t_user = await pgram.get_users(user_id)
+    umention = t_user.mention
     print(user_id)
     print(user,rank)
     print(umention)
