@@ -54,6 +54,22 @@ def bot_can_change_info(func):
         return await func(app,message,*args,**kwargs)
     return can_change_info
 
+
+def bot_can_promote(func):
+    @wraps(func)
+    async def can_promote(app : Client, message : Message,*args,**kwargs):
+        BOT = await app.get_chat_member(message.chat.id,BOT_ID)
+
+        if not BOT.privileges.can_promote_members:
+            if message.chat.title is None:
+                await message.reply_text("ʜᴇʏ ʙᴀʙʏ ɪ ᴅᴏɴ'ᴛ ʜᴀᴠᴇ ʀɪɢʜᴛs ᴛᴏ **ᴘʀᴏᴍᴏᴛᴇ ᴜsᴇʀs** ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ. ᴄʜᴇᴄᴋ ᴀɴᴅ ɢɪᴠᴇ ᴍᴇ ᴛʜᴇ ʀɪɢʜᴛ ᴘʟᴇᴀsᴇ.🙄")    
+                return 
+            else:
+                await message.reply_text(f"ʜᴇʏ ʙᴀʙʏ ɪ ᴅᴏɴ'ᴛ ʜᴀᴠᴇ ʀɪɢʜᴛs ᴛᴏ **ᴘʀᴏᴍᴏᴛᴇ ᴜsᴇʀs** ɪɴ **{message.chat.title}**. ᴄʜᴇᴄᴋ ᴀɴᴅ ɢɪᴠᴇ ᴍᴇ ᴛʜᴇ ʀɪɢʜᴛ ᴘʟᴇᴀsᴇ.")
+                return 
+        return await func(app,message,*args,**kwargs)
+    return can_promote
+
 def user_admin(mystic):
     @wraps(mystic)
     async def wrapper(app : Client, message : Message,*args,**kwargs):
@@ -91,6 +107,19 @@ def user_can_change_info(mystic):
         
         if (user.status in COMMANDERS and not user.privileges.can_change_info) and user_id not in SUPREME_USERS:                     
             return await message.reply_text("ʜᴇʏ ɴᴏᴏʙ ʏᴏᴜ ᴅᴏɴ'ᴛ ʜᴀᴠᴇ ʀɪɢʜᴛ ᴛᴏ **ᴄʜᴀɴɢᴇ ɪɴғᴏ** ᴏғ ᴛʜɪs ɢʀᴏᴜᴘ. ʏᴏᴜ ᴄᴀɴ'ᴛ ᴜsᴇ ᴛʜɪs ᴄᴏᴍᴍᴀɴᴅ") 
+                                                    
+        return await mystic(app,message,*args,**kwargs)
+    return wrapper
+            
+def user_can_promote(mystic):
+    @wraps(mystic)
+    async def wrapper(app : Client, message : Message,*args,**kwargs):
+        user_id = message.from_user.id
+        chat_id = message.chat.id
+        user = await app.get_chat_member(chat_id,user_id)
+        
+        if (user.status in COMMANDERS and not user.privileges.can_promote_members) and user_id not in SUPREME_USERS:                     
+            return await message.reply_text("ʜᴇʏ ɴᴏᴏʙ ʏᴏᴜ ᴅᴏɴ'ᴛ ʜᴀᴠᴇ ʀɪɢʜᴛ ᴛᴏ **ᴘʀᴏᴍᴏᴛᴇ ᴜsᴇʀs** ᴏғ ᴛʜɪs ɢʀᴏᴜᴘ. ʏᴏᴜ ᴄᴀɴ'ᴛ ᴜsᴇ ᴛʜɪs ᴄᴏᴍᴍᴀɴᴅ") 
                                                     
         return await mystic(app,message,*args,**kwargs)
     return wrapper
