@@ -87,22 +87,11 @@ async def promote_demote(_, message):
     
     user_id = await extract_user(message)
     user,rank=await get_id_reason_or_rank(message)
-    administrators = []
-    async for m in pgram.get_chat_members(chat_id, filter=enums.ChatMembersFilter.ADMINISTRATORS):
-        administrators.append(m.user.id)
+    umention = (await app.get_users(user_id)).mention
+    print(user_id)
+    print(user,rank)
+    print(umention)
     
-    if not user:
-        return 
-    if user_id == BOT_ID:
-        await message.reply_text("ʙʀᴜʜ ʜᴏᴡ ᴄᴀɴ ɪ ᴘʀᴏᴍᴏᴛᴇ ᴍʏsᴇʟғ.") 
-        return
-    if user_id in administrators:
-        await message.reply_text("ᴡᴛғ ʙʀᴏ ʜᴇ ɪs ᴀʟʀᴇᴀᴅʏ ᴀɴ ᴀᴅᴍɪɴ.")
-        return 
-    if message.from_user.id in administrators:
-        await message.reply_text("ʏᴏᴜ ᴀʀᴇ ᴀʟʀᴇᴀᴅʏ ᴀɴ ᴀᴅᴍɪɴ".)
-        return    
-
 
     
 
