@@ -87,7 +87,7 @@ async def promote(_, message):
     
     user_id = await extract_user_id(message)
     user,rank=await get_id_reason_or_rank(message)
-    t_user = await pgram.get_users()
+    t_user = await pgram.get_users(user_id)
     umention = t_user.mention
     print(user_id)
     print(user,rank)
