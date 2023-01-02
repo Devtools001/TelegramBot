@@ -84,6 +84,7 @@ async def extract_user(message):
 @user_admin
 @user_can_promote
 async def promote_demote(_, message):
+    
     user_id = await extract_user(message)
     user,rank=await get_id_reason_or_rank(message)
     administrators = []
@@ -98,7 +99,7 @@ async def promote_demote(_, message):
     if user_id in administrators:
         await message.reply_text("ᴡᴛғ ʙʀᴏ ʜᴇ ɪs ᴀʟʀᴇᴀᴅʏ ᴀɴ ᴀᴅᴍɪɴ.")
         return 
-    if user.id in administrators:
+    if message.from_user.id in administrators:
         await message.reply_text("ʏᴏᴜ ᴀʀᴇ ᴀʟʀᴇᴀᴅʏ ᴀɴ ᴀᴅᴍɪɴ".)
         return    
 
