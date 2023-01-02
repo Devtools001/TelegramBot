@@ -102,6 +102,8 @@ async def promote(_, message):
         else:
             try:
                 await pgram.promote_chat_member(chat_id,replied.from_user.id,can_manage_chat=True)
+            except Exception as e:
+               print(e)
 
         
     
