@@ -26,24 +26,20 @@ async def duh(_,m : Message):
     )
 
 
-@pbot.on_callback_query(filters.regex("hlo"))
-async def Friday(_, callback_query : CallbackQuery):
-    query= callback_query.message
-    await query.delete()
-    first_name=callback_query.from_user.first_name
-    
-    await query.edit_caption("hii",
-    reply_markup=InlineKeyboardMarkup(Buttons))
+
 
 @pbot.on_callback_query()
 async def callbacks(_, CallbackQuery):
-    
+    chat_id = callback_query.fro_user.id
+    message_id = callback_query.message.id
     if CallbackQuery.data == "ayato_wife":
-        await CallbackQuery.edit_message_media(
-            media="https://graph.org//file/56aaee33fe6bb7b596680.jpg"
+        await CallbackQuery.edit_message_media(chat_id, message_id
+            InputMediaPhoto("https://graph.org//file/56aaee33fe6bb7b596680.jpg")
         )
         await CallbackQuery.edit_message_caption(
-            caption="Ayato's wife is ganyu [ respectfull ship ] ",
+            callback_query.from_user.id,
+            callback_query.message.id,
+            "Ayato's wife is ganyu [ respectfull ship ] ",
             reply_markup=InlineKeyboardMarkup(Buttons)
         )
     elif CallbackQuery.data == "hachi_wife":
