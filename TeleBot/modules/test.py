@@ -5,7 +5,7 @@ from TeleBot import pgram
 
 COMMANDERS = [enums.ChatMemberStatus.ADMINISTRATOR,enums.ChatMemberStatus.OWNER]
 
-@pgram.on_message(filters.command(["instatus"] & ~filters.private )
+@pgram.on_message(filters.command(["instatus"]) & ~filters.private)
 async def instatus(_, message):
     chat_id = message.chat.id
     user_id = message.from_user.id
