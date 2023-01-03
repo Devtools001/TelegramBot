@@ -25,17 +25,15 @@ async def duh(_,m : Message):
         reply_markup=InlineKeyboardMarkup(Buttons)
     )
 
+
+@pbot.on_callback_query(filter.regex("izumi_wife")
+async def ok(_, callback_query : CallbackQuery):
+    query = callback_query.message
+    await query.edit_text("ok")
 @pbot.on_callback_query()
 async def callbacks(_, CallbackQuery):
-    if CallbackQuery.data == "izumi_wife":
-        await CallbackQuery.edit_message_media(message.chat.id, message.id,
-            InputMediaPhoto("https://graph.org//file/e5b52252d26e00a76ec18.jpg")
-        ),
-        await CallbackQuery.edit_message_caption(message.chat.id, message.id,
-            "Raiden Shogun Is ......for izumi",
-            reply_markup=InlineKeyboardMarkup(Buttons)
-        )
-    elif CallbackQuery.data == "ayato_wife":
+    
+    if CallbackQuery.data == "ayato_wife":
         await CallbackQuery.edit_message_media(
             media="https://graph.org//file/56aaee33fe6bb7b596680.jpg"
         )
