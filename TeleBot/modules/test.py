@@ -6,14 +6,14 @@ from TeleBot import pgram
 COMMANDERS = [enums.ChatMemberStatus.ADMINISTRATOR,enums.ChatMemberStatus.OWNER]
 
 @pgram.on_message(filters.command(["instatus"]) & ~filters.private)
-async def instatus(_, message):
+async def instatus(_, message):    
     chat_id = message.chat.id
     user_id = message.from_user.id
     start = datetime.now()
     user = await pgram.get_chat_member(chat_id,user_id)
     count = await pgram.get_chat_members_count(chat_id)
-    if user.status in (COMMANDERS):
-        text = await message.reply("**ɢᴇᴛᴛɪɴɢ ɪɴғᴏʀᴍᴀᴛɪᴏɴ ᴀʙᴏᴜᴛ ᴛʜɪs ᴄʜᴀᴛ.......**")
+    text = await message.reply("**ɢᴇᴛᴛɪɴɢ ɪɴғᴏʀᴍᴀᴛɪᴏɴ ᴀʙᴏᴜᴛ ᴛʜɪs ᴄʜᴀᴛ.......**")
+    if user.status in (COMMANDERS):       
         recently = 0
         within_week = 0
         within_month = 0
@@ -52,28 +52,28 @@ async def instatus(_, message):
         time = (datetime.now() - start).seconds
         await text.edit(f"""
         ⧃ {message.chat.title}
-👥 {str(count)} ᴍᴇᴍʙᴇʀs
-——————
+👥 `{str(count)}` ᴍᴇᴍʙᴇʀs
+
 👁‍🗨 ᴍᴇᴍʙᴇʀs's sᴛᴀᴛᴜs
 
-🕜 ʀᴇᴄᴇɴᴛʟʏ » {recently}
+🕜 ʀᴇᴄᴇɴᴛʟʏ » `{recently}`
 
-🕰️ ʟᴀsᴛ ᴡᴇᴇᴋ » {within_week}
+🕰️ ʟᴀsᴛ ᴡᴇᴇᴋ » `{within_week}`
 
-⏱️  ʟᴀsᴛ ᴍᴏɴᴛʜ » {within_month}
+⏱️  ʟᴀsᴛ ᴍᴏɴᴛʜ » `{within_month}`
 
-⌛ ʟᴏɴɢ ᴀɢᴏ » {long_time_ago}
+⌛ ʟᴏɴɢ ᴀɢᴏ » `{long_time_ago}|
 
-🙄  ᴡɪᴛʜᴏᴜᴛ ᴜsᴇʀɴᴀᴍᴇ » {no_username}
+🙄  ᴡɪᴛʜᴏᴜᴛ ᴜsᴇʀɴᴀᴍᴇ » `{no_username}`
 
-🤐  ʀᴇsᴛʀɪᴄᴛᴇᴅ » {restricted}
-🚫  ʙʟᴏᴄᴋᴇᴅ » {banned}
-👻 ᴅᴇʟᴇᴛᴇᴅ » {deleted_acc}
-🤖 ʙᴏᴛs » {bot}
-⭐️ ᴘʀᴇᴍɪᴜᴍ ᴜsᴇʀs : {premium_acc}
+🤐  ʀᴇsᴛʀɪᴄᴛᴇᴅ » `{restricted}`
+🚫  ʙʟᴏᴄᴋᴇᴅ » `{banned}`
+👻 ᴅᴇʟᴇᴛᴇᴅ » `{deleted_acc}`
+🤖 ʙᴏᴛs » `{bot}`
+⭐️ ᴘʀᴇᴍɪᴜᴍ ᴜsᴇʀs : `{premium_acc}`
 
 
-⏱ ᴛɪᴍᴇ ᴛᴏᴏᴋ » {time}
+⏱ ᴛɪᴍᴇ ᴛᴏᴏᴋ » `{time}` sᴇᴄᴏɴᴅs
 """)
  
     else:
