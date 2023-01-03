@@ -8,7 +8,7 @@ from pyrogram.types import InputMediaPhoto, InputMediaVideo, InputMediaAudio
 
 Buttons = [ 
     [
-        InlineKeyboardButton(text="Raiden Pic", callback_data="izumi_wife"),
+        InlineKeyboardButton(text="Raiden Pic", callback_data="hlo"),
         InlineKeyboardButton(text="Ganyu Pic", callback_data="ayato_wife"),
         InlineKeyboardButton(text="Shenhe Pic", callback_data="hachi_wife"),
         InlineKeyboardButton(text="Eula Pic", callback_data="Eulassy_wife"),
@@ -26,7 +26,7 @@ async def duh(_,m : Message):
     )
 
 
-@pbot.on_callback_query(filters.regex("izumi_wife"))
+@pbot.on_callback_query(filters.regex("hlo"))
 async def ok(_, callback_query : CallbackQuery):
     query = callback_query.message
     await query.edit_caption("ok")
