@@ -30,7 +30,7 @@ async def duh(_,m : Message):
 
 @pbot.on_callback_query()
 async def callbacks(_, CallbackQuery):
-    chat_id = callback_query.fro_user.id
+    chat_id = callback_query.from_user.id
     message_id = callback_query.message.id
     if CallbackQuery.data == "ayato_wife":
         await CallbackQuery.edit_message_media(chat_id, message_id,
