@@ -74,7 +74,7 @@ async def instatus(_, message):
 
 
 ⏱ ᴛɪᴍᴇ ᴛᴏᴏᴋ » {time}
-"""
+""")
  
     else:
         await text.edit("`You must be an admin or group owner to perform this action.`**")
