@@ -27,9 +27,13 @@ async def duh(_,m : Message):
 
 
 @pbot.on_callback_query(filters.regex("hlo"))
-async def ok(_, CallbackQuery):
-    query = CallbackQuery.message
-    await query.edit_caption("ok")
+async def Friday(_, callback_query : CallbackQuery):
+    query= callback_query.message
+  #  await query.delete()
+    first_name=callback_query.from_user.first_name
+    
+    await query.edit_caption("hii",
+    reply_markup=InlineKeyboardMarkup(Buttons))
 
 @pbot.on_callback_query()
 async def callbacks(_, CallbackQuery):
