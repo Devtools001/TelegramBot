@@ -27,10 +27,10 @@ async def duh(_,m : Message):
 @pbot.on_callback_query()
 async def callbacks(_, CallbackQuery):
     if CallbackQuery.data == "izumi_wife":
-        await CallbackQuery.edit_message_media(
+        await CallbackQuery.message.edit_media(
             "https://graph.org//file/e5b52252d26e00a76ec18.jpg"
         )
-        await CallbackQuery.edit_message_caption(
+        await CallbackQuery.message.edit_caption(
             "Raiden Shogun Is ......for izumi",
             reply_markup=InlineKeyboardMarkup(Buttons)
         )
