@@ -1,71 +1,81 @@
+import asyncio
+from datetime import datetime
+from pyrogram import enums , filters 
+from TeleBot import pgram
 
-from TeleBot import pgram as pbot
-from pyrogram import filters, Client
-from pyrogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery
+COMMANDERS = [enums.ChatMemberStatus.ADMINISTRATOR,enums.ChatMemberStatus.OWNER]
 
-from pyrogram.types import InputMediaPhoto, InputMediaVideo, InputMediaAudio
-
-
-Buttons = [ 
-    [
-        InlineKeyboardButton(text="Raiden Pic", callback_data="hlo"),
-        InlineKeyboardButton(text="Ganyu Pic", callback_data="ayato_wife"),
-        InlineKeyboardButton(text="Shenhe Pic", callback_data="hachi_wife"),
-        InlineKeyboardButton(text="Eula Pic", callback_data="Eulassy_wife"),
-        InlineKeyboardButton(text="Zhongli Pic", callback_data="axel_husband"),
-        InlineKeyboardButton(text=" BACK ", callback_data="revert")
-    ]
-]
-
-@pbot.on_message(filters.command("profile"))
-async def duh(_,m : Message):
-    await m.reply_photo(
-        photo="https://graph.org//file/391b178775977960b97bc.jpg",
-        caption="text",
-        reply_markup=InlineKeyboardMarkup(Buttons)
-    )
-
-
-
-
-@pbot.on_callback_query()
-async def callbacks(_, CallbackQuery):
-    chat_id = CallbackQuery.message.chat.id
-    message_id = CallbackQuery.message.id
-    if CallbackQuery.data == "ayato_wife":
-        await CallbackQuery.edit_message_media(chat_id, message_id,
-            InputMediaPhoto("https://graph.org//file/56aaee33fe6bb7b596680.jpg")
-        )
+@pgram.on_message(filters.command(["instatus"] & ~filters.private )
+async def instatus(_, message):
+    chat_id = message.chat.id
+    user_id = message.from_user.id
+    start = datetime.now()
+    user = await pgram.get_chat_member(chat_id,user_id)
+    count = await pgram.get_chat_members_count(chat_id)
+    if user.status in (COMMANDERS):
+        text = await message.reply("**ɢᴇᴛᴛɪɴɢ ɪɴғᴏʀᴍᴀᴛɪᴏɴ ᴀʙᴏᴜᴛ ᴛʜɪs ᴄʜᴀᴛ.......**")
+        recently = 0
+        within_week = 0
+        within_month = 0
+        long_time_ago = 0
+        deleted_acc = 0
+        premium_acc = 0
+        no_username = 0
+        restricted = 0
+        banned = 0        
+        bot = 0
+        async for ban in pgram.get_chat_members(chat_id, filter=enums.ChatMembersFilter.BANNED):
+            banned += 1
+        async for restr in pgram.get_chat_members(chat_id, filter=enums.ChatMembersFilter.RESTRICTED):
+            restricted += 1
+        async for member in pgram.get_chat_members(chat_id):
+            user = member.user
+            if user.is_deleted:
+                deleted_acc += 1
+            elif user.is_bot:
+                bot += 1
+            elif user.is_premium:
+                premium_acc += 1
+            elif not user.username:
+                no_username += 1
+            elif user.status.value == "recently":
+                recently += 1
+            elif user.status.value == "last_week":
+                within_week += 1
+            elif user.status.value == "last_month":
+                within_month += 1
+            elif user.status.value == "long_ago":
+                long_time_ago += 1
+            else:
+                pass
         
-    elif CallbackQuery.data == "hachi_wife":
-        await CallbackQuery.edit_message_media(
-            media="https://graph.org//file/ff708ff6ce6ddb24e0efa.jpg"
-        )
-        await CallbackQuery.edit_message_caption(
-            caption="a lovebite having shenhe as a wife ",
-            reply_markup=InlineKeyboardMarkup(Buttons)
-        )
-    elif CallbackQuery.data == "Eulassy_wife":
-        await CallbackQuery.edit_message_media(
-            "https://graph.org//file/8fc599e834e4563a5314c.jpg"
-        )
-        await CallbackQuery.edit_message_caption(
-            caption="corny doge wife = eula",
-            reply_markup=InlineKeyboardMarkup(Buttons)
-        )
-    elif CallbackQuery.data == "axel_husband":
-        await CallbackQuery.edit_message_media(
-            "https://graph.org//file/1351234f830d51f7a7197.jpg"
-        )
-        await CallbackQuery.edit_message_caption(
-            caption="dude zhongli is ok #no homo, but axel is gay....."
-        )
-    elif CallbackQuery.data == "revert":
-        await CallbackQuery.edit_message_media(
-            "https://graph.org//file/391b178775977960b97bc.jpg"
-        )
-        await CallbackQuery.edit_message_caption(
-            caption="text"
-        )
+        time = (datetime.now() - start).seconds
+        await text.edit(f"""
+        ⧃ {message.chat.title}
+👥 {str(count)} ᴍᴇᴍʙᴇʀs
+——————
+👁‍🗨 ᴍᴇᴍʙᴇʀs's sᴛᴀᴛᴜs
+
+🕜 ʀᴇᴄᴇɴᴛʟʏ » {recently}
+
+🕰️ ʟᴀsᴛ ᴡᴇᴇᴋ » {within_week}
+
+⏱️  ʟᴀsᴛ ᴍᴏɴᴛʜ » {within_month}
+
+⌛ ʟᴏɴɢ ᴀɢᴏ » {long_time_ago}
+
+🙄  ᴡɪᴛʜᴏᴜᴛ ᴜsᴇʀɴᴀᴍᴇ » {no_username}
+
+🤐  ʀᴇsᴛʀɪᴄᴛᴇᴅ » {restricted}
+🚫  ʙʟᴏᴄᴋᴇᴅ » {banned}
+👻 ᴅᴇʟᴇᴛᴇᴅ » {deleted_acc}
+🤖 ʙᴏᴛs » {bot}
+⭐️ ᴘʀᴇᴍɪᴜᴍ ᴜsᴇʀs : {premium_acc}
+
+
+⏱ ᴛɪᴍᴇ ᴛᴏᴏᴋ » {time}
+"""
+ 
     else:
-        return
+        sent_message = await message.reply_text("`You must be an admin or group owner to perform this action.`**")
+        await asyncio.sleep(5)
