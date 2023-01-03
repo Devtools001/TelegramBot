@@ -29,7 +29,8 @@ async def duh(_,m : Message):
 @pbot.on_callback_query(filters.regex("izumi_wife"))
 async def ok(_, callback_query : CallbackQuery):
     query = callback_query.message
-    await query.edit_text("ok")
+    await query.edit_caption("ok")
+
 @pbot.on_callback_query()
 async def callbacks(_, CallbackQuery):
     
