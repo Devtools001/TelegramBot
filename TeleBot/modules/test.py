@@ -30,14 +30,14 @@ async def duh(_,m : Message):
 
 @pbot.on_callback_query()
 async def callbacks(_, CallbackQuery):
-    chat_id = callback_query.from_user.id
-    message_id = callback_query.message.id
+    chat_id = CallbackQuery.from_user.id
+    message_id = CallbackQuery.message.id
     if CallbackQuery.data == "ayato_wife":
         await CallbackQuery.edit_message_media(chat_id, message_id,
             InputMediaPhoto("https://graph.org//file/56aaee33fe6bb7b596680.jpg")
         )
         await CallbackQuery.edit_message_caption(
-            chat_id, message_id,
+             chat_id, message_id,
             "Ayato's wife is ganyu [ respectfull ship ] ",
             reply_markup=InlineKeyboardMarkup(Buttons)
         )
