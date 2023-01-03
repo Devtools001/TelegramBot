@@ -13,7 +13,7 @@ async def instatus(_, message):
     user = await pgram.get_chat_member(chat_id,user_id)
     count = await pgram.get_chat_members_count(chat_id)
     text = await message.reply("**ɢᴇᴛᴛɪɴɢ ɪɴғᴏʀᴍᴀᴛɪᴏɴ ᴀʙᴏᴜᴛ ᴛʜɪs ᴄʜᴀᴛ.......**")
-    if user.status in (COMMANDERS):       
+    if user.status in COMMANDERS:       
         recently = 0
         within_week = 0
         within_month = 0
@@ -85,5 +85,5 @@ async def instatus(_, message):
 """)
  
     else:
-        await text.edit("`You must be an admin or group owner to perform this action.`**")
+        await text.edit("`You must be an admin or group owner to perform this action.`")
         await asyncio.sleep(5)
