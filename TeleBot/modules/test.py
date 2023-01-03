@@ -77,5 +77,5 @@ async def instatus(_, message):
 """
  
     else:
-        sent_message = await message.reply_text("`You must be an admin or group owner to perform this action.`**")
+        await text.edit("`You must be an admin or group owner to perform this action.`**")
         await asyncio.sleep(5)
