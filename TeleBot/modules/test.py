@@ -27,8 +27,8 @@ async def duh(_,m : Message):
 
 
 @pbot.on_callback_query(filters.regex("hlo"))
-async def ok(_, callback_query : CallbackQuery):
-    query = callback_query.message
+async def ok(_, CallbackQuery):
+    query = CallbackQuery.message
     await query.edit_caption("ok")
 
 @pbot.on_callback_query()
