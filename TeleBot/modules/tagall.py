@@ -86,7 +86,7 @@ async def tag_all_admins(_,message):
         usertext = ''
         async for m in pgram.get_chat_members(message.chat.id,filter=enums.ChatMembersFilter.ADMINISTRATORS):
             username += 1
-            usertext += f"✨ [{m.user.first_name}](tg://user?id={m.user.id})"
+            usertext += f"\n✨ [{m.user.first_name}](tg://user?id={m.user.id})"
         await pgram.send_message(message.chat.id,f'{usertext}\n{text}')        
 
 @pgram.on_message(filters.command("cancel") & ~filters.private)
