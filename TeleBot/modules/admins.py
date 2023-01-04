@@ -86,7 +86,7 @@ async def extract_user_id(message):
 @user_can_promote
 async def _promote(_, message):
     user_id = await extract_user_id(message)   
-    user_mention = (await pgram.get_users(user_id)).mention  
+   # user_mention = (await pgram.get_users(user_id)).mention  
     if not user_id:
         await message.reply_text("ɪ'ᴍ ᴜɴᴀʙʟᴇ ᴛᴏ ғɪɴᴅ ᴛʜᴀᴛ ᴜsᴇʀ.")
         return
