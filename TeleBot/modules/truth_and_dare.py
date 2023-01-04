@@ -15,15 +15,3 @@ async def true(_, message):
         await message.reply_text(f"`{truth}`")
         return     
 
-@pgram.on_message(filters.command["dare","hdare"])
-async def ok(_, message):
-    if message.command[0] == "dare":
-        url = "https://api.truthordarebot.xyz/v1/dare"
-        dare = requests.get(url).json()["question"]
-        await message.reply_text(f"`{dare}`")
-        return 
-    if message.command[0] == "hdare":
-        url = "https://api.truthordarebot.xyz/v1/dare"
-        dare = requests.get(url).json()["translations"]["hi"]
-        await message.reply_text(f"`{dare}`")
-        return    
