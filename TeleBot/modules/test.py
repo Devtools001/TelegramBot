@@ -6,32 +6,44 @@ from pyrogram.errors import BadRequest
 
 @pgram.on_message(filters.command("adminlist") & ~filters.private)
 async def _adminlist(_, message):
+    
     chat_id = message.chat.id
-    chat_title = message.chat.title
-    msg = await message.reply("ғᴇᴛᴄʜɪɴɢ ᴀᴅᴍɪɴs ʟɪsᴛ...")
+    chat_name = message.chat.title  # -> unused variable
+
+    try:
+        msg = await message.reply(
+            "» ғᴇᴛᴄʜɪɴɢ ᴀᴅᴍɪɴs ʟɪsᴛ...",
+            parse_mode=enums.ParseMode.HTML,
+        )
+    except BadRequest:
+        msg = await message.reply(
+            "» ғᴇᴛᴄʜɪɴɢ ᴀᴅᴍɪɴs ʟɪsᴛ...",
+            quote=False,
+            parse_mode=enums.ParseMode.HTML,
+        )
     administrators = []
-    async for m in pgram.get_chat_members(message.chat.id, filter=enums.ChatMembersFilter.ADMINISTRATORS):        
+    async for m in pgram.get_chat_members(chat_id, filter=enums.ChatMembersFilter.ADMINISTRATORS):
         administrators.append(m)
     
-  #  administrators = bot.getChatAdministrators(chat_id)
-    text = "ᴀᴅᴍɪɴs ɪɴ <b>{}</b>:".format(html.escape(chat_title))
+
+    text = "ᴀᴅᴍɪɴs ɪɴ <b>{}</b>:".format(html.escape(chat_name))
 
     for admin in administrators:
         user = admin.user
         status = admin.status
         custom_title = admin.custom_title
 
-        
-        
         if user.first_name == "":
             name = "☠ ᴅᴇʟᴇᴛᴇᴅ ᴀᴄᴄᴏᴜɴᴛ"
         else:
-            name = f"{user.mention}"
+            name = user.mention
 
-        if user.is_bot==True:
+        if user.is_bot == True:
             administrators.remove(admin)
             continue
 
+        # if user.username:
+        #    name = escape_markdown("@" + user.username)
         if status == ChatMemberStatus.OWNER:
             text += "\n 🥀 ᴏᴡɴᴇʀ :"
             text += "\n<code> • </code>{}\n".format(name)
@@ -53,8 +65,9 @@ async def _adminlist(_, message):
             name = "☠ ᴅᴇʟᴇᴛᴇᴅ ᴀᴄᴄᴏᴜɴᴛ"
         else:
             name = user.mention
-                
-        
+
+        # if user.username:
+        #    name = escape_markdown("@" + user.username)
         if status == ChatMemberStatus.ADMINISTRATOR:
             if custom_title:
                 try:
@@ -83,6 +96,6 @@ async def _adminlist(_, message):
         text += "\n"
 
     try:
-        await msg.edit_text(text, parse_mode=enums.ParseMode.HTML)
+        await msg.edit(text, parse_mode=enums.ParseMode.HTML)
     except BadRequest:  # if original message is deleted
-        return
+        return    
