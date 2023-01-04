@@ -3,6 +3,7 @@ from TeleBot import pgram
 from pyrogram import filters, enums 
 from pyrogram.enums import ChatMemberStatus
 from pyrogram.errors import BadRequest 
+
 @pgram.on_message(filters.command("adminlist") & ~filters.private)
 async def _adminlist(_, message):
     chat_id = message.chat.id
@@ -20,10 +21,8 @@ async def _adminlist(_, message):
         status = admin.status
         custom_title = admin.custom_title
 
-        if user.first_name == "":
-            name = "☠ ᴅᴇʟᴇᴛᴇᴅ ᴀᴄᴄᴏᴜɴᴛ"
-        else:
-            name = f"{user.mention}"
+        
+        name = user.mention           
             
 
         if user.is_bot==True:
