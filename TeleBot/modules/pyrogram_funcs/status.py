@@ -76,10 +76,8 @@ def user_admin(mystic):
         user_id = message.from_user.id
         chat_id = message.chat.id
         user = await app.get_chat_member(chat_id,user_id)
-        if user.status in COMMANDERS and user.privileges.is_anonymous==True :
-            return await message.reply_text("you are an anonymous Admin")
-    
-        if (user.status not in COMMANDERS) and user_id not in SUPREME_USERS:
+        
+        if (user.status not in COMMANDERS) and user_id not in SUPREME_USERS and not message.sender_chat:
             return await message.reply_text("sᴛᴀʏ ɪɴ ʏᴏᴜʀ ʟɪᴍɪᴛs ᴍғ. ʙᴇᴄᴏᴍᴇ **ᴀᴅᴍɪɴ** ғɪʀsᴛ.")
                                                                             
         return await mystic(app,message,*args,**kwargs)
