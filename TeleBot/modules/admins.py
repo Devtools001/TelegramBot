@@ -123,7 +123,7 @@ async def _demote(_, message):
     user_mention = (await pgram.get_users(user_id)).mention
     try : 
         await pgram.promote_chat_member(chat_id,user_id,DEMOTE)
-        await message.reply_text(f"sᴜᴄᴄᴇssғᴜʟʟʏ ᴘʀᴏᴍᴏᴛᴇᴅ {user_mention}")
+        await message.reply_text(f"sᴜᴄᴄᴇssғᴜʟʟʏ ᴅᴇᴍᴏᴛᴇᴅ {user_mention}")
     except BadRequest as error:
         if error == "USER_NOT_MUTUAL_CONTACT":
             await message.reply_text("» ᴀs ɪ ᴄᴀɴ sᴇᴇ ᴛʜᴀᴛ ᴜsᴇʀ ɪs ɴᴏᴛ ᴩʀᴇsᴇɴᴛ ʜᴇʀᴇ.")
