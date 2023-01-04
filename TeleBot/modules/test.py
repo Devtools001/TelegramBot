@@ -13,7 +13,7 @@ async def _adminlist(_, message):
         administrators.append(m)
     
   #  administrators = bot.getChatAdministrators(chat_id)
-    text = "ᴀᴅᴍɪɴs ɪɴ <b>{}</b>:".format(html.escape(update.effective_chat.title))
+    text = "ᴀᴅᴍɪɴs ɪɴ <b>{}</b>:".format(html.escape(message.chat.title))
 
     for admin in administrators:
         user = admin.user
@@ -36,7 +36,7 @@ async def _adminlist(_, message):
 
         # if user.username:
         #    name = escape_markdown("@" + user.username)
-        if status == "creator":
+        if status == ChatMemberStatus.OWNER:
             text += "\n 🥀 ᴏᴡɴᴇʀ :"
             text += "\n<code> • </code>{}\n".format(name)
 
@@ -64,7 +64,7 @@ async def _adminlist(_, message):
             )
         # if user.username:
         #    name = escape_markdown("@" + user.username)
-        if status == "administrator":
+        if status == ChatMemberStatus.ADMINISTRATOR:
             if custom_title:
                 try:
                     custom_admin_list[custom_title].append(name)
