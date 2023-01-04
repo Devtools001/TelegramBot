@@ -72,7 +72,7 @@ async def _adminlist(_, message):
         text += "\n"
 
     try:
-        msg.edit_text(text)
+        await msg.edit(text)
     except BadRequest:  # if original message is deleted
         return
 
