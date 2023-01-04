@@ -52,12 +52,8 @@ async def _adminlist(_, message):
         if user.first_name == "":
             name = "☠ ᴅᴇʟᴇᴛᴇᴅ ᴀᴄᴄᴏᴜɴᴛ"
         else:
-            name = "{}".format(
-                mention_html(
-                    user.id,
-                    html.escape(user.first_name + " " + (user.last_name or "")),
-                ),
-            )
+            name = f"{user.mention}"
+                
         # if user.username:
         #    name = escape_markdown("@" + user.username)
         if status == ChatMemberStatus.ADMINISTRATOR:
