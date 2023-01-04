@@ -87,7 +87,7 @@ async def extract_user_id(message):
 
     
         
-@pgram.on_message(filters.command("promote"))
+@pgram.on_message(filters.command(["promote","tpromote"]))
 @bot_admin    
 @bot_can_promote    
 @user_admin
@@ -95,6 +95,7 @@ async def extract_user_id(message):
 async def _promote(_, message):
     chat_id = message.chat.id
     user_id = await extract_user_id(message)  
+    user,rank = await get_id_reason_or_rank(message)
     administrators = []
     async for m in pgram.get_chat_members(chat_id, filter=enums.ChatMembersFilter.ADMINISTRATORS):
         administrators.append(m.user.id)
@@ -107,13 +108,27 @@ async def _promote(_, message):
         return 
     if user_id in administrators :
         await message.reply_text("ʙʀᴜʜ ʜᴏᴡ ᴄᴀɴ ɪ ᴘʀᴏᴍᴏᴛᴇ ᴀɴ ᴀᴅᴍɪɴ. ᴛʜɪɴᴋ ᴀʙᴏᴜᴛ ɪᴛ")
-        return 
-    user_mention = (await pgram.get_users(user_id)).mention
-    try : 
-        await pgram.promote_chat_member(chat_id,user_id,PROMOTE_POWERS)
-        await message.reply_text(f"sᴜᴄᴄᴇssғᴜʟʟʏ ᴘʀᴏᴍᴏᴛᴇᴅ {user_mention}")
-    except Exception as error:
-        await message.reply_text(error)
+        return
+    if message.command[0] == "promote": 
+        user_mention = (await pgram.get_users(user_id)).mention
+        try : 
+            await pgram.promote_chat_member(chat_id,user_id,PROMOTE_POWERS)
+            await message.reply_text(f"sᴜᴄᴄᴇssғᴜʟʟʏ ᴘʀᴏᴍᴏᴛᴇᴅ {user_mention}")
+        except Exception as error:
+            await message.reply_text(error)
+    if message.command[0] == "tpromote":
+        user_mention = (await pgram.get_users(user)).mention  
+        if len(message.command) < 2:
+        await message.reply_text("ɪᴛ ɪs'ɴᴛ ǫᴜɪᴛᴇ ʀɪɢʜᴛ.ɢɪᴠᴇ ᴀ ᴛᴇxᴛ ᴛᴏᴏ.")
+        return
+        else :
+            try:
+                title = message.text.split(None, 1)[1]
+                await pgram.promote_chat_member(chat_id,user_id,PROMOTE_POWERS)
+                await pgram.set_administrator_title(chat_id,user,title)
+                await message.reply_text(f"sᴜᴄᴄᴇssғᴜʟʟʏ ᴘʀᴏᴍᴏᴛᴇᴅ {user_mention} ᴡɪᴛʜ {} ᴛɪᴛʟᴇ") 
+            except Exception as e:
+                await message.reply_text(e)
     
    
 
