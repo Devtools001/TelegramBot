@@ -15,7 +15,7 @@ async def true(_, message):
         await message.reply_text(f"`{truth}`")
         return     
 
-@pgram.on_message(filters.command["dare","hdare"]))
+@pgram.on_message(filters.command["dare","hdare"])
 async def dare(_, message):
     if message.command[0] == "dare":
         url = "https://api.truthordarebot.xyz/v1/dare"
