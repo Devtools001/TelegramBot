@@ -126,7 +126,7 @@ async def _promote(_, message):
                 title = message.text.split(None, 1)[1]
                 await pgram.promote_chat_member(chat_id,user_id,PROMOTE_POWERS)
                 await pgram.set_administrator_title(chat_id,user,title)
-                await message.reply_text(f"sᴜᴄᴄᴇssғᴜʟʟʏ ᴘʀᴏᴍᴏᴛᴇᴅ {user_mention} ᴡɪᴛʜ {} ᴛɪᴛʟᴇ") 
+                await message.reply_text(f"sᴜᴄᴄᴇssғᴜʟʟʏ ᴘʀᴏᴍᴏᴛᴇᴅ {user_mention} ᴡɪᴛʜ {title} ᴛɪᴛʟᴇ") 
             except Exception as e:
                 await message.reply_text(e)
     
