@@ -135,7 +135,7 @@ async def _demote(_, message):
         if error == "USER_NOT_MUTUAL_CONTACT":
             await message.reply_text("» ᴀs ɪ ᴄᴀɴ sᴇᴇ ᴛʜᴀᴛ ᴜsᴇʀ ɪs ɴᴏᴛ ᴩʀᴇsᴇɴᴛ ʜᴇʀᴇ.")
         else:
-            await message.reply_text(error)  
+            await message.reply_text("ᴅᴜᴇ ᴛᴏ ᴛᴇʟᴇɢʀᴀᴍ ʟɪᴍɪᴛᴀᴛɪᴏɴs, I ᴄᴀɴ'ᴛ ᴅᴇᴍᴏᴛᴇ ʙᴏᴛs. ᴘʟᴇᴀsᴇ ᴅᴇᴍᴏᴛᴇ ᴛʜᴇᴍ ᴍᴀɴᴜᴀʟʟʏ!")  
         return            
 
 
