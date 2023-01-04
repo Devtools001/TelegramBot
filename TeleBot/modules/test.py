@@ -1,3 +1,4 @@
+import html
 from TeleBot import pgram
 from pyrogram import filters, enums 
 from pyrogram.enums import ChatMemberStatus
@@ -11,41 +12,59 @@ async def _adminlist(_, message):
     async for m in pgram.get_chat_members(message.chat.id, filter=enums.ChatMembersFilter.ADMINISTRATORS):        
         administrators.append(m)
     
-    text = f"ᴀᴅᴍɪɴs ɪɴ {message.chat.title}"
+  #  administrators = bot.getChatAdministrators(chat_id)
+    text = "ᴀᴅᴍɪɴs ɪɴ <b>{}</b>:".format(html.escape(update.effective_chat.title))
 
     for admin in administrators:
         user = admin.user
         status = admin.status
         custom_title = admin.custom_title
 
-        
         if user.first_name == "":
             name = "☠ ᴅᴇʟᴇᴛᴇᴅ ᴀᴄᴄᴏᴜɴᴛ"
         else:
-            name = f'{user.first_name + " " + (user.last_name or "")}'
+            name = "{}".format(
+                mention_html(
+                    user.id,
+                    html.escape(user.first_name + " " + (user.last_name or "")),
+                ),
+            )
+
         if user.is_bot:
             administrators.remove(admin)
             continue
 
-        if status == ChatMemberStatus.OWNER:
-            text += "\n🥀 ᴏᴡɴᴇʀ :"
-            text += f"\n{name}"
+        # if user.username:
+        #    name = escape_markdown("@" + user.username)
+        if status == "creator":
+            text += "\n 🥀 ᴏᴡɴᴇʀ :"
+            text += "\n<code> • </code>{}\n".format(name)
+
             if custom_title:
-                text += f"┗━ {custom_title}"
+                text += f"<code> ┗━ {html.escape(custom_title)}</code>\n"
 
     text += "\n💫 ᴀᴅᴍɪɴs :"
+
     custom_admin_list = {}
-    normal_admin_list = [] 
+    normal_admin_list = []
+
     for admin in administrators:
         user = admin.user
         status = admin.status
         custom_title = admin.custom_title
-        
+
         if user.first_name == "":
             name = "☠ ᴅᴇʟᴇᴛᴇᴅ ᴀᴄᴄᴏᴜɴᴛ"
         else:
-            name = f'{user.first_name + " " + (user.last_name or "")}'
-        if status == ChatMemberStatus.ADMINISTRATOR:
+            name = "{}".format(
+                mention_html(
+                    user.id,
+                    html.escape(user.first_name + " " + (user.last_name or "")),
+                ),
+            )
+        # if user.username:
+        #    name = escape_markdown("@" + user.username)
+        if status == "administrator":
             if custom_title:
                 try:
                     custom_admin_list[custom_title].append(name)
@@ -54,37 +73,25 @@ async def _adminlist(_, message):
             else:
                 normal_admin_list.append(name)
 
-    
     for admin in normal_admin_list:
-        text += f"\n • {admin}"
+        text += "\n<code> • </code>{}".format(admin)
 
     for admin_group in custom_admin_list.copy():
         if len(custom_admin_list[admin_group]) == 1:
-            text += "\n • {custom_admin_list[admin_group][0]} | {admin_group}"
-                
+            text += "\n<code> • </code>{} | <code>{}</code>".format(
+                custom_admin_list[admin_group][0],
+                html.escape(admin_group),
+            )
             custom_admin_list.pop(admin_group)
 
     text += "\n"
     for admin_group, value in custom_admin_list.items():
-        text += f"\n🔮 {admin_group}"
+        text += "\n🔮 <code>{}</code>".format(admin_group)
         for admin in value:
-            text += "\n• {admin}"
+            text += "\n<code> • </code>{}".format(admin)
         text += "\n"
 
     try:
-        await msg.edit(text)
+        await msg.edit_text(text, parse_mode=enums.ParseMode.HTML)
     except BadRequest:  # if original message is deleted
         return
-
-
-
-
-
-
-
-
-
-
-
-
-
