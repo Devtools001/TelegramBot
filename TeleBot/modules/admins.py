@@ -12,104 +12,33 @@ from TeleBot.modules.pyrogram_funcs.status import (
 from pyrogram.enums import MessageEntityType, ChatMemberStatus
 from pyrogram.types import ChatPrivileges
 
-COMMANDERS = [ChatMemberStatus.ADMINISTRATOR,ChatMemberStatus.OWNER]
 
-
-async def get_user_id(message, text:str):
-    def is_digit(text : str):
-        try:
-            int(text)
-        except ValueError:
-            return False
-        return True
-    
-    text = text.strip()
-    if is_digit(text):
-        return int(text)
-
-    entities = message.entities
-    app = message._client
-    if len(entities) < 2:
-        return (await app.get_users(text)).id
-    entity = entities[1]
-    if entity.type == MessageEntityType.MENTION:
-        return (await app.get_users(text)).id
-    if entity.type == MessageEntityType.TEXT_MENTION:
-        return entity.user.id
-    return None
-    
-
-async def get_id_reason_or_rank(message,sender_chat=False):
-    args = message.text.strip().split()
-    text = message.text
-    user = None
-    reason = None
-    replied = message.reply_to_message
-    if replied:
-                
-        if not replied.from_user:
-            if (
-                    replied.sender_chat
-                    and replied.sender_chat != message.chat.id
-                    and sender_chat
-            ):
-                id_ = replied.sender_chat.id
-            else:
-                return None, None
-        else:
-            id_ = replied.from_user.id
-
-        if len(args) < 2:
-            reason = None
-        else:
-            reason = text.split(None, 1)[1]
-        return id_, reason
-    
-    if len(args) == 2:
-        user = text.split(None, 1)[1]
-        return await get_user_id(message, user), None
-
-    if len(args) > 2:
-        user, reason = text.split(None, 2)[1:]
-        return await get_user_id(message, user), reason
-
-    return user, reason
-
-async def extract_user_id(message):
-    return (await get_id_reason_or_rank(message))[0]
-
-@pgram.on_message(filters.command("promote") & ~filters.private)
-@bot_admin
-@bot_can_promote
-@user_admin
-@user_can_promote
-async def promote(_, message):
-    user= message.from_user
-    replied = message.reply_to_message
-    chat_id = message.chat.id
-    
-    
-    if not user:
-        return 
-    if replied:
-        id_ = replied.from_user.id
-        member = await pgram.get_chat_member(chat_id,id_)
-    
-        if replied.from_user.id == BOT_ID:
-            return await message.reply_text("how can I promote myself")
-        if member.status in COMMANDERS:
-            return await message.reply_text("he is already a Admin bro")
-        else:
-            try:
-                await pgram.promote_chat_member(chat_id,replied.from_user.id,ChatPrivileges(can_manage_chat=True))
-            except Exception as e:
-               print(e)
 
         
     
     
 
-    
+@pgram.on_message(filters.command("title"))
+async def _title(_, message):
+    user = message.from_user
+    replied= message.reply_to_message
+    chat_id = message.chat.id
+    if not user:
+        return
+    if not replied:
+        await message.reply_text("ʀᴇᴘʟʏ ᴛᴏ ᴀɴ ᴀᴅᴍɪɴ ᴛᴏ sᴇᴛ ʜɪs ᴀᴅᴍɪɴ ᴛɪᴛʟᴇ.")
+        return
+    if len(message.command) < 2:
+        await message.reply_text("ɪᴛ ɪs'ɴᴛ ǫᴜɪᴛᴇ ʀɪɢʜᴛ.ɢɪᴠᴇ ᴀ ᴛᴇxᴛ ᴛᴏᴏ.")
+        return
+    try:
+        title = message.text.split(None, 1)[1]
+        await pgram.set_administrator_title(chat_id, replied.from_user.id,title)
+        await message.reply_text(f"sᴜᴄᴄᴇssғᴜʟʟʏ ᴄʜᴀɴɢᴇᴅ {replied.from_user.mention} ᴀᴅᴍɪɴ ᴛɪᴛʟᴇ ᴛᴏ {title}.")
+    except Exception as e:
+        await message.reply_text(e)
+
+        
 
 
     
