@@ -11,6 +11,7 @@ from TeleBot.modules.pyrogram_funcs.status import (
 
 from pyrogram.enums import MessageEntityType, ChatMemberStatus
 from pyrogram.types import ChatPrivileges
+from pyrogram.errors import BadRequest
 
 COMMANDERS = [ChatMemberStatus.ADMINISTRATOR,ChatMemberStatus.OWNER]
 
@@ -124,17 +125,28 @@ async def _promote(_, message):
         try : 
             await pgram.promote_chat_member(chat_id,user_id,PROMOTE_POWERS)
             await message.reply_text(f"sᴜᴄᴄᴇssғᴜʟʟʏ ᴘʀᴏᴍᴏᴛᴇᴅ {user_mention}")
-        except Exception as error:
-            await message.reply_text(error)
+        except BadRequest as error:
+            if error.message == "User_not_mutual_contact":
+                message.reply_text("» ᴀs ɪ ᴄᴀɴ sᴇᴇ ᴛʜᴀᴛ ᴜsᴇʀ ɪs ɴᴏᴛ ᴩʀᴇsᴇɴᴛ ʜᴇʀᴇ.")
+            else:
+                message.reply_text(
+                "» sᴏᴍᴇᴛʜɪɴɢ ᴡᴇɴᴛ ᴡʀᴏɴɢ, ᴍᴀʏʙᴇ sᴏᴍᴇᴏɴᴇ ᴩʀᴏᴍᴏᴛᴇᴅ ᴛʜᴀᴛ ᴜsᴇʀ ʙᴇғᴏʀᴇ ᴍᴇ."
+            )
+            return
 
     if message.command[0] == "fullpromote":
         user_mention = (await pgram.get_users(user_id)).mention
         try : 
             await pgram.promote_chat_member(chat_id,user_id,FULL_PROMOTE_POWERS)
             await message.reply_text(f"sᴜᴄᴄᴇssғᴜʟʟʏ ғᴜʟʟ ᴘʀᴏᴍᴏᴛᴇᴅ {user_mention}")
-        except Exception as error:
-            await message.reply_text(error)
-    
+        except BadRequest as error:
+            if error.message == "User_not_mutual_contact":
+                message.reply_text("» ᴀs ɪ ᴄᴀɴ sᴇᴇ ᴛʜᴀᴛ ᴜsᴇʀ ɪs ɴᴏᴛ ᴩʀᴇsᴇɴᴛ ʜᴇʀᴇ.")
+            else:
+                message.reply_text(
+                "» sᴏᴍᴇᴛʜɪɴɢ ᴡᴇɴᴛ ᴡʀᴏɴɢ, ᴍᴀʏʙᴇ sᴏᴍᴇᴏɴᴇ ᴩʀᴏᴍᴏᴛᴇᴅ ᴛʜᴀᴛ ᴜsᴇʀ ʙᴇғᴏʀᴇ ᴍᴇ."
+            )
+            return
    
 
 
