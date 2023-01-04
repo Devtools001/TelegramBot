@@ -106,7 +106,7 @@ async def _promote(_, message):
     if replied or len(message.command) == 2 :
         await pgram.promote_chat_member(chat_id,user_id,PROMOTE_POWERS)
         await message.reply_text(f"sᴜᴄᴄᴇssғᴜʟʟʏ ᴘʀᴏᴍᴏᴛᴇᴅ {user_mention}")
-    if replied or len(message.command) > 3
+    if replied or len(message.command) >= 3 :
         print("ok")
     
    
