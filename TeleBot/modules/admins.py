@@ -110,9 +110,10 @@ async def _promote(_, message):
     async for m in pgram.get_chat_members(chat_id, filter=enums.ChatMembersFilter.ADMINISTRATORS):
         administrators.append(m.user.id)
 
-    if message.from_user.id == chat_id:  
+    if message.sender_chat.id == chat_id:  
         await message.reply_text("you are anonymous")
-        return    
+        return 
+   
     if not user_id:
         await message.reply_text("ɪ'ᴍ ᴜɴᴀʙʟᴇ ᴛᴏ ғɪɴᴅ ᴛʜᴀᴛ ᴜsᴇʀ.")
         return
