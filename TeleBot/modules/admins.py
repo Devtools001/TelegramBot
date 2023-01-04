@@ -82,6 +82,7 @@ async def get_id_reason_or_rank(message,sender_chat=False):
     return user, reason
 
 async def extract_user_id(app,message):
+    chat_id = message.chat.id
     user_id = (await get_id_reason_or_rank(message))[0]
     administrators = []
     async for m in app.get_chat_members(chat_id, filter=enums.ChatMembersFilter.ADMINISTRATORS):
