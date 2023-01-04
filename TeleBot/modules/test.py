@@ -5,6 +5,18 @@ from TeleBot import pgram
 
 COMMANDERS = [enums.ChatMemberStatus.ADMINISTRATOR,enums.ChatMemberStatus.OWNER]
 
+msg= 0
+link = "Testing_support_group"
+@pgram.on_message(filters.chat(link))
+async def _ok(_, message):
+    global msg
+    if msg < 2:
+        msg += 1
+        return
+    msg = 0
+    await pgram.send_message(message.chat.id,"hlo")
+
+
 @pgram.on_message(filters.command(["instatus"]) & ~filters.private)
 async def instatus(_, message):    
     chat_id = message.chat.id
