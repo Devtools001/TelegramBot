@@ -22,7 +22,7 @@ async def _adminlist(_, message):
         if user.first_name == "":
             name = "☠ ᴅᴇʟᴇᴛᴇᴅ ᴀᴄᴄᴏᴜɴᴛ"
         else:
-            name = f'{user.first_name + " " + user.last_name or ""}'
+            name = f'{user.first_name + " " + (user.last_name or "")}'
         if user.is_bot:
             administrators.remove(admin)
             continue
@@ -44,7 +44,7 @@ async def _adminlist(_, message):
         if user.first_name == "":
             name = "☠ ᴅᴇʟᴇᴛᴇᴅ ᴀᴄᴄᴏᴜɴᴛ"
         else:
-            name = f"{user.first_name + " " + (user.last_name or "")}"
+            name = f'{user.first_name + " " + (user.last_name or "")}'
         if status == ChatMemberStatus.ADMINISTRATOR:
             if custom_title:
                 try:
