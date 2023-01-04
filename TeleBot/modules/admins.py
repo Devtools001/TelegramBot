@@ -123,7 +123,7 @@ async def _demote(_, message):
     if user_id in SUPREME_USERS:
         await message.reply_text("ʏᴏᴜ ᴄᴀɴ'ᴛ ᴅᴇᴍᴏᴛᴇ ᴍʏ ғʀɪᴇɴᴅ ᴏᴋ ʏᴏᴜ ᴍғ.")
         return
-    if user_id in administrators :
+    if user_id not in administrators :
         await message.reply_text("ᴛʜɪs ᴜsᴇʀ ɪsɴ'ᴛ  ᴀɴ ᴀᴅᴍɪɴ ᴀɴʏᴡᴀʏ!")
         return
     
