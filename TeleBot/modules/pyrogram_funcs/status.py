@@ -81,7 +81,7 @@ def user_admin(mystic):
             await message.reply_text(e)
             return 
         
-        if (user.status not in COMMANDERS) and user_id not in SUPREME_USERS and:
+        if (user.status not in COMMANDERS) and user_id not in SUPREME_USERS:
             return await message.reply_text("sᴛᴀʏ ɪɴ ʏᴏᴜʀ ʟɪᴍɪᴛs ᴍғ. ʙᴇᴄᴏᴍᴇ **ᴀᴅᴍɪɴ** ғɪʀsᴛ.")
                                                                             
         return await mystic(app,message,*args,**kwargs)
