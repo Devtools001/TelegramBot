@@ -8,6 +8,10 @@ from TeleBot.modules.pyrogram_funcs.status import (
     user_can_change_info,
     bot_can_promote,
     user_can_promote )
+from TeleBot.modules.pyrogram_funcs.extracting_id import (
+    extract_user_id,
+    get_id_reason_or_rank,
+    get_user_id )
 
 from pyrogram.enums import MessageEntityType, ChatMemberStatus
 from pyrogram.types import ChatPrivileges
