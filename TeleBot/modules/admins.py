@@ -94,7 +94,7 @@ async def _promote(_, message):
     chat_id = message.chat.id
     user_id = await extract_user_id(message)  
     user,rank = await get_id_reason_or_rank(message)
-    print(user,rank)
+  #  print(user,rank)
     if not user_id:
         await message.reply_text("ɪ'ᴍ ᴜɴᴀʙʟᴇ ᴛᴏ ғɪɴᴅ ᴛʜᴀᴛ ᴜsᴇʀ.")
         return
@@ -104,8 +104,10 @@ async def _promote(_, message):
     user_mention = (await pgram.get_users(user_id)).mention
     if len(message.command) <=2:
         print("yes 2 se jyada h")
- #   await pgram.promote_chat_member(chat_id,user_id,PROMOTE_POWERS)
-  #  await message.reply_text(f"sᴜᴄᴄᴇssғᴜʟʟʏ ᴘʀᴏᴍᴏᴛᴇᴅ {user_mention}")
+        await pgram.promote_chat_member(chat_id,user_id,PROMOTE_POWERS)
+        await message.reply_text(f"sᴜᴄᴄᴇssғᴜʟʟʏ ᴘʀᴏᴍᴏᴛᴇᴅ {user_mention}")
+    if len(message.command) <=3:
+        print(user,rank)
    
 
 
