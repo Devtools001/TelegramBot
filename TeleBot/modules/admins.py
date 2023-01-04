@@ -44,7 +44,7 @@ DEMOTE = ChatPrivileges(
         can_pin_messages=False,
         can_promote_members=False,
         can_manage_chat=False,
-        can_manage_voice_chats=False,
+        can_manage_video_chats=False,
     )
     
 
@@ -128,9 +128,7 @@ async def _demote(_, message):
         if error == "USER_NOT_MUTUAL_CONTACT":
             await message.reply_text("» ᴀs ɪ ᴄᴀɴ sᴇᴇ ᴛʜᴀᴛ ᴜsᴇʀ ɪs ɴᴏᴛ ᴩʀᴇsᴇɴᴛ ʜᴇʀᴇ.")
         else:
-             await message.reply_text(
-                "» sᴏᴍᴇᴛʜɪɴɢ ᴡᴇɴᴛ ᴡʀᴏɴɢ, ᴍᴀʏʙᴇ sᴏᴍᴇᴏɴᴇ ᴩʀᴏᴍᴏᴛᴇᴅ ᴛʜᴀᴛ ᴜsᴇʀ ʙᴇғᴏʀᴇ ᴍᴇ."
-            )
+            await message.reply_text(error)  
         return            
 
 
