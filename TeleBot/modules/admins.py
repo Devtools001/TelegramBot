@@ -12,11 +12,83 @@ from TeleBot.modules.pyrogram_funcs.status import (
 from pyrogram.enums import MessageEntityType, ChatMemberStatus
 from pyrogram.types import ChatPrivileges
 
+COMMANDERS = [ChatMemberStatus.ADMINISTRATOR,ChatMemberStatus.OWNER]
 
+
+async def get_user_id(message, text:str):
+    def is_digit(text : str):
+        try:
+            int(text)
+        except ValueError:
+            return False
+        return True
+    
+    text = text.strip()
+    if is_digit(text):
+        return int(text)
+
+    entities = message.entities
+    app = message._client
+    if len(entities) < 2:
+        return (await app.get_users(text)).id
+    entity = entities[1]
+    if entity.type == MessageEntityType.MENTION:
+        return (await app.get_users(text)).id
+    if entity.type == MessageEntityType.TEXT_MENTION:
+        return entity.user.id
+    return None
+    
+
+async def get_id_reason_or_rank(message,sender_chat=False):
+    args = message.text.strip().split()
+    text = message.text
+    user = None
+    reason = None
+    replied = message.reply_to_message
+    if replied:
+                
+        if not replied.from_user:
+            if (
+                    replied.sender_chat
+                    and replied.sender_chat != message.chat.id
+                    and sender_chat
+            ):
+                id_ = replied.sender_chat.id
+            else:
+                return None, None
+        else:
+            id_ = replied.from_user.id
+
+        if len(args) < 2:
+            reason = None
+        else:
+            reason = text.split(None, 1)[1]
+        return id_, reason
+    
+    if len(args) == 2:
+        user = text.split(None, 1)[1]
+        return await get_user_id(message, user), None
+
+    if len(args) > 2:
+        user, reason = text.split(None, 2)[1:]
+        return await get_user_id(message, user), reason
+
+    return user, reason
+
+async def extract_user_id(message):
+    return (await get_id_reason_or_rank(message))[0]
 
         
-    
-    
+@pgram.on_message(filters.command("promote"))
+@bot_admin    
+@bot_can_promote    
+@user_admin
+@user_can_promote
+async def _promote(_, message):
+   user_id = await extract_user_id(message)   
+   umention = (await app.get_users(user_id)).mention  
+   print(user_id,umention)
+
 
 @pgram.on_message(filters.command("title"))
 @bot_admin
