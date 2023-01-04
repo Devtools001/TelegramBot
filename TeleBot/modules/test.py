@@ -2,7 +2,7 @@ from TeleBot import pgram
 from pyrogram import filters, enums 
 
 
-@pgram.on_message(filters.command("adminlist") & ~filters.command)
+@pgram.on_message(filters.command("adminlist") & ~filters.private)
 async def _adminlist(_, message):
     chat_id = message.chat.id
     chat_title = message.chat.title
