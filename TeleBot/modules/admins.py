@@ -109,7 +109,11 @@ async def _promote(_, message):
 @user_can_promote
 async def _demote(_, message):
     chat_id = message.chat.id
-    user_id = await extract_user_id(message)              
+    user_id = await extract_user_id(message)  
+    administrators = []
+    async for m in pgram.get_chat_members(chat_id, filter=enums.ChatMembersFilter.ADMINISTRATORS):
+        administrators.append(m.user.id)     
+               
     if not user_id:
         await message.reply_text("I ᴅᴏɴ'ᴛ ᴋɴᴏᴡ ᴡʜᴏ ʏᴏᴜ'ʀᴇ ᴛᴀʟᴋɪɴɢ ᴀʙᴏᴜᴛ, ʏᴏᴜ'ʀᴇ ɢᴏɪɴɢ ᴛᴏ ɴᴇᴇᴅ ᴛᴏ sᴘᴇᴄɪғʏ ᴀ ᴜsᴇʀ...!")
         return
@@ -118,6 +122,9 @@ async def _demote(_, message):
         return 
     if user_id in SUPREME_USERS:
         await message.reply_text("ʏᴏᴜ ᴄᴀɴ'ᴛ ᴅᴇᴍᴏᴛᴇ ᴍʏ ғʀɪᴇɴᴅ ᴏᴋ ʏᴏᴜ ᴍғ.")
+        return
+    if user_id in administrators :
+        await message.reply_text("ᴛʜɪs ᴜsᴇʀ ɪsɴ'ᴛ  ᴀɴ ᴀᴅᴍɪɴ ᴀɴʏᴡᴀʏ!")
         return
     
     user_mention = (await pgram.get_users(user_id)).mention
