@@ -16,7 +16,7 @@ async def true(_, message):
         return     
 
 @pgram.on_message(filters.command["dare","hdare"])
-async def _dare(_, message):
+async def ok(_, message):
     if message.command[0] == "dare":
         url = "https://api.truthordarebot.xyz/v1/dare"
         dare = requests.get(url).json()["question"]
