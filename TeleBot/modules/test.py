@@ -30,7 +30,7 @@ async def _adminlist(_, message):
         if status == ChatMemberStatus.OWNER:
             text += "\n🥀 ᴏᴡɴᴇʀ :"
             text += f"\n{name}"
-             if custom_title:
+            if custom_title:
                 text += f"┗━ {custom_title}"
 
     text += "\n💫 ᴀᴅᴍɪɴs :"
