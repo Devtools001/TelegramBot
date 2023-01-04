@@ -8,7 +8,7 @@ async def _adminlist(_, message):
     chat_title = message.chat.title
     text = await message.reply("ғᴇᴛᴄʜɪɴɢ ᴀᴅᴍɪɴs ʟɪsᴛ...")
     administrators = []
-    async for m in app.get_chat_members(message.chat.id, filter=enums.ChatMembersFilter.ADMINISTRATORS):        
+    async for m in pgram.get_chat_members(message.chat.id, filter=enums.ChatMembersFilter.ADMINISTRATORS):        
         administrators.append(m)
     
 
