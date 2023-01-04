@@ -101,7 +101,7 @@ async def _promote(_, message):
         return 
     user_mention = (await pgram.get_users(user_id)).mention
     await pgram.promote_chat_member(chat_id,user_id,PROMOTE_POWERS)
-    await message.reply_text("sᴜᴄᴄᴇssғᴜʟʟʏ ᴘʀᴏᴍᴏᴛᴇᴅ {user_mention}")
+    await message.reply_text(f"sᴜᴄᴄᴇssғᴜʟʟʏ ᴘʀᴏᴍᴏᴛᴇᴅ {user_mention}")
    
 
 
