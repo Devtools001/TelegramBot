@@ -1,5 +1,5 @@
 import os
-from TeleBot import pgram,LOG,BOT_ID
+from TeleBot import pgram,LOG,BOT_ID,DEV_USERS,DRAGONS
 from pyrogram import filters,enums
 from TeleBot.modules.pyrogram_funcs.status import (
     bot_admin,
@@ -18,6 +18,7 @@ from pyrogram.types import ChatPrivileges
 from pyrogram.errors import BadRequest
 
 COMMANDERS = [ChatMemberStatus.ADMINISTRATOR,ChatMemberStatus.OWNER]
+SUPREME_USERS = DEV_USERS + DRAGONS
 
 
 PROMOTE_POWERS = ChatPrivileges(
@@ -35,12 +36,21 @@ FULL_PROMOTE_POWERS = ChatPrivileges(
     can_promote_members=True,    
     can_invite_users=True)
 
-
+DEMOTE = ChatPrivileges(
+        can_change_info=False,
+        can_invite_users=False,
+        can_delete_messages=False,
+        can_restrict_members=False,
+        can_pin_messages=False,
+        can_promote_members=False,
+        can_manage_chat=False,
+        can_manage_voice_chats=False,
+    )
     
 
     
         
-@pgram.on_message(filters.command(["promote","fullpromote"]))
+@pgram.on_message(filters.command(["promote","fullpromote"]) & ~filters.private)
 @bot_admin    
 @bot_can_promote    
 @user_admin
@@ -91,6 +101,37 @@ async def _promote(_, message):
             )
             return
    
+
+@pgram.on_message(filters.command("demote") & ~filters.private)
+@bot_admin    
+@bot_can_promote    
+@user_admin
+@user_can_promote
+async def _demote(_, message):
+    chat_id = message.chat.id
+    user_id = await extract_user_id(message)              
+    if not user_id:
+        await message.reply_text("I ᴅᴏɴ'ᴛ ᴋɴᴏᴡ ᴡʜᴏ ʏᴏᴜ'ʀᴇ ᴛᴀʟᴋɪɴɢ ᴀʙᴏᴜᴛ, ʏᴏᴜ'ʀᴇ ɢᴏɪɴɢ ᴛᴏ ɴᴇᴇᴅ ᴛᴏ sᴘᴇᴄɪғʏ ᴀ ᴜsᴇʀ...!")
+        return
+    if user_id == BOT_ID:
+        await message.reply_text("ɪ ᴄᴀɴ'ᴛ ᴅᴇᴍᴏᴛᴇ ᴍʏsᴇʟғ..")
+        return 
+    if user_id in SUPREME_USERS:
+        await message.reply_text("ʏᴏᴜ ᴄᴀɴ'ᴛ ᴅᴇᴍᴏᴛᴇ ᴍʏ ғʀɪᴇɴᴅ ᴏᴋ ʏᴏᴜ ᴍғ.")
+        return
+    
+    user_mention = (await pgram.get_users(user_id)).mention
+    try : 
+        await pgram.promote_chat_member(chat_id,user_id,DEMOTE)
+        await message.reply_text(f"sᴜᴄᴄᴇssғᴜʟʟʏ ᴘʀᴏᴍᴏᴛᴇᴅ {user_mention}")
+    except BadRequest as error:
+        if error == "USER_NOT_MUTUAL_CONTACT":
+            await message.reply_text("» ᴀs ɪ ᴄᴀɴ sᴇᴇ ᴛʜᴀᴛ ᴜsᴇʀ ɪs ɴᴏᴛ ᴩʀᴇsᴇɴᴛ ʜᴇʀᴇ.")
+        else:
+             await message.reply_text(
+                "» sᴏᴍᴇᴛʜɪɴɢ ᴡᴇɴᴛ ᴡʀᴏɴɢ, ᴍᴀʏʙᴇ sᴏᴍᴇᴏɴᴇ ᴩʀᴏᴍᴏᴛᴇᴅ ᴛʜᴀᴛ ᴜsᴇʀ ʙᴇғᴏʀᴇ ᴍᴇ."
+            )
+        return            
 
 
 @pgram.on_message(filters.command("title"))
