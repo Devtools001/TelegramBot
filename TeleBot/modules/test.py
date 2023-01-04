@@ -21,6 +21,7 @@ async def _adminlist(_, message):
             quote=False,
             parse_mode=enums.ParseMode.HTML,
         )
+    
     administrators = []
     async for m in pgram.get_chat_members(chat_id, filter=enums.ChatMembersFilter.ADMINISTRATORS):
         administrators.append(m)
