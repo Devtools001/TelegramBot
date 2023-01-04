@@ -4,7 +4,7 @@ from pyrogram import filters
 
 @pgram.on_message(filters.command("truth"))
 async def true(_, message):
-    print(message.command[0])
+    print(message.command[1])
    # if message.command
     
     url = "https://api.truthordarebot.xyz/v1/dare"
