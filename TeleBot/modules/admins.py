@@ -85,9 +85,15 @@ async def extract_user_id(message):
 @user_admin
 @user_can_promote
 async def _promote(_, message):
-   user_id = await extract_user_id(message)   
-   umention = (await pgram.get_users(user_id)).mention  
-   print(user_id,umention)
+    user_id = await extract_user_id(message)   
+    user_mention = (await pgram.get_users(user_id)).mention  
+    if not user_id:
+        await message.reply_text("ɪ'ᴍ ᴜɴᴀʙʟᴇ ᴛᴏ ғɪɴᴅ ᴛʜᴀᴛ ᴜsᴇʀ.")
+        return
+    if user_id == BOT_ID:
+        await message.reply_text("ʙʀᴜʜ ʜᴏᴡ ᴄᴀɴ ɪ ᴘʀᴏᴍᴏᴛᴇ ᴍʏsᴇʟғ.")
+        return 
+   
 
 
 @pgram.on_message(filters.command("title"))
