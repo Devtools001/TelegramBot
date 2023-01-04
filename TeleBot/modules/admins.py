@@ -19,6 +19,10 @@ from pyrogram.types import ChatPrivileges
     
 
 @pgram.on_message(filters.command("title"))
+@bot_admin
+@bot_can_change_info
+@user_admin
+@user_can_change_info
 async def _title(_, message):
     user = message.from_user
     replied= message.reply_to_message
@@ -38,16 +42,8 @@ async def _title(_, message):
     except Exception as e:
         await message.reply_text(e)
 
+                       
         
-
-
-    
-    
-    
-    
-        
-        
-
 @pgram.on_message(filters.command(["setgtitle","setgdesc"]) & ~filters.private)
 @bot_admin
 @bot_can_change_info
