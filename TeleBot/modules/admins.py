@@ -119,8 +119,8 @@ async def _promote(_, message):
     if message.command[0] == "tpromote":
         user_mention = (await pgram.get_users(user)).mention  
         if len(message.command) < 2:
-        await message.reply_text("ɪᴛ ɪs'ɴᴛ ǫᴜɪᴛᴇ ʀɪɢʜᴛ.ɢɪᴠᴇ ᴀ ᴛᴇxᴛ ᴛᴏᴏ.")
-        return
+            await message.reply_text("ɪᴛ ɪs'ɴᴛ ǫᴜɪᴛᴇ ʀɪɢʜᴛ.ɢɪᴠᴇ ᴀ ᴛᴇxᴛ ᴛᴏᴏ.")
+            return
         else :
             try:
                 title = message.text.split(None, 1)[1]
