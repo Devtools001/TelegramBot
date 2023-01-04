@@ -102,8 +102,10 @@ async def _promote(_, message):
         await message.reply_text("ʙʀᴜʜ ʜᴏᴡ ᴄᴀɴ ɪ ᴘʀᴏᴍᴏᴛᴇ ᴍʏsᴇʟғ.")
         return 
     user_mention = (await pgram.get_users(user_id)).mention
-    await pgram.promote_chat_member(chat_id,user_id,PROMOTE_POWERS)
-    await message.reply_text(f"sᴜᴄᴄᴇssғᴜʟʟʏ ᴘʀᴏᴍᴏᴛᴇᴅ {user_mention}")
+    if len(message.command) <=2:
+        print("yes 2 se jyada h")
+ #   await pgram.promote_chat_member(chat_id,user_id,PROMOTE_POWERS)
+  #  await message.reply_text(f"sᴜᴄᴄᴇssғᴜʟʟʏ ᴘʀᴏᴍᴏᴛᴇᴅ {user_mention}")
    
 
 
