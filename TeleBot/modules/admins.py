@@ -94,7 +94,7 @@ async def _promote(_, message):
     if user_id == BOT_ID:
         await message.reply_text("ʙʀᴜʜ ʜᴏᴡ ᴄᴀɴ ɪ ᴘʀᴏᴍᴏᴛᴇ ᴍʏsᴇʟғ.")
         return 
-    await pgram.promote_chat_member(chat_id,user_id,can_change_info=False)
+    await pgram.promote_chat_member(chat_id,user_id,ChatPrivileges(can_change_info=False))
    
 
 
