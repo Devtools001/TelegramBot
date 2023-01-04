@@ -93,6 +93,8 @@ async def extract_user_id(message):
 async def _promote(_, message):
     chat_id = message.chat.id
     user_id = await extract_user_id(message)  
+    user,rank = await get_id_reason_or_rank(message)
+    print(user,rank)
     if not user_id:
         await message.reply_text("ɪ'ᴍ ᴜɴᴀʙʟᴇ ᴛᴏ ғɪɴᴅ ᴛʜᴀᴛ ᴜsᴇʀ.")
         return
