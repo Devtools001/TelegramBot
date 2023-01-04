@@ -96,7 +96,7 @@ async def _promote(_, message):
     chat_id = message.chat.id
     user_id = await extract_user_id(message)  
     administrators = []
-    async for m in app.get_chat_members(chat_id, filter=enums.ChatMembersFilter.ADMINISTRATORS):
+    async for m in pgram.get_chat_members(chat_id, filter=enums.ChatMembersFilter.ADMINISTRATORS):
         administrators.append(m.user.id)
           
     if not user_id:
