@@ -81,9 +81,18 @@ async def get_id_reason_or_rank(message,sender_chat=False):
 
     return user, reason
 
-async def extract_user_id(message):
-    return (await get_id_reason_or_rank(message))[0]
+async def extract_user_id(app,message):
+    user_id = (await get_id_reason_or_rank(message))[0]
+    administrators = []
+    async for m in app.get_chat_members(chat_id, filter=enums.ChatMembersFilter.ADMINISTRATORS):
+        administrators.append(m.user.id)
+    if user_id in administrators:
+        await message.reply_text("he is admin bruh")
+        return
+    else:
+        return user_id
 
+    
         
 @pgram.on_message(filters.command("promote"))
 @bot_admin    
@@ -92,7 +101,7 @@ async def extract_user_id(message):
 @user_can_promote
 async def _promote(_, message):
     chat_id = message.chat.id
-    user_id = await extract_user_id(message)  
+    user_id = await extract_user_id(pgram,message)  
     replied = message.reply_to_message
     user,rank = await get_id_reason_or_rank(message)
   #  print(user,rank)
@@ -102,12 +111,13 @@ async def _promote(_, message):
     if user_id == BOT_ID:
         await message.reply_text("ʙʀᴜʜ ʜᴏᴡ ᴄᴀɴ ɪ ᴘʀᴏᴍᴏᴛᴇ ᴍʏsᴇʟғ.")
         return 
+   # if user_id in 
     user_mention = (await pgram.get_users(user_id)).mention
-    if replied or len(message.command) == 2 :
+    try : 
         await pgram.promote_chat_member(chat_id,user_id,PROMOTE_POWERS)
         await message.reply_text(f"sᴜᴄᴄᴇssғᴜʟʟʏ ᴘʀᴏᴍᴏᴛᴇᴅ {user_mention}")
-    if replied or len(message.command) >= 3 :
-        print("ok")
+    except Exception as error:
+        await message.reply_text(error)
     
    
 
