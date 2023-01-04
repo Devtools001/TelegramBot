@@ -81,17 +81,9 @@ async def get_id_reason_or_rank(message,sender_chat=False):
 
     return user, reason
 
-async def extract_user_id(app,message):
-    chat_id = message.chat.id
-    user_id = (await get_id_reason_or_rank(message))[0]
-    administrators = []
-    async for m in app.get_chat_members(chat_id, filter=enums.ChatMembersFilter.ADMINISTRATORS):
-        administrators.append(m.user.id)
-    if user_id in administrators:
-        await message.reply_text("he is admin bruh")
-        return
-    else:
-        return user_id
+async def extract_user_id(message):    
+    return (await get_id_reason_or_rank(message))[0]
+    
 
     
         
@@ -102,17 +94,20 @@ async def extract_user_id(app,message):
 @user_can_promote
 async def _promote(_, message):
     chat_id = message.chat.id
-    user_id = await extract_user_id(pgram,message)  
-    replied = message.reply_to_message
-    user,rank = await get_id_reason_or_rank(message)
-  #  print(user,rank)
+    user_id = await extract_user_id(message)  
+    administrators = []
+    async for m in app.get_chat_members(chat_id, filter=enums.ChatMembersFilter.ADMINISTRATORS):
+        administrators.append(m.user.id)
+          
     if not user_id:
         await message.reply_text("ɪ'ᴍ ᴜɴᴀʙʟᴇ ᴛᴏ ғɪɴᴅ ᴛʜᴀᴛ ᴜsᴇʀ.")
         return
     if user_id == BOT_ID:
         await message.reply_text("ʙʀᴜʜ ʜᴏᴡ ᴄᴀɴ ɪ ᴘʀᴏᴍᴏᴛᴇ ᴍʏsᴇʟғ.")
         return 
-   # if user_id in 
+    if user_id in administrators :
+        await message.reply_text("ʙʀᴜʜ ʜᴏᴡ ᴄᴀɴ ɪ ᴘʀᴏᴍᴏᴛᴇ ᴀɴ ᴀᴅᴍɪɴ. ᴛʜɪɴᴋ ᴀʙᴏᴜᴛ ɪᴛ")
+        return 
     user_mention = (await pgram.get_users(user_id)).mention
     try : 
         await pgram.promote_chat_member(chat_id,user_id,PROMOTE_POWERS)
