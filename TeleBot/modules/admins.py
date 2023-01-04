@@ -15,6 +15,12 @@ from pyrogram.types import ChatPrivileges
 COMMANDERS = [ChatMemberStatus.ADMINISTRATOR,ChatMemberStatus.OWNER]
 
 
+PROMOTE_POWERS = ChatPrivileges(
+    can_change_info=True,
+    can_delete_messages=True,
+    can_restrict_members=True,
+    can_pin_messages=True)
+
 async def get_user_id(message, text:str):
     def is_digit(text : str):
         try:
@@ -86,15 +92,16 @@ async def extract_user_id(message):
 @user_can_promote
 async def _promote(_, message):
     chat_id = message.chat.id
-    user_id = await extract_user_id(message)   
-   # user_mention = (await pgram.get_users(user_id)).mention  
+    user_id = await extract_user_id(message)  
     if not user_id:
         await message.reply_text("ɪ'ᴍ ᴜɴᴀʙʟᴇ ᴛᴏ ғɪɴᴅ ᴛʜᴀᴛ ᴜsᴇʀ.")
         return
     if user_id == BOT_ID:
         await message.reply_text("ʙʀᴜʜ ʜᴏᴡ ᴄᴀɴ ɪ ᴘʀᴏᴍᴏᴛᴇ ᴍʏsᴇʟғ.")
         return 
-    await pgram.promote_chat_member(chat_id,user_id,ChatPrivileges(can_change_info=True))
+    user_mention = (await pgram.get_users(user_id)).mention
+    await pgram.promote_chat_member(chat_id,user_id,PROMOTE_POWERS)
+    await message.reply_text("sᴜᴄᴄᴇssғᴜʟʟʏ ᴘʀᴏᴍᴏᴛᴇᴅ {user_mention}")
    
 
 
