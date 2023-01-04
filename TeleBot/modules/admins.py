@@ -21,6 +21,17 @@ PROMOTE_POWERS = ChatPrivileges(
     can_restrict_members=True,
     can_pin_messages=True)
 
+FULL_PROMOTE_POWERS = ChatPrivileges(
+    can_change_info=True,
+    can_delete_messages=True,
+    can_restrict_members=True,
+    can_pin_messages=True,
+    can_manage_video_chats=True,
+    can_promote_members=True,
+    can_post_messages=True,
+    can_edit_messages=True,
+    can_invite_users=True)
+
 async def get_user_id(message, text:str):
     def is_digit(text : str):
         try:
@@ -87,7 +98,7 @@ async def extract_user_id(message):
 
     
         
-@pgram.on_message(filters.command(["promote","tpromote"]))
+@pgram.on_message(filters.command(["promote","fullpromote"]))
 @bot_admin    
 @bot_can_promote    
 @user_admin
@@ -109,6 +120,7 @@ async def _promote(_, message):
     if user_id in administrators :
         await message.reply_text("ʙʀᴜʜ ʜᴏᴡ ᴄᴀɴ ɪ ᴘʀᴏᴍᴏᴛᴇ ᴀɴ ᴀᴅᴍɪɴ. ᴛʜɪɴᴋ ᴀʙᴏᴜᴛ ɪᴛ")
         return
+
     if message.command[0] == "promote": 
         user_mention = (await pgram.get_users(user_id)).mention
         try : 
@@ -116,19 +128,14 @@ async def _promote(_, message):
             await message.reply_text(f"sᴜᴄᴄᴇssғᴜʟʟʏ ᴘʀᴏᴍᴏᴛᴇᴅ {user_mention}")
         except Exception as error:
             await message.reply_text(error)
-    if message.command[0] == "tpromote":
-        user_mention = (await pgram.get_users(user)).mention  
-        if len(message.command) < 2:
-            await message.reply_text("ɪᴛ ɪs'ɴᴛ ǫᴜɪᴛᴇ ʀɪɢʜᴛ.ɢɪᴠᴇ ᴀ ᴛᴇxᴛ ᴛᴏᴏ.")
-            return
-        else :
-            try:
-                title = message.text.split(None, 1)[1]
-                await pgram.promote_chat_member(chat_id,user_id,PROMOTE_POWERS)
-                await pgram.set_administrator_title(chat_id,user,title)
-                await message.reply_text(f"sᴜᴄᴄᴇssғᴜʟʟʏ ᴘʀᴏᴍᴏᴛᴇᴅ {user_mention} ᴡɪᴛʜ {title} ᴛɪᴛʟᴇ") 
-            except Exception as e:
-                await message.reply_text(e)
+
+    if message.command[0] == "fullpromote":
+        user_mention = (await pgram.get_users(user_id)).mention
+        try : 
+            await pgram.promote_chat_member(chat_id,user_id,FULL_PROMOTE_POWERS)
+            await message.reply_text(f"sᴜᴄᴄᴇssғᴜʟʟʏ ғᴜʟʟ ᴘʀᴏᴍᴏᴛᴇᴅ {user_mention}")
+        except Exception as error:
+            await message.reply_text(error)
     
    
 
