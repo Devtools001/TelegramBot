@@ -72,10 +72,9 @@ def bot_can_promote(func):
 
 def user_admin(mystic):
     @wraps(mystic)
-    async def wrapper(app : Client, message : Message,*args,**kwargs):
-        user_id = message.from_user.id
+    async def wrapper(app : Client, message : Message,*args,**kwargs):        
         chat_id = message.chat.id
-        user = await app.get_chat_member(chat_id,user_id)
+        user = await app.get_chat_member(chat_id,message.from_user.id)
         
         if (user.status not in COMMANDERS) and user_id not in SUPREME_USERS and not message.sender_chat:
             return await message.reply_text("sᴛᴀʏ ɪɴ ʏᴏᴜʀ ʟɪᴍɪᴛs ᴍғ. ʙᴇᴄᴏᴍᴇ **ᴀᴅᴍɪɴ** ғɪʀsᴛ.")
