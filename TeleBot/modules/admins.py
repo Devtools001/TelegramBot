@@ -126,7 +126,7 @@ async def _promote(_, message):
             await pgram.promote_chat_member(chat_id,user_id,PROMOTE_POWERS)
             await message.reply_text(f"sᴜᴄᴄᴇssғᴜʟʟʏ ᴘʀᴏᴍᴏᴛᴇᴅ {user_mention}")
         except BadRequest as error:
-            if error.message == "User_not_mutual_contact":
+            if error == "USER_NOT_MUTUAL_CONTACT":
                 message.reply_text("» ᴀs ɪ ᴄᴀɴ sᴇᴇ ᴛʜᴀᴛ ᴜsᴇʀ ɪs ɴᴏᴛ ᴩʀᴇsᴇɴᴛ ʜᴇʀᴇ.")
             else:
                 message.reply_text(
@@ -140,7 +140,7 @@ async def _promote(_, message):
             await pgram.promote_chat_member(chat_id,user_id,FULL_PROMOTE_POWERS)
             await message.reply_text(f"sᴜᴄᴄᴇssғᴜʟʟʏ ғᴜʟʟ ᴘʀᴏᴍᴏᴛᴇᴅ {user_mention}")
         except BadRequest as error:
-            if error.message == "User_not_mutual_contact":
+            if error  == "USER_NOT_MUTUAL_CONTACT":
                 message.reply_text("» ᴀs ɪ ᴄᴀɴ sᴇᴇ ᴛʜᴀᴛ ᴜsᴇʀ ɪs ɴᴏᴛ ᴩʀᴇsᴇɴᴛ ʜᴇʀᴇ.")
             else:
                 message.reply_text(
