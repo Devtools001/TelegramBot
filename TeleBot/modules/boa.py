@@ -18,7 +18,7 @@ async def _adminlist(_, message):
     header = f"🎣 ʙᴏᴛs ɪɴ {chat_title}:\n"    
     for bumt in BOT_LIST:
         header += bumt
-    await repl.edit(f"{admin_header}\n\n")
+    await repl.edit(f"{header}\n\n")
                   
             
         
