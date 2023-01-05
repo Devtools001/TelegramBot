@@ -22,11 +22,17 @@ async def _adminlist(_, message):
         data_list.append(m)
 
     ADMINS_LIST = []
-    for user in data_list:
-        if user.user.username is not None:
-            ADMINS_LIST.append(f"{user.user.mention}\n")
+    
+    for admin in data_list:
+        user = admin.user
+        status = admin.status
+        if user.is_bot:
+            administrators.remove(admin)
+            continue
+        if user.first_name == "":
+            ADMINS_LIST.append("☠ ᴅᴇʟᴇᴛᴇᴅ ᴀᴄᴄᴏᴜɴᴛ")
         else:
-            ADMINS_LIST.append(f'- <a href=tg://user?id={user.user.id}>{user.user.first_name}</a> id `{user.user.id}`\n')
+            ADMINS_LIST.append(f"{user.mention}\n")
 
 
     admin_header = f"Admins in {html.escape(chat_title)}:\n"
