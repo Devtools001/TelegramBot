@@ -13,7 +13,7 @@ async def _adminlist(_, message):
             
         )
     
-    chat_title = message.chat.title 
+    chat_name = message.chat.title 
     chat_id = message.chat.id 
 
     administrators = []
