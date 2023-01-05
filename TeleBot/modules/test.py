@@ -70,6 +70,6 @@ async def _adminlist(_, message):
         try:
             await repl.edit_text(text)
         except BadRequest:  # if original message is deleted
-         V  return
+            return
            
   
