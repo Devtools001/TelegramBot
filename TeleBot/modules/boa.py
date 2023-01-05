@@ -27,11 +27,11 @@ async def _kickthefools(_,message):
     z = []
     a = 0
     administrators = []
-    async for member in pgram.get_chat_members(chat_id) :  
-        administrators = []
-        async for m in pgram.get_chat_members(chat_id, filter=enums.ChatMembersFilter.ADMINISTRATORS):
-            administrators.append(m.user.id)
+    async for m in pgram.get_chat_members(chat_id, filter=enums.ChatMembersFilter.ADMINISTRATORS):
+        administrators.append(m.user.id)
     
+    async for member in pgram.get_chat_members(chat_id) :  
+        
         user = member.user
         
         if user.status == UserStatus.RECENTLY:
