@@ -37,9 +37,9 @@ async def _adminlist(_, message):
            continue
      
         if user.first_name == "":
-            owner_name = "☠ ᴅᴇʟᴇᴛᴇᴅ ᴀᴄᴄᴏᴜɴᴛ"
+            name = "☠ ᴅᴇʟᴇᴛᴇᴅ ᴀᴄᴄᴏᴜɴᴛ"
         else:
-            owner_name = user.mention 
+            name = user.mention 
  
         if status == ChatMemberStatus.OWNER:
             text += "\n 🥀 ᴏᴡɴᴇʀ :"
@@ -50,11 +50,8 @@ async def _adminlist(_, message):
 
     text += "\n💫 ᴀᴅᴍɪɴs :"
 
-        if user.first_name == "":
-            name = "☠ ᴅᴇʟᴇᴛᴇᴅ ᴀᴄᴄᴏᴜɴᴛ"
-         else:
-            name = user.mention
         
+
         if status == ChatMemberStatus.ADMINISTRATOR:
             if custom_title:
                 try:
