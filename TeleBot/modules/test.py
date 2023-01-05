@@ -57,7 +57,7 @@ async def _adminlist(_, message):
                     custom_admin_list.update({custom_title: [name]})
             else:
                 normal_admin_list.append(name)
-
+             
         
 
         
