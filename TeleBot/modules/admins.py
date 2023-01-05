@@ -139,6 +139,29 @@ async def _demote(_, message):
         return            
 
 
+@pgram.on_message(filters.command("invitelink") & ~filters.private)
+@bot_admin
+@user_admin
+async def _invitelink(_,message):
+    chat_id = message.chat.id
+    BOT = await pgram.get_chat_member(chat_id, BOT_ID)
+
+    if message.chat.username  :
+        await message.reply_text(f"https://t.me/{message.chat.username}")  
+
+    elif message.chat.type in [enums.ChatType.SUPERGROUO,enums.ChatType.CHANNEL] :
+        if BOT.privileges.can_invite_users:
+            link = await pgram.export_chat_invite_link(chat_id)
+            await message.reply_text(invitelink)                        
+        else:
+            await message.reply_text(
+                "» ɪ ᴅᴏɴ'ᴛ ʜᴀᴠᴇ ᴩᴇʀᴍɪssɪᴏɴs ᴛᴏ ᴀᴄᴄᴇss ɪɴᴠɪᴛᴇ ʟɪɴᴋs !",
+            )    
+    else:
+        await message.reply_text(
+            "» ɪ ᴄᴀɴ ᴏɴʟʏ ɢɪᴠᴇ ɪɴᴠɪᴛᴇ ʟɪɴᴋs ғᴏʀ ɢʀᴏᴜᴩs ᴀɴᴅ ᴄʜᴀɴɴᴇʟs !",
+        )
+
 @pgram.on_message(filters.command("title"))
 @bot_admin
 @bot_can_change_info
