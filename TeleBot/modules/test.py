@@ -9,12 +9,28 @@ async def _adminlist(_, message):
     chat_id = message.chat.id
     chat_name = message.chat.title
     
-    msg = await message.reply(
+    repl = await message.reply(
             "» ғᴇᴛᴄʜɪɴɢ ᴀᴅᴍɪɴs ʟɪsᴛ...",
             
         )
     
-    administrators = []
+    ADMINS = []
     async for m in pgram.get_chat_members(chat_id, filter=enums.ChatMembersFilter.ADMINISTRATORS):
-        administrators.append(m)        
-    print(administrators)    
+        ADMINS.append(m)        
+    text = "ᴀᴅᴍɪɴs ɪɴ {message.chat.title"
+
+    for owner in ADMINS  :
+        if owner.user.first_name == "":
+            owner_name = "☠ ᴅᴇʟᴇᴛᴇᴅ ᴀᴄᴄᴏᴜɴᴛ"
+        else:
+            name = owner.user.mention  
+        if owner.user.status == ChatMemberStatus.OWNER:
+            text += "\n 🥀 ᴏᴡɴᴇʀ :"
+            text += "\n • {name}\n"
+
+            if owner.user.custom_title:
+                text += f" ┗━ {custom_title}\n"
+
+    await repl.edit(text)
+
+  
