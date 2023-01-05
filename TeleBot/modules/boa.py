@@ -2,7 +2,7 @@
 from TeleBot import pgram
 from pyrogram import filters, enums 
 from pyrogram.enums import ChatMemberStatus
-
+from pyrogram.enums import UserStatus
 
 @pgram.on_message(filters.command("bots") & ~filters.private)
 async def _adminlist(_, message):       
@@ -22,11 +22,25 @@ async def _adminlist(_, message):
                   
             
 @pgram.on_message(filters.command("kkick"))
-async def _kickthefools(_,message):
+async def _kickthefools(_,message):    
     chat_id = message.chat.id
     z = []
-    async for member in pgram.get_chat_members(chat_id):      
+    a = 0
+    administrators = []
+    async for member in pgram.get_chat_members(chat_id) :  
+        administrators = []
+        async for m in pgram.get_chat_members(chat_id, filter=enums.ChatMembersFilter.ADMINISTRATORS):
+            administrators.append(m.user.id)
+    
         user = member.user
-        if user.status.value == "recently":
-            z.append(member.user.id)             
-    print(z)    
+        
+        if user.status == UserStatus.RECENTLY:
+            if user.id in administrators :
+               pass
+            else:
+                a += 1
+                z.append(member.user.first_name)  
+    if not z:
+       print("empty")
+    else:
+        print(z,a)
