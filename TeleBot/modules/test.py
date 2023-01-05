@@ -26,7 +26,7 @@ async def _adminlist(_, message):
             name = owner.user.mention  
         if owner.status == ChatMemberStatus.OWNER:
             text += "\n 🥀 ᴏᴡɴᴇʀ :"
-            text += "\n • {name}\n"
+            text += f"\n • {name}\n"
 
             if owner.custom_title:
                 text += f" ┗━ {custom_title}\n"
