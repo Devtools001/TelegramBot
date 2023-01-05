@@ -48,7 +48,7 @@ async def _adminlist(_, message):
             if custom_title:
                 text += f" ┗━ {custom_title}\n"
 
-        text += "\n💫 ᴀᴅᴍɪɴs :"
+    text += "\n💫 ᴀᴅᴍɪɴs :"
 
         if user.first_name == "":
             name = "☠ ᴅᴇʟᴇᴛᴇᴅ ᴀᴄᴄᴏᴜɴᴛ"
