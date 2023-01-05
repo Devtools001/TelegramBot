@@ -6,68 +6,39 @@ from pyrogram.errors import BadRequest
 
 @pgram.on_message(filters.command("adminlist") & ~filters.private)
 async def _adminlist(_, message):    
-    chat_id = message.chat.id
-    chat_name = message.chat.title
+   # chat_id = message.chat.id
+    $chat_name = message.chat.title
     
-    repl = await message.reply(
-            "» ғᴇᴛᴄʜɪɴɢ ᴀᴅᴍɪɴs ʟɪsᴛ...",
+   # repl = await message.reply(
+   #         "» ғᴇᴛᴄʜɪɴɢ ᴀᴅᴍɪɴs ʟɪsᴛ...",
             
+    #    )
+    
+    chat_title = message.chat.title 
+    chat_id = message.chat.id 
+
+    data_list = await StellaCli.get_chat_members(
+        chat_id=chat_id,
+        filter=enums.ChatMembersFilter.ADMINISTRATORS
         )
-    
-    administrators = []
-    async for m in pgram.get_chat_members(chat_id, filter=enums.ChatMembersFilter.ADMINISTRATORS):
-        administrators.append(m)        
-    text = f"ᴀᴅᴍɪɴs ɪɴ {message.chat.title}"
 
-    
-
-    text += "\n💫 ᴀᴅᴍɪɴs :"
-
-    custom_admin_list = {}
-    normal_admin_list = []
-
-    for admin in administrators:
-        user = admin.user
-        status = admin.status
-        custom_title = admin.custom_title
-
-        if user.is_bot==True:
-            administrators.remove(admin)
-            continue
-
-        if user.first_name == "":
-            name = "☠ ᴅᴇʟᴇᴛᴇᴅ ᴀᴄᴄᴏᴜɴᴛ"
+    ADMINS_LIST = []
+    for user in data_list:
+        if user.user.username is not None:
+            ADMINS_LIST.append(f'- <a href=tg://user?id={user.user.username}>{user.user.first_name}</a> id `{user.user.id}`\n')
         else:
-            name = user.mention
+            ADMINS_LIST.append(f'- <a href=tg://user?id={user.user.id}>{user.user.first_name}</a> id `{user.user.id}`\n')
 
+
+    admin_header = f"Admins in {html.escape(chat_title)}:\n"
+    
+    for admin in ADMINS_LIST:
+        admin_header += admin
+    await message.reply(
+        (
+            f"{admin_header}\n\n"
+            "__These are the updated values.__"
+        ),
+        quote=True
+    )
         
-        if custom_title:
-            try:
-                custom_admin_list[custom_title].append(name)
-            except KeyError:
-                custom_admin_list.update({custom_title: [name]})
-        else:
-            normal_admin_list.append(name)
-
-    for admin in normal_admin_list:
-        text += "\n<code> • </code>{}".format(admin)
-
-    for admin_group in custom_admin_list.copy():
-        if len(custom_admin_list[admin_group]) == 1:
-            text += "\n<code> • </code>{} | <code>{}</code>".format(
-                custom_admin_list[admin_group][0],
-                html.escape(admin_group),
-            )
-            custom_admin_list.pop(admin_group)
-
-    text += "\n"
-    for admin_group, value in custom_admin_list.items():
-        text += "\n🔮 <code>{}</code>".format(admin_group)
-        for admin in value:
-            text += "\n<code> • </code>{}".format(admin)
-        text += "\n"
-
-    try:
-        await repl.edit_text(text, parse_mode=enums.ParseMode.HTML)
-    except BadRequest:  # if original message is deleted
-        return  
