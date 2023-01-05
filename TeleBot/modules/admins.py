@@ -152,7 +152,7 @@ async def _invitelink(_,message):
     elif message.chat.type in [enums.ChatType.SUPERGROUP,enums.ChatType.CHANNEL] :
         if BOT.privileges.can_invite_users:
             link = await pgram.export_chat_invite_link(chat_id)
-            await message.reply_text(invitelink)                        
+            await message.reply_text(link)                        
         else:
             await message.reply_text(
                 "» ɪ ᴅᴏɴ'ᴛ ʜᴀᴠᴇ ᴩᴇʀᴍɪssɪᴏɴs ᴛᴏ ᴀᴄᴄᴇss ɪɴᴠɪᴛᴇ ʟɪɴᴋs !",
