@@ -37,7 +37,7 @@ async def _kickthefools(_,message):
             if user.id in ADMINS :
                pass
             else:
-                a += 1
+                
                 z.append(member.user.first_name)  
     if not z:
        print("empty")
