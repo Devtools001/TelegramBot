@@ -27,12 +27,7 @@ async def _adminlist(_, message):
         if user.first_name == "":
             name = "☠ ᴅᴇʟᴇᴛᴇᴅ ᴀᴄᴄᴏᴜɴᴛ"
         else:
-            name = "{}".format(
-                mention_html(
-                    user.id,
-                    html.escape(user.first_name + " " + (user.last_name or "")),
-                ),
-            )
+            name = user.mention
 
         if user.is_bot:
             administrators.remove(admin)
@@ -40,7 +35,7 @@ async def _adminlist(_, message):
 
         # if user.username:
         #    name = escape_markdown("@" + user.username)
-        if status == "creator":
+        if status == ChatMemberStatus.OWNER:
             text += "\n 🥀 ᴏᴡɴᴇʀ :"
             text += "\n<code> • </code>{}\n".format(name)
 
@@ -60,15 +55,11 @@ async def _adminlist(_, message):
         if user.first_name == "":
             name = "☠ ᴅᴇʟᴇᴛᴇᴅ ᴀᴄᴄᴏᴜɴᴛ"
         else:
-            name = "{}".format(
-                mention_html(
-                    user.id,
-                    html.escape(user.first_name + " " + (user.last_name or "")),
-                ),
-            )
+            name = user.mention
+
         # if user.username:
         #    name = escape_markdown("@" + user.username)
-        if status == "administrator":
+        if status == ChatMemberStatus.ADMINISTRATOR:
             if custom_title:
                 try:
                     custom_admin_list[custom_title].append(name)
