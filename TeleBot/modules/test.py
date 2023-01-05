@@ -35,7 +35,7 @@ async def _adminlist(_, message):
         if user.is_bot is True:
            administrators.remove(admin)
         else:
-           return
+           return administrators
     
        
         if status == ChatMemberStatus.OWNER:
