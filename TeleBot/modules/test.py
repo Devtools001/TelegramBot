@@ -19,28 +19,7 @@ async def _adminlist(_, message):
         administrators.append(m)        
     text = f"ᴀᴅᴍɪɴs ɪɴ {message.chat.title}"
 
-    for admin in administrators:
-        user = admin.user
-        status = admin.status
-        custom_title = admin.custom_title
-
-        if user.first_name == "":
-            name = "☠ ᴅᴇʟᴇᴛᴇᴅ ᴀᴄᴄᴏᴜɴᴛ"
-        else:
-            name = user.mention
-
-        if user.is_bot:
-            administrators.remove(admin)
-            continue
-
-        # if user.username:
-        #    name = escape_markdown("@" + user.username)
-        if status == ChatMemberStatus.OWNER:
-            text += "\n 🥀 ᴏᴡɴᴇʀ :"
-            text += "\n<code> • </code>{}\n".format(name)
-
-            if custom_title:
-                text += f"<code> ┗━ {html.escape(custom_title)}</code>\n"
+    
 
     text += "\n💫 ᴀᴅᴍɪɴs :"
 
@@ -52,21 +31,23 @@ async def _adminlist(_, message):
         status = admin.status
         custom_title = admin.custom_title
 
+        if user.is_bot==True:
+            administrators.remove(admin)
+            continue
+
         if user.first_name == "":
             name = "☠ ᴅᴇʟᴇᴛᴇᴅ ᴀᴄᴄᴏᴜɴᴛ"
         else:
             name = user.mention
 
-        # if user.username:
-        #    name = escape_markdown("@" + user.username)
-        if status == ChatMemberStatus.ADMINISTRATOR:
-            if custom_title:
-                try:
-                    custom_admin_list[custom_title].append(name)
-                except KeyError:
-                    custom_admin_list.update({custom_title: [name]})
-            else:
-                normal_admin_list.append(name)
+        
+        if custom_title:
+            try:
+                custom_admin_list[custom_title].append(name)
+            except KeyError:
+                custom_admin_list.update({custom_title: [name]})
+        else:
+            normal_admin_list.append(name)
 
     for admin in normal_admin_list:
         text += "\n<code> • </code>{}".format(admin)
