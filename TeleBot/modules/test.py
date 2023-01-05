@@ -24,7 +24,7 @@ async def _adminlist(_, message):
     ADMINS_LIST = []
     for user in data_list:
         if user.user.username is not None:
-            ADMINS_LIST.append(user.user.mention,"\n")
+            ADMINS_LIST.append(f"{user.user.mention}\n")
         else:
             ADMINS_LIST.append(f'- <a href=tg://user?id={user.user.id}>{user.user.first_name}</a> id `{user.user.id}`\n')
 
