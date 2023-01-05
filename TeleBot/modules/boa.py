@@ -46,13 +46,12 @@ async def _kickthefools(_,message):
     else:
         try:      
                    
-            await pgram.ban_chat_member(chat_id,fools[x])
-            await message.reply_text(f"kicking fools")
+            await pgram.ban_chat_member(chat_id,fools[x])           
             await pgram.unban_chat_member(chat_id,member.user.id)  
             x += 1
         except FloodWait as e:
             asyncio.sleep(e.value)
-        await text.edit(f"{len(fools)}")
+        await text.edit(len(fools))
 
 
 
