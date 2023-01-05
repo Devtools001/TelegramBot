@@ -32,7 +32,6 @@ async def _adminlist(_, message):
         else:
             name = user.mention
 
-        if  user.is_bot is True:
             administrators.remove(admin)
             continue
     
