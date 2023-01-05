@@ -7,7 +7,7 @@ from pyrogram.errors import BadRequest
 @pgram.on_message(filters.command("adminlist") & ~filters.private)
 async def _adminlist(_, message):    
    # chat_id = message.chat.id
-    $chat_name = message.chat.title
+   # $chat_name = message.chat.title
     
    # repl = await message.reply(
    #         "» ғᴇᴛᴄʜɪɴɢ ᴀᴅᴍɪɴs ʟɪsᴛ...",
