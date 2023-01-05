@@ -26,7 +26,9 @@ async def _adminlist(_, message):
     for admin in data_list:
         user = admin.user
         status = admin.status
-        
+        if user.is_bot:
+            data_list.remove(admin)
+     
         if user.first_name == "":
             ADMINS_LIST.append("☠ ᴅᴇʟᴇᴛᴇᴅ ᴀᴄᴄᴏᴜɴᴛ")
         else:
