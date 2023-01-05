@@ -29,12 +29,13 @@ async def _adminlist(_, message):
 
         if user.first_name == "":
             name = "☠ ᴅᴇʟᴇᴛᴇᴅ ᴀᴄᴄᴏᴜɴᴛ"
-        else:
+        elif:
             name = user.mention
-            if  user.is_bot is False:
-
-            administrators.remove(admin)
-            continue
+         
+        elif user.is_bot is True:
+           administrators.remove(admin)
+        else:
+           return
     
        
         if status == ChatMemberStatus.OWNER:
