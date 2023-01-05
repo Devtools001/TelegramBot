@@ -49,9 +49,6 @@ async def _adminlist(_, message):
                 text += f" ┗━ {custom_title}\n"
 
     text += "\n💫 ᴀᴅᴍɪɴs :"
-
-        
-
         if status == ChatMemberStatus.ADMINISTRATOR:
             if custom_title:
                 try:
@@ -61,6 +58,9 @@ async def _adminlist(_, message):
             else:
                 normal_admin_list.append(name)
 
+        
+
+        
     for admin in normal_admin_list:
         text += f"\n • {admin}"
 
