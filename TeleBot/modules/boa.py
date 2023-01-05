@@ -50,11 +50,13 @@ async def _kickthefools(_,message):
             try:                         
                 await pgram.ban_chat_member(chat_id,fools[x])           
                 await pgram.unban_chat_member(chat_id,fools[x])  
-                x += 1
-                
+                x += 1                
             except IndexError:
                 pass
-        await text.edit(f"ᴋɪᴄᴋᴇᴅ {len(fools)} ᴍғ ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ")
+            except FloodWait as e:
+                asyncio.sleep(e.value)
+        await text.delete()
+        await message.reply_text(f"ᴋɪᴄᴋᴇᴅ {len(fools)} ᴍᴇᴍʙᴇʀs ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ ᴡʜᴏ ᴡᴇʀᴇ ɪɴᴀᴄᴛɪᴠᴇ ғᴏʀ ᴀ ᴍᴏɴᴛʜ.")
 
 
 
