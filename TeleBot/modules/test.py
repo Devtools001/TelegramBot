@@ -33,7 +33,7 @@ async def _adminlist(_, message):
         custom_title = admin.custom_title
 
         if user.is_bot:
-           ADMINS.remove(owner)
+           ADMINS.remove(admin)
            continue
      
         if user.first_name == "":
