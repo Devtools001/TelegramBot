@@ -8,19 +8,14 @@ from pyrogram.errors import BadRequest
 async def _adminlist(_, message):
     
     chat_id = message.chat.id
-    chat_name = message.chat.title  # -> unused variable
+    chat_name = message.chat.title
 
-    try:
-        msg = await message.reply(
+    
+    msg = await message.reply(
             "» ғᴇᴛᴄʜɪɴɢ ᴀᴅᴍɪɴs ʟɪsᴛ...",
             parse_mode=enums.ParseMode.HTML,
         )
-    except BadRequest:
-        msg = await message.reply(
-            "» ғᴇᴛᴄʜɪɴɢ ᴀᴅᴍɪɴs ʟɪsᴛ...",
-            quote=False,
-            parse_mode=enums.ParseMode.HTML,
-        )
+    
     
     administrators = []
     async for m in pgram.get_chat_members(chat_id, filter=enums.ChatMembersFilter.ADMINISTRATORS):
@@ -34,23 +29,19 @@ async def _adminlist(_, message):
         status = admin.status
         custom_title = admin.custom_title
 
-        if user.first_name == "":
-            name = "☠ ᴅᴇʟᴇᴛᴇᴅ ᴀᴄᴄᴏᴜɴᴛ"
-        else:
-            name = user.mention
+        
 
         if user.is_bot == True:
             administrators.remove(admin)
             continue
 
-        # if user.username:
-        #    name = escape_markdown("@" + user.username)
-        if status == ChatMemberStatus.OWNER:
-            text += "\n 🥀 ᴏᴡɴᴇʀ :"
-            text += "\n<code> • </code>{}\n".format(name)
-
-            if custom_title:
-                text += f"<code> ┗━ {html.escape(custom_title)}</code>\n"
+        
+   #     if status == ChatMemberStatus.OWNER:
+    #        text += "\n 🥀 ᴏᴡɴᴇʀ :"
+  #          text += "\n<code> • </code>{}\n".format(name)
+#
+ #           if custom_title:
+    #            text += f"<code> ┗━ {html.escape(custom_title)}</code>\n"
 
     text += "\n💫 ᴀᴅᴍɪɴs :"
 
