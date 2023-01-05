@@ -44,13 +44,14 @@ async def _kickthefools(_,message):
     if not fools:
        await message.reply_text("ᴛʜᴇʀᴇ ᴀʀᴇɴ'ᴛ ᴀɴʏ ғᴏᴏʟs ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ")
     else:
-        try:      
+        for i in ADMINS:
+            try:      
                    
-            await pgram.ban_chat_member(chat_id,fools[x])           
-            await pgram.unban_chat_member(chat_id,fools[x])  
-            x += 1
-        except FloodWait as e:
-            asyncio.sleep(e.value)
+                await pgram.ban_chat_member(chat_id,fools[x])           
+                await pgram.unban_chat_member(chat_id,fools[x])  
+                x += 1
+            except FloodWait as e:
+                asyncio.sleep(e.value)
         await text.edit(len(fools))
 
 
