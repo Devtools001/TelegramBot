@@ -19,7 +19,11 @@ async def _adminlist(_, message):
         ADMINS.append(m)        
     text = f"ᴀᴅᴍɪɴs ɪɴ {message.chat.title}"
 
-    for owner in ADMINS  :        
+    for owner in ADMINS  :    
+        if owner.user.is_bot:
+           ADMINS.remove(owner)
+           continue
+     
         if owner.user.first_name == "":
             owner_name = "☠ ᴅᴇʟᴇᴛᴇᴅ ᴀᴄᴄᴏᴜɴᴛ"
         else:
@@ -36,40 +40,42 @@ async def _adminlist(_, message):
     custom_admin_list = {}
     normal_admin_list = []
 
-    for admin in ADMINS:
+    for admin in administrators:
         user = admin.user
         status = admin.status
-        custom_title = admin.custom_title 
+        custom_title = admin.custom_title
+
         if user.first_name == "":
             name = "☠ ᴅᴇʟᴇᴛᴇᴅ ᴀᴄᴄᴏᴜɴᴛ"
         else:
             name = user.mention
-        if status == ChatMemberStatus.ADMINISTRATOR :
+        
+        if status == ChatMemberStatus.ADMINISTRATOR:
             if custom_title:
                 try:
                     custom_admin_list[custom_title].append(name)
                 except KeyError:
                     custom_admin_list.update({custom_title: [name]})
             else:
-                normal_admin_list.append(name) 
+                normal_admin_list.append(name)
 
-        for admin in normal_admin_list:
+    for admin in normal_admin_list:
+        text += f"\n • {admin}"
+
+    for admin_group in custom_admin_list.copy():
+        if len(custom_admin_list[admin_group]) == 1:
+            text += "\n • {custom_admin_list[admin_group][0]} | {admin_group}"
+                
+            custom_admin_list.pop(admin_group)
+
+    text += "\n"
+    for admin_group, value in custom_admin_list.items():
+        text += f"\n🔮 {admin_group}"
+        for admin in value:
             text += f"\n • {admin}"
-        for admin_group in custom_admin_list.copy():
-            if len(custom_admin_list[admin_group]) == 1:
-                text += f"\n • {custom_admin_list[admin_group][0]} | {admin_group}"                
-                custom_admin_list.pop(admin_group)
- 
         text += "\n"
-        for admin_group, value in custom_admin_list.items():
-            text += "\n🔮 {admin_group}"
-            for admin in value:
-                text += "\n • {admin}"
-            text += "\n"
 
-        try:
-            await repl.edit_text(text)
-        except BadRequest:  # if original message is deleted
-            return
-           
-  
+    try:
+        await repl.edit_text(text)
+    except BadRequest:  # if original message is deleted
+        return
