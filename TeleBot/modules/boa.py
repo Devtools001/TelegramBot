@@ -27,7 +27,7 @@ async def _kickthefools(_,message):
     z = []
     a = 0
     administrators = []
-    SUPREME_CHOMU = administrators + DEV_USERS + DRAGONS
+    
     async for m in pgram.get_chat_members(chat_id, filter=enums.ChatMembersFilter.ADMINISTRATORS):
         administrators.append(m.user.id)
     
@@ -36,7 +36,7 @@ async def _kickthefools(_,message):
         user = member.user
         
         if user.status == UserStatus.RECENTLY:
-            if user.id in SUPREME_CHOMU :
+            if user.id in administrators :
                pass
             else:
                 a += 1
