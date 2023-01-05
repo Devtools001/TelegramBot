@@ -19,23 +19,10 @@ async def _adminlist(_, message):
         ADMINS.append(m)        
     text = f"ᴀᴅᴍɪɴs ɪɴ {message.chat.title}"
 
-    for owner in ADMINS  :    
-        if owner.user.is_bot:
-           ADMINS.remove(owner)
-           continue
-     
-        if owner.user.first_name == "":
-            owner_name = "☠ ᴅᴇʟᴇᴛᴇᴅ ᴀᴄᴄᴏᴜɴᴛ"
-        else:
-            owner_name = owner.user.mention  
-        if owner.status == ChatMemberStatus.OWNER:
-            text += "\n 🥀 ᴏᴡɴᴇʀ :"
-            text += f"\n • {owner_name}\n"
-
-            if owner.custom_title:
-                text += f" ┗━ {owner.custom_title}\n"
+  #  for owner in ADMINS  :    
+        
     print(text)
-    text += "\n💫 ᴀᴅᴍɪɴs :"
+   # text += "\n💫 ᴀᴅᴍɪɴs :"
 
     custom_admin_list = {}
     normal_admin_list = []
@@ -44,6 +31,24 @@ async def _adminlist(_, message):
         user = admin.user
         status = admin.status
         custom_title = admin.custom_title
+
+        if owner.user.is_bot:
+           ADMINS.remove(owner)
+           continue
+     
+        if user.first_name == "":
+            owner_name = "☠ ᴅᴇʟᴇᴛᴇᴅ ᴀᴄᴄᴏᴜɴᴛ"
+        else:
+            owner_name = user.mention 
+ 
+        if status == ChatMemberStatus.OWNER:
+            text += "\n 🥀 ᴏᴡɴᴇʀ :"
+            text += f"\n • {owner_name}\n"
+
+            if custom_title:
+                text += f" ┗━ {custom_title}\n"
+
+        text += "\n💫 ᴀᴅᴍɪɴs :"
 
         if user.first_name == "":
             name = "☠ ᴅᴇʟᴇᴛᴇᴅ ᴀᴄᴄᴏᴜɴᴛ"
@@ -75,6 +80,7 @@ async def _adminlist(_, message):
             text += f"\n • {admin}"
         text += "\n"
 
+    print(text)
     try:
         await repl.edit_text(text)
     except BadRequest:  # if original message is deleted
