@@ -37,16 +37,14 @@ async def _adminlist(_, message):
             continue
     
        
-            
-        # if user.username:
-        #    name = escape_markdown("@" + user.username)
         if status == ChatMemberStatus.OWNER:
             text += "\n 🥀 ᴏᴡɴᴇʀ :"
             text += "\n<code> • </code>{}\n".format(name)
 
             if custom_title:
                 text += f"<code> ┗━ {html.escape(custom_title)}</code>\n"
-
+                    
+            
     text += "\n💫 ᴀᴅᴍɪɴs :"
 
     custom_admin_list = {}
