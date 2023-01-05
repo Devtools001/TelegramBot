@@ -44,7 +44,7 @@ async def _kickthefools(_,message):
             else:                
                 fools.append(member.user.id)  
     if not fools:
-       await message.reply_text("ᴛʜᴇʀᴇ ᴀʀᴇɴ'ᴛ ᴀɴʏ ғᴏᴏʟs ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ")
+       await text.edit("ᴛʜᴇʀᴇ ᴀʀᴇɴ'ᴛ ᴀɴʏ ғᴏᴏʟs ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ")
     else:
         for i in ADMINS:
             try:                         
