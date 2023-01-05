@@ -32,7 +32,7 @@ async def _adminlist(_, message):
         status = admin.status
         custom_title = admin.custom_title
 
-        if owner.user.is_bot:
+        if user.is_bot:
            ADMINS.remove(owner)
            continue
      
