@@ -90,7 +90,7 @@ async def _adminlist(_, message):
         text += "\n"
 
     try:
-        await repl.edit_text(text, parse_mode=ParseMode.HTML)
+        await repl.edit_text(text, parse_mode=enums.ParseMode.HTML)
     except BadRequest:  # if original message is deleted
         return    
     
