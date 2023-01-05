@@ -40,7 +40,7 @@ async def _adminlist(_, message):
     custom_admin_list = {}
     normal_admin_list = []
 
-    for admin in administrators:
+    for admin in ADMINS:
         user = admin.user
         status = admin.status
         custom_title = admin.custom_title
