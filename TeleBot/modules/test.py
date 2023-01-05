@@ -64,7 +64,7 @@ async def _adminlist(_, message):
 
     for admin_group in custom_admin_list.copy():
         if len(custom_admin_list[admin_group]) == 1:
-            text += "\n • {custom_admin_list[admin_group][0]} | {admin_group}"
+            text += f"\n • {custom_admin_list[admin_group][0]} | {admin_group}"
                 
             custom_admin_list.pop(admin_group)
 
