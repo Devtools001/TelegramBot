@@ -28,9 +28,9 @@ async def _adminlist(_, message):
 async def _kickthefools(_,message):  
     text = await message.reply(f"kicking fools")  
     chat_id = message.chat.id
-    fools = []    
-    ADMINS = []   
     x = 0
+    fools = []    
+    ADMINS = []       
     async for m in pgram.get_chat_members(chat_id, filter=enums.ChatMembersFilter.ADMINISTRATORS):
         ADMINS.append(m.user.id)
     
@@ -48,7 +48,7 @@ async def _kickthefools(_,message):
                    
             await pgram.ban_chat_member(chat_id,fools[x])           
             await pgram.unban_chat_member(chat_id,fools[x])  
-            x = x+1
+            x += 1
         except FloodWait as e:
             asyncio.sleep(e.value)
         await text.edit(len(fools))
