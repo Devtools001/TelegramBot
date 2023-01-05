@@ -32,12 +32,12 @@ async def _adminlist(_, message):
         else:
             name = user.mention
 
-        if not user.is_bot:
-            pass
-        else:
+        if not user.is_bot==True:
             administrators.remove(admin)
             continue
-
+    
+       
+            
         # if user.username:
         #    name = escape_markdown("@" + user.username)
         if status == ChatMemberStatus.OWNER:
