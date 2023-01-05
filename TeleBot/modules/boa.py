@@ -20,7 +20,7 @@ async def _adminlist(_, message):
 
     BOT_LIST = []
     for bot in bots:
-        ADMINS_LIST.append(f"🤖 {bot.user.mention}\n")
+        BOT_LIST.append(f"🤖 {bot.user.mention}\n")
 
     admin_header = f"ʙᴏᴛs ɪɴ {chat_title}:\n"
     
