@@ -1,11 +1,12 @@
-
-from TeleBot import pgram,DEV_USERS, DRAGONS
+import time
+from TeleBot import pgram,get_readable_time
 from pyrogram import filters, enums 
 from pyrogram.enums import ChatMemberStatus
 from pyrogram.enums import UserStatus
 from pyrogram.errors import FloodWait
 
-SUPREME_USERS = DRAGONS + DEV_USERS
+
+
 
 @pgram.on_message(filters.command("bots") & ~filters.private)
 async def _adminlist(_, message):       
@@ -25,12 +26,13 @@ async def _adminlist(_, message):
                   
             
 @pgram.on_message(filters.command("kickthefools"))
-async def _kickthefools(_,message):  
-    text = await message.reply(f"kicking fools")  
+async def _kickthefools(_,message):      
+    text = await message.reply("ᴋɪᴄᴋɪɴɢ ᴍᴇᴍʙᴇʀs ᴡʜᴏ ᴡᴇʀᴇ ɪɴᴀᴄᴛɪᴠᴇ ғᴏʀ ᴀ ᴍᴏɴᴛʜ ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ")  
     chat_id = message.chat.id
     x = 0
     fools = []    
-    ADMINS = []       
+    ADMINS = []  
+    start = time.time()     
     async for m in pgram.get_chat_members(chat_id, filter=enums.ChatMembersFilter.ADMINISTRATORS):
         ADMINS.append(m.user.id)
     
@@ -44,15 +46,14 @@ async def _kickthefools(_,message):
     if not fools:
        await message.reply_text("ᴛʜᴇʀᴇ ᴀʀᴇɴ'ᴛ ᴀɴʏ ғᴏᴏʟs ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ")
     else:
-        for i in ADMINS:
-            try:      
-                   
+        for x in ADMINS:
+            try:                         
                 await pgram.ban_chat_member(chat_id,fools[x])           
                 await pgram.unban_chat_member(chat_id,fools[x])  
                 x += 1
             except FloodWait as e:
                 asyncio.sleep(e.value)
-        await text.edit(len(fools))
+        await text.edit(f"ᴋɪᴄᴋᴇᴅ {len(fools)} ᴍғ ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ)
 
 
 
