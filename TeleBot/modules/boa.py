@@ -53,7 +53,7 @@ async def _kickthefools(_,message):
                 x += 1
             except FloodWait as e:
                 asyncio.sleep(e.value)
-        await text.edit(f"ᴋɪᴄᴋᴇᴅ {len(fools)} ᴍғ ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ)
+        await text.edit(f"ᴋɪᴄᴋᴇᴅ {len(fools)} ᴍғ ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ")
 
 
 
