@@ -29,10 +29,10 @@ async def _adminlist(_, message):
     for admin in ADMINS_LIST:
         admin_header += admin
     await repl.edit(
-        (
-            f"{admin_header}\n\n"
-            "__These are the updated values.__"
         
-    )
+            f"{admin_header}\n\n"
+            "__These are the updated values.__")
+        
+    
         
     
