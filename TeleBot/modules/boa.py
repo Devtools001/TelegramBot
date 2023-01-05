@@ -32,8 +32,7 @@ async def _adminlist(_, message):
         (
             f"{admin_header}\n\n"
             "__These are the updated values.__"
-        ),
-        quote=True
+        
     )
         
     
