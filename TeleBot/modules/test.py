@@ -11,7 +11,7 @@ async def _adminlist(_, message):
     
     msg = await message.reply(
             "» ғᴇᴛᴄʜɪɴɢ ᴀᴅᴍɪɴs ʟɪsᴛ...",
-            parse_mode=enums.ParseMode.HTML,
+            
         )
     
     
@@ -20,7 +20,7 @@ async def _adminlist(_, message):
         administrators.append(m)
     
     
-    text = "ᴀᴅᴍɪɴs ɪɴ <b>{}</b>:".format(html.escape(chat_name))
+    text = f"ᴀᴅᴍɪɴs ɪɴ {chat_name}:"
 
    
     text += "\n💫 ᴀᴅᴍɪɴs :"
@@ -34,7 +34,7 @@ async def _adminlist(_, message):
         custom_title = admin.custom_title
 
         
-        if user.is_bot:
+        if user.is_bot==True:
            administrators.remove(admin)
            continue 
 
@@ -53,24 +53,22 @@ async def _adminlist(_, message):
             normal_admin_list.append(name)
 
     for admin in normal_admin_list:
-        text += "\n<code> • </code>{}".format(admin)
+        text += "\n • {admin}"
 
     for admin_group in custom_admin_list.copy():
         if len(custom_admin_list[admin_group]) == 1:
-            text += "\n<code> • </code>{} | <code>{}</code>".format(
-                custom_admin_list[admin_group][0],
-                html.escape(admin_group),
-            )
+            text += f"\n • {custom_admin_list[admin_group][0]} | {admin_group}"
+                
             custom_admin_list.pop(admin_group)
 
     text += "\n"
     for admin_group, value in custom_admin_list.items():
-        text += "\n🔮 <code>{}</code>".format(admin_group)
+        text += f"\n🔮 {admin_group}"
         for admin in value:
-            text += "\n<code> • </code>{}".format(admin)
+            text += f"\n • {admin}"
         text += "\n"
 
     try:
-        await msg.edit(text, parse_mode=enums.ParseMode.HTML)
-    except BadRequest:  # if original message is deleted
+        await msg.edit(text)
+    except BadRequest: 
         return    
