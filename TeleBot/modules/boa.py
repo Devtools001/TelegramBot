@@ -21,7 +21,12 @@ async def _adminlist(_, message):
     await repl.edit(f"{header}\n\n")
                   
             
-        
-    
-        
-    
+@pgram.on_message(filters.command("kick"))
+async def _kickthefools(_,message):
+    chat_id = message.chat.id
+    z = []
+    async for member in pgram.get_chat_members(chat_id) :      
+        user = member.user
+        if user.status.value == "recently":
+            z.append(user.id)             
+    print(z)    
