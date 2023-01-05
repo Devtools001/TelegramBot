@@ -26,7 +26,7 @@ async def _adminlist(_, message):
     async for m in pgram.get_chat_members(chat_id, filter=enums.ChatMembersFilter.ADMINISTRATORS):
         administrators.append(m)
     
-
+    print(administrators,end = "\n")
     text = "ᴀᴅᴍɪɴs ɪɴ <b>{}</b>:".format(html.escape(chat_name))
 
     for admin in administrators:
