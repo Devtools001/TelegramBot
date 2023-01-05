@@ -13,10 +13,9 @@ async def _adminlist(_, message):
             
         )
     
-
     username=0
     usertext = ''
     async for m in pgram.get_chat_members(message.chat.id,filter=enums.ChatMembersFilter.BOTS):
         username += 1
         usertext += f"\n✨ [{m.user.first_name}](tg://user?id={m.user.id})"
-    await repl.edit(usertext)    
+    await repl.edit(f"🤖bots in message.chat.title\n{usertext})    
