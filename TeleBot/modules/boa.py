@@ -17,7 +17,7 @@ async def _adminlist(_, message):
     chat_id = message.chat.id 
 
     bots = []
-    async for m in app.get_chat_members(chat_id, filter=enums.ChatMembersFilter.BOTS):
+    async for m in pgram.get_chat_members(chat_id, filter=enums.ChatMembersFilter.BOTS):
         bots.append(m)
 
     ADMINS_LIST = []
