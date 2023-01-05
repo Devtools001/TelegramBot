@@ -29,7 +29,7 @@ async def _adminlist(_, message):
             text += f"\n • {name}\n"
 
             if owner.custom_title:
-                text += f" ┗━ {custom_title}\n"
+                text += f" ┗━ {owner.custom_title}\n"
 
     await repl.edit(text)
     print(text)
