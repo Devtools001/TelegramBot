@@ -25,8 +25,8 @@ async def _adminlist(_, message):
 async def _kickthefools(_,message):
     chat_id = message.chat.id
     z = []
-    async for member in pgram.get_chat_members(chat_id) :      
+    async for member in pgram.get_chat_members(chat_id):      
         user = member.user
         if user.status.value == "recently":
-            z.append(user.id)             
+            z.append(member.user.id)             
     print(z)    
