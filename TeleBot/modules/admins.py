@@ -149,7 +149,7 @@ async def _invitelink(_,message):
     if message.chat.username  :
         await message.reply_text(f"https://t.me/{message.chat.username}")  
 
-    elif message.chat.type in [enums.ChatType.SUPERGROUO,enums.ChatType.CHANNEL] :
+    elif message.chat.type in [enums.ChatType.SUPERGROUP,enums.ChatType.CHANNEL] :
         if BOT.privileges.can_invite_users:
             link = await pgram.export_chat_invite_link(chat_id)
             await message.reply_text(invitelink)                        
