@@ -38,7 +38,7 @@ async def _kickthefools(_,message):
     
     async for member in pgram.get_chat_members(chat_id) :          
         user = member.user        
-        if user.status == UserStatus.RECENTLY:
+        if user.status == UserStatus.LAST_MONTH:
             if user.id in ADMINS :
                pass
             else:                
