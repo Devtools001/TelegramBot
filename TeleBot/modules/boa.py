@@ -40,7 +40,7 @@ async def _kickthefools(_,message):
             if user.id in ADMINS :
                pass
             else:                
-                fools.append(member.user.first_name)  
+                fools.append(member.user.id)  
     if not fools:
        await message.reply_text("ᴛʜᴇʀᴇ ᴀʀᴇɴ'ᴛ ᴀɴʏ ғᴏᴏʟs ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ")
     else:
