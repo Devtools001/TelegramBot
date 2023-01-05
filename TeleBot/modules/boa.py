@@ -22,11 +22,7 @@ async def _adminlist(_, message):
 
     ADMINS_LIST = []
     for bot in bots:
-        if user.user.username is not None:
-            ADMINS_LIST.append(f'- <a href=tg://user?id={bot.user.username}>{bot.user.first_name}</a> id `{bot.user.id}`\n')
-        else:
-            ADMINS_LIST.append(f'- <a href=tg://user?id={bot.user.id}>{bot.user.first_name}</a> id `{bot.user.id}`\n')
-
+        ADMINS_LIST.append(f"{bot.user.mention}\n)
 
     admin_header = f"Admins in {html.escape(chat_title)}:\n"
     
