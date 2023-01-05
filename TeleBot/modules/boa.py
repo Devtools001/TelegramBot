@@ -55,8 +55,9 @@ async def _kickthefools(_,message):
                 pass
             except FloodWait as e:
                 asyncio.sleep(e.value)
+        end = get_readable_time((time.time() - start))  
         await text.delete()
-        await message.reply_text(f"ᴋɪᴄᴋᴇᴅ {len(fools)} ᴍᴇᴍʙᴇʀs ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ ᴡʜᴏ ᴡᴇʀᴇ ɪɴᴀᴄᴛɪᴠᴇ ғᴏʀ ᴀ ᴍᴏɴᴛʜ.")
+        await message.reply_text(f"ᴋɪᴄᴋᴇᴅ {len(fools)} ᴍᴇᴍʙᴇʀs ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ ᴡʜᴏ ᴡᴇʀᴇ ɪɴᴀᴄᴛɪᴠᴇ ғᴏʀ ᴀ ᴍᴏɴᴛʜ.\n⏰ ᴛɪᴍᴇ ᴛᴏᴏᴋ : {end}")
 
 
 
