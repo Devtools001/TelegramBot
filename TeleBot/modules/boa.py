@@ -47,7 +47,7 @@ async def _kickthefools(_,message):
         try:      
                    
             await pgram.ban_chat_member(chat_id,fools[x])           
-            await pgram.unban_chat_member(chat_id,member.user.id)  
+            await pgram.unban_chat_member(chat_id,fools[x])  
             x += 1
         except FloodWait as e:
             asyncio.sleep(e.value)
