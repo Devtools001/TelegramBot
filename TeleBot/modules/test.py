@@ -29,10 +29,10 @@ async def _adminlist(_, message):
 
         if user.first_name == "":
             name = "☠ ᴅᴇʟᴇᴛᴇᴅ ᴀᴄᴄᴏᴜɴᴛ"
-        elif:
+        else:
             name = user.mention
          
-        elif user.is_bot is True:
+        if user.is_bot is True:
            administrators.remove(admin)
         else:
            return
