@@ -1,5 +1,5 @@
 
-from TeleBot import pgram
+from TeleBot import pgram,DEV_USERS, DRAGONS
 from pyrogram import filters, enums 
 from pyrogram.enums import ChatMemberStatus
 from pyrogram.enums import UserStatus
@@ -27,6 +27,7 @@ async def _kickthefools(_,message):
     z = []
     a = 0
     administrators = []
+    SUPREME_CHOMU = administrators + DEV_USERS + DRAGONS
     async for m in pgram.get_chat_members(chat_id, filter=enums.ChatMembersFilter.ADMINISTRATORS):
         administrators.append(m.user.id)
     
@@ -35,7 +36,7 @@ async def _kickthefools(_,message):
         user = member.user
         
         if user.status == UserStatus.RECENTLY:
-            if user.id in administrators :
+            if user.id in SUPREME_CHOMU :
                pass
             else:
                 a += 1
