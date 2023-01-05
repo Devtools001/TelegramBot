@@ -92,7 +92,7 @@ async def mass_action(_, message):
         await asyncio.sleep(3)
         await text.edit(f"**unᴍᴜᴛᴇᴅ ᴀʟʟ ᴍᴇᴍʙᴇʀs ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ**.") 
 
-@pgram.on_message(filters.command("kickthefools"))
+@pgram.on_message(filters.command("kickthefools") & ~filters.private)
 @bot_admin
 @bot_can_ban
 @user_admin
