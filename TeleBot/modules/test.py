@@ -33,6 +33,11 @@ async def _adminlist(_, message):
         status = admin.status
         custom_title = admin.custom_title
 
+        
+        if user.is_bot:
+           administrators.remove(admin)
+           continue 
+
         if user.first_name == "":
             name = "☠ ᴅᴇʟᴇᴛᴇᴅ ᴀᴄᴄᴏᴜɴᴛ"
         else:
