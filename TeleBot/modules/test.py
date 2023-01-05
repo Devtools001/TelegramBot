@@ -6,13 +6,12 @@ from pyrogram.errors import BadRequest
 
 @pgram.on_message(filters.command("adminlist") & ~filters.private)
 async def _adminlist(_, message):    
-   # chat_id = message.chat.id
-   # $chat_name = message.chat.title
-    
-   # repl = await message.reply(
-   #         "» ғᴇᴛᴄʜɪɴɢ ᴀᴅᴍɪɴs ʟɪsᴛ...",
+   
+
+    repl = await message.reply(
+            "» ғᴇᴛᴄʜɪɴɢ ᴀᴅᴍɪɴs ʟɪsᴛ...",
             
-    #    )
+        )
     
     chat_title = message.chat.title 
     chat_id = message.chat.id 
@@ -21,7 +20,7 @@ async def _adminlist(_, message):
     async for m in pgram.get_chat_members(chat_id, filter=enums.ChatMembersFilter.ADMINISTRATORS):
         administrators.append(m)
 
-    text = "ᴀᴅᴍɪɴs ɪɴ <b>{}</b>:".format(html.escape(update.effective_chat.title))
+    text = "ᴀᴅᴍɪɴs ɪɴ <b>{}</b>:".format(html.escape(chat_name))
 
     for admin in administrators:
         user = admin.user
