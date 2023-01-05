@@ -46,7 +46,7 @@ async def _adminlist(_, message):
         
         if custom_title:
             try:
-                custom_admin_list[custom_title].append(name)
+                custom_admin_list[custom_title].append(f"{name} admin")
             except KeyError:
                 custom_admin_list.update({custom_title: [name]})
         else:
