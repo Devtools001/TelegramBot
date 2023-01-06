@@ -29,7 +29,7 @@ async def remove_afk(user_id: int):
 
 
 
-@app.on_message(filters.command(["afk", f"afk@{BOT_USERNAME}"]))
+@app.on_message(filters.command("afk"))
 async def active_afk(_, message: Message):
     if message.sender_chat:
         return
@@ -176,9 +176,7 @@ async def active_afk(_, message: Message):
         }
 
     await add_afk(user_id, details)
-    await message.reply_sticker(
-        "CAACAgUAAx0CUgguZAABAdegY2N5paaiPapUxRm0RYy9Xf6dPEYAAisIAAJ2PRlXxkn7UgOIdewqBA"
-    )    
+    
     await message.reply_text(f"{message.from_user.first_name} ɪs ɴᴏᴡ ᴀғᴋ!")
 
 
