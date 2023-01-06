@@ -13,7 +13,7 @@ from pyrogram.enums import MessageEntityType
 
 chat_watcher_group = 1
 
-@app.on_message(
+@pgram.on_message(
      ~filters.me & ~filters.bot & ~filters.via_bot,
     group=chat_watcher_group,
 )
