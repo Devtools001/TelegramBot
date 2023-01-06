@@ -7,7 +7,7 @@ from pyrogram import filters
 from pyrogram.types import Message
 
 from TeleBot import pgram as app,BOT_USERNAME,get_readable_time
-from TeleBot.modules.afk import ,is_afk, remove_afk
+from TeleBot.modules.afk import is_afk, remove_afk
 from pyrogram.enums import MessageEntityType
 
 chat_watcher_group = 1
