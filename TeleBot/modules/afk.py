@@ -36,7 +36,7 @@ async def _afk(_, message):
     user_verify, user_reason = await is_afk(user_id) 
     print(user_verify)
     if user_verify:        
-        await rm_afk(user_id)
+        await remove_afk(user_id)
         try:
             afktype = user_reason["type"]
             timeafk = user_reason["time"]
