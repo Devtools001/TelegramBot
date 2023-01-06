@@ -30,7 +30,7 @@ async def remove_afk(user_id: int):
 
 
 
-@pgram.on_message(filters.command("afk") & filters.regex("Brb"))
+@pgram.on_message(filters.command("afk"))
 async def active_afk(_, message: Message):
     if message.sender_chat:
         return
