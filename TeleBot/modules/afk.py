@@ -1,5 +1,5 @@
 import time
-from TeleBot import pgram
+from TeleBot import pgram as app ,BOT_USERNAME
 from pyrogram import filters 
 from TeleBot import db, get_readable_time
 from pyrogram.types import Message
@@ -29,15 +29,14 @@ async def remove_afk(user_id: int):
 
 
 
-import time
+#import time
 
 from pyrogram import filters
 from pyrogram.types import Message
 
-from TeleBot import pgram as app, BOT_USERNAME
 
 
-@app.on_message(filters.command("afk"))
+@app.on_message(filters.command(["afk", f"afk@{BOT_USERNAME}"]))
 async def active_afk(_, message: Message):
     if message.sender_chat:
         return
@@ -89,7 +88,7 @@ async def active_afk(_, message: Message):
                 disable_web_page_preview=True,
             )
         await put_cleanmode(message.chat.id, send.message_id)
-            return        
+        return
     if len(message.command) == 1 and not message.reply_to_message:
         details = {
             "type": "text",
@@ -202,6 +201,8 @@ async def active_afk(_, message: Message):
     send = await message.reply_text(
         f"{message.from_user.first_name} is now afk!"
     )
+    await put_cleanmode(message.chat.id, send.message_id)
+
     
 
 
