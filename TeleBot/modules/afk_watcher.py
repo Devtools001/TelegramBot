@@ -6,7 +6,7 @@ from pyrogram.enums import MessageEntityType
 
 from TeleBot import BOT_USERNAME, pgram as app
 from TeleBot  import get_readable_time
-from Exon.modules.afk import is_afk, remove_afk
+from TeleBot.modules.afk import is_afk, remove_afk
 
 chat_watcher_group = 1
 
