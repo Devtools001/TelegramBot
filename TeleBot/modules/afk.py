@@ -29,7 +29,10 @@ async def _afk(_, message):
         return
     user_id = message.from_user.id
     user_verify, user_reason = await is_afk(user_id) 
-    print(user_verify,user_reason)
+    
+    if user_verify:
+        print("ok")
+      #  await remove_afk(user_id)
 
           
     
