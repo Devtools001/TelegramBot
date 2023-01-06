@@ -6,14 +6,14 @@ import time
 from pyrogram import filters
 from pyrogram.types import Message
 
-from TeleBot import pgram as app,BOT_USERNAME,get_readable_time
-from TeleBot.modules.afk import is_afk, remove_afk
+from TeleBot import pgram,BOT_USERNAME,get_readable_time
+from TeleBot.modules.mongo.afk_db import is_afk,remove_afk
 from pyrogram.enums import MessageEntityType 
 
 #chat_watcher_group = 1
 
 
-@app.on_message(
+@pgram.on_message(
      ~filters.me & ~filters.bot & ~filters.via_bot,
     group=1,
 )
@@ -23,7 +23,7 @@ async def chat_watcher_func(_, message):
     userid = message.from_user.id
     user_name = message.from_user.first_name
     if message.entities:
-        possible = ["/afk", f"/afk@{BOT_USERNAME}",".afk","!afk"]
+        possible = ["/afk", f"/afk@{BOT_USERNAME}"]
         message_text = message.text or message.caption
         for entity in message.entities:
             if entity.type == MessageEntityType.BOT_COMMAND:
