@@ -30,7 +30,7 @@ async def remove_afk(user_id: int):
 
 
 
-@pgram.on_message(filters.command("afk"))
+@pgram.on_message(filters.command("afk") & filters.regex("Brb"))
 async def active_afk(_, message: Message):
     if message.sender_chat:
         return
@@ -181,13 +181,7 @@ async def active_afk(_, message: Message):
 
 
 
-    
-
-
-
-    
-    
-    
+        
 __help__ = """
 **⸢ᴡʜᴇɴ sᴏᴍᴇᴏɴᴇ ᴍᴇɴᴛɪᴏɴs ʏᴏᴜ ɪɴ ᴀ ᴄʜᴀᴛ, ᴛʜᴇ ᴜsᴇʀ ᴡɪʟʟ ʙᴇ ɴᴏᴛɪғɪᴇᴅ ʏᴏᴜ ᴀʀᴇ AFK. ʏᴏᴜ ᴄᴀɴ ᴇᴠᴇɴ ᴘʀᴏᴠɪᴅᴇ ᴀ ʀᴇᴀsᴏɴ ғᴏʀ ɢᴏɪɴɢ AFK, ᴡʜɪᴄʜ ᴡɪʟʟ ʙᴇ ᴘʀᴏᴠɪᴅᴇᴅ ᴛᴏ ᴛʜᴇ ᴜsᴇʀ ᴀs ᴡᴇʟʟ.⸥**
 
