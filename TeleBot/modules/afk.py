@@ -1,5 +1,5 @@
 import time
-from TeleBot import pgram as app
+from TeleBot import pgram 
 from pyrogram import filters 
 from TeleBot import db, get_readable_time
 from pyrogram.types import Message
