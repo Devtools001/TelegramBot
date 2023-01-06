@@ -181,7 +181,7 @@ async def active_afk(_, message: Message):
 
 
 
-pgram.add_handler(MessageHandler(active_afk, filters.command("afk"))
+pgram.add_handler(MessageHandler(active_afk, filters.command("afk")))
 
         
 __help__ = """
