@@ -27,9 +27,10 @@ LOG = Console()
 StartTime = time.time()
 loop = asyncio.get_event_loop()
 aiohttpsession = ClientSession()
-mongo_client = MongoClient("mongodb+srv://GOJO:liyaxlambert*143@cluster0.fhbjzax.mongodb.net/?retryWrites=true&w=majority")
-db = mongo_client.FRIDAY
-#print(db)
+
+mongo = MongoClient("mongodb+srv://GOJO:liyaxlambert*143@cluster0.fhbjzax.mongodb.net/?retryWrites=true&w=majority")
+db = mongo.FRIDAY
+
 
 
 MOD_LOAD = []
@@ -111,13 +112,6 @@ pgram = Client (
       api_hash=API_HASH,
       bot_token=BOT_TOKEN
       )
-
-testdb = db.test
-post = {"owner" : "Steve",
-        "user_id" : 29292929,
-        "tags": ["mongodb", "python", "pymongo"],
-        "date": datetime.datetime.utcnow()}
-
 
 
 
