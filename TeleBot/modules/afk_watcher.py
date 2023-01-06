@@ -9,7 +9,7 @@ from pyrogram.types import Message
 from TeleBot import pgram as app,BOT_USERNAME,get_readable_time
 from TeleBot.modules.afk import is_afk, remove_afk
 from pyrogram.enums import MessageEntityType 
-
+from TeleBot.modules.mongo.afk
 
 
 #chat_watcher_group = 1
@@ -225,5 +225,8 @@ async def chat_watcher_func(_, message):
             send = await message.reply_text(msg, disable_web_page_preview=True)
         except:
             return
-
+    try:
+        await put_cleanmode(message.chat.id, send.message_id)
+    except:
+        return
 
