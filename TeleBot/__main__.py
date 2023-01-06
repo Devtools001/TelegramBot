@@ -90,6 +90,7 @@ async def Friday_Robot():
 async def send_help(app,chat, text, keyboard=None):
     if not keyboard:
         keyboard = InlineKeyboardMarkup(paginate_modules(0, HELPABLE, "help"))
+    
     await app.send_photo(
         chat_id=chat,
         photo=random.choice(PM_PHOTOS),
@@ -97,9 +98,7 @@ async def send_help(app,chat, text, keyboard=None):
         parse_mode=ParseMode.MARKDOWN,      
         reply_markup=keyboard,
     )
-
-
-
+    return (text, keyboard, photo)
 
 @pgram.on_message(filters.command(["start",f"start@{BOT_USERNAME}"]))
 async def group_start(_, message):    
@@ -202,40 +201,61 @@ async def help_button(app,query):
     except BadRequest:
         pass
 
-@pgram.on_message(filters.command(["help",f"help@{BOT_USERNAME}"]))
+@pgram.on_message(filters.command("help"))
 async def get_help(_, message):
-    if message.chat.type != ChatType.PRIVATE:     
+    if message.chat.type != ChatType.PRIVATE:
         if len(message.command) >= 2:
             mod_name = (message.text.split(None, 1)[1]).replace(" ", "_").lower()
             if str(mod_name) in HELPABLE:
                 key = InlineKeyboardMarkup(
-                   [[InlineKeyboardButton(
+                    [
+                        [
+                            InlineKeyboardButton(
                                 text="Click here",
-                                url=f"t.me/{BOT_USERNAME}?start=help_{mod_name}")]])                                                                        
+                                url=f"t.me/{BOT_USERNAME}?start=help_{mod_name}",
+                            )
+                        ],
+                    ]
+                )
                 await message.reply(
                     f"ᴄʟɪᴄᴋ ᴛʜᴇ ʙᴇʟᴏᴡ ʙᴜᴛᴛᴏɴ ᴛᴏ ɢᴇᴛ ʜᴇʟᴘ ᴀʙᴏᴜᴛ {mod_name}",
                     reply_markup=key,
-                 )
-
+                )
             else:
-                await message.reply_text(
-                 text = "Pᴍ ᴍᴇ ғᴏʀ ᴛʜɪs",reply_markup=keyboard)                                                                                                                                   
-                return            
+                await message.reply(
+                    "Pᴍ ᴍᴇ ғᴏʀ ᴛʜɪs.", reply_markup=keyboard
+                )
         else:
-            await message.reply_photo(  
-            photo=random.choice(HELP_IMG),
-            caption=f" ᴄᴏɴᴛᴀᴄᴛ ᴍᴇ ɪɴ ᴘᴍ ᴛᴏ ɢᴇᴛ ᴛʜᴇ ʟɪsᴛ ᴏғ ᴘᴏssɪʙʟᴇ ᴄᴏᴍᴍᴀɴᴅs..",
-            reply_markup=InlineKeyboardMarkup(
-                       [[InlineKeyboardButton(
-                            text="ʜᴇʟᴘ",
-                            url=f"https://t.me/{BOT_USERNAME}?start=help")
-                         ]]))       
+            await message.reply(
+                "Pm Me For More Details.", reply_markup=keyboard
+            )
     else:
-        await send_help(app=pgram,chat=message.chat.id,text=HELP_STRINGS) 
-        return
-
-                      
-                
+        if len(message.command) >= 2:
+            name = (message.text.split(None, 1)[1]).replace(" ", "_").lower()
+            if str(mod_name) in HELPABLE:
+                text = (
+                        f"Here is the help for **{HELPABLE[mod_name].__MODULE__}**:\n"
+                        + HELPABLE[mod_name].__HELP__
+                )
+                await message.reply(text, disable_web_page_preview=True)
+            else:
+                text, help_keyboard = await send_help(
+                    message.from_user.first_name
+                )
+                await message.reply(
+                    text,
+                    reply_markup=help_keyboard,
+                    disable_web_page_preview=True,
+                )
+        else:
+            text, help_keyboard = await send_help(
+                message.from_user.first_name
+            )
+            await message.reply(
+                text, reply_markup=help_keyboard, disable_web_page_preview=True
+            )
+    return
+                              
                      
 @pgram.on_message(filters.command("donate"))  
 async def donate(_, message):
@@ -252,14 +272,7 @@ async def donate(_, message):
             try:
                 await pgram.send_message(message.from_user.id,text=f"[ʜᴇʀᴇ ɪs ᴛʜᴇ ᴅᴏɴᴀᴛɪᴏɴ ʟɪɴᴋ]({DONATION_LINK})")
             except Unauthorized:                
-                await message.reply_text("Cᴏɴᴛᴀᴄᴛ ᴍᴇ ɪɴ PM ғɪʀsᴛ ᴛᴏ ɢᴇᴛ ᴅᴏɴᴀᴛɪᴏɴ ɪɴғᴏʀᴍᴀᴛɪᴏɴ")
-                                
- 
-
-    
-                    
-                        
-                    
+                await message.reply_text("Cᴏɴᴛᴀᴄᴛ ᴍᴇ ɪɴ PM ғɪʀsᴛ ᴛᴏ ɢᴇᴛ ᴅᴏɴᴀᴛɪᴏɴ ɪɴғᴏʀᴍᴀᴛɪᴏɴ")                                                                                               
                                                                     
          
 if __name__ == "__main__" :
