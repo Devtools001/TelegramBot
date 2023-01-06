@@ -30,7 +30,7 @@ async def remove_afk(user_id: int):
 
 
 
-@pgram.on_message(filters.command("afk"))
+#@pgram.on_message(filters.command("afk"))
 async def active_afk(_, message: Message):
     if message.sender_chat:
         return
@@ -180,6 +180,8 @@ async def active_afk(_, message: Message):
     await message.reply_text(f"{message.from_user.first_name} ɪs ɴᴏᴡ ᴀғᴋ!")
 
 
+
+pgram.add_handler(MessageHandler(active_afk, filters.command("afk"))
 
         
 __help__ = """
