@@ -1,0 +1,5 @@
+from TeleBot import db
+
+
+afk_mod = db.users
+
