@@ -1,5 +1,5 @@
 import time
-from TeleBot import pgram as app ,BOT_USERNAME
+from TeleBot import pgram as app
 from pyrogram import filters 
 from TeleBot import db, get_readable_time
 from pyrogram.types import Message
@@ -30,7 +30,7 @@ async def remove_afk(user_id: int):
 
 
 
-@pgram.on_message(filters.command(["afk", f"afk@{BOT_USERNAME}"]))
+@pgram.on_message(filters.command("afk"))
 async def active_afk(_, message: Message):
     if message.sender_chat:
         return
