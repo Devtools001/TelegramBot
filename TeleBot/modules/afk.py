@@ -36,7 +36,7 @@ from pyrogram.types import Message
 from TeleBot import pgram as app, BOT_USERNAME
 
 
-@app.on_message(filters.command(["afk", f"afk@{BOT_USERNAME}"]))
+@app.on_message(filters.command("afk"))
 async def active_afk(_, message: Message):
     if message.sender_chat:
         return
