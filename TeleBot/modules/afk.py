@@ -3,25 +3,28 @@ from TeleBot import pgram
 from pyrogram import filters 
 from TeleBot import db, get_readable_time
 
-afkmod = db.afk_users
+              
+afkdb = db.afk
 
 
+async def is_afk(user_id: int) -> bool:
+    user = await afkdb.find_one({"user_id": user_id})
+    if not user:
+        return False, {}
+    return True, user["reason"]
 
-async def add_afk(user_id : int,mode):
-    await afkmod.update_one({"user_id": user_id},{"$set":{"reason": mode}},upsert=True)
+
+async def add_afk(user_id: int, mode):
+    await afkdb.update_one(
+        {"user_id": user_id}, {"$set": {"reason": mode}}, upsert=True
+    )
 
 
-async def rm_afk(user_id : int):
-    user = await afkmod.find_one({"user_id",user_id})
-    if user :
-        return await afkmod.delete_one({"user_id":user_id})
- 
-async def is_afk(user_id : int) -> bool:
-    user = await afkmod.find_one({"user_id":user_id}) 
-    if user :
-        return True,user["reason"]
-    else:
-        return False,{}              
+async def remove_afk(user_id: int):
+    user = await afkdb.find_one({"user_id": user_id})
+    if user:
+        return await afkdb.delete_one({"user_id": user_id})
+
 
 @pgram.on_message(filters.command("afk", prefixes=["/", ".", "!"]))
 async def _afk(_, message):
