@@ -16,7 +16,7 @@ from TeleBot.modules.mongo.c import put_cleanmode
 
 
 @app.on_message(
-    ~filters.me & ~filters.bot & ~filters.via_bot,
+      ~filters.bot & ~filters.via_bot,
     group=1,
 )
 async def chat_watcher_func(_, message):
@@ -225,8 +225,4 @@ async def chat_watcher_func(_, message):
             send = await message.reply_text(msg, disable_web_page_preview=True)
         except:
             return
-    try:
-        await put_cleanmode(message.chat.id, send.message_id)
-    except:
-        return
-
+    
