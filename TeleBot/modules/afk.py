@@ -14,7 +14,7 @@ async def add_afk(user_id : int,mode):
 async def rm_afk(user_id : int):
     is_user_afk = await afkmod.find_one({"user_id",user_id})
     if is_user_afk :
-        return await afkmod.delete_one({"user_id:user_id})
+        return await afkmod.delete_one({"user_id":user_id})
  
 async def is_afk(user_id : int) -> bool:
     user = await afkmod.find_one({"user_id":user_id}) 
