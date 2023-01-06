@@ -1,5 +1,8 @@
 from TeleBot import db
 
+import asyncio
+
+from typing import Union
 
 
 cleandb = db.cleanmode
@@ -30,3 +33,13 @@ async def cleanmode_off(chat_id: int):
     user = await cleandb.find_one({"chat_id": chat_id})
     if not user:
         return await cleandb.insert_one({"chat_id": chat_id})
+
+async def put_cleanmode(chat_id, message_id):
+    if chat_id not in cleanmode:
+        cleanmode[chat_id] = []
+    time_now = datetime.now()
+    put = {
+        "msg_id": message_id,
+        "timer_after": time_now + timedelta(minutes=5),
+    }
+    cleanmode[chat_id].append(put)
