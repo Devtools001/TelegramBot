@@ -3,35 +3,14 @@ from TeleBot import pgram
 from pyrogram import filters 
 from TeleBot import db, get_readable_time
 from pyrogram.types import Message
-from pyrogram.handlers import MessageHandler
-              
-afkdb = db.afk
-
-
-async def is_afk(user_id: int) -> bool:
-    user = await afkdb.find_one({"user_id": user_id})
-    if not user:
-        return False, {}
-    return True, user["reason"]
-
-
-async def add_afk(user_id: int, mode):
-    await afkdb.update_one(
-        {"user_id": user_id}, {"$set": {"reason": mode}}, upsert=True
-    )
-
-
-async def remove_afk(user_id: int):
-    user = await afkdb.find_one({"user_id": user_id})
-    if user:
-        return await afkdb.delete_one({"user_id": user_id})
+from TeleBot.modules.mongo.afk_db import is_afk,add_afk, remove_afk
 
 
 
 
 
 
-@pgram.on_message(filters.command("afk",prefixes=["/",".","!"]))
+@pgram.on_message(filters.command("afk"))
 async def active_afk(_, message: Message):
     if message.sender_chat:
         return
