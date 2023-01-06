@@ -3,6 +3,7 @@ from TeleBot import pgram
 from pyrogram import filters 
 from TeleBot import db, get_readable_time
 from pyrogram.types import Message
+from TeleBot.modules.mongo.c import put_cleanmode
 
               
 afkdb = db.afk
@@ -87,7 +88,8 @@ async def active_afk(_, message: Message):
                 f"**{message.from_user.first_name}** is back online",
                 disable_web_page_preview=True,
             )
-        
+    await put_cleanmode(message.chat.id, send.message_id)
+        return        
     if len(message.command) == 1 and not message.reply_to_message:
         details = {
             "type": "text",
