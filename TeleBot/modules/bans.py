@@ -316,4 +316,34 @@ async def _kick(_, message):
             await message.reply_text(err)        
      
     
+@pgram.on_message(filters.command("unmute") & ~filters.private)
+@bot_admin
+@bot_can_ban
+@user_admin
+@user_can_ban
+async def _unmute(_, message):
+    chat_id = message.chat.id
+    replied = message.reply_to_message
+    admin = message.from_user.mention
+    user = await extract_user_id(message)
+    res_users = []
+    async for m in pgram.get_chat_members(chat_id, filter=enums.ChatMembersFilter.RESTRICTED):
+        banned_users.append(m.user.id)
+    if (replied
+        and replied.sender_chat 
+        and replied.sender_chat != chat_id):
+        await message.reply_text("ʏᴏᴜ ᴄᴀɴɴᴏᴛ ᴜɴᴍᴜᴛᴇ ᴀ ᴄʜᴀɴɴᴇʟ")
+        return
+    if not user:
+        await message.reply_text("I ᴅᴏɴ'ᴛ ᴋɴᴏᴡ ᴡʜᴏ ʏᴏᴜ'ʀᴇ ᴛᴀʟᴋɪɴɢ ᴀʙᴏᴜᴛ, ʏᴏᴜ'ʀᴇ ɢᴏɪɴɢ ᴛᴏ ɴᴇᴇᴅ ᴛᴏ sᴘᴇᴄɪғʏ ᴀ ᴜsᴇʀ...!")
+        return 
+    if user not in res_users:
+        await message.reply_text("ʙʀᴜʜ ᴛʜɪs ᴘᴇʀsᴏɴ ɪs ɴᴏᴛ ᴍᴜᴛᴇᴅ.")
+    else :
+        try:
+            await pgram.unban_chat_member(chat_id,user)
+            umention = (await pgram.get_users(user)).mention
+            await message.reply_text(f"🍵 ᴜɴᴍᴜᴛᴇᴅ ᴜsᴇʀ : {umention}\n🎎 ᴜɴᴍᴜᴛᴇᴅ ʙʏ : {admin}")
+        except BadRequest as ok:
+            await message.reply_text(ok)
     
