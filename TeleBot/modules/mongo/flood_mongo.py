@@ -86,15 +86,15 @@ async def setflood_db(chat_id: int, flood_arg: Union[int, bool]):
             }
         )
     else:
-           if isinstance(flood_arg, int):
+        if isinstance(flood_arg, int):
                set_key = {
                     'flood_limit': flood_arg,
                     'flood': True
                 }
-            elif isinstance(flood_arg, bool):
-                set_key = {
-                    'flood': flood_arg
-               }
+        elif isinstance(flood_arg, bool):
+            set_key = {
+                'flood': flood_arg
+               }           
 
         antiflood.update_one({'chat_id': chat_id},{'$set': set_key},upsert=True)
             
