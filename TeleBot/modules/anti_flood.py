@@ -10,6 +10,7 @@ from TeleBot.modules.mongo.flood_mongo import (
     get_floodlimit)
 
 from TeleBot.helpers.time_checker import time_string_helper
+from pyrogram import filters 
 
 @pgram.on_message(filters.command("flood"))
 @bot_admin
