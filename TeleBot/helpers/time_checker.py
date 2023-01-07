@@ -42,7 +42,7 @@ async def check_time(message, args) -> bool:
 
 async def get_time(message):
     if message.reply_to_message:    
-        if not len(message.command) >= 2
+        if not len(message.command) >= 2:
                     
             await message.reply(
                 "Yᴏᴜ ʜᴀᴠᴇɴ'ᴛ sᴘᴇᴄɪғɪᴇᴅ ᴀ ᴛɪᴍᴇ ᴛᴏ ᴍᴜᴛᴇ ᴛʜɪs ᴜsᴇʀ ғᴏʀ!"
