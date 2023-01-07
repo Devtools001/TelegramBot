@@ -223,7 +223,7 @@ async def _kick(_, message):
         await message.reply_text(f"ʜᴏᴡ ᴀᴍ ɪ sᴜᴘᴘᴏsᴇᴅ ᴛᴏ ᴋɪᴄᴋ ᴀɴ ᴀᴅᴍɪɴ. ᴛʜɪɴᴋ {message.from_user.mention} ᴛʜɪɴᴋ.")
         return 
     try:
-        mention = (await pgran.get_users(user_id)).mention
+        mention = (await pgram.get_users(user_id)).mention
     except IndexError:
         mention = (
             message.reply_to_message.sender_chat.title
