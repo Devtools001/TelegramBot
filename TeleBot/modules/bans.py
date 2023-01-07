@@ -167,7 +167,7 @@ async def _tban(_, message):
            await message.reply_text("Well damn, I can't ban that user.")
 
        
-@pgram.on_message(filters.command("unban") & ~filters.private))
+@pgram.on_message(filters.command("unban") & ~filters.private)
 @bot_admin
 @bot_can_ban
 @user_admin
