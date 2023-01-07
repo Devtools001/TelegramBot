@@ -1,3 +1,5 @@
+import html
+import time 
 from TeleBot import pgram,BOT_ID,DRAGONS,DEV_USERS
 from pyrogram import filters, enums
 from TeleBot.modules.pyrogram_funcs.status import (
@@ -8,6 +10,36 @@ from TeleBot.modules.pyrogram_funcs.status import (
 from TeleBot.modules.pyrogram_funcs.extracting_id import get_id_reason_or_rank
 from TeleBot.helpers.convert import time_converter
 from contextlib import suppress
+
+
+
+
+async def extract_time(message, time_val):
+    if any(time_val.endswith(unit) for unit in ("m", "h", "d")):
+        unit = time_val[-1]
+        time_num = time_val[:-1]  # type: str
+        if not time_num.isdigit():
+            message.reply_text("Invalid time amount specified.")
+            return ""
+
+        if unit == "m":
+            bantime = int(time.time() + int(time_num) * 60)
+        elif unit == "h":
+            bantime = int(time.time() + int(time_num) * 60 * 60)
+        elif unit == "d":
+            bantime = int(time.time() + int(time_num) * 24 * 60 * 60)
+        else:
+            # how even...?
+            return ""
+        return bantime
+    else:
+        message.reply_text(
+            "Invalid time type specified. Expected m,h, or d, got: {}".format(
+                time_val[-1]
+            )
+        )
+        return ""
+
 
 SUPREME_USERS = DEV_USERS + DRAGONS
 
@@ -107,32 +139,31 @@ async def _tban(_, message):
             else "Anon"
         )    
          
-    text = (
-        f"**🚨 Bᴀɴɴᴇᴅ Usᴇʀ:** {mention}\n"
-        f"**🎎 Bᴀɴɴᴇᴅ Bʏ::** {message.from_user.mention if message.from_user else 'Anon'}\n"
-     )                    
-    split = reason.split(None,1)
-    time_value = split[0]
-    temp_reason = split[1] if len(split) > 1 else ""
-    temp_ban = await time_converter(message, time_value)    
-    text += f"**🎣 Bᴀɴɴᴇᴅ Fᴏʀ:** {time_value}\n" 
-    if temp_reason:
-        text += f"**💌 Rᴇᴀsᴏɴ:** {temp_reason}" 
-    with suppress(AttributeError):
-            if len(time_value[:-1]) < 3:
-                await pgram.ban_chat_member(chat_id,user_id, until_date=temp_ban)
-                await message.reply_text(text)
-            else:
-                await message.reply_text("ʏᴏᴜ ᴄᴀɴ'ᴛ ᴜsᴇ ᴍᴏʀᴇ ᴛʜᴀɴ 𝟿𝟿")
-            return
- #   if reason:
- #       text += f"**💌 Rᴇᴀsᴏɴ:** {reason}"
-  #  await pgram.ban_chat_member(chat_id,user_id,until_date=temp_ban)
- #   await message.reply_text(text)   
-                 
+    if not reason:
+        message.reply_text("You haven't specified a time to ban this user for!")
+        return log_message
+
+    split_reason = reason.split(None, 1)
+    time_val = split_reason[0].lower()
+    reason = split_reason[1] if len(split_reason) > 1 else ""
+    bantime = extract_time(message, time_val)
+    try:
+        await pgram.ban_chat_member(chat_id,user_id,bantime)
+        await message.reply_text(            
+            f"ʙᴀɴɴᴇᴅ! ᴜsᴇʀ {mention_html(member.user.id, html.escape(member.user.first_name))} "
+            f"ɪs ɴᴏᴡ ʙᴀɴɴᴇᴅ ғᴏʀ {time_val}.",
+            parse_mode=enums.ParseMode.HTML,
+        )
+        return 
+    except BadRequest as excp:
+        if excp.message == "Reply message not found":
+            # Do not reply
+            message.reply_text(
+                f"Banned! User will be banned for {time_val}.")
             
+            return 
+        else:
+           await message.reply_text("Well damn, I can't ban that user.")
+
        
-   
-        
-    
-         
+
