@@ -12,6 +12,7 @@ from TeleBot.helpers.convert import time_converter,convert_time
 from contextlib import suppress
 from pyrogram.errors import BadRequest 
 from TeleBot.helpers.time_checker import get_time, time_string_helper
+from pyrogram.types import ChatPermissions
 
 
 
@@ -288,20 +289,18 @@ async def _kick(_, message):
             if message.reply_to_message
             else "Anon"
         )    
-    text = f"ᴋɪᴄᴋᴇᴅ\n✨ ᴋɪᴄᴋᴇᴅ ʙʏ: {message.from_user.mention}\n💥 ᴜsᴇʀ: {mention}"
+    text = f"ᴋɪᴄᴋᴇᴅ\n✨ ᴍᴜᴛᴇᴅ ʙʏ: {message.from_user.mention}\n💥 ᴜsᴇʀ: {mention}"
       
     if message.command[0] == "mute":
         try:
-            await pgram.ban_chat_member(chat_id,user_id) 
-            await pgram.unban_chat_member(chat_id,user_id)
+            await pgram.restrict_chat_member(chat_id,user_id,ChatPermissions())             
             await message.reply_text(text)
         except BadRequest as err :
             await message.reply_text(err)
     if message.command[0] == "dmute":  
         try:
             await message.reply_to_message.delete()
-            await pgram.ban_chat_member(chat_id,user_id) 
-            await pgram.unban_chat_member(chat_id,user_id)
+            await pgram.restrict_chat_member(chat_id,user_id,ChatPermissions())
             await message.reply_text(text)
         except BadRequest as err :
             await message.reply_text(err) 
@@ -309,8 +308,7 @@ async def _kick(_, message):
         try:
             await message.reply_to_message.delete()
             await message.delete()
-            await pgram.ban_chat_member(chat_id,user_id) 
-            await pgram.unban_chat_member(chat_id,user_id)            
+            await pgram.restrict_chat_member(chat_id,user_id,ChatPermissions())            
         except BadRequest as err :
             await message.reply_text(err)        
      
