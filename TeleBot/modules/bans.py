@@ -77,7 +77,7 @@ async def _ban(_, message):
     async for m in pgram.get_chat_members(chat_id, filter=enums.ChatMembersFilter.ADMINISTRATORS):
         administrators.append(m.user.id)
     if not user_id:
-        await message.reply_text("I ᴅᴏᴜʙᴛ ᴛʜᴀᴛ's ᴀ ᴜsᴇʀ.")
+        await message.reply_text("I ᴅᴏɴ'ᴛ ᴋɴᴏᴡ ᴡʜᴏ ʏᴏᴜ'ʀᴇ ᴛᴀʟᴋɪɴɢ ᴀʙᴏᴜᴛ, ʏᴏᴜ'ʀᴇ ɢᴏɪɴɢ ᴛᴏ ɴᴇᴇᴅ ᴛᴏ sᴘᴇᴄɪғʏ ᴀ ᴜsᴇʀ...!")
         return 
     if user_id == BOT_ID:
         await message.reply_text("I ᴄᴀɴ'ᴛ ʙᴀɴ ᴍʏsᴇʟғ, ɪ ᴄᴀɴ ʟᴇᴀᴠᴇ ɪғ ʏᴏᴜ ᴡᴀɴᴛ.")
@@ -186,7 +186,7 @@ async def _unban(_, message):
         await message.reply_text("ʏᴏᴜ ᴄᴀɴɴᴏᴛ ᴜɴʙᴀɴ ᴀ ᴄʜᴀɴɴᴇʟ")
         return
     if not user:
-        await message.reply_text("ɪ ᴅᴏᴜʙᴛ ᴛʜᴀᴛ's ᴀ ᴜsᴇʀ.")
+        await message.reply_text("I ᴅᴏɴ'ᴛ ᴋɴᴏᴡ ᴡʜᴏ ʏᴏᴜ'ʀᴇ ᴛᴀʟᴋɪɴɢ ᴀʙᴏᴜᴛ, ʏᴏᴜ'ʀᴇ ɢᴏɪɴɢ ᴛᴏ ɴᴇᴇᴅ ᴛᴏ sᴘᴇᴄɪғʏ ᴀ ᴜsᴇʀ...!")
         return 
     if user not in banned_users:
         await message.reply_text("ʙʀᴜʜ ᴛʜɪs ᴘᴇʀsᴏɴ ɪs ɴᴏᴛ ʙᴀɴɴᴇᴅ.")
@@ -198,6 +198,62 @@ async def _unban(_, message):
         except BadRequest as ok:
             await message.reply_text(ok)
         
+@pgram.on_message(filters.command(["kick","dkick","skick") & ~filters.private)
+@bot_admin
+@bot_can_ban
+@user_admin
+@user_can_ban
+async def _kick(_, message):
+    chat_id = message.chat.id    
+    user_id = await extract_user_id(message)
+    administrators = []
+    async for m in pgram.get_chat_members(chat_id, filter=enums.ChatMembersFilter.ADMINISTRATORS):
+        administrators.append(m.user.id)            
 
-
-            
+    if not user_id:
+        await message.reply_text("I ᴅᴏɴ'ᴛ ᴋɴᴏᴡ ᴡʜᴏ ʏᴏᴜ'ʀᴇ ᴛᴀʟᴋɪɴɢ ᴀʙᴏᴜᴛ, ʏᴏᴜ'ʀᴇ ɢᴏɪɴɢ ᴛᴏ ɴᴇᴇᴅ ᴛᴏ sᴘᴇᴄɪғʏ ᴀ ᴜsᴇʀ...!")
+        return 
+    if user_id == BOT_ID:
+        await message.reply_text("ɪ ᴄᴀɴ'ᴛ ᴋɪᴄᴋ ᴍʏsᴇʟғ, ɪ ᴄᴀɴ ʟᴇᴀᴠᴇ ɪғ ʏᴏᴜ ᴡᴀɴᴛ.")
+        return 
+    if user_id in SUPREME_USERS:
+        await message.reply_text("ʜᴇ ɪs ᴍʏ ʙʀᴀ, ɪ ᴄᴀɴ'ᴛ ɢᴇᴛ ᴀɢᴀɪɴsᴛ ᴍʏ ʙʀᴀ ᴏᴋ ᴍᴏᴛʜᴇʀ ғ*ᴋᴇʀ")
+        return 
+    if user_id in administrators:
+        await message.reply_text(f"ʜᴏᴡ ᴀᴍ ɪ sᴜᴘᴘᴏsᴇᴅ ᴛᴏ ᴋɪᴄᴋ ᴀɴ ᴀᴅᴍɪɴ. ᴛʜɪɴᴋ {message.from_user.mention} ᴛʜɪɴᴋ.")
+        return 
+    try:
+        mention = (await pgran.get_users(user_id)).mention
+    except IndexError:
+        mention = (
+            message.reply_to_message.sender_chat.title
+            if message.reply_to_message
+            else "Anon"
+        )    
+    text = fᴋɪᴄᴋᴇᴅ\n✨ ᴋɪᴄᴋᴇᴅ ʙʏ: {message.from_user.mention}\n💥 ᴜsᴇʀ: {mention}"
+      
+    if message.command[0] == "kick":
+        try:
+            await pgram.ban_chat_member(chat_id,user_id) 
+            await pgram.unban_chat_member(chat_id,user_id)
+            await message.reply_text(text)
+        except BadRequest as err :
+            await message.reply_text(err)
+    if message.command[0] == "dkick":  
+        try:
+            await message.reply_to_message.delete()
+            await pgram.ban_chat_member(chat_id,user_id) 
+            await pgram.unban_chat_member(chat_id,user_id)
+            await message.reply_text(text)
+        except BadRequest as err :
+            await message.reply_text(err) 
+    if message.command[0] == "skick":
+        try:
+            await message.reply_to_message.delete()
+            await message.delete()
+            await pgram.ban_chat_member(chat_id,user_id) 
+            await pgram.unban_chat_member(chat_id,user_id)            
+        except BadRequest as err :
+            await message.reply_text(err)        
+     
+    
