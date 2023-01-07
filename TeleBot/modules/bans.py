@@ -51,7 +51,7 @@ async def _ban(_, message):
         await message.reply_text("ʜᴇ ɪs ʙʀᴀ, ɪ ᴄᴀɴ'ᴛ ɢᴇᴛ ᴀɢᴀɪɴsᴛ ᴍʏ ʙʀᴀ ᴏᴋ ᴍᴏᴛʜᴇʀ ғ*ᴋᴇʀ")
         return
     if user_id in administrators:
-        await message.reply_text(f"ʜᴏᴡ ᴀᴍ I sᴜᴘᴘᴏsᴇᴅ ᴛᴏ ʙᴀɴ ᴀɴ ᴀᴅᴍɪɴ. ᴛʜɪɴᴋ {message.from_user.mention} ᴛʜɪɴᴋ.)
+        await message.reply_text(f"ʜᴏᴡ ᴀᴍ I sᴜᴘᴘᴏsᴇᴅ ᴛᴏ ʙᴀɴ ᴀɴ ᴀᴅᴍɪɴ. ᴛʜɪɴᴋ {message.from_user.mention} ᴛʜɪɴᴋ.")
     try :
         mention = (await pgram.get_users(user_id)).mention
     except IndexError:
