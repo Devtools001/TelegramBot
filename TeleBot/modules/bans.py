@@ -178,7 +178,7 @@ async def _unban(_, message):
     admin = message.from_user.mention
     if (replied 
         and replies.sender_chat 
-        and replied.sender_chat != chat_id:
+        and replied.sender_chat != chat_id):
         await message.reply_text("ʏᴏᴜ ᴄᴀɴɴᴏᴛ ᴜɴʙᴀɴ ᴀ ᴄʜᴀɴɴᴇʟ")
         return
     if len(message.command) == 2:
