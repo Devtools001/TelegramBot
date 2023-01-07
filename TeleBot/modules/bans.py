@@ -75,11 +75,11 @@ async def _ban(_, message):
             time_value = split[0]
             temp_reason = split[1] if len(split) > 1 else ""
             temp_ban = await time_converter(message, time_value)
-            msg += f"**Banned For:** {time_value}\n"
+            msg += f"**Banned For:** {time_value}\n"         
+            if temp_reason:
+               msg += f"**Reason:** {temp_reason}"
         except Exception as e:
            print(e) 
-        if temp_reason:
-            msg += f"**Reason:** {temp_reason}"
         with suppress(AttributeError):
             if len(time_value[:-1]) < 3:
                 await pgram.ban_chat_member(chat_iduser_id, until_date=temp_ban)
