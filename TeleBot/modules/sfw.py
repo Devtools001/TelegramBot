@@ -183,7 +183,7 @@ async def waifu(_,msg):
     await msg.reply_video(kill)
 
 
-@app.on_message(filters.command("kick"))
+@app.on_message(filters.command("kic"))
 async def waifu(_,msg):
     url="https://api.waifu.pics/sfw/kick"
     re=requests.get(url).json()    
