@@ -230,7 +230,7 @@ async def _kick(_, message):
             if message.reply_to_message
             else "Anon"
         )    
-    text = fᴋɪᴄᴋᴇᴅ\n✨ ᴋɪᴄᴋᴇᴅ ʙʏ: {message.from_user.mention}\n💥 ᴜsᴇʀ: {mention}"
+    text = f"ᴋɪᴄᴋᴇᴅ\n✨ ᴋɪᴄᴋᴇᴅ ʙʏ: {message.from_user.mention}\n💥 ᴜsᴇʀ: {mention}"
       
     if message.command[0] == "kick":
         try:
