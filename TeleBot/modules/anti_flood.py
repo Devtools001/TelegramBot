@@ -2,8 +2,7 @@ from TeleBot import pgram
 from TeleBot.modules.pyrogram_funcs.status import (
     bot_admin,
     bot_can_ban,
-    user_admin,
-    user_can_ban
+    user_admin    
     )
 from TeleBot.modules.mongo.flood_mongo import (
     get_antiflood_mode,
@@ -13,16 +12,31 @@ from TeleBot.modules.mongo.flood_mongo import (
 from TeleBot.helpers.time_checker import time_string_helper
 
 @pgram.on_message(filters.command("flood"))
-@bot_admin,
-@bot_can_ban,
-@user_admin,
-@user_can_ban
+@bot_admin
+@bot_can_ban
+@user_admin
 async def _flood(_, message):
     chat_id = message.chat.id
     if not await get_flood(chat_id):
         return await message.reply_text("Tʜɪs ᴄʜᴀᴛ ɪsɴ'ᴛ ᴄᴜʀʀᴇɴᴛʟʏ ᴇɴғᴏʀᴄɪɴɢ ғʟᴏᴏᴅ ᴄᴏɴᴛʀᴏʟ")
-    
-        
+
+    FLOOD_LIMIT = get_floodlimit(chat_id)
+    FLOOD_MODE, FLOOD_TIME = get_antiflood_mode(chat_id)
+    text = ғ"Tʜɪs ᴄʜᴀᴛ ɪs ᴄᴜʀʀᴇɴᴛʟʏ ᴇɴғᴏʀᴄɪɴɢ ғʟᴏᴏᴅ ᴄᴏɴᴛʀᴏʟ ᴀғᴛᴇʀ {FLOOD_LIMIT} ᴍᴇssᴀɢᴇs." 
+    if FLOOD_MODE == 1:
+        text += "Aɴʏ ᴜsᴇʀ ᴛʜᴀᴛ sᴇɴᴅs ᴍᴏʀᴇ ᴛʜᴀɴ ᴛʜᴀᴛ ᴀᴍᴏᴜɴᴛ ᴏғ ᴍᴇssᴀɢᴇs ᴡɪʟʟ ʙᴇ ʙᴀɴɴᴇᴅ." 
+    elif FLOOD_MODE == 2:
+        text += "Any user that sends more than that amount of messages will be muted."
+    elif FLOOD_MODE == 3:
+        text += "Any user that sends more than that amount of messages will be kicked."
+    elif FLOOD_MODE == 4:
+        time_limit, time_format = time_string_helper(FLOOD_TIME)
+        text += f"Any user that sends more than that amount of messages will be temporarily banned for {time_limit} {time_format}."
+    elif FLOOD_MODE == 5:
+        time_limit, time_format = time_string_helper(FLOOD_TIME)
+        text += f"Any user that sends more than that amount of messages will be temporarily muted for {time_limit} {time_format}."
+
+    await message.reply_text(text)   
 
 __help__ = """
 ⸢*ᴀɴᴛɪғʟᴏᴏᴅ* ᴀʟʟᴏᴡs ʏᴏᴜ ᴛᴏ ᴛᴀᴋᴇ ᴀᴄᴛɪᴏɴ ᴏɴ ᴜsᴇʀs ᴛʜᴀᴛ sᴇɴᴅ ᴍᴏʀᴇ ᴛʜᴀɴ x ᴍᴇssᴀɢᴇs ɪɴ ᴀ ʀᴏᴡ. ᴇxᴄᴇᴇᴅɪɴɢ ᴛʜᴇ sᴇᴛ ғʟᴏᴏᴅ ᴡɪʟʟ ʀᴇsᴜʟᴛ ɪɴ ʀᴇsᴛʀɪᴄᴛɪɴɢ ᴛʜᴀᴛ ᴜsᴇʀ.
