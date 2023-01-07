@@ -268,7 +268,9 @@ async def _kick(_, message):
     administrators = []
     async for m in pgram.get_chat_members(chat_id, filter=enums.ChatMembersFilter.ADMINISTRATORS):
         administrators.append(m.user.id)            
-
+    res_users = []
+    async for m in pgram.get_chat_members(chat_id, filter=enums.ChatMembersFilter.RESTRICTED):
+        res_users.append(m.user.id)
     if not user_id:
         await message.reply_text("I ᴅᴏɴ'ᴛ ᴋɴᴏᴡ ᴡʜᴏ ʏᴏᴜ'ʀᴇ ᴛᴀʟᴋɪɴɢ ᴀʙᴏᴜᴛ, ʏᴏᴜ'ʀᴇ ɢᴏɪɴɢ ᴛᴏ ɴᴇᴇᴅ ᴛᴏ sᴘᴇᴄɪғʏ ᴀ ᴜsᴇʀ...!")
         return 
@@ -281,6 +283,9 @@ async def _kick(_, message):
     if user_id in administrators:
         await message.reply_text(f"ʜᴏᴡ ᴀᴍ ɪ sᴜᴘᴘᴏsᴇᴅ ᴛᴏ ᴍᴜᴛᴇ ᴀɴ ᴀᴅᴍɪɴ. ᴛʜɪɴᴋ {message.from_user.mention} ᴛʜɪɴᴋ.")
         return 
+    if user_id in res_users:
+        await message.reply_text("ᴛʜɪs ᴜsᴇʀ ɪs ᴀʟʀᴇᴀᴅʏ ᴍᴜᴛᴇᴅ")
+        return  
     try:
         mention = (await pgram.get_users(user_id)).mention
     except IndexError:
@@ -331,7 +336,7 @@ async def _unmute(_, message):
     user = await extract_user_id(message)
     res_users = []
     async for m in pgram.get_chat_members(chat_id, filter=enums.ChatMembersFilter.RESTRICTED):
-        banned_users.append(m.user.id)
+        res_users.append(m.user.id)
     if (replied
         and replied.sender_chat 
         and replied.sender_chat != chat_id):
