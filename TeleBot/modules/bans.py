@@ -176,18 +176,21 @@ async def _unban(_, message):
     chat_id = message.chat.id
     replied = message.reply_to_message
     admin = message.from_user.mention
+    user = await get_user_id(message)
+    banned_users = []
+    async for m in app.get_chat_members(chat_id, filter=enums.ChatMembersFilter.BANNED):
+        banned_users.append(m.user.id)
     if (replied
         and replied.sender_chat 
         and replied.sender_chat != chat_id):
         await message.reply_text("ʏᴏᴜ ᴄᴀɴɴᴏᴛ ᴜɴʙᴀɴ ᴀ ᴄʜᴀɴɴᴇʟ")
         return
-    if len(message.command) == 2:
-        user = message.text.split(None,1)[1]
-    if len(message.command) == 1 and replied:
-        user = replied.from_user.id
-    else:
-        await message.reply_text("ᴘʀᴏᴠɪᴅᴇ ᴀ ᴜsᴇʀɴᴀᴍᴇ ᴏʀ ʀᴇᴘʟʏ ᴛᴏ ᴀ ᴜsᴇʀ's ᴍᴇssᴀɢᴇ ᴛᴏ ᴜɴʙᴀɴ")
-    
+    if not user:
+        await message.reply_text("ɪ ᴅᴏᴜʙᴛ ᴛʜᴀᴛ's ᴀ ᴜsᴇʀ.")
+        return 
+    if user not in banned_users:
+        await message.reply_text("ʙʀᴜʜ ᴛʜɪs ᴘᴇʀsᴏɴ ɪs ɴᴏᴛ ʙᴀɴɴᴇᴅ.")
+
     try:
         await pgram.unban_chat_member(chat_id,user)
         umention = (await pgram.get_users(user)).mention
