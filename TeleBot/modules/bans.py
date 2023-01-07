@@ -298,16 +298,19 @@ async def _kick(_, message):
         except BadRequest as err :
             await message.reply_text(err)
     if message.command[0] == "dmute":  
-        try:
-            await message.reply_to_message.delete()
-            await pgram.restrict_chat_member(chat_id,user_id,ChatPermissions())
-            await message.reply_text(text)
-        except BadRequest as err :
-            await message.reply_text(err) 
+        if not message.reply_to_message:
+            await message.reply_text("ʀᴇᴘʟʏ ᴛᴏ sᴏᴍᴇᴏɴᴇ's ᴍᴇssᴀɢᴇ ʙᴀʙʏ ʙʏ ᴜsɪɴɢ ᴛʜɪs ᴄᴏᴍᴍᴀɴᴅ")
+        else:
+            try:
+                await message.reply_to_message.delete()
+                await pgram.restrict_chat_member(chat_id,user_id,ChatPermissions())
+                await message.reply_text(text)
+            except BadRequest as err :
+                await message.reply_text(err) 
     if message.command[0] == "smute":
         try:
-            await message.reply_to_message.delete()
             await message.delete()
+            await message.reply_to_message.delete()
             await pgram.restrict_chat_member(chat_id,user_id,ChatPermissions())            
         except BadRequest as err :
             await message.reply_text(err)        
