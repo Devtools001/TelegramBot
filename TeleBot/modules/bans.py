@@ -156,12 +156,7 @@ async def _tban(_, message):
     split = reason.split(None,1)
     time_value = split[0]
     temp_reason = split[1] if len(split) > 1 else ""
-    temp_ban = await time_converter(message, time_value) 
-    text = (
-        f"**🚨 Bᴀɴɴᴇᴅ Usᴇʀ:** {mention}\n"
-        f"**🎎 Bᴀɴɴᴇᴅ Bʏ::** {message.from_user.mention if message.from_user else 'Anon'}\n"
-    )   
-    temp_ban = await time_converter(message, time_value)
+    temp_ban = await time_converter(message, time_value)    
     text += f"**🎣 Bᴀɴɴᴇᴅ Fᴏʀ:** {time_value}\n" 
     if temp_reason:
         text += f"**💌 Rᴇᴀsᴏɴ:** {temp_reason}" 
