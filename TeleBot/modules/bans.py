@@ -34,7 +34,7 @@ async def extract_time(message, time_val):
             return ""
         return bantime
     else:
-       await message.reply_text(
+        await message.reply_text(
             "Invalid time type specified. Expected m,h, or d, got: {}".format(
                 time_val[-1]
             )
