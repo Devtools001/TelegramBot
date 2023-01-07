@@ -4,6 +4,24 @@ from typing import Union
 
 antiflood = db.antiflood
 
+async def get_antiflood_mode(chat_id):
+    antiflood_data = antiflood.find_one({"chat_id":chat_id})
+    if antiflood_data is not None:
+        FloodMode = antiflood_data['flood_mode']['flood_mode']
+        Flood_until_time = antiflood_data['flood_mode']['until_time']
+        return (
+            FloodMode,
+            Flood_until_time
+        )
+    else:
+        FloodMode = 1
+        Flood_until_time = None
+        return (
+            FloodMode,
+            Flood_until_time
+        )
+
+
 async def set_flood_mode(chat_id : int,mode,time=None):
     antiflood_data = antiflood.find_one({"chat_id":chat_id})
     if antiflood_data is None:
