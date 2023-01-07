@@ -19,10 +19,13 @@ async def _kickme(_, message):
     if user_id in administrators:
         await message.reply_text("I ᴡɪsʜ I ᴄᴏᴜʟᴅ... ʙᴜᴛ ʏᴏᴜ'ʀᴇ ᴀɴ ᴀᴅᴍɪɴ.")
         return
-    
-    bam = await pgram.unban_chat_member(chat_id, user_id)
-    if bam:
+    try:
+        await pgram.ban_chat_member(chat_id, user_id)
+        await pgram.unban_chat_member(chat_id, user_id)
         await message.reply_text("*ᴋɪᴄᴋs ʏᴏᴜ ᴏᴜᴛ ᴏғ ᴛʜᴇ ɢʀᴏᴜᴘ*")
-    else:
-        await message.reply_text("Hᴜʜ? I ᴄᴀɴ'ᴛ :/")
-        return     
+    except Exception as error:
+        await message.reply_text(error)
+       
+         
+
+         
