@@ -147,7 +147,7 @@ async def _tban(_, message):
     split_reason = reason.split(None, 1)
     time_val = split_reason[0].lower()
     reason = split_reason[1] if len(split_reason) > 1 else ""
-    tame = await time_converter(message, time_val)
+    tame = await extract_time(message, time_val)
     try:
         await pgram.ban_chat_member(chat_id,user_id,tame)
         await message.reply_text(            
