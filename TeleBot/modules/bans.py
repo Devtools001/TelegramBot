@@ -6,7 +6,7 @@ from TeleBot.modules.pyrogram_funcs.status import (
     user_admin,
     user_can_ban )
 from TeleBot.modules.pyrogram_funcs.extracting_id import get_id_reason_or_rank
-
+from TeleBot.helpers.funcs import time_converter
 SUPREME_USERS = DEV_USERS + DRAGONS
 
 @pgram.on_message(filters.command("kickme") & ~filters.private)
@@ -148,15 +148,34 @@ async def _tban(_, message):
             if message.reply_to_message
             else "Anon"
         )    
-                          
+         
+    text = (
+        f"**🚨 Bᴀɴɴᴇᴅ Usᴇʀ:** {mention}\n"
+        f"**🎎 Bᴀɴɴᴇᴅ Bʏ::** {message.from_user.mention if message.from_user else 'Anon'}\n"
+     )                    
     split = reason.split(None,1)
     time_value = split[0]
     temp_reason = split[1] if len(split) > 1 else ""
     temp_ban = await time_converter(message, time_value) 
     text = (
         f"**🚨 Bᴀɴɴᴇᴅ Usᴇʀ:** {mention}\n"
-        f"**Banned By:** {message.from_user.mention if message.from_user else 'Anon'}\n"
-    )        
+        f"**🎎 Bᴀɴɴᴇᴅ Bʏ::** {message.from_user.mention if message.from_user else 'Anon'}\n"
+    )   
+    temp_ban = await time_converter(message, time_value)
+    text += f"**🎣 Bᴀɴɴᴇᴅ Fᴏʀ:** {time_value}\n" 
+    if temp_reason:
+        text += f"**💌 Rᴇᴀsᴏɴ:** {temp_reason}" 
+    with suppress(AttributeError):
+            if len(time_value[:-1]) < 3:
+                await pgram.ban_chat_member(chat_id,user_id, until_date=temp_ban)
+                await message.reply_text(text)
+            else:
+                await message.reply_text("ʏᴏᴜ ᴄᴀɴ'ᴛ ᴜsᴇ ᴍᴏʀᴇ ᴛʜᴀɴ 𝟿𝟿")
+        return
+    if reason:
+        text += f"**💌 Rᴇᴀsᴏɴ:** {reason}"
+    await pgram.ban_chat_member(chat_id,user_id)
+    await message.reply_text(text)   
                  
             
        
