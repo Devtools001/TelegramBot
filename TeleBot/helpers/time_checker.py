@@ -1,4 +1,4 @@
-from TeleBot.helpers.convert convert_time
+from TeleBot.helpers.convert import convert_time
 
 
 async def check_time(message, args) -> bool:
