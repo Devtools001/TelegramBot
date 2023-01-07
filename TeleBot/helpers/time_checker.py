@@ -8,11 +8,15 @@ async def check_time(message, args) -> bool:
         )
         return
         
-    if len(args) == 1:           
-        await message.reply_text(f"ғᴀɪʟᴇᴅ ᴛᴏ ɢᴇᴛ sᴘᴇᴄɪғɪᴇᴅ ᴛɪᴍᴇ:: '{args[-1]}' ᴅᴏᴇs ɴᴏᴛ ғᴏʟʟᴏᴡ ᴛʜᴇ ᴇxᴘᴇᴄᴛᴇᴅ ᴛɪᴍᴇ ᴘᴀᴛᴛᴇʀɴs.\nExᴀᴍᴘʟᴇ ᴛɪᴍᴇ ᴠᴀʟᴜᴇs: 𝟺ᴍ = 𝟺 ᴍɪɴᴜᴛᴇs, 𝟹ʜ = 𝟹 ʜᴏᴜʀs, 𝟼ᴅ = 𝟼 ᴅᴀʏs, 𝟻ᴡ = 𝟻 ᴡᴇᴇᴋs".)
-                
-            
-        
+    if (
+        len(args) == 1
+    ):
+        await message.reply(
+            (
+                f"failed to get specified time: '{args[-1]}' does not follow the expected time patterns.\n"
+                "Example time values: 4m = 4 minutes, 3h = 3 hours, 6d = 6 days, 5w = 5 weeks."
+            )
+        )
         return False
 
     elif len(args) > 1:
