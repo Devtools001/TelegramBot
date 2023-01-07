@@ -30,10 +30,10 @@ async def _flood(_, message):
     elif FLOOD_MODE == 3:
         text += "Any user that sends more than that amount of messages will be kicked."
     elif FLOOD_MODE == 4:
-        time_limit, time_format = time_string_helper(FLOOD_TIME)
+        time_limit, time_format = await time_string_helper(FLOOD_TIME)
         text += f"Any user that sends more than that amount of messages will be temporarily banned for {time_limit} {time_format}."
     elif FLOOD_MODE == 5:
-        time_limit, time_format = time_string_helper(FLOOD_TIME)
+        time_limit, time_format = await time_string_helper(FLOOD_TIME)
         text += f"Any user that sends more than that amount of messages will be temporarily muted for {time_limit} {time_format}."
 
     await message.reply_text(text)   
