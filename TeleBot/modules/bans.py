@@ -198,7 +198,7 @@ async def _unban(_, message):
         except BadRequest as ok:
             await message.reply_text(ok)
         
-@pgram.on_message(filters.command(["kick","dkick","skick") & ~filters.private)
+@pgram.on_message(filters.command(["kick","dkick","skick"]) & ~filters.private)
 @bot_admin
 @bot_can_ban
 @user_admin
