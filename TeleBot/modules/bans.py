@@ -178,7 +178,7 @@ async def _unban(_, message):
     admin = message.from_user.mention
     user = await extract_user_id(message)
     banned_users = []
-    async for m in app.get_chat_members(chat_id, filter=enums.ChatMembersFilter.BANNED):
+    async for m in pgram.get_chat_members(chat_id, filter=enums.ChatMembersFilter.BANNED):
         banned_users.append(m.user.id)
     if (replied
         and replied.sender_chat 
