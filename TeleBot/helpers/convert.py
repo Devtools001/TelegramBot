@@ -2,6 +2,25 @@ import math
 from datetime import datetime,timedelta 
 from pyrogram.types import Message
  
+
+
+def convert_time(given_time: int, time_format: str):
+    week = 518400 # 518400 seconds in a week
+    day = 86400 # 86400 seconds in a day
+    hour = 3600 # 3600 seconds in a hour
+    minute = 60 # 60 seconds in a minute
+
+    if time_format == 'w':
+        cal_time = given_time * week 
+    elif time_format == 'd':
+        cal_time = given_time * day 
+    elif time_format == 'h':
+        cal_time = given_time * hour
+    elif time_format == 'm':
+        cal_time = given_time * minute
+    
+    return cal_time
+
 async def time_converter(message: Message, time_value: str) -> int:
     unit = ["m", "h", "d"]  # m == minutes | h == hours | d == days
     check_unit = "".join(list(filter(time_value[-1].lower().endswith, unit)))
