@@ -198,7 +198,7 @@ async def _unban(_, message):
         except BadRequest as ok:
             await message.reply_text(ok)
         
-@pgram.on_message(filters.command(["kick","dkick","skick"]) & ~filters.private)
+@pgram.on_message(filters.command(["kick","dkick","skick","punch"]) & ~filters.private)
 @bot_admin
 @bot_can_ban
 @user_admin
@@ -232,7 +232,7 @@ async def _kick(_, message):
         )    
     text = f"ᴋɪᴄᴋᴇᴅ\n✨ ᴋɪᴄᴋᴇᴅ ʙʏ: {message.from_user.mention}\n💥 ᴜsᴇʀ: {mention}"
       
-    if message.command[0] == "kick":
+    if message.command[0] in ["kick","punch"]:
         try:
             await pgram.ban_chat_member(chat_id,user_id) 
             await pgram.unban_chat_member(chat_id,user_id)
