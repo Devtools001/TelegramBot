@@ -8,7 +8,7 @@ async def check_time(message, args) -> bool:
         )
         return
         
-    if len(args) == 1'            
+    if len(args) == 1:           
         await message.reply(
             (
                 f"ғᴀɪʟᴇᴅ ᴛᴏ ɢᴇᴛ sᴘᴇᴄɪғɪᴇᴅ ᴛɪᴍᴇ:: '{args[-1]}' ᴅᴏᴇs ɴᴏᴛ ғᴏʟʟᴏᴡ ᴛʜᴇ ᴇxᴘᴇᴄᴛᴇᴅ ᴛɪᴍᴇ ᴘᴀᴛᴛᴇʀɴs.\n"
