@@ -148,7 +148,7 @@ async def _tban(_, message):
     reason = split_reason[1] if len(split_reason) > 1 else ""
     bantime = await extract_time(message, time_val)
     try:
-        await pgram.ban_chat_member(chat_id,user_id,bantime)
+        await pgram.ban_chat_member(chat_id,user_id,until_date=antime)
         await message.reply_text(            
             f"ʙᴀɴɴᴇᴅ! ᴜsᴇʀ {mention} "
             f"ɪs ɴᴏᴡ ʙᴀɴɴᴇᴅ ғᴏʀ {time_val}.",
@@ -158,7 +158,7 @@ async def _tban(_, message):
     except BadRequest as excp:
         if excp.message == "Reply message not found":
             # Do not reply
-            message.reply_text(
+            await message.reply_text(
                 f"Banned! User will be banned for {time_val}.")
             
             return 
