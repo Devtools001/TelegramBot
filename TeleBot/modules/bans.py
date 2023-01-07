@@ -7,7 +7,7 @@ from TeleBot.modules.pyrogram_funcs.status import (
     bot_can_ban,
     user_admin,
     user_can_ban )
-from TeleBot.modules.pyrogram_funcs.extracting_id import get_id_reason_or_rank,get_user_id
+from TeleBot.modules.pyrogram_funcs.extracting_id import get_id_reason_or_rank,extract_user_id
 from TeleBot.helpers.convert import time_converter,convert_time
 from contextlib import suppress
 from pyrogram.errors import BadRequest 
@@ -176,7 +176,7 @@ async def _unban(_, message):
     chat_id = message.chat.id
     replied = message.reply_to_message
     admin = message.from_user.mention
-    user = await get_user_id(message)
+    user = await extract_user_id(message)
     banned_users = []
     async for m in app.get_chat_members(chat_id, filter=enums.ChatMembersFilter.BANNED):
         banned_users.append(m.user.id)
