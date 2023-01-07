@@ -7,6 +7,8 @@ from TeleBot.modules.pyrogram_funcs.status import (
     user_can_ban )
 from TeleBot.modules.pyrogram_funcs.extracting_id import get_id_reason_or_rank
 from TeleBot.helpers.convert import time_converter
+from contextlib import suppress
+
 SUPREME_USERS = DEV_USERS + DRAGONS
 
 @pgram.on_message(filters.command("kickme") & ~filters.private)
