@@ -171,7 +171,7 @@ async def _tban(_, message):
                 await message.reply_text(text)
             else:
                 await message.reply_text("ʏᴏᴜ ᴄᴀɴ'ᴛ ᴜsᴇ ᴍᴏʀᴇ ᴛʜᴀɴ 𝟿𝟿")
-        return
+            return
     if reason:
         text += f"**💌 Rᴇᴀsᴏɴ:** {reason}"
     await pgram.ban_chat_member(chat_id,user_id)
