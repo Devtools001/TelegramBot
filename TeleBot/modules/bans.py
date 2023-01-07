@@ -32,7 +32,7 @@ async def _kickme(_, message):
         await message.reply_text(error)
        
          
-@pgram.on_message(filters.command(["ban","sban","dban","tban"]) & ~filters.private)
+@pgram.on_message(filters.command(["ban","sban","dban"]) & ~filters.private)
 @bot_admin
 @bot_can_ban
 @user_admin
@@ -63,37 +63,20 @@ async def _ban(_, message):
             else "Anon"
         )
     
-    msg = (
-        f"**Banned User:** {mention}\n"
-        f"**Banned By:** {message.from_user.mention if message.from_user else 'Anon'}\n"
-    )
+    if message.command[0] == "ban":
+        await pgram.ban_chat_member(chat_id, user_id)
+        await message.reply_text(f"🚨 Bᴀɴɴᴇᴅ Usᴇʀ: {mention}\n🎎 Bᴀɴɴᴇᴅ Bʏ: {message.from_user.mention if message.from_user else 'Anon'}\n")        
+    if message.command[0] == "sban":
+        await message.delete()
+        await message.reply_to_message.delete()
+        await pgram.ban_chat_member(chat_id, user_id)
     if message.command[0] == "dban":
         await message.reply_to_message.delete()
-    if message.command[0] == "tban":
-        try:
-            split = reason.split(None, 1)
-            time_value = split[0]
-            temp_reason = split[1] if len(split) > 1 else ""
-            temp_ban = await time_converter(message, time_value)
-            msg += f"**Banned For:** {time_value}\n"         
-            if temp_reason:
-               msg += f"**Reason:** {temp_reason}"
-        except Exception as e:
-           print(e) 
-        with suppress(AttributeError):
-            if len(time_value[:-1]) < 3:
-                await pgram.ban_chat_member(chat_iduser_id, until_date=temp_ban)
-                await message.reply_text(msg)
-            else:
-                await message.reply_text("You can't use more than 99")
-        return
-    if reason:
-        msg += f"**Reason:** {reason}"
-    await pgram.ban_chat_member(chat_id,user_id)
-    await message.reply_text(msg)
+        await pgram.ban_chat_member(chat_id, user_id)
+        await message.reply_text(f"🚨 Bᴀɴɴᴇᴅ Usᴇʀ: {mention}\n🎎 Bᴀɴɴᴇᴅ Bʏ: {message.from_user.mention if message.from_user else 'Anon'}\n")    
     
             
-@pgram.on_message(filters.command("ktban") & ~filters.private)
+@pgram.on_message(filters.command("tban") & ~filters.private)
 @bot_admin
 @bot_can_ban
 @user_admin
@@ -142,10 +125,10 @@ async def _tban(_, message):
             else:
                 await message.reply_text("ʏᴏᴜ ᴄᴀɴ'ᴛ ᴜsᴇ ᴍᴏʀᴇ ᴛʜᴀɴ 𝟿𝟿")
             return
-    if reason:
-        text += f"**💌 Rᴇᴀsᴏɴ:** {reason}"
-    await pgram.ban_chat_member(chat_id,user_id,until_date=temp_ban)
-    await message.reply_text(text)   
+ #   if reason:
+ #       text += f"**💌 Rᴇᴀsᴏɴ:** {reason}"
+  #  await pgram.ban_chat_member(chat_id,user_id,until_date=temp_ban)
+ #   await message.reply_text(text)   
                  
             
        
