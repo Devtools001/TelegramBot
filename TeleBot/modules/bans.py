@@ -34,7 +34,7 @@ async def extract_time(message, time_val):
             return ""
         return bantime
     else:
-        message.reply_text(
+       await message.reply_text(
             "Invalid time type specified. Expected m,h, or d, got: {}".format(
                 time_val[-1]
             )
@@ -109,7 +109,7 @@ async def _ban(_, message):
         await message.reply_text(f"🚨 Bᴀɴɴᴇᴅ Usᴇʀ: {mention}\n🎎 Bᴀɴɴᴇᴅ Bʏ: {message.from_user.mention if message.from_user else 'Anon'}\n")    
     
             
-@pgram.on_message(filters.command("ktban") & ~filters.private)
+@pgram.on_message(filters.command("tban") & ~filters.private)
 @bot_admin
 @bot_can_ban
 @user_admin
@@ -153,7 +153,7 @@ async def _tban(_, message):
         await message.reply_text(            
             f"ʙᴀɴɴᴇᴅ! ᴜsᴇʀ {mention} "
             f"ɪs ɴᴏᴡ ʙᴀɴɴᴇᴅ ғᴏʀ {time_val}.",
-            parse_mode=enums.ParseMode.HTML,
+            
         )
         return 
     except BadRequest as excp:
@@ -168,39 +168,5 @@ async def _tban(_, message):
 
        
 
-@pgram.on_message(filters.command("tban"))
-async def tban(client, message):
 
-    chat_id = message.chat.id 
-    chat_title = message.chat.title   
-    
-    user_id , reason = await get_id_reason_or_rank(message, sender_chat=True)
-    #user_id = user_info.id
-    
-    if user_id == BOT_ID:
-        await message.reply(
-            "I don't plan to ban myself. NO."
-        )
-        return
-
-    
-    
-    time_args = await get_time(message)
-    if time_args:
-        cal_time = convert_time(int(time_args[:-1]), time_args[-1])
-        until_time = int(time.time() + int(cal_time))
-        await pgram.ban_chat_member(
-            chat_id=chat_id,
-            user_id=user_id,
-            until_date=until_time
-            )
-        
-        time_limit, time_format = await time_string_helper(time_args)
-
-        text = f"{user_info.mention} was banned for {time_limit} {time_format}.\n"
-        raw_reason = get_text(message)
-        reason = ' '.join(raw_reason.split()[1:])
-        if reason:
-            text += f"Reason: {reason}"
-        await message.reply(text)
             
