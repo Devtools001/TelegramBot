@@ -257,7 +257,7 @@ async def _kick(_, message):
         except BadRequest as err :
             await message.reply_text(err)        
      
-@pgram.on_message(filters.command(["mute","dmute","smute","unmute"]) & ~filters.private)
+@pgram.on_message(filters.command(["mute","dmute","smute"]) & ~filters.private)
 @bot_admin
 @bot_can_ban
 @user_admin
