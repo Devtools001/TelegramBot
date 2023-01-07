@@ -70,11 +70,14 @@ async def _ban(_, message):
     if message.command[0] == "dban":
         await message.reply_to_message.delete()
     if message.command[0] == "tban":
-        split = reason.split(None, 1)
-        time_value = split[0]
-        temp_reason = split[1] if len(split) > 1 else ""
-        temp_ban = await time_converter(message, time_value)
-        msg += f"**Banned For:** {time_value}\n"
+        try:
+            split = reason.split(None, 1)
+            time_value = split[0]
+            temp_reason = split[1] if len(split) > 1 else ""
+            temp_ban = await time_converter(message, time_value)
+            msg += f"**Banned For:** {time_value}\n"
+        except Exception as e:
+           print(e) 
         if temp_reason:
             msg += f"**Reason:** {temp_reason}"
         with suppress(AttributeError):
