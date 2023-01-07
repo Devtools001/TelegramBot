@@ -22,7 +22,7 @@ async def _flood(_, message):
 
     FLOOD_LIMIT = get_floodlimit(chat_id)
     FLOOD_MODE, FLOOD_TIME = get_antiflood_mode(chat_id)
-    text = ғ"Tʜɪs ᴄʜᴀᴛ ɪs ᴄᴜʀʀᴇɴᴛʟʏ ᴇɴғᴏʀᴄɪɴɢ ғʟᴏᴏᴅ ᴄᴏɴᴛʀᴏʟ ᴀғᴛᴇʀ {FLOOD_LIMIT} ᴍᴇssᴀɢᴇs." 
+    text = (ғ"Tʜɪs ᴄʜᴀᴛ ɪs ᴄᴜʀʀᴇɴᴛʟʏ ᴇɴғᴏʀᴄɪɴɢ ғʟᴏᴏᴅ ᴄᴏɴᴛʀᴏʟ ᴀғᴛᴇʀ {FLOOD_LIMIT} ᴍᴇssᴀɢᴇs.") 
     if FLOOD_MODE == 1:
         text += "Aɴʏ ᴜsᴇʀ ᴛʜᴀᴛ sᴇɴᴅs ᴍᴏʀᴇ ᴛʜᴀɴ ᴛʜᴀᴛ ᴀᴍᴏᴜɴᴛ ᴏғ ᴍᴇssᴀɢᴇs ᴡɪʟʟ ʙᴇ ʙᴀɴɴᴇᴅ." 
     elif FLOOD_MODE == 2:
