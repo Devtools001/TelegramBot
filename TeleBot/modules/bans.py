@@ -190,13 +190,13 @@ async def _unban(_, message):
         return 
     if user not in banned_users:
         await message.reply_text("ʙʀᴜʜ ᴛʜɪs ᴘᴇʀsᴏɴ ɪs ɴᴏᴛ ʙᴀɴɴᴇᴅ.")
-
-    try:
-        await pgram.unban_chat_member(chat_id,user)
-        umention = (await pgram.get_users(user)).mention
-        await message.reply_text(f"ᴜɴʙᴀɴɴᴇᴅ ᴜsᴇʀ : {umention}\nᴜɴʙᴀɴɴᴇᴅ ʙʏ : {admin}")
-    except BadRequest as ok:
-        await message.reply_text(ok)
+    else :
+        try:
+            await pgram.unban_chat_member(chat_id,user)
+            umention = (await pgram.get_users(user)).mention
+            await message.reply_text(f"🍵 ᴜɴʙᴀɴɴᴇᴅ ᴜsᴇʀ : {umention}\n🎎 ᴜɴʙᴀɴɴᴇᴅ ʙʏ : {admin}")
+        except BadRequest as ok:
+            await message.reply_text(ok)
         
 
 
