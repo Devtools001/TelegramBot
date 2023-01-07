@@ -140,17 +140,17 @@ async def _tban(_, message):
         )    
          
     if not reason:
-        message.reply_text("You haven't specified a time to ban this user for!")
-        return log_message
+        await message.reply_text("You haven't specified a time to ban this user for!")
+        return 
 
     split_reason = reason.split(None, 1)
     time_val = split_reason[0].lower()
     reason = split_reason[1] if len(split_reason) > 1 else ""
-    bantime = extract_time(message, time_val)
+    bantime = await extract_time(message, time_val)
     try:
         await pgram.ban_chat_member(chat_id,user_id,bantime)
         await message.reply_text(            
-            f"ʙᴀɴɴᴇᴅ! ᴜsᴇʀ {mention_html(member.user.id, html.escape(member.user.first_name))} "
+            f"ʙᴀɴɴᴇᴅ! ᴜsᴇʀ {mention} "
             f"ɪs ɴᴏᴡ ʙᴀɴɴᴇᴅ ғᴏʀ {time_val}.",
             parse_mode=enums.ParseMode.HTML,
         )
