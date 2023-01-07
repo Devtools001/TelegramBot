@@ -167,6 +167,34 @@ async def _tban(_, message):
            await message.reply_text("Well damn, I can't ban that user.")
 
        
+@pgram.on_message(filters.command("unban") & ~filters.private))
+@bot_admin
+@bot_can_ban
+@user_admin
+@user_can_ban
+async def _unban(_, message):
+    chat_id = message.chat.id
+    replied = message.reply_to_message
+    admin = message.from_user.mention
+    if (replied 
+        and replies.sender_chat 
+        and replied.sender_chat != chat_id:
+        await message.reply_text("ʏᴏᴜ ᴄᴀɴɴᴏᴛ ᴜɴʙᴀɴ ᴀ ᴄʜᴀɴɴᴇʟ")
+        return
+    if len(message.command) == 2:
+        user = message.text.split(None,1)[1]
+    if len(message.command) == 1 and replied:
+        user = replied.from_user.id
+    else:
+        await message.reply_text("ᴘʀᴏᴠɪᴅᴇ ᴀ ᴜsᴇʀɴᴀᴍᴇ ᴏʀ ʀᴇᴘʟʏ ᴛᴏ ᴀ ᴜsᴇʀ's ᴍᴇssᴀɢᴇ ᴛᴏ ᴜɴʙᴀɴ")
+    
+    try:
+        await pgram.unban_chat_member(chat_id,user)
+        umention = (await pgram.get_users(user)).mention
+        await message.reply_text(f"ᴜɴʙᴀɴɴᴇᴅ ᴜsᴇʀ : {umention}\nᴜɴʙᴀɴɴᴇᴅ ʙʏ : {admin}")
+    except BadRequest as ok:
+        await message.reply_text(ok)
+        
 
 
             
