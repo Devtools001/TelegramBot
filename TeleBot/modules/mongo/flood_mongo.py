@@ -85,7 +85,7 @@ async def setflood_db(chat_id: int, flood_arg: Union[int, bool]):
                 }
             }
         )
-       else:
+    else:
            if isinstance(flood_arg, int):
                set_key = {
                     'flood_limit': flood_arg,
