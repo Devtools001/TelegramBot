@@ -7,7 +7,7 @@ from TeleBot.modules.pyrogram_funcs.status import (
     bot_can_ban,
     user_admin,
     user_can_ban )
-from TeleBot.modules.pyrogram_funcs.extracting_id import get_id_reason_or_rank
+from TeleBot.modules.pyrogram_funcs.extracting_id import get_id_reason_or_rank,get_user_id
 from TeleBot.helpers.convert import time_converter,convert_time
 from contextlib import suppress
 from pyrogram.errors import BadRequest 
