@@ -62,9 +62,7 @@ async def _ban(_, message):
         )
     if message.command == "ban":
         await pgram.ban_chat_member(chat_id, user_id)
-        await message.reply_text("
-              f"**🚨 Bᴀɴɴᴇᴅ Usᴇʀ:** {mention}\n"
-              f"**🎎 Bᴀɴɴᴇᴅ Bʏ:** {message.from_user.mention if message.from_user else 'Anon'}\n")
+        await message.reply_text(f"**🚨 Bᴀɴɴᴇᴅ Usᴇʀ:** {mention}\n**🎎 Bᴀɴɴᴇᴅ Bʏ:** {message.from_user.mention if message.from_user else 'Anon'}\n")
     if message.command == "sban":
         await message.reply_to_message.delete()
         await pgram.ban_chat_member(chat_id, user_id)
