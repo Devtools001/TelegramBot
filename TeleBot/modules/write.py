@@ -1,6 +1,9 @@
 import requests
 from TeleBot import pgram,BOT_NAME,BOT_USERNAME
 from pyrogram import filters, enums 
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup 
+
+
 
 @pgram.on_message(filters.command("write"))
 async def _write(_, message):
