@@ -120,7 +120,7 @@ async def active_afk(_, message: Message):
                 "reason": None,
             }
         else:
-            await app.download_media(
+            await pgram.download_media(
                 message.reply_to_message, file_name=f"{user_id}.jpg"
             )
             details = {
