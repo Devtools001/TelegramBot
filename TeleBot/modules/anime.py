@@ -102,11 +102,11 @@ async def _anime(_, message):
     if json:        
         json = json['data']['Media']
         print(json['startDate']['year'])
-        msg = f"**{json['title']['romaji']}** *-* **({json['title']['native']})**\n\n**• Type**: {json['format']}\n**• Status**: {json['status']}\n**• Episodes**: {json.get('episodes', 'N/A')}\n**• Duration**: {json.get('duration', 'N/A')} Per Ep.\n**• Score**: {json['averageScore']}\n**• Genres**: `"
+        msg = f"**📀 ᴛɪᴛʟᴇ » {json['title']['romaji']}** ┌⁠(⁠・⁠。⁠・⁠)⁠┘⁠♪ **({json['title']['native']})**\n\n**• 🎣 ᴛʏᴘᴇ »** {json['format']}\n**• ⚡sᴛᴀᴛᴜs »** {json['status']}\n**• ✨ ᴇᴘɪsᴏᴅᴇs »** {json.get('episodes', 'N/A')}\n**• ⏲️ ᴅᴜʀᴀᴛɪᴏɴ »** {json.get('duration', 'N/A')} Per Ep.\n**🌟 sᴄᴏʀᴇ »**: {json['averageScore']}\n**🎭 ɢᴇɴʀᴇs »**: `"
         for x in json['genres']:
             msg += f"{x}, "
         msg = msg[:-2] + '`\n'
-        msg += "*• Studios*: `"
+        msg += "*💘 sᴛᴜᴅɪᴏs »*: `"
         for x in json['studios']['nodes']:
             msg += f"{x['name']}, "
         msg = msg[:-2] + '`\n'
