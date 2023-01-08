@@ -23,3 +23,10 @@ async def _speed(_, message):
 async def _speedtest(app : Client,callback_query: CallbackQuery):
     query = callback_query.message
     text = await query.edit("ʀᴜɴɴɪɴɢ ᴀ sᴩᴇᴇᴅᴛᴇsᴛ...")
+    speed = speedtest.Speedtest()
+    speed.get_best_server()
+    speed.download()
+    speed.upload()
+    msg = "sᴩᴇᴇᴅᴛᴇsᴛ ʀᴇsᴜʟᴛ"
+    if query.data == "speedtest_image":
+        await text.edit("ok")
