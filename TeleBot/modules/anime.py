@@ -82,7 +82,7 @@ anime_query = '''
 @pgram.on_message(filters.command("anime"))
 async def _anime(_, message):
     if len(message.command) < 2 :
-        await message.reply_text('Format : /anime < anime name >')
+        await message.reply_text('ғᴏʀᴍᴀᴛ : /ᴀɴɪᴍᴇ < ᴀɴɪᴍᴇ ɴᴀᴍᴇ >')
         return     
     else:
         search = message.text.split(None,1)
@@ -95,12 +95,12 @@ async def _anime(_, message):
         }).json()
 
     if 'errors' in json.keys():
-        await message.reply_text('Anime not found ;-;')
+        await message.reply_text('🙄 ᴀɴɪᴍᴇ ɴᴏᴛ ғᴏᴜɴᴅ')
         return
     
     if json:
         json = json['data']['Media']
-        msg = f"*{json['title']['romaji']}* *-* *({json['title']['native']})*\n\n*• Type*: {json['format']}\n*• Status*: {json['status']}\n*• Episodes*: {json.get('episodes', 'N/A')}\n*• Duration*: {json.get('duration', 'N/A')} Per Ep.\n*• Score*: {json['averageScore']}\n*• Genres*: `"
+        msg = f"**{json['title']['romaji']}** *-* **({json['title']['native']})**\n\n**• Type**: {json['format']}\n**• Status**: {json['status']}\n**• Episodes**: {json.get('episodes', 'N/A')}\n**• Duration**: {json.get('duration', 'N/A')} Per Ep.\n**• Score**: {json['averageScore']}\n**• Genres**: `"
         for x in json['genres']:
             msg += f"{x}, "
         msg = msg[:-2] + '`\n'
