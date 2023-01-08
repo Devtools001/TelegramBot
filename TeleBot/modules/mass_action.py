@@ -108,21 +108,7 @@ async def mass_action(_, message):
         SPAM_CHATS.remove(chat_id)
     except Exception:
         pass
-
-@pgram.on_message(filters.command("kstop_action") & ~filters.private)
-@user_admin
-async def cancelcmd(_, message):
-    chat_id = message.chat.id
-    if chat_id in SPAM_CHATS:
-        try :
-            SPAM_CHATS.remove(chat_id)
-        except Exception:
-            pass   
-        return await message.reply_text("sᴛᴏᴘᴘᴇᴅ ᴍᴇɴᴛɪᴏɴɪɴɢ ᴛʜᴇ ᴜsᴇʀs.")     
-                                     
-    else :
-        await message.reply_text("**ᴛʜᴇʀᴇ ɪs ɴᴏ ᴘʀᴏᴄᴇss ɢᴏɪɴɢ ᴏɴ ʙᴀʙʏ.**")  
-        return       
+       
     
     
 @pgram.on_message(filters.command("kickthefools") & ~filters.private)
