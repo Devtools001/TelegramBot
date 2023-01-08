@@ -42,7 +42,25 @@ async def t(milliseconds: int) -> str:
     return tmp[:-2]
 
 
-
+airing_query = '''
+    query ($id: Int,$search: String) {
+      Media (id: $id, type: ANIME,search: $search) {
+        id
+        siteUrl
+        episodes
+        title {
+          romaji
+          english
+          native
+        }
+        nextAiringEpisode {
+           airingAt
+           timeUntilAiring
+           episode
+        }
+      }
+    }
+    '''
 manga_query = """
 query ($id: Int,$search: String) {
       Media (id: $id, type: MANGA,search: $search) {
