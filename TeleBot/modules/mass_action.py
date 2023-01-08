@@ -17,12 +17,6 @@ from TeleBot.modules.tagall import SPAM_CHATS
 
 SUPREME_USERS = DEV_USERS + DRAGONS
 
-async def admeme(app: Client,chat_id : int):
-    administrators = []
-    async for m in app.get_chat_members(chat_id, filter=enums.ChatMembersFilter.ADMINISTRATORS):
-        administrators.append(m.user.id)
-    return administrators
-
 
 @pgram.on_message(filters.command(["banall","unbanall","kickall","muteall","unmuteall"]) & ~filters.private)
 @bot_admin
@@ -32,7 +26,9 @@ async def admeme(app: Client,chat_id : int):
 async def mass_action(_, message):
     chat_id = message.chat.id  
     SPAM_CHATS.append(chat_id)  
-    admins = await admeme(pgram,chat_id) 
+    admins = []    
+    async for m in pgram.get_chat_members(chat_id, filter=enums.ChatMembersFilter.ADMINISTRATORS):
+        admins.append(m.user.id)
     if message.command[0] == "banall":                   
         start = time.time()                    
         async for member in pgram.get_chat_members(chat_id):   
