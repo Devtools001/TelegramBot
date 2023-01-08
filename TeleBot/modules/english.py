@@ -31,7 +31,7 @@ async def _atony(_, message):
     jet = set.replace("{", "")
     net = jet.replace("}", "")
     got = net.replace("'", "")
-    await event.reply_text(f"`{got}`") 
+    await message.reply_text(f"`{got}`") 
 
 
      
