@@ -5,7 +5,6 @@ import aiofiles
 from pyrogram import filters
 
 from inspect import getfullargspec
-from plugins.utils.http import post
 from pyrogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkup 
 from TeleBot import pgram
 
