@@ -118,7 +118,7 @@ async def _kickthefools(_,message):
     if not fools:
        await text.edit("ᴛʜᴇʀᴇ ᴀʀᴇɴ'ᴛ ᴀɴʏ ғᴏᴏʟs ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ")
     else:
-        for i in ADMINS:
+        for i in fools:
             try:                         
                 await pgram.ban_chat_member(chat_id,fools[x])           
                 await pgram.unban_chat_member(chat_id,fools[x])  
