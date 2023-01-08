@@ -20,9 +20,8 @@ async def _speed(_, message):
     
 
 @pgram.on_callback_query()
-async def _speedtest(app : Client,callback_query: CallbackQuery):
-  #  query = callback_query.message
-    text = await query.edit("ʀᴜɴɴɪɴɢ ᴀ sᴩᴇᴇᴅᴛᴇsᴛ...")
+async def _speedtest(app : Client,callback_query: CallbackQuery):   
+    text = await callback_query.message.edit("ʀᴜɴɴɪɴɢ ᴀ sᴩᴇᴇᴅᴛᴇsᴛ...")
     speed = speedtest.Speedtest()
     speed.get_best_server()
     speed.download()
