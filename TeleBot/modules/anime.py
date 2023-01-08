@@ -333,13 +333,13 @@ async def _airing(_, message):
         }).json()['data']['Media']
     info = response.get('siteUrl')
     image = info.replace('anilist.co/anime/', 'img.anili.st/media/')
-    msg = f"*Name*: *{response['title']['romaji']}*(`{response['title']['native']}`)\n*• ID*: `{response['id']}`[⁠ ⁠]({image})"
+    msg = f"**⦾ ɴᴀᴍᴇ »** **{response['title']['romaji']}**(`{response['title']['native']}`)\n**⦾ ɪᴅ »** `{response['id']}`[⁠ ⁠]({image})"
     if response['nextAiringEpisode']:
         time = response['nextAiringEpisode']['timeUntilAiring'] * 1000
         time = t(time)
-        msg += f"\n*Episode*: `{response['nextAiringEpisode']['episode']}`\n*• Airing In*: `{time}`"
+        msg += f"\n**⦾ ᴇᴘɪsᴏᴅᴇ »** `{response['nextAiringEpisode']['episode']}`\n**⦾ ᴀɪʀɪɴɢ ɪɴ »** `{time}`"
     else:
-        msg += f"\n*Episode*:{response['episodes']}\n*• Status*: `N/A`"
+        msg += f"\n**⦾ ᴇᴘɪsᴏᴅᴇ »**{response['episodes']}\n**⦾ sᴛᴀᴛᴜs »** `N/A`"
     await message.reply_text(msg, parse_mode=ParseMode.MARKDOWN)
 
 
