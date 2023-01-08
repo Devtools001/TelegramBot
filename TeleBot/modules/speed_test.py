@@ -1,7 +1,7 @@
 import speedtest 
 from TeleBot import pgram,DEV_USERS
 
-from pyrogram import filters, Client 
+from pyrogram import filters, Client ,enums
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup , CallbackQuery 
 
 
@@ -33,4 +33,9 @@ async def _speedtest(app : Client,callback_query: CallbackQuery):
         await callback_query.message.reply_photo(
                 photo=speedtest_image, caption=msg
             )
-        text.delete()
+        await text.delete()
+
+    if query == "speedtest_text":
+        result = speed.results.dict()
+        replymsg += f"\nDownload: `{convert(result['download'])}Mb/s`\nUpload: `{convert(result['upload'])}Mb/s`\nPing: `{result['ping']}`"
+        await text.edit(msg, parse_mode=enums.ParseMode.MARKDOWN)
