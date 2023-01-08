@@ -12,10 +12,10 @@ async def waifu(_,msg):
      **ᴀ ᴡᴀɪғᴜ ᴀᴘᴘᴇᴀᴅᴇᴅ!**
 ᴀᴅᴅ ᴛʜᴇᴍ ᴛᴏ ʏᴏᴜʀ ʜᴀʀᴇᴍ ʙʏ sᴇɴᴅɪɴɢ /protecc ᴄʜᴀʀᴀᴄᴛᴇʀ ɴᴀᴍᴇ.""")
 
-@app.on_message(filters.command("protecc"))
+@app.on_message(filters.command("wprotecc"))
 async def waifu_protecc(_,msg):
     await msg.reply_text("OᴡO ʏᴏᴜ ᴘʀᴏᴛᴇᴄᴄ'ᴅ ᴀ Wᴀɪғᴜ ᴛʜɪs ᴡᴀɪғᴜ ʜᴀs ʙᴇᴇɴ ᴀᴅᴅᴇᴅ ᴛᴏ ʏᴏᴜʀ ʜᴀʀᴇᴍ.")
 
-@app.on_message(filters.command("harem"))
+@app.on_message(filters.command("wharem"))
 async def waifu_harem(_,msg):
     await msg.reply_text("ʏᴏᴜ ʜᴀᴠᴇɴ'ᴛ ᴘʀᴏᴛᴇᴄᴄ'ᴅ ᴀɴʏ ᴡᴀɪғᴜ ʏᴇᴛ...")
