@@ -22,9 +22,9 @@ async def shorten(description, info='anilist.co'):
     msg = ""
     if len(description) > 700:
         description = description[0:500] + '....'
-        msg += f"\n*Description*: _{description}_[Read More]({info})"
+        msg += f"\n🗒 ᴅᴇsᴄʀɪᴘᴛɪᴏɴ » _{description}_[ʀᴇᴀᴅ ᴍᴏʀᴇ]({info})"
     else:
-        msg += f"\n*Description*:_{description}_"
+        msg += f"\n🗒 ᴅᴇsᴄʀɪᴘᴛɪᴏɴ »_{description}_"
     return msg
 
 async def t(milliseconds: int) -> str:
@@ -102,11 +102,11 @@ async def _anime(_, message):
     if json:        
         json = json['data']['Media']
         print(json['startDate']['year'])
-        msg = f"**📀 ᴛɪᴛʟᴇ » {json['title']['romaji']}** ┌⁠(⁠・⁠。⁠・⁠)⁠┘⁠♪ **({json['title']['native']})**\n\n**• 🎣 ᴛʏᴘᴇ »** {json['format']}\n**• ⚡sᴛᴀᴛᴜs »** {json['status']}\n**• ✨ ᴇᴘɪsᴏᴅᴇs »** {json.get('episodes', 'N/A')}\n**• ⏲️ ᴅᴜʀᴀᴛɪᴏɴ »** {json.get('duration', 'N/A')} Per Ep.\n**🌟 sᴄᴏʀᴇ »**: {json['averageScore']}\n**🎭 ɢᴇɴʀᴇs »**: `"
+        msg = f"**📀 ᴛɪᴛʟᴇ » {json['title']['romaji']}** ┌⁠(⁠・⁠。⁠・⁠)⁠┘⁠♪ **({json['title']['native']})**\n\n**🎣 ᴛʏᴘᴇ »** {json['format']}\n**⚡sᴛᴀᴛᴜs »** {json['status']}\n**✨ ᴇᴘɪsᴏᴅᴇs »** {json.get('episodes', 'N/A')}\n**⏲️ ᴅᴜʀᴀᴛɪᴏɴ »** {json.get('duration', 'N/A')} ᴘᴇʀ ᴇᴘ.\n**🌟 sᴄᴏʀᴇ »**: {json['averageScore']}\n**🎭 ɢᴇɴʀᴇs »**: `"
         for x in json['genres']:
             msg += f"{x}, "
         msg = msg[:-2] + '`\n'
-        msg += "*💘 sᴛᴜᴅɪᴏs »*: `"
+        msg += "**💘 sᴛᴜᴅɪᴏs »**: `"
         for x in json['studios']['nodes']:
             msg += f"{x['name']}, "
         msg = msg[:-2] + '`\n'
