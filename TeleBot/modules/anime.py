@@ -285,7 +285,7 @@ async def _character(_, message):
         return
     if json:
         json = json['data']['Character']
-        msg = f"* {json.get('name').get('full')}*(`{json.get('name').get('native')}`) \n"
+        msg = f"**⦾ ᴄʜᴀʀᴀᴄᴛᴇʀ :** {json.get('name').get('full')}*(`{json.get('name').get('native')}`) \n"
         description = f"{json['description']}"
         site_url = json.get('siteUrl')
         char_name = f"{json.get('name').get('full')}"
@@ -293,11 +293,9 @@ async def _character(_, message):
         image = json.get('image', None)
         if image:
             image = image.get('large')
-            buttons = [[InlineKeyboardButton("Save as Waifu ❣️", callback_data=f"xanime_fvrtchar={char_name}")]]
             await message.reply_photo(
                 photo=image,
-                caption=msg.replace('<b>', '</b>'),
-                reply_markup=InlineKeyboardMarkup(buttons),
+                caption=msg.replace('<b>', '</b>'),               
                 parse_mode=ParseMode.MARKDOWN)
         else:
             await message.reply_text(
