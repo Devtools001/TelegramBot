@@ -33,7 +33,7 @@ async def _zombies(_,message):
            await text.edit(f"{len(zombies)} ᴢᴏᴍʙɪᴇs ғᴏᴜɴᴅ ɪɴ {message.chat.title}.")
     if message.command[0] == "ban_zombies":
         if len(zombies) == 0:
-            return await message.reply_text("ᴛʜᴇʀᴇ ᴀʀᴇɴ'ᴛ ᴀɴʏ ᴢᴏᴍʙɪᴇs ɪɴ {message.chat.title}")
+            return await text.edit(f"ᴛʜᴇʀᴇ ᴀʀᴇɴ'ᴛ ᴀɴʏ ᴢᴏᴍʙɪᴇs ɪɴ {message.chat.title}")
         for i in zombies :
             try:                         
                 await pgram.ban_chat_member(chat_id,zombies[x])           
