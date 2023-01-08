@@ -7,6 +7,7 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from GoogleSearch import Search
 from pyrogram.errors import BadRequest
 from geniuses import GeniusClient
+from httpx import AsyncClient
 
 @pgram.on_message(filters.command(["pp","p","grs","reverse"]))
 async def _reverse(_, message):
