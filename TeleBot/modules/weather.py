@@ -1,4 +1,5 @@
 import io
+import aiohttp
 from TeleBot import pgram,aiohttpsession
 from pyrogram import filters
 
@@ -13,7 +14,7 @@ async def _weather(_, message):
         return await message.reply_text("ɢɪᴠᴇ ᴀ ᴘʟᴀᴄᴇ ɴᴀᴍᴇ ᴛᴏᴏ.")
     url = "https://wttr.in/{}.png"  
     place = message.text.split(None,1)[1]   
-    async with aiohttpsession as session:
+    async with aiohttp.ClientSession() as session:
         response_api_zero = await session.get(url.format(place))
         response_api = await response_api_zero.read()
         with io.BytesIO(response_api) as out_file:
