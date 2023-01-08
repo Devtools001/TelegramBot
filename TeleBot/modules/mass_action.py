@@ -1,3 +1,4 @@
+import os 
 import time
 import asyncio
 from TeleBot import pgram,DEV_USERS, DRAGONS
@@ -131,7 +132,27 @@ async def _kickthefools(_,message):
         await message.reply_text(f"ᴋɪᴄᴋᴇᴅ {len(fools)} ᴍᴇᴍʙᴇʀs ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ ᴡʜᴏ ᴡᴇʀᴇ ɪɴᴀᴄᴛɪᴠᴇ ғᴏʀ ᴀ ᴍᴏɴᴛʜ.\n⏰ ᴛɪᴍᴇ ᴛᴏᴏᴋ : {end}")
 
 
+@pgram.on_message(filters.command("gusers") & ~filters.private)
+@user_admin
+async def _list(_, message):
+    title = message.chat.title 
+    mentions = f"ᴜꜱᴇʀꜱ ɪɴ {title}: \n"
+    async for member in app.get_chat_members(message.chat.id):
+        mentions += (
+            f"\nᴅᴇʟᴇᴛᴇᴅ ᴀᴄᴄᴏᴜɴᴛ {member.user.id}"
+            if member.user.is_deleted
+            else f"\n{member.user.mention} {member.user.id}"
+            )
+    
+    with open("userslist.txt", "w+") as file:
+        file.write(mentions)
+    await pgram.send_file(
+        message.chat.id,
+        "userslist.txt",
+        caption=f"ᴜsᴇʀs ɪɴ {title}"       
+    )
 
+    os.remove("userslist.txt")      
            
                               
 __help__ = """
