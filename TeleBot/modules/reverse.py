@@ -45,9 +45,33 @@ async def _reverse(_, message):
         except BadRequest:
             return
 
-    photo = await pgram.download_media(replied.photo.file_id,file_name = "reverse.jpg")
-    print(photo)
-    os.remove(photo)
+        photo = await pgram.download_media(replied.photo.file_id,file_name = "reverse.jpg")
+        await edit.edit_text("ᴅᴏᴡɴʟᴏᴀᴅᴇᴅ ɪᴍᴀɢᴇ, ᴜᴘʟᴏᴀᴅɪɴɢ ᴛᴏ ɢᴏᴏɢʟᴇ...")
+        result = Search(file_path="reverse.jpg")
+        await edit.edit_text("ᴜᴘʟᴏᴀᴅᴇᴅ ᴛᴏ ɢᴏᴏɢʟᴇ, ғᴇᴛᴄʜɪɴɢ ʀᴇsᴜʟᴛs...")
+        name = result["output"]
+        link = result["similar"]
+
+        await edit.edit_text(
+            text=f"{name}",
+            reply_markup=InlineKeyboardMarkup(
+                [
+                    [
+                        InlineKeyboardButton(
+                            text="sɪᴍɪʟᴀʀ",
+                            url=link,
+                        ),
+                    ],
+                ],
+            ),
+        )
+        return
+        os.remove(photo)
+    else:
+        await message.reply_text(
+            "ᴄᴏᴍᴍᴀɴᴅ sʜᴏᴜʟᴅ ʙᴇ ᴜsᴇᴅ ᴡɪᴛʜ ʀᴇᴘʟʏɪɴɢ ᴛᴏ ᴀɴ ɪᴍᴀɢᴇ ᴏʀ ᴜʀʟ sʜᴏᴜʟᴅ ɢɪᴠᴇɴ."
+        )
+    
 
 
 
