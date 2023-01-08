@@ -100,7 +100,7 @@ async def mass_action(_, message):
         await asyncio.sleep(3)
         await text.edit(f"**unᴍᴜᴛᴇᴅ ᴀʟʟ ᴍᴇᴍʙᴇʀs ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ**.") 
 
-@pgram.on_message(filters.command("cancel") & ~filters.private)
+@pgram.on_message(filters.command("stop_action") & ~filters.private)
 @user_admin
 async def cancelcmd(_, message):
     chat_id = message.chat.id
