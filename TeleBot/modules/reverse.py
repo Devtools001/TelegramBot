@@ -39,13 +39,15 @@ async def _reverse(_, message):
             )   
     replied = message.reply_to_message
 
-    if replied and replied.photo:
+    if replied and (replied.photo or replied.sticker)  :
         try:
             edit = await message.reply_text("ᴅᴏᴡɴʟᴏᴀᴅɪɴɢ ɪᴍᴀɢᴇ")
         except BadRequest:
             return
-
-        photo = await pgram.download_media(replied.photo.file_id,file_name = "reverse.jpg")
+        if replied.photo :
+            photo = await pgram.download_media(replied.photo.file_id,file_name = "reverse.jpg")
+        else:
+            photo = await pgram.download_media(replied.sticker.file_id,file_name = "reverse.jpg")
         await edit.edit_text("ᴅᴏᴡɴʟᴏᴀᴅᴇᴅ ɪᴍᴀɢᴇ, ᴜᴘʟᴏᴀᴅɪɴɢ ᴛᴏ ɢᴏᴏɢʟᴇ...")
         result = Search(file_path=photo)
         await edit.edit_text("ᴜᴘʟᴏᴀᴅᴇᴅ ᴛᴏ ɢᴏᴏɢʟᴇ, ғᴇᴛᴄʜɪɴɢ ʀᴇsᴜʟᴛs...")
