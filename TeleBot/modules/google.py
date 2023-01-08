@@ -108,6 +108,9 @@ async def _lyrics(_, message):
 
 @pgram.on_message(filters.command("ud"))
 async def _ud(_, message):
+    if len(message.command) < 2 :
+        return await message.reply_text("ɢɪᴠᴇ ᴍᴇ ᴀ ᴛᴇxᴛ ᴛᴏᴏ. 🎣")
+
     text = message.text.split(None,1)[1]
     async with AsyncClient() as client:
         r = await client.get(f"https://api.urbandictionary.com/v0/define?term={text}")
@@ -117,7 +120,7 @@ async def _ud(_, message):
         reply_text = f'**💘 {text}**\n\n{results["list"][0]["definition"]}\n\n_{results["list"][0]["example"]}_'
     except:
         reply_text = "ɴᴏ ʀᴇsᴜʟᴛs ғᴏᴜɴᴅ."
-    link = ["list"][0]["permalink"]
+    link = results["list"][0]["permalink"]
     await message.reply_text(reply_text,reply_markup=InlineKeyboardMarkup(
                 [
                     [
