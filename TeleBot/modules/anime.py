@@ -110,8 +110,10 @@ async def _anime(_, message):
 **⚡sᴛᴀᴛᴜs »** {json['status']}
 **✨ ᴇᴘɪsᴏᴅᴇs »** {json.get('episodes', 'N/A')}
 
-**⏲️ ᴅᴜʀᴀᴛɪᴏɴ »** {json.get('duration', 'N/A')} ᴘᴇʀ ᴇᴘ.\n
-**🌟 sᴄᴏʀᴇ »**: {json['averageScore']}\n
+**⏲️ ᴅᴜʀᴀᴛɪᴏɴ »** {json.get('duration', 'N/A')} ᴘᴇʀ ᴇᴘ.
+**📆 ʀᴇʟᴇᴀsᴇ ʏᴇᴀʀ »** {json['startDate']['year']}
+**🌟 sᴄᴏʀᴇ »**: {json['averageScore']}
+
 **🎭 ɢᴇɴʀᴇs »**: `"""
         for x in json['genres']:
             msg += f"{x}, "
