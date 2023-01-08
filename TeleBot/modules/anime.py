@@ -7,7 +7,8 @@ import requests
 import json
 
 from TeleBot import pgram 
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, ParseMode, CallbackQuery 
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery 
+from pyrogram.enums import ParseMode 
 
 
 info_btn = "More Info 📕"
