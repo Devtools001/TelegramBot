@@ -39,7 +39,7 @@ async def font_style_buttons(c, m: Message):
     
     if ' ' in m.text:
         title = m.text.split(" ", 1)[1]
-        await m.reply_text(title, reply_markup=InlineKeyboardMarkup(buttons), reply_to_message_id=m.message_id)
+        await m.reply_text(title, reply_markup=InlineKeyboardMarkup(buttons))
     else:
         await m.reply_text(text="Ente Any Text Eg:- `/font [text]`")    
 
