@@ -133,7 +133,7 @@ async def _anime(_, message):
             buttons += [[InlineKeyboardButton("➕ Add To Watchlist", callback_data=f"xanime_watchlist={anime_name_w}")]]
    
          
-     if image:
+    if image:
             try:
                 await message.reply_photo(
                     photo=image,
