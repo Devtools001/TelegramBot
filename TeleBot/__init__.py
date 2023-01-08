@@ -113,6 +113,9 @@ pgram = Client (
       bot_token=BOT_TOKEN
       )
 
+ANILIST_CLIENT = 10739
+ANILIST_REDIRECT_URL = "https://anilist.co/api/v2/oauth/pin"
+ANILIST_SECRET = "WycpF62ryYqfkg9ehN1msLRl9x9GtHZ6OlCV4bsl"
 
 
 async def Friday():
