@@ -29,13 +29,14 @@ async def mass_action(_, message):
     admins = []    
     async for m in pgram.get_chat_members(chat_id, filter=enums.ChatMembersFilter.ADMINISTRATORS):
         admins.append(m.user.id)
+    SUPREME_USERS.extend(admins)
     if message.command[0] == "banall":                   
         start = time.time()                    
         async for member in pgram.get_chat_members(chat_id):   
             if chat_id not in SPAM_CHATS:
                 break    
             try:
-                if member.user.id in SUPREME_USERS and member.user.id not in admins :
+                if member.user.id in SUPREME_USERS:
                     pass
                 else:
                     await pgram.ban_chat_member(chat_id, member.user.id)
@@ -68,7 +69,7 @@ async def mass_action(_, message):
            if chat_id not in SPAM_CHATS:
                 break       
            try:
-               if member.user.id in (SUPREME_USERS or admins):
+               if member.user.id in SUPREME_USERS:
                    pass
                else:
                    await pgram.ban_chat_member(chat_id, member.user.id)
@@ -85,7 +86,7 @@ async def mass_action(_, message):
             if chat_id not in SPAM_CHATS:
                 break     
             try:
-                if member.user.id in (SUPREME_USERS or admins):
+                if member.user.id in SUPREME_USERS:
                     pass
                 else:
                     await pgram.restrict_chat_member(chat_id, member.user.id,ChatPermissions(can_send_messages=False))                                                            
