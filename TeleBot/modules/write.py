@@ -34,6 +34,6 @@ Successfully Written Text 💘
                 ]
             ),
         )
-        await m.delete() 
+        await msg.delete() 
     except Exception as er:
         await message.reply_text(er) 
