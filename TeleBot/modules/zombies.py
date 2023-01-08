@@ -11,7 +11,7 @@ from pyrogram import filters
 
 
 
-@pgram.on_message(filters.command(["zombies","zombies clean"]) & ~filters.private)
+@pgram.on_message(filters.command(["zombies","ban_zombies"]) & ~filters.private)
 @bot_admin
 @bot_can_ban
 @user_admin
@@ -31,7 +31,7 @@ async def _zombies(_,message):
 
     if message.command[0] == "zombies": 
            await text.edit(f"{len(zombies)} ᴢᴏᴍʙɪᴇs ғᴏᴜɴᴅ ɪɴ {message.chat.title}.")
-    if message.command[0] == "zombies clean":
+    if message.command[0] == "ban_zombies":
         if len(zombies) == 0:
             return await message.reply_text("ᴛʜᴇʀᴇ ᴀʀᴇɴ'ᴛ ᴀɴʏ ᴢᴏᴍʙɪᴇs ɪɴ {message.chat.title}")
         for i in zombies :
