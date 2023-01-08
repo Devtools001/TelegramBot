@@ -9,6 +9,7 @@ from pyrogram.errors import BadRequest
 from geniuses import GeniusClient
 from httpx import AsyncClient
 from bs4 import BeautifulSoup
+from requests import get, post
 
 @pgram.on_message(filters.command(["pp","p","grs","reverse"]))
 async def _reverse(_, message):
