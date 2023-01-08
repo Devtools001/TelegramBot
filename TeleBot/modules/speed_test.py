@@ -21,33 +21,25 @@ async def _speed(_, message):
     await message.reply_text("sᴩᴇᴇᴅᴛᴇsᴛ ᴍᴏᴅᴇ", reply_markup=InlineKeyboardMarkup(buttons))
     
 
-@pgram.on_callback_query()
+@pgram.on_callback_query(filters.user(DEV_USERS))
 async def _speedtest(app : Client,callback_query: CallbackQuery): 
-    if callback_query.message.from_user.id in DEV_USERS :   
-        text = await callback_query.message.edit("ʀᴜɴɴɪɴɢ ᴀ sᴩᴇᴇᴅᴛᴇsᴛ...")
-        speed = speedtest.Speedtest()
-        speed.get_best_server()
-        speed.download()
-        speed.upload()
-        msg = "sᴩᴇᴇᴅᴛᴇsᴛ ʀᴇsᴜʟᴛ"
-        query = callback_query.data.lower()
-        if query == "speedtest_image":
-            speedtest_image = speed.results.share()
-            await callback_query.message.reply_photo(
+    #if callback_query.message.from_user.id in DEV_USERS :   
+    text = await callback_query.message.edit("ʀᴜɴɴɪɴɢ ᴀ sᴩᴇᴇᴅᴛᴇsᴛ...")
+    speed = speedtest.Speedtest()
+    speed.get_best_server()
+    speed.download()
+    speed.upload()
+    msg = "sᴩᴇᴇᴅᴛᴇsᴛ ʀᴇsᴜʟᴛ"
+    query = callback_query.data.lower()
+    if query == "speedtest_image":
+        speedtest_image = speed.results.share()
+        await callback_query.message.reply_photo(
                 photo=speedtest_image, caption=msg
             )
-            await text.delete()
+        await text.delete()
 
-        if query == "speedtest_text":
-            result = speed.results.dict()
-            msg += f"\n**⦾ ᴘɪɴɢ »** `{result['ping']}`\n**⦾ ᴜᴘʟᴏᴀᴅ »** `{await convert(result['upload'])}Mb/s`\n**⦾ ᴅᴏᴡɴʟᴏᴀᴅ »** `{await convert(result['download'])}Mb/s"
-            await text.edit(msg, parse_mode=enums.ParseMode.MARKDOWN)
-    else:
-        text = "ʙsᴅᴋ, ᴛᴇʀɪ ᴍᴀᴀ ᴋɪ ᴄʜᴜ* ʙʜᴀɢ ʏᴇʜᴀɴ sᴇ ʏᴇ ᴄᴏᴍᴍᴀɴᴅ sɪʀғ ᴅᴇᴠ ᴜsᴇ ᴋᴀʀ sᴀᴋᴛᴇ."
-        await app.answer_callback_query(
-        callback_query.id,
-        text=text,
-        show_alert=True)
-
-
-
+    if query == "speedtest_text":
+        result = speed.results.dict()
+        msg += f"\n**⦾ ᴘɪɴɢ »** `{result['ping']}`\n**⦾ ᴜᴘʟᴏᴀᴅ »** `{await convert(result['upload'])}Mb/s`\n**⦾ ᴅᴏᴡɴʟᴏᴀᴅ »** `{await convert(result['download'])}Mb/s"
+        await text.edit(msg, parse_mode=enums.ParseMode.MARKDOWN)
+    
