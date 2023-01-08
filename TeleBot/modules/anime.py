@@ -212,11 +212,11 @@ async def _manga(_, message):
             'year', False), json.get('status',
                                      False), json.get('averageScore', False) 
         if title:
-            msg += f"**⦾ ᴛɪᴛʟᴇ »** {title}\n"
+            msg += f"**⦾ ᴛɪᴛʟᴇ »** {title}"
             if title_native:
                 msg += f"(`{title_native}`)"
         if start_date:
-            msg += f"\n**⦾ sᴛᴀʀᴛ ʏᴇᴀʀ »** `{start_date}`"
+            msg += f"\n\n**⦾ sᴛᴀʀᴛ ʏᴇᴀʀ »** `{start_date}`"
         if status:
             msg += f"\n**⦾ sᴛᴀᴛᴜs »** `{status}`"
         if score:
