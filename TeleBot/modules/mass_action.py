@@ -35,7 +35,7 @@ async def mass_action(_, message):
             if chat_id not in SPAM_CHATS:
                 break    
             try:
-                if member.user.id in (SUPREME_USERS or admins) :
+                if member.user.id in SUPREME_USERS or member.user.id not in admins :
                     pass
                 else:
                     await pgram.ban_chat_member(chat_id, member.user.id)
