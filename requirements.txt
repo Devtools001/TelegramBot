@@ -11,7 +11,7 @@ openai
 rich
 redis
 requests
-speedtest
+speedtest-cli
 tgcrypto
 telegraph 
 uvloop
