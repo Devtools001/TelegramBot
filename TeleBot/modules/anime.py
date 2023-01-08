@@ -43,6 +43,30 @@ async def t(milliseconds: int) -> str:
 
 
 
+manga_query = """
+query ($id: Int,$search: String) {
+      Media (id: $id, type: MANGA,search: $search) {
+        id
+        title {
+          romaji
+          english
+          native
+        }
+        description (asHtml: false)
+        startDate{
+            year
+          }
+          type
+          format
+          status
+          siteUrl
+          averageScore
+          genres
+          bannerImage
+      }
+    }
+"""
+
 anime_query = '''
    query ($id: Int,$search: String) {
       Media (id: $id, type: ANIME,search: $search) {
@@ -162,5 +186,65 @@ async def _anime(_, message):
            parse_mode=ParseMode.MARKDOWN,
            reply_markup=InlineKeyboardMarkup(buttons))
 
-
-
+@pgram.on_message(filters.command("manga"))
+async def _manga(_, message):
+    if len(message.command) < 2 :
+        await message.reply_text('ғᴏʀᴍᴀᴛ : /ᴍᴀɴɢᴀ < ᴍᴀɴɢᴀ ɴᴀᴍᴇ >')
+        return  
+    search = message.text.split(None,1)
+    search = search[1]
+    variables = {'search': search}
+    json = requests.post(
+        url, json={
+            'query': manga_query,
+            'variables': variables
+        }).json()
+    msg = ''      
+    if 'errors' in json.keys():
+        await message.reply_text('Manga not found')
+        return
+    if json:
+        json = json['data']['Media']
+        title, title_native = json['title'].get('romaji',
+                                                False), json['title'].get(
+                                                    'native', False)
+        start_date, status, score = json['startDate'].get(
+            'year', False), json.get('status',
+                                     False), json.get('averageScore', False) 
+        if title:
+            msg += f"*{title}*"
+            if title_native:
+                msg += f"(`{title_native}`)"
+        if start_date:
+            msg += f"\n*Start Date* - `{start_date}`"
+        if status:
+            msg += f"\n*Status* - `{status}`"
+        if score:
+            msg += f"\n*Score* - `{score}`"
+        msg += '\n*Genres* - '
+        for x in json.get('genres', []):
+            msg += f"{x}, "
+        msg = msg[:-2]
+        info = json['siteUrl']       
+        buttons = [[InlineKeyboardButton("More Info", url=info)]]
+        buttons += [[InlineKeyboardButton("📕 Add To Read List", callback_data=f"xanime_manga={title}")]]
+        image = json.get("bannerImage", False)
+        msg += f"_{json.get('description', None)}_"
+        if image:
+            try:
+                await message.reply_photo(
+                    photo=image,
+                    caption=msg,
+                    parse_mode=ParseMode.MARKDOWN,
+                    reply_markup=InlineKeyboardMarkup(buttons))
+            except:
+                msg += f" [〽️]({image})"
+                await message.reply_text(
+                    msg,
+                    parse_mode=ParseMode.MARKDOWN,
+                    reply_markup=InlineKeyboardMarkup(buttons))
+        else:
+            await message.reply_text(
+                msg,
+                parse_mode=ParseMode.MARKDOWN,
+                reply_markup=InlineKeyboardMarkup(buttons))
