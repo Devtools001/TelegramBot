@@ -336,7 +336,7 @@ async def _airing(_, message):
     msg = f"**⦾ ɴᴀᴍᴇ »** **{response['title']['romaji']}**(`{response['title']['native']}`)\n**⦾ ɪᴅ »** `{response['id']}`[⁠ ⁠]({image})"
     if response['nextAiringEpisode']:
         time = response['nextAiringEpisode']['timeUntilAiring'] * 1000
-        time = t(time)
+        time = await t(time)
         msg += f"\n**⦾ ᴇᴘɪsᴏᴅᴇ »** `{response['nextAiringEpisode']['episode']}`\n**⦾ ᴀɪʀɪɴɢ ɪɴ »** `{time}`"
     else:
         msg += f"\n**⦾ ᴇᴘɪsᴏᴅᴇ »**{response['episodes']}\n**⦾ sᴛᴀᴛᴜs »** `N/A`"
