@@ -31,7 +31,7 @@ async def _speedtest(app : Client,callback_query: CallbackQuery):
     query = callback_query.data.lower()
     if query == "speedtest_image":
         speedtest_image = speed.results.share()
-            await message.reply_photo(
+        await message.reply_photo(
                 photo=speedtest_image, caption=msg
             )
         text.delete()
