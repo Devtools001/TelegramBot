@@ -15,7 +15,7 @@ async def _write(_, message):
     else:
         text = message.text.split(None,1)[1]
     
-    msg = await message.reply("ᴡʀɪᴛɪɴɢ ᴛʜᴇ ᴛᴇxᴛ... 📝")
+    msg = await message.reply("`ᴡʀɪᴛɪɴɢ ᴛʜᴇ ᴛᴇxᴛ... 📝`")
     req = requests.get(f"https://api.sdbots.tk/write?text={text}").url  
     try:
         await message.reply_photo(
