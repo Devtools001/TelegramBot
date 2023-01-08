@@ -1,92 +1,87 @@
-import random 
-import time
-import os
-import asyncio
-import requests 
-from TeleBot import pgram,BOT_NAME
-from pyrogram import filters,
-from types import NoneType
-from pyrogram import filters, Client
-from pyrogram.types import Message 
-from pyrogram.errors import UserNotParticipant, WebpageCurlFailed, WebpageMediaEmpty
-from pyrogram.enums import ChatMemberStatus, ChatType
-from pyrogram.types import (
-    CallbackQuery,
-    InlineKeyboardButton,
-    InlineKeyboardMarkup,
-    InputMediaPhoto,
-    Message
-)
+import bs4
+import html
+import jikanpy
+import datetime
+import textwrap
+import requests
+import json
 
-from TeleBot import (
-    ANILIST_CLIENT,
-    ANILIST_REDIRECT_URL,
-    ANILIST_SECRET,    
-)
+from TeleBot import pgram 
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, ParseMode, CallbackQuery 
 
 
+info_btn = "More Info 📕"
+prequel_btn = "⬅️ Prequel"
+sequel_btn = "Sequel ➡️"
+close_btn = "Close ❌"
+
+url = 'https://graphql.anilist.co'
+
+async def shorten(description, info='anilist.co'):
+    msg = ""
+    if len(description) > 700:
+        description = description[0:500] + '....'
+        msg += f"\n*Description*: _{description}_[Read More]({info})"
+    else:
+        msg += f"\n*Description*:_{description}_"
+    return msg
+
+async def t(milliseconds: int) -> str:
+    """Inputs time in milliseconds, to get beautified time,
+    as string"""
+    seconds, milliseconds = divmod(int(milliseconds), 1000)
+    minutes, seconds = divmod(seconds, 60)
+    hours, minutes = divmod(minutes, 60)
+    days, hours = divmod(hours, 24)
+    tmp = ((str(days) + " Days, ") if days else "") + \
+        ((str(hours) + " Hours, ") if hours else "") + \
+        ((str(minutes) + " Minutes, ") if minutes else "") + \
+        ((str(seconds) + " Seconds, ") if seconds else "") + \
+        ((str(milliseconds) + " ms, ") if milliseconds else "")
+    return tmp[:-2]
+
+
+anime_query = '''
+   query ($id: Int,$search: String) {
+      Media (id: $id, type: ANIME,search: $search) {
+        id
+        title {
+          romaji
+          english
+          native
+        }
+        description (asHtml: false)
+        startDate{
+            year
+          }
+          episodes
+          season
+          type
+          format
+          status
+          duration
+          siteUrl
+          studios{
+              nodes{
+                   name
+              }
+          }
+          trailer{
+               id
+               site
+               thumbnail
+          }
+          averageScore
+          genres
+          bannerImage
+      }
+    }
+'''
 
 @pgram.on_message(filters.command("anime"))
-async def _anime(client: Client, message: Message, mdata: dict):
-    text = mdata['text'].split(" ", 1)
-    gid = mdata['chat']['id']
-    try:
-        user = mdata['from_user']['id']
-        auser = mdata['from_user']['id']
-    except KeyError:
-        user = mdata['sender_chat']['id']
-        ufc = await gcc(user)
-        if ufc is not None:
-            auser = ufc
-        else:
-            auser = user
-    find_gc = await DC.find_one({'_id': gid})
-    if find_gc is not None and 'anime' in find_gc['cmd_list'].split():
-        return
-    if len(text) == 1:
-        k = await message.reply_text(
-"""Please give a query to search about
-example: /anime Ao Haru Ride"""
-        )
-        await asyncio.sleep(5)
-        return await k.delete()
-    query = text[1]
-    auth = False
-    vars_ = {"search": query}
-    if query.isdigit():
-        vars_ = {"id": int(query)}
-    if (await AUTH_USERS.find_one({"id": auser})):
-        auth = True
-    result = await get_anime(
-        vars_,
-        user=auser,
-        auth=auth,
-        cid=gid if gid != user else None
-    )
-    if len(result) != 1:
-        title_img, finals_ = result[0], result[1]
-    else:
-        k = await message.reply_text(result[0])
-        await asyncio.sleep(5)
-        return await k.delete()
-    buttons = get_btns("ANIME", result=result, user=user, auth=auth)
-    if await (
-        SFW_GRPS.find_one({"id": gid})
-    ) and result[2].pop() == "True":
-        await client.send_photo(
-            gid,
-            no_pic[random.randint(0, 4)],
-            caption="This anime is marked 18+ and not allowed in this group"
-        )
-        return
-    try:
-        await client.send_photo(
-            gid, title_img, caption=finals_, reply_markup=buttons
-        )
-    except (WebpageMediaEmpty, WebpageCurlFailed):
-        await clog('ANIBOT', title_img, 'LINK', msg=message)
-        await client.send_photo(
-            gid, failed_pic, caption=finals_, reply_markup=buttons
-        )
-    if title_img not in PIC_LS:
-        PIC_LS.append(title_img)
+async def (_, message):
+    search = message.text.split(None,1)[1]
+    print(search)
+
+
+
