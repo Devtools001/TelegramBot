@@ -1,6 +1,6 @@
 import io
 import aiohttp
-from TeleBot import pgram,aiohttpsession
+from TeleBot import pgram
 from pyrogram import filters
 
 
