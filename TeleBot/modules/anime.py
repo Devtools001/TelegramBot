@@ -212,7 +212,7 @@ async def _manga(_, message):
             'year', False), json.get('status',
                                      False), json.get('averageScore', False) 
         if title:
-            msg += f"**⦾ ᴛɪᴛʟᴇ »** {title}"
+            msg += f"**⦾ ᴛɪᴛʟᴇ »** {title}\n"
             if title_native:
                 msg += f"(`{title_native}`)"
         if start_date:
@@ -228,7 +228,7 @@ async def _manga(_, message):
         info = json['siteUrl']       
         buttons = [[InlineKeyboardButton("• ᴍᴏʀᴇ ɪɴғᴏ •", url=info)]]        
         image = json.get("bannerImage", False)
-        msg += f"**\n⦾ ᴅᴇsᴄʀɪᴘᴛɪᴏɴ »** _{json.get('description', None)}_"
+        msg += f"**\n\n⦾ ᴅᴇsᴄʀɪᴘᴛɪᴏɴ »** _{json.get('description', None)}_"
         if image:
             try:
                 await message.reply_photo(
