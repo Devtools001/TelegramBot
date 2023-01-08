@@ -226,9 +226,9 @@ async def _manga(_, message):
             msg += f"{x}, "
         msg = msg[:-2]
         info = json['siteUrl']       
-        buttons = [[InlineKeyboardButton("More Info", url=info)]]        
+        buttons = [[InlineKeyboardButton("• ᴍᴏʀᴇ ɪɴғᴏ •", url=info)]]        
         image = json.get("bannerImage", False)
-        msg += f"**⦾ ᴅᴇsᴄʀɪᴘᴛɪᴏɴ »** _{json.get('description', None)}_"
+        msg += f"**\n⦾ ᴅᴇsᴄʀɪᴘᴛɪᴏɴ »** _{json.get('description', None)}_"
         if image:
             try:
                 await message.reply_photo(
