@@ -99,9 +99,9 @@ async def _anime(_, message):
         await message.reply_text('🙄 ᴀɴɪᴍᴇ ɴᴏᴛ ғᴏᴜɴᴅ')
         return
     
-    if json:
-        print(f"{json.get('startDate')}")
+    if json:        
         json = json['data']['Media']
+        print("{json.get('startDate')}")
         msg = f"**{json['title']['romaji']}** *-* **({json['title']['native']})**\n\n**• Type**: {json['format']}\n**• Status**: {json['status']}\n**• Episodes**: {json.get('episodes', 'N/A')}\n**• Duration**: {json.get('duration', 'N/A')} Per Ep.\n**• Score**: {json['averageScore']}\n**• Genres**: `"
         for x in json['genres']:
             msg += f"{x}, "
