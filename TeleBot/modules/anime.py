@@ -104,10 +104,12 @@ async def _anime(_, message):
         json = json['data']['Media']
         print(json['startDate']['year'])
         msg = f"""
-**📀 ᴛɪᴛʟᴇ » {json['title']['romaji']}** ┌⁠(⁠・⁠。⁠・⁠)⁠┘⁠♪ **({json['title']['native']})**\n\n
-**🎣 ᴛʏᴘᴇ »** {json['format']}\n
-**⚡sᴛᴀᴛᴜs »** {json['status']}\n
-**✨ ᴇᴘɪsᴏᴅᴇs »** {json.get('episodes', 'N/A')}\n
+**📀 ᴛɪᴛʟᴇ » {json['title']['romaji']}** ┌⁠(⁠・⁠。⁠・⁠)⁠┘⁠♪ **({json['title']['native']})**
+
+**🎣 ᴛʏᴘᴇ »** {json['format']}
+**⚡sᴛᴀᴛᴜs »** {json['status']}
+**✨ ᴇᴘɪsᴏᴅᴇs »** {json.get('episodes', 'N/A')}
+
 **⏲️ ᴅᴜʀᴀᴛɪᴏɴ »** {json.get('duration', 'N/A')} ᴘᴇʀ ᴇᴘ.\n
 **🌟 sᴄᴏʀᴇ »**: {json['averageScore']}\n
 **🎭 ɢᴇɴʀᴇs »**: `"""
