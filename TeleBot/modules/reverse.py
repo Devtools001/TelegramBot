@@ -5,6 +5,7 @@ from GoogleSearch import Search
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from GoogleSearch import Search
 from pyrogram.errors import BadRequest
+from geniuses import GeniusClient
 
 @pgram.on_message(filters.command(["pp","p","grs","reverse"]))
 async def _reverse(_, message):
@@ -75,6 +76,31 @@ async def _reverse(_, message):
         )
     
 
+@pgram.on_message(filters.command("lyrics"))
+async def _lyrics(_, message):
+    if len(message.command) < 2 :
+        return await message.reply_text("ɢɪᴠᴇ ᴍᴇ ᴀ sᴏɴɢ ɴᴀᴍᴇ ᴛᴏ ғɪɴᴅ ɪᴛ's ʟʏʀɪᴄs. 💘")
+    GENIUSES_API_KEY = (
+        "gIgMyTXuwJoY9VCPNwKdb_RUOA_9mCMmRlbrrdODmNvcpslww_2RIbbWOB8YdBW9"
+    )  
+    q = message.text.split(None,1)[1]
+    g_client = GeniusClient(GENIUSES_API_KEY) 
+    songs = g_client.search(q)
+    if len(songs) == 0:
+        return await e.reply(
+            "ɴᴏ ʀᴇsᴜʟᴛ ғᴏᴜɴᴅ ғᴏʀ ᴛʜᴇ ɢɪᴠᴇɴ sᴏɴɢ ɴᴀᴍᴇ!",
+        )
+    song = songs[0]
+    name = song.title
+    song.header_image_thumbnail_url
+    lyrics = song.lyrics
+    for x in ["Embed", "Share URL", "Copy"]:
+        if x in lyrics:
+            lyrics = lyrics.replace(x, "")
+    pattern = re.compile("\n+")
+    lyrics = pattern.sub("\n", lyrics)
+    out_str = f"**{name}**\n__{lyrics}__"
+    await message.reply_text(out_str)     
 
 
 
