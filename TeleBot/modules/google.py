@@ -120,9 +120,8 @@ async def _ud(_, message):
         reply_text = f'**💘 {text}**\n\n{results["list"][0]["definition"]}\n\n_{results["list"][0]["example"]}_'
         link = results["list"][0]["permalink"]
         
-    except:
-        reply_text = "ɴᴏ ʀᴇsᴜʟᴛs ғᴏᴜɴᴅ."    
-    await message.reply_text(reply_text,reply_markup=InlineKeyboardMarkup([
+    
+        await message.reply_text(reply_text,reply_markup=InlineKeyboardMarkup([
                     [
                         InlineKeyboardButton(
                             text="• ʟɪɴᴋ •",
@@ -130,6 +129,8 @@ async def _ud(_, message):
                         ),
                     ],
                 ],))
+    except Exception:
+        await message.reply_text("ɴᴏ ʀᴇsᴜʟᴛs ғᴏᴜɴᴅ.")
                
             
         
