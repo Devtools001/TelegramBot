@@ -12,7 +12,9 @@ from TeleBot.modules.pyrogram_funcs.status import (
     user_can_ban )
 from pyrogram.enums import UserStatus
 from pyrogram.errors import FloodWait
-from TeleBot.modules.tagall import SPAM_CHATS
+
+SPAM_CHATS = []
+
 
 SUPREME_USERS = DEV_USERS + DRAGONS
 
@@ -97,6 +99,22 @@ async def mass_action(_, message):
                 pass
         await asyncio.sleep(3)
         await text.edit(f"**unᴍᴜᴛᴇᴅ ᴀʟʟ ᴍᴇᴍʙᴇʀs ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ**.") 
+
+@pgram.on_message(filters.command("cancel") & ~filters.private)
+@user_admin
+async def cancelcmd(_, message):
+    chat_id = message.chat.id
+    if chat_id in SPAM_CHATS:
+        try :
+            SPAM_CHATS.remove(chat_id)
+        except Exception:
+            pass   
+        return await message.reply_text("sᴛᴏᴘᴘᴇᴅ ᴍᴇɴᴛɪᴏɴɪɴɢ ᴛʜᴇ ᴜsᴇʀs.")     
+                                     
+    else :
+        await message.reply_text("**ᴛʜᴇʀᴇ ɪs ɴᴏ ᴘʀᴏᴄᴇss ɢᴏɪɴɢ ᴏɴ ʙᴀʙʏ.**")  
+        return       
+    
     
 @pgram.on_message(filters.command("kickthefools") & ~filters.private)
 @bot_admin
