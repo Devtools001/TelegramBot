@@ -93,7 +93,7 @@ async def _anime(_, message):
             'query': anime_query,
             'variables': variables
         }).json()
-
+    print(json)
     if 'errors' in json.keys():
         await message.reply_text('🙄 ᴀɴɪᴍᴇ ɴᴏᴛ ғᴏᴜɴᴅ')
         return
