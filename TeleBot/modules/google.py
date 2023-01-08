@@ -8,6 +8,7 @@ from GoogleSearch import Search
 from pyrogram.errors import BadRequest
 from geniuses import GeniusClient
 from httpx import AsyncClient
+from bs4 import BeautifulSoup
 
 @pgram.on_message(filters.command(["pp","p","grs","reverse"]))
 async def _reverse(_, message):
@@ -133,7 +134,36 @@ async def _ud(_, message):
         await message.reply_text("ɴᴏ ʀᴇsᴜʟᴛs ғᴏᴜɴᴅ.")
                
             
-        
+@pgram.on_message(filters.command("google"))
+async def _google(_, message):
+    try:
+        query = message.text.split(None, 1)[1]
+    except IndexError:
+        return await message.reply(
+            "ᴛʜᴇ ǫᴜᴇʀʏ ᴛᴇxᴛ ʜᴀs ɴᴏᴛ ʙᴇᴇɴ ᴘʀᴏᴠɪᴅᴇᴅ.",
+        )   
+    url = f"https://www.google.com/search?&q={query}&num=5"
+    usr_agent = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) "
+        "Chrome/61.0.3163.100 Safari/537.36"
+    }
+    r = get(url, headers=usr_agent)
+    soup = BeautifulSoup(r.text, "html.parser")
+    results = soup.find_all("div", attrs={"class": "g"})
+    final = f"sᴇᴀʀᴄʜ ʀᴇsᴜʟᴛs for <b>{query}</b>:"
+    if not results or len(results) == 0:
+        return await e.reply(
+            "ɴᴏ ʀᴇsᴜʟᴛs ғᴏᴜɴᴅ!",
+        )
+    for x in results:
+        link = (x.find("a", href=True))["href"]
+        name = x.find("h3")
+        if link and name:
+            if not name == "Images" and not name == "Description":
+                final += f"\n- <a href='{link}'>{name}</a>"
+    await message.reply_text(final, disable_web_page_preview=True)
+    
+         
 
 
 
