@@ -21,14 +21,15 @@ async def _speed(_, message):
 
 @pgram.on_callback_query()
 async def _speedtest(app : Client,callback_query: CallbackQuery):
-    query = callback_query.message
+  #  query = callback_query.message
     text = await query.edit("ʀᴜɴɴɪɴɢ ᴀ sᴩᴇᴇᴅᴛᴇsᴛ...")
     speed = speedtest.Speedtest()
     speed.get_best_server()
     speed.download()
     speed.upload()
     msg = "sᴩᴇᴇᴅᴛᴇsᴛ ʀᴇsᴜʟᴛ"
-    if query.data == "speedtest_image":
+    query = callback_query.data.lower()
+    if query == "speedtest_image":
         speedtest_image = speed.results.share()
             await message.reply_photo(
                 photo=speedtest_image, caption=msg
