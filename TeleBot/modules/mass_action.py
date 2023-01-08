@@ -135,6 +135,8 @@ async def _kickthefools(_,message):
 @pgram.on_message(filters.command("gusers") & ~filters.private)
 @user_admin
 async def _list(_, message):
+    msg = await message.reply("ɢᴇᴛᴛɪɴɢ ᴜsᴇʀs ʟɪsᴛ ɪɴ ᴛʜɪs ᴄʜᴀᴛ.")
+    count = await pgram.get_chat_members_count(message.chat.id)
     title = message.chat.title 
     mentions = f"ᴜꜱᴇʀꜱ ɪɴ {title}: \n"
     async for member in pgram.get_chat_members(message.chat.id):
@@ -149,7 +151,7 @@ async def _list(_, message):
     await pgram.send_document(
         message.chat.id,
         "userslist.txt",
-        caption=f"ᴜsᴇʀs ɪɴ {title}"       
+        caption=f"{count} ᴛᴏᴛᴀʟ ᴍᴇᴍʙᴇʀs ɪɴ {title}\n"       
     )
 
     os.remove("userslist.txt")      
