@@ -67,6 +67,25 @@ query ($id: Int,$search: String) {
     }
 """
 
+character_query = """
+    query ($query: String) {
+        Character (search: $query) {
+               id
+               name {
+                     first
+                     last
+                     full
+               }
+               siteUrl
+               image {
+                        large
+               }
+               description
+        }
+    }
+"""
+
+
 anime_query = '''
    query ($id: Int,$search: String) {
       Media (id: $id, type: ANIME,search: $search) {
@@ -247,3 +266,39 @@ async def _manga(_, message):
                 msg,
                 parse_mode=ParseMode.MARKDOWN,
                 reply_markup=InlineKeyboardMarkup(buttons))
+
+@pgram.on_message(filters.command("character"))
+async def _character(_, message):
+    if len(message.command) < 2 :
+        await message.reply_text('ғᴏʀᴍᴀᴛ : /ᴄʜᴀʀᴀᴄᴛᴇʀ < ᴄʜᴀʀᴀᴄᴛᴇʀ ɴᴀᴍᴇ >')
+        return   
+    search = message.text.split(None,1)  
+    search = search[1]
+    variables = {'query': search}
+    json = requests.post(
+        url, json={
+            'query': character_query,
+            'variables': variables
+        }).json()   
+    if 'errors' in json.keys():
+        await message.reply_text('Character not found')
+        return
+    if json:
+        json = json['data']['Character']
+        msg = f"* {json.get('name').get('full')}*(`{json.get('name').get('native')}`) \n"
+        description = f"{json['description']}"
+        site_url = json.get('siteUrl')
+        char_name = f"{json.get('name').get('full')}"
+        msg += shorten(description, site_url)
+        image = json.get('image', None)
+        if image:
+            image = image.get('large')
+            buttons = [[InlineKeyboardButton("Save as Waifu ❣️", callback_data=f"xanime_fvrtchar={char_name}")]]
+            await message.reply_photo(
+                photo=image,
+                caption=msg.replace('<b>', '</b>'),
+                reply_markup=InlineKeyboardMarkup(buttons),
+                parse_mode=ParseMode.MARKDOWN)
+        else:
+            await message.reply_text(
+                msg.replace('<b>', '</b>'), reply_markup=InlineKeyboardMarkup(buttons), parse_mode=ParseMode.MARKDOWN)        
