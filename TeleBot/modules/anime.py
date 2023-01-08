@@ -79,7 +79,7 @@ anime_query = '''
 '''
 
 @pgram.on_message(filters.command("anime"))
-async def (_, message):
+async def _anime(_, message):
     search = message.text.split(None,1)[1]
     print(search)
 
