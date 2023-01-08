@@ -5,7 +5,7 @@ from pyrogram import filters, Client
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup , CallbackQuery 
 
 
- buttons = [
+buttons = [
         [
             InlineKeyboardButton("ɪᴍᴀɢᴇ", callback_data="speedtest_image"),
             InlineKeyboardButton("ᴛᴇxᴛ", callback_data="speedtest_text"),
