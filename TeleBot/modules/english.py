@@ -50,8 +50,10 @@ async def _atony(_, message):
 @pgram.on_message(filters.command("spell"))
 async def _spell(_, message):
     replied = message.reply_to_message
-    if not replied.text:
+    if not replied:
         return await message.reply_text("ʀᴇᴘʟʏ ᴛᴏ ᴀ ᴍᴇssᴀɢᴇ ʙᴀʙʏ.")
+    if not replied.text:
+        return await message.reply_text("ʙʀᴜʜ ʀᴇᴘʟʏ ᴛᴏ ᴀ ᴛᴇxᴛ..")
     ctext = replied
     msg = ctext.text
     print(msg)
