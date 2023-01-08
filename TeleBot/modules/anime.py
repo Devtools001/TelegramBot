@@ -201,7 +201,7 @@ async def _manga(_, message):
         }).json()
     msg = ''      
     if 'errors' in json.keys():
-        await message.reply_text('Manga not found')
+        await message.reply_text('ᴍᴀɴɢᴀ ɴᴏᴛ ғᴏᴜɴᴅ')
         return
     if json:
         json = json['data']['Media']
@@ -212,24 +212,23 @@ async def _manga(_, message):
             'year', False), json.get('status',
                                      False), json.get('averageScore', False) 
         if title:
-            msg += f"*{title}*"
+            msg += f"**⦾ ᴛɪᴛʟᴇ »** {title}"
             if title_native:
                 msg += f"(`{title_native}`)"
         if start_date:
-            msg += f"\n*Start Date* - `{start_date}`"
+            msg += f"\n**⦾ sᴛᴀʀᴛ ʏᴇᴀʀ »** `{start_date}`"
         if status:
-            msg += f"\n*Status* - `{status}`"
+            msg += f"\n**⦾ sᴛᴀᴛᴜs »** `{status}`"
         if score:
-            msg += f"\n*Score* - `{score}`"
-        msg += '\n*Genres* - '
+            msg += f"\n**⦾ sᴄᴏʀᴇ »** `{score}`"
+        msg += '\n**⦾ ɢᴇɴʀᴇs »** '
         for x in json.get('genres', []):
             msg += f"{x}, "
         msg = msg[:-2]
         info = json['siteUrl']       
-        buttons = [[InlineKeyboardButton("More Info", url=info)]]
-        buttons += [[InlineKeyboardButton("📕 Add To Read List", callback_data=f"xanime_manga={title}")]]
+        buttons = [[InlineKeyboardButton("More Info", url=info)]]        
         image = json.get("bannerImage", False)
-        msg += f"_{json.get('description', None)}_"
+        msg += f"**⦾ ᴅᴇsᴄʀɪᴘᴛɪᴏɴ »** _{json.get('description', None)}_"
         if image:
             try:
                 await message.reply_photo(
