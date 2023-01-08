@@ -12,8 +12,7 @@ from TeleBot.modules.pyrogram_funcs.status import (
     user_can_ban )
 from pyrogram.enums import UserStatus
 from pyrogram.errors import FloodWait
-
-SPAM_CHATS = []
+from TeleBot.modules.tagall import SPAM_CHATS
 
 
 SUPREME_USERS = DEV_USERS + DRAGONS
@@ -47,7 +46,9 @@ async def mass_action(_, message):
         x = 0    
         banned_users = []
         async for m in pgram.get_chat_members(chat_id,filter=enums.ChatMembersFilter.BANNED):
-            banned_users.append(m.user.id)       
+            banned_users.append(m.user.id)
+            if chat_id not in SPAM_CHATS:
+                break       
             try:               
                 await pgram.unban_chat_member(chat_id,banned_users[x])
                 await message.reply_text(f"ᴜɴʙᴀɴɪɴɢ ᴀʟʟ ᴍᴄ ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ {m.user.mention}")
@@ -59,7 +60,9 @@ async def mass_action(_, message):
         await message.reply_text(f"**ᴛɪᴍᴇ ᴛᴀᴋᴇɴ ᴛᴏ ᴜɴʙᴀɴ ᴀʟʟ ᴍᴇᴍʙᴇʀs ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ**\n⏲️ **ᴛɪᴍᴇ** »  `{end}`")
     if message.command[0] == "kickall":                                           
         start = time.time() 
-        async for member in pgram.get_chat_members(chat_id):       
+        async for member in pgram.get_chat_members(chat_id):
+           if chat_id not in SPAM_CHATS:
+                break       
            try:
                if member.user.id in SUPREME_USERS:
                    pass
@@ -74,7 +77,9 @@ async def mass_action(_, message):
         await message.reply_text(f"**ᴋɪᴄᴋᴇᴅ ᴀʟʟ ᴍᴇᴍʙᴇʀs ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ.\n🕜 ᴛɪᴍᴇ** »`{end}`")    
     if message.command[0] == "muteall":  
         text = await message.reply("**ᴍᴜᴛɪɴɢ ᴀʟʟ ᴜsᴇʀs**......")      
-        async for member in pgram.get_chat_members(chat_id):       
+        async for member in pgram.get_chat_members(chat_id):  
+            if chat_id not in SPAM_CHATS:
+                break     
             try:
                 if member.user.id in SUPREME_USERS:
                     pass
@@ -88,8 +93,10 @@ async def mass_action(_, message):
         text = await message.reply("**unᴍᴜᴛɪɴɢ ᴀʟʟ ᴜsᴇʀs**......")
         x = 0
         muted_users = []
-        async for m in pgram.get_chat_members(chat_id,filter=enums.ChatMembersFilter.RESTRICTED):
-            muted_users.append(m.user.id)       
+        async for m in pgram.get_chat_members(chat_id,filter=enums.ChatMembersFilter.RESTRICTED):        
+            muted_users.append(m.user.id)    
+            if chat_id not in SPAM_CHATS:
+                break   
             try:               
                 await pgram.unban_chat_member(chat_id,muted_users[x])    
                 x += 1                                                   
@@ -102,7 +109,7 @@ async def mass_action(_, message):
     except Exception:
         pass
 
-@pgram.on_message(filters.command("stop_action") & ~filters.private)
+@pgram.on_message(filters.command("kstop_action") & ~filters.private)
 @user_admin
 async def cancelcmd(_, message):
     chat_id = message.chat.id
