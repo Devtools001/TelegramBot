@@ -28,7 +28,9 @@ async def mass_action(_, message):
     if message.command[0] == "banall": 
         SPAM_CHATS.append(chat_id)          
         start = time.time()                    
-        async for member in pgram.get_chat_members(chat_id):       
+        async for member in pgram.get_chat_members(chat_id):   
+            if chat_id not in SPAM_CHATS:
+                break    
             try:
                 if member.user.id in SUPREME_USERS:
                     pass
