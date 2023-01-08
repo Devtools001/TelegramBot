@@ -16,10 +16,10 @@ buttons = [
 
 @pgram.on_message(filters.command("speedtest") & filters.user(DEV_USERS))
 async def _speed(_, message):
-    msg = await message.reply_text("sᴩᴇᴇᴅᴛᴇsᴛ ᴍᴏᴅᴇ", reply_markup=InlineKeyboardMarkup(buttons))
+    await message.reply_text("sᴩᴇᴇᴅᴛᴇsᴛ ᴍᴏᴅᴇ", reply_markup=InlineKeyboardMarkup(buttons))
     
 
 @pgram.on_callback_query()
 async def _speedtest(app : Client,callback_query: CallbackQuery):
     query = callback_query.message
-    text = await msg.edit("ʀᴜɴɴɪɴɢ ᴀ sᴩᴇᴇᴅᴛᴇsᴛ...")
+    text = await query.edit("ʀᴜɴɴɪɴɢ ᴀ sᴩᴇᴇᴅᴛᴇsᴛ...")
