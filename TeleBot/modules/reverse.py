@@ -27,8 +27,8 @@ async def _reverse(_, message):
                         ],
                     ),
                 )
-                return
-         else:
+            return
+        else:
             await message.reply_text(
                 "ᴄᴏᴍᴍᴀɴᴅ ᴍᴜsᴛ ʙᴇ ᴜsᴇᴅ ᴡɪᴛʜ ᴀ ʀᴇᴘʟʏ ᴛᴏ ᴀɴ ɪᴍᴀɢᴇ ᴏʀ sʜᴏᴜʟᴅ ɢɪᴠᴇ ᴜʀʟ"
             )           
