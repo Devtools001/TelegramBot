@@ -11,7 +11,7 @@ from pyrogram import filters
 
 
 
-@pgram.on_message(filters.command(["zombies","zombies clean") & ~filters.private)
+@pgram.on_message(filters.command(["zombies","zombies clean"]) & ~filters.private)
 @bot_admin
 @bot_can_ban
 @user_admin
