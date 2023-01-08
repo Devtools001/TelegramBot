@@ -103,7 +103,14 @@ async def _anime(_, message):
     if json:        
         json = json['data']['Media']
         print(json['startDate']['year'])
-        msg = f"**📀 ᴛɪᴛʟᴇ » {json['title']['romaji']}** ┌⁠(⁠・⁠。⁠・⁠)⁠┘⁠♪ **({json['title']['native']})**\n\n**🎣 ᴛʏᴘᴇ »** {json['format']}\n**⚡sᴛᴀᴛᴜs »** {json['status']}\n**✨ ᴇᴘɪsᴏᴅᴇs »** {json.get('episodes', 'N/A')}\n**⏲️ ᴅᴜʀᴀᴛɪᴏɴ »** {json.get('duration', 'N/A')} ᴘᴇʀ ᴇᴘ.\n**🌟 sᴄᴏʀᴇ »**: {json['averageScore']}\n**🎭 ɢᴇɴʀᴇs »**: `"
+        msg = f"""
+**📀 ᴛɪᴛʟᴇ » {json['title']['romaji']}** ┌⁠(⁠・⁠。⁠・⁠)⁠┘⁠♪ **({json['title']['native']})**\n\n
+**🎣 ᴛʏᴘᴇ »** {json['format']}\n
+**⚡sᴛᴀᴛᴜs »** {json['status']}\n
+**✨ ᴇᴘɪsᴏᴅᴇs »** {json.get('episodes', 'N/A')}\n
+**⏲️ ᴅᴜʀᴀᴛɪᴏɴ »** {json.get('duration', 'N/A')} ᴘᴇʀ ᴇᴘ.\n
+**🌟 sᴄᴏʀᴇ »**: {json['averageScore']}\n
+**🎭 ɢᴇɴʀᴇs »**: `"""
         for x in json['genres']:
             msg += f"{x}, "
         msg = msg[:-2] + '`\n'
