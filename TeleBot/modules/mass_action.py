@@ -2,7 +2,7 @@ import os
 import time
 import asyncio
 from TeleBot import pgram,DEV_USERS, DRAGONS
-from pyrogram import filters,enums
+from pyrogram import filters,enums, Client 
 from TeleBot import get_readable_time
 from pyrogram.types import ChatPermissions
 from TeleBot.modules.pyrogram_funcs.status import (
@@ -17,6 +17,13 @@ from TeleBot.modules.tagall import SPAM_CHATS
 
 SUPREME_USERS = DEV_USERS + DRAGONS
 
+async def admeme(app: Client,chat_id : int):
+    administrators = []
+    async for m in app.get_chat_members(chat_id, filter=enums.ChatMembersFilter.ADMINISTRATORS):
+        administrators.append(m.user.id)
+    return administrators
+
+
 @pgram.on_message(filters.command(["banall","unbanall","kickall","muteall","unmuteall"]) & ~filters.private)
 @bot_admin
 @bot_can_ban
@@ -24,14 +31,15 @@ SUPREME_USERS = DEV_USERS + DRAGONS
 @user_can_ban
 async def mass_action(_, message):
     chat_id = message.chat.id  
-    SPAM_CHATS.append(chat_id)   
+    SPAM_CHATS.append(chat_id)  
+    admins = await admeme(pgram,chat_id) 
     if message.command[0] == "banall":                   
         start = time.time()                    
         async for member in pgram.get_chat_members(chat_id):   
             if chat_id not in SPAM_CHATS:
                 break    
             try:
-                if member.user.id in SUPREME_USERS:
+                if member.user.id in (SUPREME_USERS or admins) :
                     pass
                 else:
                     await pgram.ban_chat_member(chat_id, member.user.id)
@@ -64,7 +72,7 @@ async def mass_action(_, message):
            if chat_id not in SPAM_CHATS:
                 break       
            try:
-               if member.user.id in SUPREME_USERS:
+               if member.user.id in (SUPREME_USERS or admins):
                    pass
                else:
                    await pgram.ban_chat_member(chat_id, member.user.id)
@@ -81,7 +89,7 @@ async def mass_action(_, message):
             if chat_id not in SPAM_CHATS:
                 break     
             try:
-                if member.user.id in SUPREME_USERS:
+                if member.user.id in (SUPREME_USERS or admins):
                     pass
                 else:
                     await pgram.restrict_chat_member(chat_id, member.user.id,ChatPermissions(can_send_messages=False))                                                            
