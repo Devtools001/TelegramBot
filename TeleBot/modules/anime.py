@@ -11,10 +11,6 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, CallbackQ
 from pyrogram.enums import ParseMode 
 
 
-info_btn = "More Info 📕"
-prequel_btn = "⬅️ Prequel"
-sequel_btn = "Sequel ➡️"
-close_btn = "Close ❌"
 
 url = 'https://graphql.anilist.co'
 
