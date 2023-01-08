@@ -137,7 +137,7 @@ async def _kickthefools(_,message):
 async def _list(_, message):
     title = message.chat.title 
     mentions = f"ᴜꜱᴇʀꜱ ɪɴ {title}: \n"
-    async for member in app.get_chat_members(message.chat.id):
+    async for member in pgram.get_chat_members(message.chat.id):
         mentions += (
             f"\nᴅᴇʟᴇᴛᴇᴅ ᴀᴄᴄᴏᴜɴᴛ {member.user.id}"
             if member.user.is_deleted
