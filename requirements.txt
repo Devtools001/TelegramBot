@@ -4,6 +4,7 @@ beautifulsoup4
 jikanpy
 motor
 pyrogram
+PyDictionary
 pillow
 psutil
 openai
