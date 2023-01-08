@@ -113,7 +113,7 @@ async def _ud(_, message):
         async with AsyncClient() as client:
             r = await client.get(f"https://api.urbandictionary.com/v0/define?term={text}")
         results = r.json()    
-        print(results)            
+        print(results["list"][0]["permalink"])            
         try:
             reply_text = f'**{text}**\n\n{results["list"][0]["definition"]}\n\n_{results["list"][0]["example"]}_'
         except:
