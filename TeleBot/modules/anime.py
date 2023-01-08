@@ -5,7 +5,7 @@ import datetime
 import textwrap
 import requests
 import json
-
+from pyrogram import filters 
 from TeleBot import pgram 
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery 
 from pyrogram.enums import ParseMode 
