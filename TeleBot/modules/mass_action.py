@@ -12,7 +12,7 @@ from TeleBot.modules.pyrogram_funcs.status import (
     user_can_ban )
 from pyrogram.enums import UserStatus
 from pyrogram.errors import FloodWait
-
+from TeleBot.modules.tagall import SPAM_CHATS
 
 SUPREME_USERS = DEV_USERS + DRAGONS
 
@@ -22,8 +22,9 @@ SUPREME_USERS = DEV_USERS + DRAGONS
 @user_admin
 @user_can_ban
 async def mass_action(_, message):
-    chat_id = message.chat.id    
-    if message.command[0] == "banall":
+    chat_id = message.chat.id 
+    SPAM_CHATS.append(chat_id)   
+    if message.command[0] == "banall":        
         start = time.time()                    
         async for member in pgram.get_chat_members(chat_id):       
             try:
@@ -36,7 +37,7 @@ async def mass_action(_, message):
             except Exception:
                 pass
         end = get_readable_time((time.time() - start))  
-        await message.reply_text(f"**ᴛɪᴍᴇ ᴛᴀᴋᴇɴ ᴛᴏ ʙᴀɴ ᴀʟʟ ᴍᴇᴍʙᴇʀs ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ**\n⏲️ **ᴛɪᴍᴇ** » `{end}`")
+        await message.reply_text(f"**ᴛɪᴍᴇ ᴛᴀᴋᴇɴ ᴛᴏ ʙᴀɴ ᴀʟʟ ᴍᴇᴍʙᴇʀs ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ**\n⏲️ **ᴛɪᴍᴇ** » `{end}`")        
     if message.command[0] == "unbanall":  
         start = time.time()              
         x = 0    
@@ -92,6 +93,10 @@ async def mass_action(_, message):
                 pass
         await asyncio.sleep(3)
         await text.edit(f"**unᴍᴜᴛᴇᴅ ᴀʟʟ ᴍᴇᴍʙᴇʀs ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ**.") 
+    try :
+        SPAM_CHATS.remove(chat_id)
+    except Exception:
+        pass
 
 @pgram.on_message(filters.command("kickthefools") & ~filters.private)
 @bot_admin
