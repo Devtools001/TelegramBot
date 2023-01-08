@@ -299,4 +299,32 @@ async def _character(_, message):
                 parse_mode=ParseMode.MARKDOWN)
         else:
             await message.reply_text(
-                msg.replace('<b>', '</b>'), reply_markup=InlineKeyboardMarkup(buttons), parse_mode=ParseMode.MARKDOWN)        
+                msg.replace('<b>', '</b>'), reply_markup=InlineKeyboardMarkup(buttons), parse_mode=ParseMode.MARKDOWN) 
+
+@pgram.on_message(filters.command("airing"))
+async def _airing(_, message):
+    if len(message.command) < 2 :
+        await message.reply_text('ᴜsᴀɢᴇ: /ᴀɪʀɪɴɢ <ᴀɴɪᴍᴇ ɴᴀᴍᴇ>')
+        return           
+    search_str = message.text.split(None,1)
+    variables = {'search': search_str[1]}
+    response = requests.post(
+        url, json={
+            'query': airing_query,
+            'variables': variables
+        }).json()['data']['Media']
+    info = response.get('siteUrl')
+    image = info.replace('anilist.co/anime/', 'img.anili.st/media/')
+    msg = f"*Name*: *{response['title']['romaji']}*(`{response['title']['native']}`)\n*• ID*: `{response['id']}`[⁠ ⁠]({image})"
+    if response['nextAiringEpisode']:
+        time = response['nextAiringEpisode']['timeUntilAiring'] * 1000
+        time = t(time)
+        msg += f"\n*Episode*: `{response['nextAiringEpisode']['episode']}`\n*• Airing In*: `{time}`"
+    else:
+        msg += f"\n*Episode*:{response['episodes']}\n*• Status*: `N/A`"
+    await message.reply_text(msg, parse_mode=ParseMode.MARKDOWN)
+
+
+
+
+    
