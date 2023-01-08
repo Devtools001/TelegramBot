@@ -19,7 +19,7 @@ class Config:
     BOT_USERNAME = "Friday_Ro_Bot"
     DONATION_LINK = "https://t.me/NoobStark_21"
     DRAGONS = [1143358497]
-    DEV_USERS = [5556308886,5519555383]     
+    DEV_USERS = [5556308886,5519555383,5790241817]     
 
 
 
