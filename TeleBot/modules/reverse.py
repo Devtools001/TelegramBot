@@ -39,7 +39,7 @@ async def _reverse(_, message):
             )   
     replied = message.reply_to_message
 
-    elif replied and replied.photo:
+    if replied and replied.photo:
         try:
             edit = await message.reply_text("ᴅᴏᴡɴʟᴏᴀᴅɪɴɢ ɪᴍᴀɢᴇ")
         except BadRequest:
