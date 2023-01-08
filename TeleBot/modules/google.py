@@ -119,17 +119,17 @@ async def _ud(_, message):
     try:
         reply_text = f'**💘 {text}**\n\n{results["list"][0]["definition"]}\n\n_{results["list"][0]["example"]}_'
         link = results["list"][0]["permalink"]
-        button = [
+        
+    except:
+        reply_text = "ɴᴏ ʀᴇsᴜʟᴛs ғᴏᴜɴᴅ."    
+    await message.reply_text(reply_text,reply_markup=InlineKeyboardMarkup([
                     [
                         InlineKeyboardButton(
                             text="• ʟɪɴᴋ •",
                             url=link,
                         ),
                     ],
-                ],
-    except:
-        reply_text = "ɴᴏ ʀᴇsᴜʟᴛs ғᴏᴜɴᴅ."    
-    await message.reply_text(reply_text,reply_markup=InlineKeyboardMarkup(button))
+                ],))
                
             
         
