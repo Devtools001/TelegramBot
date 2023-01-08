@@ -119,7 +119,7 @@ async def _anime(_, message):
                 trailer = 'https://youtu.be/' + trailer_id
         description = json.get('description', 'N/A').replace('<b>', '').replace(
             '</b>', '').replace('<br>', '')
-        msg += async shorten(description, info)
+        msg += await shorten(description, info)
         image = info.replace('anilist.co/anime/', 'img.anili.st/media/')
 
     if trailer:
