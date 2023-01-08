@@ -44,10 +44,11 @@ async def _paste(_, message):
      
     
     if replied.text:
-        content = str(r.text)
+        content = str(replied.text)
+
     elif replied.document:
         if replied.document.file_size > 40000:
-            return await m.edit("You can only paste files smaller than 40KB.")
+            return await m.edit("ʏᴏᴜ ᴄᴀɴ ᴏɴʟʏ ᴘᴀsᴛᴇ ғɪʟᴇs sᴍᴀʟʟᴇʀ ᴛʜᴀɴ 𝟺𝟶KB.")
 
         if not pattern.search(replied.document.mime_type):
             return await m.edit("oɴʟʏ ᴛᴇxᴛ ғɪʟᴇs ᴄᴀɴ ʙᴇ ᴘᴀsᴛᴇᴅ.")
