@@ -18,7 +18,7 @@ BUTTONS = [
 @pgram.on_message(filters.command("cosplay"))
 async def _cosplay(_, message):
     if message.chat.type != ChatType.PRIVATE:
-        await message.reply_text("**ᴛʜɪs ᴄᴏᴍᴍᴀɴᴅ ᴄᴀɴ ᴏɴʟʏ ʙᴇ ᴜsᴇᴅ ɪɴ ᴘʀɪᴠᴀᴛᴇ**, reply_markup=InlineKeyboardMarkup(BUTTONS))
+        await message.reply_text("**ᴛʜɪs ᴄᴏᴍᴍᴀɴᴅ ᴄᴀɴ ᴏɴʟʏ ʙᴇ ᴜsᴇᴅ ɪɴ ᴘʀɪᴠᴀᴛᴇ**",reply_markup=InlineKeyboardMarkup(BUTTONS))
         return 
     pic = requests.get("https://waifu-api.vercel.app").json() 
     await message.reply_photo(pic)
@@ -27,7 +27,7 @@ async def _cosplay(_, message):
 @pgram.on_message(filters.command("lewd"))
 async def _lewd(_, message):
     if message.chat.type != ChatType.PRIVATE:
-        await message.reply_text("**ᴛʜɪs ᴄᴏᴍᴍᴀɴᴅ ᴄᴀɴ ᴏɴʟʏ ʙᴇ ᴜsᴇᴅ ɪɴ ᴘʀɪᴠᴀᴛᴇ**, reply_markup=InlineKeyboardMarkup(BUTTONS)) 
+        await message.reply_text("**ᴛʜɪs ᴄᴏᴍᴍᴀɴᴅ ᴄᴀɴ ᴏɴʟʏ ʙᴇ ᴜsᴇᴅ ɪɴ ᴘʀɪᴠᴀᴛᴇ**", reply_markup=InlineKeyboardMarkup(BUTTONS)) 
         return   
     pic = requests.get("https://waifu-api.vercel.app/items/1").json()
     await message.reply_photo(pic)
