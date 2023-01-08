@@ -107,7 +107,7 @@ async def _lyrics(_, message):
 
 @pgram.on_message(filters.command("ud"))
 async def _ud(_, message):
-    if len(message.command >= 2 :
+    if len(message.command) >= 2 :
         text = message.text.split(None,1)[1]
         async with AsyncClient() as client:
             r = await client.get(f"https://api.urbandictionary.com/v0/define?term={text}")
