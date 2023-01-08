@@ -47,7 +47,7 @@ async def _reverse(_, message):
 
         photo = await pgram.download_media(replied.photo.file_id,file_name = "reverse.jpg")
         await edit.edit_text("ᴅᴏᴡɴʟᴏᴀᴅᴇᴅ ɪᴍᴀɢᴇ, ᴜᴘʟᴏᴀᴅɪɴɢ ᴛᴏ ɢᴏᴏɢʟᴇ...")
-        result = Search(file_path="reverse.jpg")
+        result = Search(file_path=photo)
         await edit.edit_text("ᴜᴘʟᴏᴀᴅᴇᴅ ᴛᴏ ɢᴏᴏɢʟᴇ, ғᴇᴛᴄʜɪɴɢ ʀᴇsᴜʟᴛs...")
         name = result["output"]
         link = result["similar"]
