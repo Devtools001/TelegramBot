@@ -36,7 +36,7 @@ async def _wiki(_, message):
                 f.write(f"{result}\n\nUwU OwO OmO UmU")
             with open("result.txt", "rb") as f:
                 await pgram.send_document(
-                    message.chat.id
+                    message.chat.id,
                     document=f,
                     caption=f.name,
                     parse_mode=ParseMode.HTML,
