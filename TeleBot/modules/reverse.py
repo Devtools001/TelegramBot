@@ -14,7 +14,7 @@ async def _reverse(_, message):
             name = result["output"]
             link = result["similar"]
             await msg.edit_text("ᴜᴘʟᴏᴀᴅᴇᴅ ᴛᴏ ɢᴏᴏɢʟᴇ, ғᴇᴛᴄʜɪɴɢ ʀᴇsᴜʟᴛs...")
-                await msg.edit_text(
+            await msg.edit_text(
                     text=f"{name}",
                     reply_markup=InlineKeyboardMarkup(
                         [
