@@ -98,7 +98,7 @@ async def cancelcmd(_, message):
             SPAM_CHATS.remove(chat_id)
         except Exception:
             pass   
-        return await message.reply_text("sᴛᴏᴘᴘᴇᴅ ᴍᴇɴᴛɪᴏɴɪɴɢ ᴛʜᴇ ᴜsᴇʀs.")     
+        return await message.reply_text("sᴛᴏᴘᴘᴇᴅ ᴛʜᴇ ᴘʀᴏᴄᴇss.")     
                                      
     else :
         await message.reply_text("**ᴛʜᴇʀᴇ ɪs ɴᴏ ᴘʀᴏᴄᴇss ɢᴏɪɴɢ ᴏɴ ʙᴀʙʏ.**")  
