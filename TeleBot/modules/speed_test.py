@@ -37,5 +37,5 @@ async def _speedtest(app : Client,callback_query: CallbackQuery):
 
     if query == "speedtest_text":
         result = speed.results.dict()
-        replymsg += f"\nDownload: `{convert(result['download'])}Mb/s`\nUpload: `{convert(result['upload'])}Mb/s`\nPing: `{result['ping']}`"
+        msg += f"\nDownload: `{convert(result['download'])}Mb/s`\nUpload: `{convert(result['upload'])}Mb/s`\nPing: `{result['ping']}`"
         await text.edit(msg, parse_mode=enums.ParseMode.MARKDOWN)
