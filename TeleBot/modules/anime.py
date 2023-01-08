@@ -43,6 +43,42 @@ async def t(milliseconds: int) -> str:
 
 
 
+anime_query = '''
+   query ($id: Int,$search: String) {
+      Media (id: $id, type: ANIME,search: $search) {
+        id
+        title {
+          romaji
+          english
+          native
+        }
+        description (asHtml: false)
+        startDate{
+            year
+          }
+          episodes
+          season
+          type
+          format
+          status
+          duration
+          siteUrl
+          studios{
+              nodes{
+                   name
+              }
+          }
+          trailer{
+               id
+               site
+               thumbnail
+          }
+          averageScore
+          genres
+          bannerImage
+      }
+    }
+'''
 
 @pgram.on_message(filters.command("anime"))
 async def _anime(_, message):
