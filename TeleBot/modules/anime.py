@@ -285,7 +285,7 @@ async def _character(_, message):
         return
     if json:
         json = json['data']['Character']
-        msg = f"**⦾ ᴄʜᴀʀᴀᴄᴛᴇʀ :** {json.get('name').get('full')}*(`{json.get('name').get('native')}`) \n"
+        msg = f"**⦾ ᴄʜᴀʀᴀᴄᴛᴇʀ :** {json.get('name').get('full')}**(`{json.get('name').get('native')}`)** \n"
         description = f"{json['description']}"
         site_url = json.get('siteUrl')
         char_name = f"{json.get('name').get('full')}"
