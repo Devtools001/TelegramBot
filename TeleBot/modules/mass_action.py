@@ -146,7 +146,7 @@ async def _list(_, message):
     
     with open("userslist.txt", "w+") as file:
         file.write(mentions)
-    await pgram.send_file(
+    await pgram.send_document(
         message.chat.id,
         "userslist.txt",
         caption=f"ᴜsᴇʀs ɪɴ {title}"       
