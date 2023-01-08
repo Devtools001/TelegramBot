@@ -289,7 +289,7 @@ async def _character(_, message):
         description = f"{json['description']}"
         site_url = json.get('siteUrl')
         char_name = f"{json.get('name').get('full')}"
-        msg += shorten(description, site_url)
+        msg += await shorten(description, site_url)
         image = json.get('image', None)
         if image:
             image = image.get('large')
