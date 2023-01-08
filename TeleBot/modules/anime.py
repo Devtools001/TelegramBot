@@ -157,7 +157,6 @@ async def _anime(_, message):
     
     if json:        
         json = json['data']['Media']
-        print(json['startDate']['year'])
         msg = f"""
 **📀 ᴛɪᴛʟᴇ » {json['title']['romaji']}** ┌⁠(⁠・⁠。⁠・⁠)⁠┘⁠♪ **({json['title']['native']})**
 
