@@ -137,9 +137,10 @@ async def memify(client, message):
     if not (replied.photo or replied.sticker):
         return await message.reply_text("ʏᴏᴜ ᴄᴀɴ ᴏɴʟʏ ᴍᴇᴍᴏʀʏ ᴘʜᴏᴛᴏs ᴏʀ sᴛɪᴄᴋᴇʀs.")
 
+    text = message.text.split(None, 1)[1].strip()
     try:
         file = await message.reply_to_message.download()
-        res = await draw_meme_text(file, message.text.split(None, 1)[1].strip())
+        res = await draw_meme_text(file,text)
         await message.reply_sticker(res)
         try:
             remove(res)
