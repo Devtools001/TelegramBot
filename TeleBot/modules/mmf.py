@@ -6,7 +6,7 @@ import textwrap
 from PIL import Image, ImageDraw, ImageFont
 
 @pgram.on_message(filters.command("mmf"))
-async def_memefy(_, message):
+async def _memefy(_, message):
     if message.sender_chat:
         return
     if len(message.command) < 2:
