@@ -32,7 +32,7 @@ async def repo(_, message):
         ),
     )
 
-@pgram.on_callback_query(filters.regex("github")
+@pgram.on_callback_query(filters.regex("github"))
 async def _git(client, callback_query : CallbackQuery):
     await client.answer_web_app_query(
     callback_query.id,
