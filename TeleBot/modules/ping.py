@@ -12,9 +12,10 @@ async def _ping(_, message):
     telegram_ping = str(round((end - start) * 1000, 3)) + " ms"
     uptime = get_readable_time((time.time() - StartTime))
     await msg.edit(f"""
-        𝗣𝗢𝗡𝗚 🥀!!
-        **ᴛɪᴍᴇ ᴛᴀᴋᴇɴ:** {telegram_ping}
-        **sᴇʀᴠɪᴄᴇ ᴜᴘᴛɪᴍᴇ:** {uptime}"""       
+𝗣𝗢𝗡𝗚 🥀!!
+ᴛɪᴍᴇ ᴛᴀᴋᴇɴ: {telegram_ping}
+sᴇʀᴠɪᴄᴇ ᴜᴘᴛɪᴍᴇ: {uptime}
+        """       
     )
 
 
