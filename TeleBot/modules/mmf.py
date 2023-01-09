@@ -7,7 +7,7 @@ from PIL import Image, ImageFont, ImageDraw
 
 async def draw_meme_text(image_path, text):
     img = Image.open(image_path)
-    hapus(image_path)
+    remove(image_path)
     i_width, i_height = img.size
     m_font = ImageFont.truetype("Calistoga-Regular.ttf", int((70 / 640) * i_width))
     if ";" in text:
