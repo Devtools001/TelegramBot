@@ -19,7 +19,7 @@ async def _memefy(_, message):
     if not (replied.photo or replied.sticker):
         return await message.reply_text("ᴘʟᴇᴀsᴇ ʀᴇᴘʟʏ ᴛᴏ ᴀ ᴘʜᴏᴛᴏ ᴏʀ ᴠɪᴅᴇᴏ.")
 
-    file = replied.download()
+    file = await replied.download()
 
     msg = await message.reply("```Memifying this image! ✊🏻 ```")
 
