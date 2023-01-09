@@ -1,6 +1,6 @@
 import textwrap
 from os import remove 
-from misskaty import pgram 
+from TeleBot import pgram 
 from pyrogram import filters
 from PIL import Image, ImageFont, ImageDraw
 
