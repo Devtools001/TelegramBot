@@ -23,11 +23,9 @@ async def repo(_, message):
         reply_markup=InlineKeyboardMarkup(
             [
                 [
+                    
                     InlineKeyboardButton(
-                        "•ᴍᴜꜱɪᴄ•", url="https://github.com/Abishnoi69/AsuXMusic"
-                    ),
-                    InlineKeyboardButton(
-                        "•ʀᴏʙᴏᴛ•", url="https://github.com/Abishnoi69/ExonRobot"
+                        "• ɢɪᴛʜᴜʙ •", url="https://github.com/NotStark"
                     ),
                 ]
             ]
