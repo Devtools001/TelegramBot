@@ -128,7 +128,7 @@ async def draw_meme_text(image_path, text):
     return webp_file
 
 
-@pgram.on_message(filters.command(("mmf"))
+@pgram.on_message(filters.command("mmf"))
 async def memify(client, message):
     replied = message.reply_to_message
     if len(message.command) < 2 or not replied:
