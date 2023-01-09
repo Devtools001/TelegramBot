@@ -5,11 +5,11 @@ from pyrogram import filters
 from PIL import Image, ImageFont, ImageDraw
 
 
-async def draw_meme_text(image_path, text):
+async def draw_meme_text(image_path, text,font_path):
     img = Image.open(image_path)
     remove(image_path)
     i_width, i_height = img.size
-    m_font = ImageFont.truetype("./TeleBot/resources/FontRemix.ttf", int((70 / 640) * i_width))
+    m_font = ImageFont.truetype(font_path, int((70 / 640) * i_width))
     if ";" in text:
         upper_text, lower_text = text.split(";")
     else:
@@ -139,8 +139,9 @@ async def memify(client, message):
 
     text = message.text.split(None, 1)[1].strip()
     #try:
+    font_path = "./TeleBot/resources/FontRemix.ttf"
     file = await message.reply_to_message.download()
-    res = await draw_meme_text(file,text)
+    res = await draw_meme_text(file,text,font_path)
     await message.reply_sticker(res)
     try:
         remove(res)
