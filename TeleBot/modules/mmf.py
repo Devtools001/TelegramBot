@@ -24,8 +24,11 @@ async def _memefy(_, message):
     msg = await message.reply("```Memifying this image! ✊🏻 ```")
 
     meme = await drawText(file, text)
-    await pgram.send_photo(message.chat.id,meme)
+
+    await message.reply_photo(photo=meme)
     
     await msg.delete()
     os.remove(meme)
-    print(file)
+    
+    print(file,meme)
+    os.remove(file)
