@@ -2,7 +2,7 @@ from platform import python_version as y
 
 from pyrogram import __version__ as z
 from pyrogram import filters
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery 
 
 from TeleBot import pgram 
 
@@ -25,9 +25,16 @@ async def repo(_, message):
                 [
                     
                     InlineKeyboardButton(
-                        "• ɢɪᴛʜᴜʙ •", url="https://github.com/NotStark"
+                        "• ɢɪᴛʜᴜʙ •", callback_data="gihub"
                     ),
                 ]
             ]
         ),
     )
+
+@pgram.on_callback_query(filters.regex("github")
+async def _git(client, callback_query : CallbackQuery):
+    await client.answer_web_app_query(
+    callback_query.id,
+    "https://github.com/NotStark")
+    
