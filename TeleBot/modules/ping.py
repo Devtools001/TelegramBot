@@ -1,6 +1,6 @@
 import time
 import asyncio 
-from TeleBot import pgram,get_readable_time,StartTime
+from TeleBot import pgram,get_readable_time,StartTime,DEV_USERS
 from pyrogram import filters
 
 
@@ -13,10 +13,13 @@ async def _ping(_, message):
     uptime = get_readable_time((time.time() - StartTime))
     await msg.edit(f"""
 𝗣𝗢𝗡𝗚 🥀!!
-ᴛɪᴍᴇ ᴛᴀᴋᴇɴ: {telegram_ping}
-sᴇʀᴠɪᴄᴇ ᴜᴘᴛɪᴍᴇ: {uptime}
-        """       
-    )
+**ᴛɪᴍᴇ ᴛᴀᴋᴇɴ:** {telegram_ping}
+**sᴇʀᴠɪᴄᴇ ᴜᴘᴛɪᴍᴇ:** {uptime}
+        """)
 
 
+
+@pgram.on_message(filters.command("pingall") & filters.user(DEV_USERS))
+async def _pingall(_, message):
+    to_ping = ["ᴋᴀɪᴢᴏᴋᴜ", "ᴋᴀʏᴏ", "ᴛᴇʟᴇɢʀᴀᴍ", "ᴊɪᴋᴀɴ"]
     
