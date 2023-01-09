@@ -138,16 +138,16 @@ async def memify(client, message):
         return await message.reply_text("ʏᴏᴜ ᴄᴀɴ ᴏɴʟʏ ᴍᴇᴍᴏʀʏ ᴘʜᴏᴛᴏs ᴏʀ sᴛɪᴄᴋᴇʀs.")
 
     text = message.text.split(None, 1)[1].strip()
+    #try:
+    file = await message.reply_to_message.download()
+    res = await draw_meme_text(file,text)
+    await message.reply_sticker(res)
     try:
-        file = await message.reply_to_message.download()
-        res = await draw_meme_text(file,text)
-        await message.reply_sticker(res)
-        try:
-            remove(res)
-        except:
-            pass
-    except Exception as er:
-        await message.reply_text(er)
-        await message.reply_text("ᴜsᴇ ᴛʜᴇ ᴄᴏᴍᴍᴀɴᴅ /ᴍᴍғ  ᴡɪᴛʜ ᴀ ʀᴇᴘʟʏ ᴛᴏ ᴛʜᴇ sᴛɪᴄᴋᴇʀ, sᴇᴘᴀʀᴀᴛᴇᴅ ʙʏ ;  ᴛᴏ ᴍᴀᴋᴇ ᴛʜᴇ ᴛᴇxᴛ ᴘᴏsɪᴛɪᴏɴ ʙᴇʟᴏᴡ.")
+        remove(res)
+    except:
+        pass
+    #except Exception as er:
+       # await message.reply_text(er)
+       # await message.reply_text("ᴜsᴇ ᴛʜᴇ ᴄᴏᴍᴍᴀɴᴅ /ᴍᴍғ  ᴡɪᴛʜ ᴀ ʀᴇᴘʟʏ ᴛᴏ ᴛʜᴇ sᴛɪᴄᴋᴇʀ, sᴇᴘᴀʀᴀᴛᴇᴅ ʙʏ ;  ᴛᴏ ᴍᴀᴋᴇ ᴛʜᴇ ᴛᴇxᴛ ᴘᴏsɪᴛɪᴏɴ ʙᴇʟᴏᴡ.")
 
     
