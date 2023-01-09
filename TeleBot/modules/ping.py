@@ -60,9 +60,9 @@ async def _pingall(_, message):
     pinged_list.insert(2, "")
     uptime = get_readable_time((time.time() - StartTime))
 
-    reply_msg = "⏱ᴘɪɴɢ ʀᴇsᴜʟᴛs ᴀʀᴇ:\n"
+    reply_msg = "**⏱ᴘɪɴɢ ʀᴇsᴜʟᴛs ᴀʀᴇ:**\n"
     reply_msg += "\n".join(pinged_list)
-    reply_msg += f"\nsᴇʀᴠɪᴄᴇ ᴜᴘᴛɪᴍᴇ: {uptime}"
+    reply_msg += f"\n**sᴇʀᴠɪᴄᴇ ᴜᴘᴛɪᴍᴇ:** {uptime}"
 
     await message.reply_text(
         reply_msg,
