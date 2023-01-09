@@ -256,9 +256,9 @@ async def g_pic_vid(_,message):
 
     if message.command[0] == "setgvid":
         if replied:
-            if replied.video:           
+            if replied.video or replied.sticker or replied.animation:           
                 text = await message.reply_text("ᴡᴀɪᴛᴏᴏ.....") 
-                file = replied.video or replied.document or replied.animation 
+                file = replied.video or replied.document or replied.animation or replied.sticker
                 if not file:
                     return await message.reply_text(
                     "Reply to a photo or document to set it as chat_photo"
