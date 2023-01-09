@@ -261,12 +261,13 @@ async def g_pic_vid(_,message):
                 file = replied.video or replied.document or replied.animation or replied.sticker
                 if not file:
                     return await message.reply_text(
-                    "Reply to a photo or document to set it as chat_photo"
+                    "Reply to a video, sticker or gif to set it as chat_photo"
                 )
                 if file.file_size > 5000000 :
                     await message.reply_text("ғɪʟᴇ ɪs ᴛᴏᴏ ʙᴏɢ. 🙄")
                 
-                g_vid = await replied.download()                 
+                g_vid = await replied.download() 
+                print(g_vid)                
                 try:                                
                     await pgram.set_chat_photo(chat_id, video=g_vid)
                     await text.delete()
