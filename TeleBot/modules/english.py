@@ -44,3 +44,15 @@ async def _atony(_, message):
     await message.reply_text(f"`{got}`")
 
 
+__help__ = """
+「𝗖𝗢𝗠𝗠𝗔𝗡𝗗𝗦」 :
+═───────◇───────═
+๏ /define <text>: Type the word or expression you want to search
+For example /define kill
+
+๏ /synonyms <word>: Find the synonyms of a word
+
+๏ /antonyms <word>: Find the antonyms of a word
+═───────◇───────═
+"""
+__mod_name__ = "𝙴ɴɢʟɪsʜ"
