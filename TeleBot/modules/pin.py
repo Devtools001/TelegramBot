@@ -60,6 +60,6 @@ async def unpinc(app : Client , callback_query : CallbackQuery):
         await app.unpin_chat_message(chat_id,replied)
     
         
-my_handler = CallbackQueryHandler(unpinc,pattern=r"admin_")
+my_handler = CallbackQueryHandler(unpinc, filters.regex(r"admin_"))
 pgram.add_handler(my_handler)
 
