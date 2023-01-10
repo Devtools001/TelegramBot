@@ -17,5 +17,5 @@ async def _pin(_, message):
     try:
         await replied.pin()
         await message.reply_text("💌 sᴜᴄᴄᴇss! ᴘɪɴɴᴇᴅ ᴛʜɪs ᴍᴇssᴀɢᴇ ᴏɴ ᴛʜɪs ɢʀᴏᴜᴘ.",reply_markup=
-        InlineKeyboardMarkup([[InlineKeyboardButton(📝 ᴠɪᴇᴡ ᴍᴇssᴀɢᴇ,url=replied.link)]]))
+        InlineKeyboardMarkup([[InlineKeyboardButton("📝 ᴠɪᴇᴡ ᴍᴇssᴀɢᴇ",url=replied.link)]]))
     
