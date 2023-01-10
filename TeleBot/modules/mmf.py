@@ -1,3 +1,4 @@
+import glob
 import textwrap
 from os import remove 
 from TeleBot import pgram 
@@ -142,7 +143,7 @@ async def memify(client, message):
     text = message.text.split(None, 1)[1].strip()
     if "-r" in text:
         text = text.replace("-r","")
-        font_path = "./TeleBot/resources/Logo_fonts/*"
+        font_path = glob.glob("./TeleBot/resources/Logo_fonts/*")
  
     else:
         text = text
