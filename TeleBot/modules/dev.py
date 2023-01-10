@@ -1,5 +1,4 @@
 import os
-import sys
 from TeleBot import pgram,DEV_USERS
 from pyrogram import filters
 from contextlib import suppress
@@ -35,8 +34,7 @@ async def _leave(_, message):
 async def _restart(_, message):
     text = await message.reply("sᴛᴀʀᴛɪɴɢ ᴀ ɴᴇᴡ ɪɴsᴛᴀɴᴄᴇ ᴀɴᴅ sʜᴜᴛᴛɪɴɢ ᴅᴏᴡɴ ᴛʜɪs ᴏɴᴇ. 🎣")
     try:
-        os.system("restart.bat")
-        os.execv("start.bat", sys.argv)
+        os.system(f"kill -9 {os.getpid()} && python3 -m TeleBot")
     except Exception as er:
         print(er)
 
