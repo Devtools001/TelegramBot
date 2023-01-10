@@ -8,7 +8,7 @@ async def _IMDb(_,msg):
     if len(msg.command) < 2:        
         return await msg.reply_text("give me a query to search")
     
-    text = msg.text.split(None, 1)[1]replace(" ", "%20")
+    text = msg.text.split(None, 1)[1].replace(" ", "%20")
     
     url=f"https://api.safone.me/tmdb?query={text}%20&limit=1"
     ok=requests.get(url).json()        
