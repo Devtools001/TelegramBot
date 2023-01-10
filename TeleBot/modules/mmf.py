@@ -150,19 +150,19 @@ async def memify(client, message):
 
     elif "-a" in text :
         text = text.replace("-a","")
-        font_path = "./TeleBot/mmf_fonts/AVENGEANCE HEROIC AVENGER BI.otf"
+        font_path = "./TeleBot/resources/mmf_fonts/a.otf"
 
     elif "-d" in text :
         text = text.replace("-d","")
-        font_path = "./TeleBot/mmf_fonts/Dark Seed.otf"
+        font_path = "./TeleBot/resources/mmf_fonts/d.otf"
         
     elif "-di" in text:
         text = text.replace("-di","")
-        font_path = "./TeleBot/mmf_fonts/digital.ttf"
+        font_path = "./TeleBot/resources/mmf_fonts/d.ttf"
 
     elif "-h" in text :
         text = text.replace("-h","")
-        font_path = "./TeleBot/mmf_fonts/hawkmoon.ttf"
+        font_path = "./TeleBot/resources/mmf_fonts/h.ttf"
 
     else:         
         font_path = "./TeleBot/resources/FontRemix.ttf"
