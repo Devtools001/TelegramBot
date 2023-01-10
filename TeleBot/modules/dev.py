@@ -32,14 +32,14 @@ async def _leave(_, message):
 
 @pgram.on_message(filters.command("restart") & filters.user(DEV_USERS))
 async def _restart(_, message):
-    text = message.reply("sᴛᴀʀᴛɪɴɢ ᴀ ɴᴇᴡ ɪɴsᴛᴀɴᴄᴇ ᴀɴᴅ sʜᴜᴛᴛɪɴɢ ᴅᴏᴡɴ ᴛʜɪs ᴏɴᴇ. 🎣")
+    text = await message.reply("sᴛᴀʀᴛɪɴɢ ᴀ ɴᴇᴡ ɪɴsᴛᴀɴᴄᴇ ᴀɴᴅ sʜᴜᴛᴛɪɴɢ ᴅᴏᴡɴ ᴛʜɪs ᴏɴᴇ. 🎣")
     try:
         os.system("restart.bat")
         os.execv("start.bat", sys.argv)
     except Exception as er:
         print(er)
 
-    text.edit("✨ ʀᴇsᴛᴀʀᴛᴇᴅ sᴜᴄᴄᴇssғᴜʟʟʏ.")
+    await text.edit("✨ ʀᴇsᴛᴀʀᴛᴇᴅ sᴜᴄᴄᴇssғᴜʟʟʏ.")
 
 
 
