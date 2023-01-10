@@ -1,5 +1,6 @@
+import time
 import os
-from TeleBot import pgram,LOG,BOT_ID,DEV_USERS,DRAGONS
+from TeleBot import pgram,LOG,BOT_ID,DEV_USERS,DRAGONS,get_readable_time
 from pyrogram import filters,enums
 from TeleBot.modules.pyrogram_funcs.status import (
     bot_admin,
@@ -49,6 +50,23 @@ DEMOTE = ChatPrivileges(
     
 
     
+@pgram.on_message(filters.command("bots") & ~filters.private)
+@user_admin
+async def _botlist(_, message):       
+    chat_title = message.chat.title 
+    chat_id = message.chat.id 
+    repl = await message.reply("» ғᴇᴛᴄʜɪɴɢ ʙᴏᴛs ʟɪsᴛ...")                                        
+    bots = []
+    async for m in pgram.get_chat_members(chat_id, filter=enums.ChatMembersFilter.BOTS):
+        bots.append(m)
+    BOT_LIST = []
+    for bot in bots:
+        BOT_LIST.append(f"◎ {bot.user.mention}\n")
+    header = f"🎣 ʙᴏᴛs ɪɴ {chat_title}:\n"    
+    for bumt in BOT_LIST:
+        header += bumt
+    await repl.edit(f"{header}\n\n")
+
         
 @pgram.on_message(filters.command(["promote","fullpromote"]) & ~filters.private)
 @bot_admin    
