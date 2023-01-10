@@ -99,8 +99,8 @@ else:
     SUPPORT_CHAT = Config.SUPPORT_CHAT
     CERT_PATH = Config.CERT_PATH
     WEBHOOK = Config.WEBHOOK
-    DRAGONS = set(int(x) for x in Config.DRAGONS or [])
-    DEV_USERS = set(int(x) for x in Config.DEV_USERS or [])
+    DRAGONS = list(int(x) for x in Config.DRAGONS or [])
+    DEV_USERS = list(int(x) for x in Config.DEV_USERS or [])
     BOT_TOKEN = Config.BOT_TOKEN 
 
 #SUDO_USERS = filters.user()
