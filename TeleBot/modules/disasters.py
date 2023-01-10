@@ -43,7 +43,7 @@ async def _addsudo(_, message):
     with open(ELEVATED_USERS_FILE, "w") as outfile:
         json.dump(data, outfile, indent=4)
 
-    await await message.reply_text(
+    await message.reply_text(
         ʀᴛ
         + "\nsᴜᴄᴄᴇssғᴜʟʟʏ sᴇᴛ ᴅɪsᴀsᴛᴇʀ ʟᴇᴠᴇʟ ᴏғ {} ᴛᴏ ᴅʀᴀɢᴏɴ!".format(
             member.mention,
