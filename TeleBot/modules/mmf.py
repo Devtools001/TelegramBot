@@ -142,23 +142,12 @@ async def memify(client, message):
     text = message.text.split(None, 1)[1].strip()
     if "-r" in text:
         text = text.replace("-r","")
-        try:
-            font_path = "./TeleBot/resources/Logo_fonts/*"
-            file = await replied.download()
-            res = await draw_meme_text(file,text,font_path)
-            await message.reply_sticker(res)
-            try:
-                await msg.delete()
-                remove(res)
-            except:
-                pass
-        except Exception as er:            
-            await message.reply_text("ᴜsᴇ ᴛʜᴇ ᴄᴏᴍᴍᴀɴᴅ /ᴍᴍғ  ᴡɪᴛʜ ᴀ ʀᴇᴘʟʏ ᴛᴏ ᴛʜᴇ sᴛɪᴄᴋᴇʀ, sᴇᴘᴀʀᴀᴛᴇᴅ ʙʏ ;  ᴛᴏ ᴍᴀᴋᴇ ᴛʜᴇ ᴛᴇxᴛ ᴘᴏsɪᴛɪᴏɴ ʙᴇʟᴏᴡ.")
-  #  if -r in text:
-  #      text = text.replace("-r","")
-  #  if message.command[0] == "mmf":
-    try:
+        font_path = "./TeleBot/resources/Logo_fonts/*"
+ 
+    else:
+        text = text
         font_path = "./TeleBot/resources/FontRemix.ttf"
+    try:        
         file = await replied.download()
         res = await draw_meme_text(file,text,font_path)
         await message.reply_sticker(res)
@@ -167,7 +156,8 @@ async def memify(client, message):
            remove(res)
         except:
             pass
-    except Exception as er:            
+    except Exception as er:    
+        print(er)        
         await message.reply_text("ᴜsᴇ ᴛʜᴇ ᴄᴏᴍᴍᴀɴᴅ /ᴍᴍғ  ᴡɪᴛʜ ᴀ ʀᴇᴘʟʏ ᴛᴏ ᴛʜᴇ sᴛɪᴄᴋᴇʀ, sᴇᴘᴀʀᴀᴛᴇᴅ ʙʏ ;  ᴛᴏ ᴍᴀᴋᴇ ᴛʜᴇ ᴛᴇxᴛ ᴘᴏsɪᴛɪᴏɴ ʙᴇʟᴏᴡ.")
     
         
