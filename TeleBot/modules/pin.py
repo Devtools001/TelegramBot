@@ -15,9 +15,10 @@ async def _pin(_, message):
     if not replied:
         return await message.reply_text("💌 ʜᴇʏ ʙᴀʙʏ ʀᴇᴘʟʏ ᴛᴏ ᴀ ᴍᴇssᴀɢᴇ ᴛᴏ ᴘɪɴ ɪᴛ.")
     try:
-        await replied.pin()
+        await replied.pin(disable_notification=True)
         await message.reply_text("📝 sᴜᴄᴄᴇss! ᴘɪɴɴᴇᴅ ᴛʜɪs ᴍᴇssᴀɢᴇ ᴏɴ ᴛʜɪs ɢʀᴏᴜᴘ.",reply_markup=
-        InlineKeyboardMarkup([[InlineKeyboardButton("💌 ᴠɪᴇᴡ ᴍᴇssᴀɢᴇ",url=replied.link)],InlineKeyboardButton("❌ ᴄʟᴏsᴇ", callback_data="close")]))
+        InlineKeyboardMarkup([[InlineKeyboardButton(text="💌 ᴠɪᴇᴡ ᴍᴇssᴀɢᴇ",url=replied.link)],[InlineKeyboardButton(text="❌ ᴄʟᴏsᴇ", callback_data="close")]])  
     except Exception as er:
-        print(er)
-    
+        print(er) 
+
+        
