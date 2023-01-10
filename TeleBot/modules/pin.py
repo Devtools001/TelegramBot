@@ -6,7 +6,7 @@ from TeleBot.modules.pyrogram_funcs.status import (
     bot_can_pin)
 
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup , CallbackQuery 
-from pyrogram import Client
+from pyrogram import Client,enums
 
 
 @pgram.on_message(filters.command("pin") & ~filters.private)
