@@ -164,9 +164,8 @@ async def memify(client, message):
         text = text.replace("-h","")
         font_path = "./TeleBot/mmf_fonts/hawkmoon.ttf"
                 
-    else:
-        text = text
-        font_path = "./TeleBot/resources/FontRemix.ttf"
+    
+    font_path = "./TeleBot/resources/FontRemix.ttf"
 
     try:        
         file = await replied.download()
