@@ -56,10 +56,10 @@ async def unpinc(app : Client , callback_query : CallbackQuery):
     print(replied)  
    # if user_id in administrators:
     mode = callback_query.data.split("_")[1]
-    if mode == "unpin":
+    if mode == "demote":
         await app.unpin_chat_message(chat_id,replied)
     
         
-my_handler = CallbackQueryHandler(unpinc, filters.regex(r"admin_"))
+my_handler = CallbackQueryHandler(unpinc, filters.regex("admin_"))
 pgram.add_handler(my_handler)
 
