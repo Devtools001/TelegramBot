@@ -7,6 +7,7 @@ from pyrogram.errors import BadRequest ,Unauthorized
 async def _leave(_, message):
     if len(message.command) < 2:
         return await message.reply_text("ɢɪᴠᴇ ᴍᴇ ᴀ ᴄʜᴀᴛ ɪᴅ ʙᴀᴋᴀ.")
+    user_id = message.from_user.id
     chat_id = message.text.split(None,1)[1].strip()
     if chat_id.startswith("-100"):       
         chat_id = int(chat_id)        
@@ -17,5 +18,5 @@ async def _leave(_, message):
     except BadRequest:
         return await message.reply_text("ʙᴇᴇᴘ ʙᴏᴏᴘ, I ᴄᴏᴜʟᴅ ɴᴏᴛ ʟᴇᴀᴠᴇ ᴛʜᴀᴛ ɢʀᴏᴜᴘ(ᴅᴜɴɴᴏ ᴡʜʏ ᴛʜᴏ). 🙃")
     with suppress(Unauthorized):
-        return await message.reply_text("ʙᴇᴇᴘ ʙᴏᴏᴘ, I ʟᴇғᴛ ᴛʜᴀᴛ sᴏᴜᴘ!.")
+        return await pgram.send_message(user_id,"ʙᴇᴇᴘ ʙᴏᴏᴘ, I ʟᴇғᴛ ᴛʜᴀᴛ sᴏᴜᴘ!.")
 
