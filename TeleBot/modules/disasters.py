@@ -21,7 +21,7 @@ async def chech_user_id(user_id : int) -> Optional[str]:
 
 @pgram.on_message(filters.command("addsudo"))
 async def _addsudo(_, message):
-    user_id = extract_user_id(message)
+    user_id = await extract_user_id(message)
     member = await app.get_chat_member(message.chat.id, user_id)
     reply = await check_user_id(user_id)
     rt = ""
