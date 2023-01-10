@@ -73,7 +73,7 @@ def user_admin(mystic):
             chat_id = message.chat.id
             user = await app.get_chat_member(chat_id,user_id)
         except Exception as e:
-            await message.reply_text(ᴍᴀʏʙᴇ ʏᴏᴜ ᴀʀᴇ ᴀɴ ᴀɴᴏɴʏᴍᴏᴜs ᴀᴅᴍɪɴ. 🙃,e)
+            await message.reply_text("ᴍᴀʏʙᴇ ʏᴏᴜ ᴀʀᴇ ᴀɴ ᴀɴᴏɴʏᴍᴏᴜs ᴀᴅᴍɪɴ. 🙃",e)
             return 
         
         if (user.status not in COMMANDERS) and user_id not in SUPREME_USERS:
