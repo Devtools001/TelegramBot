@@ -7,7 +7,7 @@ from TeleBot.modules.pyrogram_funcs.status import (
 
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup , CallbackQuery 
 from pyrogram import Client,enums
-
+from pyrogram.handlers import CallbackQueryHandler
 
 @pgram.on_message(filters.command("pin") & ~filters.private)
 @bot_admin
@@ -20,7 +20,7 @@ async def _pin(_, message):
     try:
         await replied.pin(disable_notification=True)
         await message.reply_text("📝 sᴜᴄᴄᴇss! ᴘɪɴɴᴇᴅ ᴛʜɪs ᴍᴇssᴀɢᴇ ᴏɴ ᴛʜɪs ɢʀᴏᴜᴘ.",reply_markup=
-        InlineKeyboardMarkup([[InlineKeyboardButton(text="💌 ᴠɪᴇᴡ ᴍᴇssᴀɢᴇ",url=replied.link),InlineKeyboardButton(text="💘 ᴜɴᴘɪɴ", callback_data=f"unpin_{replied.id}")],[InlineKeyboardButton(text="❌ ᴄʟᴏsᴇ", callback_data="close")]]))  
+        InlineKeyboardMarkup([[InlineKeyboardButton(text="💌 ᴠɪᴇᴡ ᴍᴇssᴀɢᴇ",url=replied.link),InlineKeyboardButton(text="💘 ᴜɴᴘɪɴ", callback_data=f"admin_demote_{replied.id}")],[InlineKeyboardButton(text="❌ ᴄʟᴏsᴇ", callback_data="close")]]))  
     except Exception as er:
         await message.reply_text(er)
 
@@ -45,18 +45,21 @@ async def _unpinmsg(_, message):
         await message.reply_text("🎣 ᴜɴᴘɪɴɴᴇᴅ ᴀʟʟ ᴍᴇssᴀɢᴇs ɪɴ ᴛʜɪs ᴄʜᴀᴛ.", reply_markup=
         InlineKeyboardMarkup([[InlineKeyboardButton("❌ ᴄʟᴏsᴇ", callback_data="close")]]))
 
-@pgram.on_callback_query()
-async def _unpinc(app : Client , callback_query : CallbackQuery):    
+
+async def unpinc(app : Client , callback_query : CallbackQuery):    
     chat_id = callback_query.message.chat.id
   #  administrators = []
   #  async for m in app.get_chat_members(chat_id, filter=enums.ChatMembersFilter.ADMINISTRATORS):
      #   administrators.append(m.user.id)
   #  user_id = callback_query.message.from_user.id
-    replied = callback_query.data.split("_")[1]  
+    replied = callback_query.data.split("_")[2]  
     print(replied)  
    # if user_id in administrators:
-    mode = callback_query.data.split("_")[0]
+    mode = callback_query.data.split("_")[1]
     if mode == "unpin":
         await app.unpin_chat_message(chat_id,replied)
     
         
+my_handler = CallbackQueryHandler(unpinc,pattern=r"admin_")
+pgram.add_handler(my_handler)
+
