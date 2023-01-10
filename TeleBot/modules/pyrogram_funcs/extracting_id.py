@@ -2,7 +2,7 @@
 from pyrogram.enums import MessageEntityType
 
 async def get_user_id(message, text:str):
-    def is_digit(text : str):
+    def is_int(text : str):
         try:
             int(text)
         except ValueError:
@@ -10,7 +10,7 @@ async def get_user_id(message, text:str):
         return True
     
     text = text.strip()
-    if is_digit(text):
+    if is_int(text):
         return int(text)
 
     entities = message.entities
