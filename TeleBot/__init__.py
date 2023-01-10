@@ -78,8 +78,11 @@ if ENV:
     BOT_USERNAME = str(os.environ.get("BOT_USERNAME",None))
     DONATION_LINK = str(os.environ.get("DONATION_LINK",None))
     OWNER_ID = int(os.environ.get("OWNER_ID",None))
-    DRAGONS = int(os.environ.get("DRAGONS",None)).split(",")
-    DEV_USERS = int(os.environ.get("DEV_USERS",None)).split(",")
+    try:
+        DRAGONS = set(int(x) for x in os.environ.get("DRAGONS", "").split())
+        DEV_USERS = set(int(x) for x in os.environ.get("DEV_USERS", "").split())
+    except ValueError:
+        raise Exception("Your sudo or dev users list does not contain valid integers.")
     PORT = int(os.environ.get("PORT",None))
     SUPPORT_CHAT = str(os.environ.get("SUPPORT_CHAT",None))
     CERT_PATH = os.environ.get("CERT_PATH")
@@ -96,9 +99,10 @@ else:
     SUPPORT_CHAT = Config.SUPPORT_CHAT
     CERT_PATH = Config.CERT_PATH
     WEBHOOK = Config.WEBHOOK
-    DRAGONS = Config.DRAGONS
-    DEV_USERS = Config.DEV_USERS
+    DRAGONS = set(int(x) for x in Config.DRAGONS or [])
+    DEV_USERS = set(int(x) for x in Config.DEV_USERS or [])
     BOT_TOKEN = Config.BOT_TOKEN 
+
 #SUDO_USERS = filters.user()
 
 BOT_NAME  = ""
