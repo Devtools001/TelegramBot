@@ -8,7 +8,7 @@ from TeleBot.modules.pyrogram_funcs.extracting_id import extract_user_id
 ELEVATED_USERS_FILE = os.path.join(os.getcwd(), "TeleBot/elevated_users.json")
 
 
-async def chech_user_id(user_id : int) -> Optional[str]:
+async def check_user_id(user_id : int) -> Optional[str]:
     if not user_id:
         reply = "That...is a chat! baka ka omae?"
 
