@@ -337,8 +337,21 @@ async def _airing(_, message):
         msg += f"\n**⦾ ᴇᴘɪsᴏᴅᴇ »**{response['episodes']}\n**⦾ sᴛᴀᴛᴜs »** `N/A`"
     await message.reply_text(msg, parse_mode=ParseMode.MARKDOWN)
 
+__help__ = """
+**⸢ɢᴇᴛ ɪɴғᴏʀᴍᴀᴛɪᴏɴ ᴀʙᴏᴜᴛ ᴀɴɪᴍᴇ, ᴍᴀɴɢᴀ ᴏʀ ᴄʜᴀʀᴀᴄᴛᴇʀs ғʀᴏᴍ ᴀɴɪʟɪsᴛ ᴀɴᴅ ᴍᴀʟ⸥**
 
+「𝗖𝗢𝗠𝗠𝗔𝗡𝗗𝗦」 :
+═───────◇───────═
+๏ /anime <anime>: ʀᴇᴛᴜʀɴs ɪɴғᴏʀᴍᴀᴛɪᴏɴ ᴀʙᴏᴜᴛ ᴛʜᴇ ᴀɴɪᴍᴇ ғʀᴏᴍ ᴀɴɪʟɪsᴛ .
 
+๏ /manga <manga>: ʀᴇᴛᴜʀɴs ɪɴғᴏʀᴍᴀᴛɪᴏɴ ᴀʙᴏᴜᴛ ᴛʜᴇ ᴍᴀɴɢᴀ ғʀᴏᴍ ᴀɴɪʟɪsᴛ 
+
+๏ /character <character>: ʀᴇᴛᴜʀɴs ɪɴғᴏʀᴍᴀᴛɪᴏɴ ᴀʙᴏᴜᴛ ᴛʜᴇ ᴄʜᴀʀᴀᴄᴛᴇʀ ғʀᴏᴍ ᴀɴɪʟɪsᴛ
+
+๏ /airing <anime>: ʀᴇᴛᴜʀɴs ᴀɴɪᴍᴇ ᴀɪʀɪɴɢ ɪɴғᴏ ғʀᴏᴍ ᴀɴɪʟɪsᴛ  
+═───────◇───────═
+"""
+__mod_name__ = "𝙰ɴɪᴍᴇ*
 
 
 
