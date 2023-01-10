@@ -142,11 +142,27 @@ async def memify(client, message):
     msg = await message.reply("ᴍᴇᴍɪғʏɪɴɢ ᴛʜɪs ɪᴍᴀɢᴇ! ✊🏻")
 
     text = message.text.split(None, 1)[1].strip()
+
     if "-r" in text:
         text = text.replace("-r","")
         font = glob.glob("./TeleBot/resources/Logo_fonts/*")
         font_path = random.choice(font)
- 
+
+    if "-a" in text :
+        text = text.replace("-a","")
+        font_path = "./TeleBot/mmf_fonts/AVENGEANCE HEROIC AVENGER BI.otf"
+
+    if "-d" in text :
+        text = text.replace("-d","")
+        font_path = "./TeleBot/mmf_fonts/Dark Seed.otf"
+        
+    if "-di" in text:
+        text = text.replace("-di","")
+        font_path = "./TeleBot/mmf_fonts/digital.ttf"
+    if "-h" in text :
+        text = text.replace("-h","")
+        font_path = "./TeleBot/mmf_fonts/hawkmoon.ttf"
+                
     else:
         text = text
         font_path = "./TeleBot/resources/FontRemix.ttf"
@@ -159,7 +175,8 @@ async def memify(client, message):
            remove(res)
         except:
             pass
-    except Exception as er:    
+    except Exception as er:  
+        remove(file)  
         print(er)        
         await message.reply_text("ᴜsᴇ ᴛʜᴇ ᴄᴏᴍᴍᴀɴᴅ /ᴍᴍғ  ᴡɪᴛʜ ᴀ ʀᴇᴘʟʏ ᴛᴏ ᴛʜᴇ sᴛɪᴄᴋᴇʀ, sᴇᴘᴀʀᴀᴛᴇᴅ ʙʏ ;  ᴛᴏ ᴍᴀᴋᴇ ᴛʜᴇ ᴛᴇxᴛ ᴘᴏsɪᴛɪᴏɴ ʙᴇʟᴏᴡ.")
     
