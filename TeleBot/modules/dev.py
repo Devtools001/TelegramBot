@@ -1,4 +1,3 @@
-#ok
 import os
 import asyncio 
 from TeleBot import pgram,DEV_USERS,BOT_NAME
