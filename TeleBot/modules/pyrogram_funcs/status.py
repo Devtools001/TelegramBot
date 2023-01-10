@@ -70,6 +70,22 @@ def bot_can_promote(func):
         return await func(app,message,*args,**kwargs)
     return can_promote
 
+
+def bot_can_pin(func):
+    @wraps(func)
+    async def can_pin(app : Client, message : Message,*args,**kwargs):
+        BOT = await app.get_chat_member(message.chat.id,BOT_ID)
+
+        if not BOT.privileges.can_promote_members:
+            if message.chat.title is None:
+                await message.reply_text("ʜᴇʏ ʙᴀʙʏ ɪ ᴅᴏɴ'ᴛ ʜᴀᴠᴇ ʀɪɢʜᴛs ᴛᴏ *ᴘɪɴ ᴍᴇssᴀɢᴇs* ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ. ᴄʜᴇᴄᴋ ᴀɴᴅ ɢɪᴠᴇ ᴍᴇ ᴛʜᴇ ʀɪɢʜᴛ ᴘʟᴇᴀsᴇ.🙄")    
+                return 
+            else:
+                await message.reply_text(f"ʜᴇʏ ʙᴀʙʏ ɪ ᴅᴏɴ'ᴛ ʜᴀᴠᴇ ʀɪɢʜᴛs ᴛᴏ **ᴘɪɴ ᴍᴇssᴀɢᴇs** ɪɴ **{message.chat.title}**. ᴄʜᴇᴄᴋ ᴀɴᴅ ɢɪᴠᴇ ᴍᴇ ᴛʜᴇ ʀɪɢʜᴛ ᴘʟᴇᴀsᴇ.")
+                return 
+        return await func(app,message,*args,**kwargs)
+    return can_pin
+
 def user_admin(mystic):
     @wraps(mystic)
     async def wrapper(app : Client, message : Message,*args,**kwargs):  
