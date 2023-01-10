@@ -1,3 +1,4 @@
+import os
 from TeleBot import pgram,DEV_USERS
 from pyrogram import filters
 from contextlib import suppress
@@ -27,5 +28,19 @@ async def _leave(_, message):
             return await message.reply_text("ʙᴇᴇᴘ ʙᴏᴏᴘ, I ᴄᴏᴜʟᴅ ɴᴏᴛ ʟᴇᴀᴠᴇ ᴛʜᴀᴛ ɢʀᴏᴜᴘ(ᴅᴜɴɴᴏ ᴡʜʏ ᴛʜᴏ). 🙃")
         with suppress(Unauthorized):
             return await pgram.send_message(user_id,"ʙᴇᴇᴘ ʙᴏᴏᴘ, I ʟᴇғᴛ ᴛʜᴀᴛ sᴏᴜᴘ!. ᴀʟsᴏ ᴅᴇʟᴇᴛᴇᴅ ᴛʜᴇ ᴅɪᴀʟᴏɢs.")
+
+
+@pgram.on_message(filters.command("restart") & filters.user(DEV_USERS))
+async def _restart(_, message):
+    text = message.reply("sᴛᴀʀᴛɪɴɢ ᴀ ɴᴇᴡ ɪɴsᴛᴀɴᴄᴇ ᴀɴᴅ sʜᴜᴛᴛɪɴɢ ᴅᴏᴡɴ ᴛʜɪs ᴏɴᴇ. 🎣")
+    try:
+        os.system("restart.bat")
+        os.execv("start.bat", sys.argv)
+    except Exception as er:
+        print(er)
+
+    text.edit("✨ ʀᴇsᴛᴀʀᴛᴇᴅ sᴜᴄᴄᴇssғᴜʟʟʏ.")
+
+
 
 
