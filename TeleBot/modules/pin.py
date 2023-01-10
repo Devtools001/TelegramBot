@@ -5,7 +5,10 @@ from TeleBot.modules.pyrogram_funcs.status import (
     user_admin,
     bot_can_pin)
 
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup 
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup , CallbackQuery 
+from pyrogram import Client
+
+
 @pgram.on_message(filters.command("pin") & ~filters.private)
 @bot_admin
 @user_admin
@@ -42,5 +45,10 @@ async def _pin(_, message):
         await message.reply_text("🎣 ᴜɴᴘɪɴɴᴇᴅ ᴀʟʟ ᴍᴇssᴀɢᴇs ɪɴ ᴛʜɪs ᴄʜᴀᴛ.", reply_markup=
         InlineKeyboardMarkup([[InlineKeyboardButton("❌ ᴄʟᴏsᴇ", callback_data="close")]]))
 
-
+@pgram.on_callback_query()
+async def _unpinc(app : Client , callback_query : CallbackQuery):
+    chat_id = callback_query.message.chat.id
+    user_id = callback_query.message.from_user.id
+    print(chat_id,user_id)
+   # if user
         
