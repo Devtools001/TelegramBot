@@ -59,8 +59,8 @@ async def _sudolist(_, message):
     for each_user in true_sudo:
         user_id = int(each_user)
         try:
-            user = bot.get_chat(user_id)
-            reply += f"• {user_id}\n"
+            user = await pgram.get_chat_member(message.chat.id,user_id)
+            reply += f"• {user.user.mention}\n"
         except Exception as e:
             print(e)
     await msg.edit_text(reply)  
