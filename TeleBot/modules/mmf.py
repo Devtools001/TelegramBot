@@ -153,7 +153,7 @@ async def memify(client, message):
             pass
     except Exception as er:            
         await message.reply_text("ᴜsᴇ ᴛʜᴇ ᴄᴏᴍᴍᴀɴᴅ /ᴍᴍғ  ᴡɪᴛʜ ᴀ ʀᴇᴘʟʏ ᴛᴏ ᴛʜᴇ sᴛɪᴄᴋᴇʀ, sᴇᴘᴀʀᴀᴛᴇᴅ ʙʏ ;  ᴛᴏ ᴍᴀᴋᴇ ᴛʜᴇ ᴛᴇxᴛ ᴘᴏsɪᴛɪᴏɴ ʙᴇʟᴏᴡ.")
-    if -r in text:
+    if "-r" in text:
         text = text.replace("-r","")
         try:
             font_path = "./TeleBot/resources/Logo_fonts/*"
