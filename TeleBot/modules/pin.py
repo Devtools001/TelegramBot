@@ -29,7 +29,7 @@ async def _pin(_, message):
 @bot_admin
 @user_admin
 @bot_can_pin
-async def _unpin(_, message):
+async def _unpinmsg(_, message):
     if message.command[0] == "unpin":
         replied = message.reply_to_message
         if not replied:
@@ -45,16 +45,15 @@ async def _unpin(_, message):
         await message.reply_text("🎣 ᴜɴᴘɪɴɴᴇᴅ ᴀʟʟ ᴍᴇssᴀɢᴇs ɪɴ ᴛʜɪs ᴄʜᴀᴛ.", reply_markup=
         InlineKeyboardMarkup([[InlineKeyboardButton("❌ ᴄʟᴏsᴇ", callback_data="close")]]))
 
-@pgram.on_callback_query()
+@pgram.on_callback_query(filters.regex("_unpin")
 async def _unpinc(app : Client , callback_query : CallbackQuery):    
     chat_id = callback_query.message.chat.id
     administrators = []
     async for m in app.get_chat_members(chat_id, filter=enums.ChatMembersFilter.ADMINISTRATORS):
         administrators.append(m.user.id)
     user_id = callback_query.message.from_user.id
-    replied = callback_query.message.reply_to_message
-    if callback_query.data == "_unpin": 
-        if user_id in administrators:
-            await replied.unpin()
+    replied = callback_query.message.reply_to_message    
+    if user_id in administrators:
+        await replied.unpin()
     
         
