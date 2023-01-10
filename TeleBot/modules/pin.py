@@ -53,7 +53,7 @@ async def _unpinc(app : Client , callback_query : CallbackQuery):
     chat_id = callback_query.message.chat.id
     user_id = callback_query.message.from_user.id
     replied = callback_query.message.reply_to_message
-    if callback_query.data.lower() == "unpin": 
+    if callback_query.data == "unpin": 
         if user_id in administrators:
             await replied.unpin()
     
