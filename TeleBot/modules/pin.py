@@ -46,11 +46,11 @@ async def _pin(_, message):
         InlineKeyboardMarkup([[InlineKeyboardButton("❌ ᴄʟᴏsᴇ", callback_data="close")]]))
 
 @pgram.on_callback_query()
-async def _unpinc(app : Client , callback_query : CallbackQuery):
+async def _unpinc(app : Client , callback_query : CallbackQuery):    
+    chat_id = callback_query.message.chat.id
     administrators = []
     async for m in app.get_chat_members(chat_id, filter=enums.ChatMembersFilter.ADMINISTRATORS):
         administrators.append(m.user.id)
-    chat_id = callback_query.message.chat.id
     user_id = callback_query.message.from_user.id
     replied = callback_query.message.reply_to_message
     if callback_query.data == "unpin": 
