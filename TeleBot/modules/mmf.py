@@ -18,7 +18,7 @@ async def memify(client, message):
         return await msg.edit("ɢɪᴠᴇ ᴍᴇ sᴏᴍᴇ ᴛᴇxᴛ ᴀɴᴅ ʀᴇᴘʟʏ ᴛᴏ ᴀ ᴘʜᴏᴛᴏ ᴏʀ sᴛɪᴄᴋᴇʀ. 💌")
 
     if not (replied.photo or replied.sticker):
-        return await msg.edit("ʏᴏᴜ ᴄᴀɴ ᴏɴʟʏ ᴍᴇᴍᴏʀʏ ᴘʜᴏᴛᴏs ᴏʀ sᴛɪᴄᴋᴇʀs.")
+        return await msg.edit("ʏᴏᴜ ᴄᴀɴ ᴏɴʟʏ ᴍᴇᴍɪғʏ ᴘʜᴏᴛᴏs ᴏʀ sᴛɪᴄᴋᴇʀs.")
     
     text = message.text.split(None, 1)[1].strip()
 
