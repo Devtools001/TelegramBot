@@ -44,7 +44,7 @@ async def _addsudo(_, message):
         json.dump(data, outfile, indent=4)
 
     await message.reply_text(
-        ʀᴛ
+        rt
         + "\nsᴜᴄᴄᴇssғᴜʟʟʏ sᴇᴛ ᴅɪsᴀsᴛᴇʀ ʟᴇᴠᴇʟ ᴏғ {} ᴛᴏ ᴅʀᴀɢᴏɴ!".format(
             member.mention,
         ),
