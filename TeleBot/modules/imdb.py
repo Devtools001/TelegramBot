@@ -1,19 +1,15 @@
 import requests
-from TeleBot import pgram as app
+from TeleBot import pgram
 from pyrogram import filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
-@app.on_message(filters.command("imdb"))
-async def IMDb(_,msg):
+@pgram.on_message(filters.command("imdb"))
+async def _IMDb(_,msg):
     if len(msg.command) < 2:        
-        await msg.reply_text("give me a query to search")
-    else:
-        pass 
-    text = (
-        msg.text.split(None, 1)[1]
-        if len(msg.command) < 3
-        else msg.text.split(None, 1)[1].replace(" ", "%20")
-    )
+        return await msg.reply_text("give me a query to search")
+    
+    text = msg.text.split(None, 1)[1]replace(" ", "%20")
+    
     url=f"https://api.safone.me/tmdb?query={text}%20&limit=1"
     ok=requests.get(url).json()        
     re=ok["results"][0]
