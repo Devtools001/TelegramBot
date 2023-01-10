@@ -29,7 +29,7 @@ async def _pin(_, message):
 @bot_admin
 @user_admin
 @bot_can_pin
-async def _pin(_, message):
+async def _unpin(_, message):
     if message.command[0] == "unpin":
         replied = message.reply_to_message
         if not replied:
