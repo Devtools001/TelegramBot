@@ -76,7 +76,7 @@ def bot_can_pin(func):
     async def can_pin(app : Client, message : Message,*args,**kwargs):
         BOT = await app.get_chat_member(message.chat.id,BOT_ID)
 
-        if not BOT.privileges.can_promote_members:
+        if not BOT.privileges.can_pin_messages:
             if message.chat.title is None:
                 await message.reply_text("ʜᴇʏ ʙᴀʙʏ ɪ ᴅᴏɴ'ᴛ ʜᴀᴠᴇ ʀɪɢʜᴛs ᴛᴏ *ᴘɪɴ ᴍᴇssᴀɢᴇs* ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ. ᴄʜᴇᴄᴋ ᴀɴᴅ ɢɪᴠᴇ ᴍᴇ ᴛʜᴇ ʀɪɢʜᴛ ᴘʟᴇᴀsᴇ.🙄")    
                 return 
