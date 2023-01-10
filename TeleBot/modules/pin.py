@@ -45,10 +45,16 @@ async def _pin(_, message):
         await message.reply_text("🎣 ᴜɴᴘɪɴɴᴇᴅ ᴀʟʟ ᴍᴇssᴀɢᴇs ɪɴ ᴛʜɪs ᴄʜᴀᴛ.", reply_markup=
         InlineKeyboardMarkup([[InlineKeyboardButton("❌ ᴄʟᴏsᴇ", callback_data="close")]]))
 
-@pgram.on_callback_query(filters.regex("unpin"))
+@pgram.on_callback_query()
 async def _unpinc(app : Client , callback_query : CallbackQuery):
+    administrators = []
+    async for m in app.get_chat_members(chat_id, filter=enums.ChatMembersFilter.ADMINISTRATORS):
+        administrators.append(m.user.id)
     chat_id = callback_query.message.chat.id
     user_id = callback_query.message.from_user.id
-    print(chat_id,user_id)
-   # if user
+    replied = callback_query.message.reply_to_message
+    if callback_query.data.lower() == "unpin": 
+        if user_id in administrators:
+            await replied.unpin()
+    
         
