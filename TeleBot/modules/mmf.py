@@ -132,15 +132,15 @@ async def draw_meme_text(image_path, text,font_path):
 
 @pgram.on_message(filters.command("mmf"))
 async def memify(client, message):
+    msg = await message.reply("`ᴍᴇᴍɪғʏɪɴɢ ᴛʜɪs ɪᴍᴀɢᴇ! ✊🏻`")
+
     replied = message.reply_to_message
     if len(message.command) < 2 or not replied:
-        return await message.reply_text("ɢɪᴠᴇ ᴍᴇ sᴏᴍᴇ ᴛᴇxᴛ ᴀɴᴅ ʀᴇᴘʟʏ ᴛᴏ ᴀ ᴘʜᴏᴛᴏ ᴏʀ sᴛɪᴄᴋᴇʀ. 💌")
+        return await msg.edit("ɢɪᴠᴇ ᴍᴇ sᴏᴍᴇ ᴛᴇxᴛ ᴀɴᴅ ʀᴇᴘʟʏ ᴛᴏ ᴀ ᴘʜᴏᴛᴏ ᴏʀ sᴛɪᴄᴋᴇʀ. 💌")
 
     if not (replied.photo or replied.sticker):
-        return await message.reply_text("ʏᴏᴜ ᴄᴀɴ ᴏɴʟʏ ᴍᴇᴍᴏʀʏ ᴘʜᴏᴛᴏs ᴏʀ sᴛɪᴄᴋᴇʀs.")
-
-    msg = await message.reply("ᴍᴇᴍɪғʏɪɴɢ ᴛʜɪs ɪᴍᴀɢᴇ! ✊🏻")
-
+        return await msg.edit("ʏᴏᴜ ᴄᴀɴ ᴏɴʟʏ ᴍᴇᴍᴏʀʏ ᴘʜᴏᴛᴏs ᴏʀ sᴛɪᴄᴋᴇʀs.")
+    
     text = message.text.split(None, 1)[1].strip()
 
     if "-r" in text:
@@ -176,9 +176,8 @@ async def memify(client, message):
            remove(res)
         except:
             pass
-    except Exception as er:    
-        print(er)        
-        await message.reply_text("ᴜsᴇ ᴛʜᴇ ᴄᴏᴍᴍᴀɴᴅ /ᴍᴍғ  ᴡɪᴛʜ ᴀ ʀᴇᴘʟʏ ᴛᴏ ᴛʜᴇ sᴛɪᴄᴋᴇʀ, sᴇᴘᴀʀᴀᴛᴇᴅ ʙʏ ;  ᴛᴏ ᴍᴀᴋᴇ ᴛʜᴇ ᴛᴇxᴛ ᴘᴏsɪᴛɪᴏɴ ʙᴇʟᴏᴡ.")
+    except Exception as er:                   
+        await msg.edit("ᴜsᴇ ᴛʜᴇ ᴄᴏᴍᴍᴀɴᴅ /ᴍᴍғ  ᴡɪᴛʜ ᴀ ʀᴇᴘʟʏ ᴛᴏ ᴛʜᴇ sᴛɪᴄᴋᴇʀ, sᴇᴘᴀʀᴀᴛᴇᴅ ʙʏ ;  ᴛᴏ ᴍᴀᴋᴇ ᴛʜᴇ ᴛᴇxᴛ ᴘᴏsɪᴛɪᴏɴ ʙᴇʟᴏᴡ.")
     
         
 
