@@ -1,8 +1,9 @@
 import os
 import asyncio 
-from TeleBot import pgram,DEV_USERS
+from TeleBot import pgram,DEV_USERS,BOT_NAME
 from pyrogram import filters
 from contextlib import suppress
+import subprocess
 from pyrogram.errors import BadRequest ,Unauthorized
 
 @pgram.on_message(filters.command(["leave","dleave"]) & filters.user(DEV_USERS))
@@ -40,6 +41,15 @@ async def _restart(_, message):
     except Exception as er:
         print(er)
 
+
+@pgram.on_message(filters.command(["gitpull", "update") & filters.user(DEV_USERS)
+async def _gitpull(_, message):
+    m = subprocess.check_output(["git", "pull"]).decode("UTF-8")
+    if str(m[0]) != "A":
+        x = await message.reply_text("**» ғᴇᴛᴄʜɪɴɢ ᴜᴩᴅᴀᴛᴇs ғʀᴏᴍ ʀᴇᴩᴏ ᴀɴᴅ ᴛʀʏɪɴɢ ᴛᴏ ʀᴇsᴛᴀʀᴛ...**")
+        return os.system(f"kill -9 {os.getpid()} && python3 -m TeleBot")
+    else:
+        await message.reply_text(f"**» {BOT_NAME} ɪs ᴀʟʀᴇᴀᴅʏ ᴜᴩ-ᴛᴏ-ᴅᴀᴛᴇ !**")
 
 
 
