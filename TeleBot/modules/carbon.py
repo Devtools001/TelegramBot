@@ -18,3 +18,13 @@ async def _carbon(_, message):
     await message.reply_photo(carbon)
     await text.delete()
     carbon.close()   
+
+__help__ = """
+**⸢ᴍᴀᴋᴇs ᴀ ᴄᴀʀʙᴏɴ ᴏғ ᴛʜᴇ ɢɪᴠᴇɴ ᴛᴇxᴛ ᴀɴᴅ sᴇɴᴅ ɪᴛ ᴛᴏ ʏᴏᴜ.⸥**
+
+「𝗖𝗢𝗠𝗠𝗔𝗡𝗗𝗦」 :
+═───────◇───────═
+๏ /carbon : ᴍᴀᴋᴇs ᴄᴀʀʙᴏɴ ɪғ ʀᴇᴩʟɪᴇᴅ ᴛᴏ ᴀ ᴛᴇxᴛ
+═───────◇───────═
+"""
+__mod_name__ = "𝙲ᴀʀʙᴏɴ"
