@@ -8,7 +8,7 @@ async def _leave(_, message):
     if len(message.command) < 2:
         return await message.reply_text("ɢɪᴠᴇ ᴍᴇ ᴀ ᴄʜᴀᴛ ɪᴅ ʙᴀᴋᴀ.")
     chat_id = message.text.split(None,1)[1].strip()
-    if not chat_id.isdigit():       
+    if not chat_id.is_int():       
         return await message.reply_text("ʙᴀᴋᴀᴀᴀ ɪᴛ's ɴᴏᴛ ᴀ ᴄʜᴀᴛ ɪᴅ, ᴄʜᴀᴛ ɪᴅ ɪs ᴀɴ ɪɴᴛᴇɢᴇʀ ɴᴏᴛ ᴀ sᴛʀɪɴɢ.")
     else:
         chat_id = int(chat_id)
