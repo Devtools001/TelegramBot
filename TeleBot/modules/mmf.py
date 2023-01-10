@@ -167,6 +167,7 @@ async def memify(client, message):
     else:
         text = text
         font_path = "./TeleBot/resources/FontRemix.ttf"
+
     try:        
         file = await replied.download()
         res = await draw_meme_text(file,text,font_path)
@@ -176,8 +177,7 @@ async def memify(client, message):
            remove(res)
         except:
             pass
-    except Exception as er:  
-        remove(file)  
+    except Exception as er:    
         print(er)        
         await message.reply_text("ᴜsᴇ ᴛʜᴇ ᴄᴏᴍᴍᴀɴᴅ /ᴍᴍғ  ᴡɪᴛʜ ᴀ ʀᴇᴘʟʏ ᴛᴏ ᴛʜᴇ sᴛɪᴄᴋᴇʀ, sᴇᴘᴀʀᴀᴛᴇᴅ ʙʏ ;  ᴛᴏ ᴍᴀᴋᴇ ᴛʜᴇ ᴛᴇxᴛ ᴘᴏsɪᴛɪᴏɴ ʙᴇʟᴏᴡ.")
     
