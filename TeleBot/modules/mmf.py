@@ -159,6 +159,7 @@ async def memify(client, message):
     if "-di" in text:
         text = text.replace("-di","")
         font_path = "./TeleBot/mmf_fonts/digital.ttf"
+
     if "-h" in text :
         text = text.replace("-h","")
         font_path = "./TeleBot/mmf_fonts/hawkmoon.ttf"
