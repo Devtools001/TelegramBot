@@ -131,7 +131,7 @@ async def draw_meme_text(image_path, text,font_path):
                 font=m_font,
                 fill=(0, 0, 0),
                 stroke_width=3,
-                stroke_fill="black",
+                stroke_fill="gray",
             )
             draw.text(
                 xy=(
@@ -142,7 +142,7 @@ async def draw_meme_text(image_path, text,font_path):
                 font=m_font,
                 fill=(0, 0, 0),
                 stroke_width=3,
-                stroke_fill="black",
+                stroke_fill="gray",
             )
             draw.text(
                 xy=(
@@ -153,7 +153,7 @@ async def draw_meme_text(image_path, text,font_path):
                 font=m_font,
                 fill=(0, 0, 0),
                 stroke_width=3,
-                stroke_fill="black",
+                stroke_fill="gray",
             )
             draw.text(
                 xy=(
@@ -164,7 +164,7 @@ async def draw_meme_text(image_path, text,font_path):
                 font=m_font,
                 fill=(0, 0, 0),
                 stroke_width=3,
-                stroke_fill="black",
+                stroke_fill="gray",
             )
 
             draw.text(
@@ -176,7 +176,7 @@ async def draw_meme_text(image_path, text,font_path):
                 font=m_font,
                 fill=(255, 255, 255),
                 stroke_width=3,
-                stroke_fill="black",
+                stroke_fill="gray",
             )
             current_h += u_height + pad
 
