@@ -140,19 +140,6 @@ async def memify(client, message):
     msg = await message.reply("ᴍᴇᴍɪғʏɪɴɢ ᴛʜɪs ɪᴍᴀɢᴇ! ✊🏻")
 
     text = message.text.split(None, 1)[1].strip()
-  #  if message.command[0] == "mmf":
-    try:
-        font_path = "./TeleBot/resources/FontRemix.ttf"
-        file = await replied.download()
-        res = await draw_meme_text(file,text,font_path)
-        await message.reply_sticker(res)
-        try:
-           await msg.delete()
-           remove(res)
-        except:
-            pass
-    except Exception as er:            
-        await message.reply_text("ᴜsᴇ ᴛʜᴇ ᴄᴏᴍᴍᴀɴᴅ /ᴍᴍғ  ᴡɪᴛʜ ᴀ ʀᴇᴘʟʏ ᴛᴏ ᴛʜᴇ sᴛɪᴄᴋᴇʀ, sᴇᴘᴀʀᴀᴛᴇᴅ ʙʏ ;  ᴛᴏ ᴍᴀᴋᴇ ᴛʜᴇ ᴛᴇxᴛ ᴘᴏsɪᴛɪᴏɴ ʙᴇʟᴏᴡ.")
     if "-r" in text:
         text = text.replace("-r","")
         try:
@@ -169,6 +156,20 @@ async def memify(client, message):
             await message.reply_text("ᴜsᴇ ᴛʜᴇ ᴄᴏᴍᴍᴀɴᴅ /ᴍᴍғ  ᴡɪᴛʜ ᴀ ʀᴇᴘʟʏ ᴛᴏ ᴛʜᴇ sᴛɪᴄᴋᴇʀ, sᴇᴘᴀʀᴀᴛᴇᴅ ʙʏ ;  ᴛᴏ ᴍᴀᴋᴇ ᴛʜᴇ ᴛᴇxᴛ ᴘᴏsɪᴛɪᴏɴ ʙᴇʟᴏᴡ.")
   #  if -r in text:
   #      text = text.replace("-r","")
+  #  if message.command[0] == "mmf":
+    try:
+        font_path = "./TeleBot/resources/FontRemix.ttf"
+        file = await replied.download()
+        res = await draw_meme_text(file,text,font_path)
+        await message.reply_sticker(res)
+        try:
+           await msg.delete()
+           remove(res)
+        except:
+            pass
+    except Exception as er:            
+        await message.reply_text("ᴜsᴇ ᴛʜᴇ ᴄᴏᴍᴍᴀɴᴅ /ᴍᴍғ  ᴡɪᴛʜ ᴀ ʀᴇᴘʟʏ ᴛᴏ ᴛʜᴇ sᴛɪᴄᴋᴇʀ, sᴇᴘᴀʀᴀᴛᴇᴅ ʙʏ ;  ᴛᴏ ᴍᴀᴋᴇ ᴛʜᴇ ᴛᴇxᴛ ᴘᴏsɪᴛɪᴏɴ ʙᴇʟᴏᴡ.")
+    
         
 
     
