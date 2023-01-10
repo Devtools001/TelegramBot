@@ -1,5 +1,6 @@
 import glob
 import textwrap
+import random 
 from os import remove 
 from TeleBot import pgram 
 from pyrogram import filters
@@ -143,7 +144,8 @@ async def memify(client, message):
     text = message.text.split(None, 1)[1].strip()
     if "-r" in text:
         text = text.replace("-r","")
-        font_path = glob.glob("./TeleBot/resources/Logo_fonts/*")
+        font = glob.glob("./TeleBot/resources/Logo_fonts/*")
+        font_path = random.choice(font)
  
     else:
         text = text
