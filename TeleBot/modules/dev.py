@@ -1,4 +1,5 @@
 import os
+import asyncio 
 from TeleBot import pgram,DEV_USERS
 from pyrogram import filters
 from contextlib import suppress
@@ -32,13 +33,15 @@ async def _leave(_, message):
 
 @pgram.on_message(filters.command("restart") & filters.user(DEV_USERS))
 async def _restart(_, message):
-    text = await message.reply("sᴛᴀʀᴛɪɴɢ ᴀ ɴᴇᴡ ɪɴsᴛᴀɴᴄᴇ ᴀɴᴅ sʜᴜᴛᴛɪɴɢ ᴅᴏᴡɴ ᴛʜɪs ᴏɴᴇ. 🎣")
+    text = await message.reply("🎣 sᴛᴀʀᴛɪɴɢ ᴀ ɴᴇᴡ ɪɴsᴛᴀɴᴄᴇ ᴀɴᴅ sʜᴜᴛᴛɪɴɢ ᴅᴏᴡɴ ᴛʜɪs ᴏɴᴇ.......")
+    asyncio.sleep(2)
+    await text.delete()
     try:
         os.system(f"kill -9 {os.getpid()} && python3 -m TeleBot")
     except Exception as er:
         print(er)
 
-    await text.edit("✨ ʀᴇsᴛᴀʀᴛᴇᴅ sᴜᴄᴄᴇssғᴜʟʟʏ.")
+    await message.reply_text("✨ ʀᴇsᴛᴀʀᴛᴇᴅ sᴜᴄᴄᴇssғᴜʟʟʏ.")
 
 
 
