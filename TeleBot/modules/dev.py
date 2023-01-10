@@ -34,7 +34,6 @@ async def _leave(_, message):
 @pgram.on_message(filters.command("restart") & filters.user(DEV_USERS))
 async def _restart(_, message):
     text = await message.reply("🎣 sᴛᴀʀᴛɪɴɢ ᴀ ɴᴇᴡ ɪɴsᴛᴀɴᴄᴇ ᴀɴᴅ sʜᴜᴛᴛɪɴɢ ᴅᴏᴡɴ ᴛʜɪs ᴏɴᴇ.......")
-    asyncio.sleep(5)
     await text.delete()
     try:
         os.system(f"kill -9 {os.getpid()} && python3 -m TeleBot")
