@@ -12,14 +12,10 @@ SUPREME_USERS = DEV_USERS + DRAGONS
 def bot_admin(func):
     @wraps(func)
     async def is_bot_admin(app : Client, message : Message,*args,**kwargs):
-        BOT = await app.get_chat_member(message.chat.id,BOT_ID)
-        if message.chat.type == ChatType.PRIVATE:
-            await message.reply_text("**💘 ᴛʜᴇsᴇ ᴄᴏᴍᴍᴀɴᴅ ᴏɴʟʏ ᴡᴏʀᴋs ɪɴ ɢʀᴏᴜᴘs.**")    
+        BOT = await app.get_chat_member(message.chat.id,BOT_ID)                 
+        if BOT.status != ChatMemberStatus.ADMINISTRATOR:                                       
+            await message.reply_text(f"ʜᴇʏ ʙᴀʙᴇs ɪ'ᴍ ɴᴏᴛ ᴀᴅᴍɪɴ ɪɴ **{message.chat.title}**")
             return 
-        else :
-            if BOT.status != ChatMemberStatus.ADMINISTRATOR:                                       
-                await message.reply_text(f"ʜᴇʏ ʙᴀʙᴇs ɪ'ᴍ ɴᴏᴛ ᴀᴅᴍɪɴ ɪɴ **{message.chat.title}**")
-                return 
         return await func(app,message,*args,**kwargs)
     return is_bot_admin
 
@@ -27,13 +23,10 @@ def bot_can_ban(func):
     @wraps(func)
     async def can_restrict(app : Client, message : Message,*args,**kwargs):
         BOT = await app.get_chat_member(message.chat.id,BOT_ID)
-        if message.chat.type == ChatType.PRIVATE:
-            await message.reply_text("**💘 ᴛʜᴇsᴇ ᴄᴏᴍᴍᴀɴᴅ ᴏɴʟʏ ᴡᴏʀᴋs ɪɴ ɢʀᴏᴜᴘs.**")    
+                 
+        if not BOT.privileges.can_restrict_members:                        
+            await message.reply_text(f"ʜᴇʏ ʙᴀʙʏ ɪ ᴅᴏɴ'ᴛ ʜᴀᴠᴇ ʀɪɢʜᴛs ᴛᴏ ʀᴇsᴛʀɪᴄᴛ ᴜsᴇʀ ɪɴ **{message.chat.title}**. ᴄʜᴇᴄᴋ ᴀɴᴅ ɢɪᴠᴇ ᴍᴇ ᴛʜᴇ ʀɪɢʜᴛ ᴘʟᴇᴀsᴇ.🥺")
             return 
-        else:
-            if not BOT.privileges.can_restrict_members:                        
-                await message.reply_text(f"ʜᴇʏ ʙᴀʙʏ ɪ ᴅᴏɴ'ᴛ ʜᴀᴠᴇ ʀɪɢʜᴛs ᴛᴏ ʀᴇsᴛʀɪᴄᴛ ᴜsᴇʀ ɪɴ **{message.chat.title}**. ᴄʜᴇᴄᴋ ᴀɴᴅ ɢɪᴠᴇ ᴍᴇ ᴛʜᴇ ʀɪɢʜᴛ ᴘʟᴇᴀsᴇ.🥺")
-                return 
         return await func(app,message,*args,**kwargs)
     return can_restrict
 
@@ -42,13 +35,9 @@ def bot_can_change_info(func):
     async def can_change_info(app : Client, message : Message,*args,**kwargs):
         BOT = await app.get_chat_member(message.chat.id,BOT_ID)
 
-        if not BOT.privileges.can_change_info:
-            if message.chat.title is None:
-                await message.reply_text("**💘 ᴛʜᴇsᴇ ᴄᴏᴍᴍᴀɴᴅ ᴏɴʟʏ ᴡᴏʀᴋs ɪɴ ɢʀᴏᴜᴘs.**")    
-                return 
-            else:
-                await message.reply_text(f"ʜᴇʏ ʙᴀʙʏ ɪ ᴅᴏɴ'ᴛ ʜᴀᴠᴇ ʀɪɢʜᴛs ᴛᴏ ᴄʜᴀɴɢᴇ ɪɴғᴏ ᴏғ **{message.chat.title}**. ᴄʜᴇᴄᴋ ᴀɴᴅ ɢɪᴠᴇ ᴍᴇ ᴛʜᴇ ʀɪɢʜᴛ ᴘʟᴇᴀsᴇ.🥺")
-                return 
+        if not BOT.privileges.can_change_info:                         
+            await message.reply_text(f"ʜᴇʏ ʙᴀʙʏ ɪ ᴅᴏɴ'ᴛ ʜᴀᴠᴇ ʀɪɢʜᴛs ᴛᴏ ᴄʜᴀɴɢᴇ ɪɴғᴏ ᴏғ **{message.chat.title}**. ᴄʜᴇᴄᴋ ᴀɴᴅ ɢɪᴠᴇ ᴍᴇ ᴛʜᴇ ʀɪɢʜᴛ ᴘʟᴇᴀsᴇ.🥺")
+            return 
         return await func(app,message,*args,**kwargs)
     return can_change_info
 
@@ -58,13 +47,9 @@ def bot_can_promote(func):
     async def can_promote(app : Client, message : Message,*args,**kwargs):
         BOT = await app.get_chat_member(message.chat.id,BOT_ID)
 
-        if not BOT.privileges.can_promote_members:
-            if message.chat.title is None:
-                await message.reply_text("ʜᴇʏ ʙᴀʙʏ ɪ ᴅᴏɴ'ᴛ ʜᴀᴠᴇ ʀɪɢʜᴛs ᴛᴏ **ᴘʀᴏᴍᴏᴛᴇ ᴜsᴇʀs** ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ. ᴄʜᴇᴄᴋ ᴀɴᴅ ɢɪᴠᴇ ᴍᴇ ᴛʜᴇ ʀɪɢʜᴛ ᴘʟᴇᴀsᴇ.🙄")    
-                return 
-            else:
-                await message.reply_text(f"ʜᴇʏ ʙᴀʙʏ ɪ ᴅᴏɴ'ᴛ ʜᴀᴠᴇ ʀɪɢʜᴛs ᴛᴏ **ᴘʀᴏᴍᴏᴛᴇ ᴜsᴇʀs** ɪɴ **{message.chat.title}**. ᴄʜᴇᴄᴋ ᴀɴᴅ ɢɪᴠᴇ ᴍᴇ ᴛʜᴇ ʀɪɢʜᴛ ᴘʟᴇᴀsᴇ.")
-                return 
+        if not BOT.privileges.can_promote_members:                         
+            await message.reply_text(f"ʜᴇʏ ʙᴀʙʏ ɪ ᴅᴏɴ'ᴛ ʜᴀᴠᴇ ʀɪɢʜᴛs ᴛᴏ **ᴘʀᴏᴍᴏᴛᴇ ᴜsᴇʀs** ɪɴ **{message.chat.title}**. ᴄʜᴇᴄᴋ ᴀɴᴅ ɢɪᴠᴇ ᴍᴇ ᴛʜᴇ ʀɪɢʜᴛ ᴘʟᴇᴀsᴇ.")
+            return 
         return await func(app,message,*args,**kwargs)
     return can_promote
 
@@ -74,13 +59,9 @@ def bot_can_pin(func):
     async def can_pin(app : Client, message : Message,*args,**kwargs):
         BOT = await app.get_chat_member(message.chat.id,BOT_ID)
 
-        if not BOT.privileges.can_pin_messages:
-            if message.chat.title is None:
-                await message.reply_text("ʜᴇʏ ʙᴀʙʏ ɪ ᴅᴏɴ'ᴛ ʜᴀᴠᴇ ʀɪɢʜᴛs ᴛᴏ *ᴘɪɴ ᴍᴇssᴀɢᴇs* ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ. ᴄʜᴇᴄᴋ ᴀɴᴅ ɢɪᴠᴇ ᴍᴇ ᴛʜᴇ ʀɪɢʜᴛ ᴘʟᴇᴀsᴇ.🙄")    
-                return 
-            else:
-                await message.reply_text(f"ʜᴇʏ ʙᴀʙʏ ɪ ᴅᴏɴ'ᴛ ʜᴀᴠᴇ ʀɪɢʜᴛs ᴛᴏ **ᴘɪɴ ᴍᴇssᴀɢᴇs** ɪɴ **{message.chat.title}**. ᴄʜᴇᴄᴋ ᴀɴᴅ ɢɪᴠᴇ ᴍᴇ ᴛʜᴇ ʀɪɢʜᴛ ᴘʟᴇᴀsᴇ.")
-                return 
+        if not BOT.privileges.can_pin_messages:                         
+            await message.reply_text(f"ʜᴇʏ ʙᴀʙʏ ɪ ᴅᴏɴ'ᴛ ʜᴀᴠᴇ ʀɪɢʜᴛs ᴛᴏ **ᴘɪɴ ᴍᴇssᴀɢᴇs** ɪɴ **{message.chat.title}**. ᴄʜᴇᴄᴋ ᴀɴᴅ ɢɪᴠᴇ ᴍᴇ ᴛʜᴇ ʀɪɢʜᴛ ᴘʟᴇᴀsᴇ.")
+            return 
         return await func(app,message,*args,**kwargs)
     return can_pin
 
@@ -92,7 +73,7 @@ def user_admin(mystic):
             chat_id = message.chat.id
             user = await app.get_chat_member(chat_id,user_id)
         except Exception as e:
-            await message.reply_text(e)
+            await message.reply_text(ᴍᴀʏʙᴇ ʏᴏᴜ ᴀʀᴇ ᴀɴ ᴀɴᴏɴʏᴍᴏᴜs ᴀᴅᴍɪɴ. 🙃,e)
             return 
         
         if (user.status not in COMMANDERS) and user_id not in SUPREME_USERS:
