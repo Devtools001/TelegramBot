@@ -3,8 +3,6 @@ from TeleBot import pgram
 from TeleBot.modules.fun_strings import *
 
 from pyrogram import filters 
-from pyrogram.errors import BadRequest
-
 
 @pgram.on_message(filters.command("toss"))
 async def _run(_, message):
