@@ -46,7 +46,7 @@ async def _addsudo(_, message):
     await message.reply_text(
         rt
         + "\nsᴜᴄᴄᴇssғᴜʟʟʏ sᴇᴛ ᴅɪsᴀsᴛᴇʀ ʟᴇᴠᴇʟ ᴏғ {} ᴛᴏ ᴅʀᴀɢᴏɴ!".format(
-            member.mention,
+            member.user.mention,
         ),
     )
     
