@@ -42,7 +42,7 @@ async def _restart(_, message):
         print(er)
 
 
-@pgram.on_message(filters.command(["gitpull", "update") & filters.user(DEV_USERS)
+@pgram.on_message(filters.command(["gitpull", "update"]) & filters.user(DEV_USERS)
 async def _gitpull(_, message):
     m = subprocess.check_output(["git", "pull"]).decode("UTF-8")
     if str(m[0]) != "A":
