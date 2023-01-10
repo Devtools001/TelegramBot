@@ -48,13 +48,13 @@ async def _unpinmsg(_, message):
 @pgram.on_callback_query(filters.regex("unpin_"))
 async def _unpinc(app : Client , callback_query : CallbackQuery):    
     chat_id = callback_query.message.chat.id
-    administrators = []
-    async for m in app.get_chat_members(chat_id, filter=enums.ChatMembersFilter.ADMINISTRATORS):
-        administrators.append(m.user.id)
-    user_id = callback_query.message.from_user.id
+  #  administrators = []
+  #  async for m in app.get_chat_members(chat_id, filter=enums.ChatMembersFilter.ADMINISTRATORS):
+     #   administrators.append(m.user.id)
+  #  user_id = callback_query.message.from_user.id
     replied = callback_query.data.split("_")[1]  
     print(replied)  
-    if user_id in administrators:
-        await app.unpin_chat_message(chat_id,replied)
+   # if user_id in administrators:
+    await app.unpin_chat_message(chat_id,replied)
     
         
