@@ -37,7 +37,7 @@ async def _addsudo(_, message):
     if  user_id in DEV_USERS:
         await message.reply_text("This member is already a dev Disaster")
 
-    data["sudos"].append(user_id)
+    data["sudos"].append(user_id) 
     DRAGONS.append(user_id)
     
     with open(ELEVATED_USERS_FILE, "w") as outfile:
@@ -50,4 +50,20 @@ async def _addsudo(_, message):
         ),
     )
     
+
+@pgram.on_message(filters.command("sudolist"))
+async def _sudolist(_, message):
+    msg = await message.reply("Gathering intel")
+    true_sudo = list(set(DRAGONS) - set(DEV_USERS))
+    reply = "Known Dragon Disasters 🐉:\n"  
+    for each_user in true_sudo:
+        user_id = int(each_user)
+        try:
+            user = bot.get_chat(user_id)
+            reply += f"• {user_id}\n"
+        except Exception as e:
+            print(e)
+    await msg.edit_text(reply)  
+  
+
         
