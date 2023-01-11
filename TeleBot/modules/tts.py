@@ -1,7 +1,7 @@
 from os import remove 
 from TeleBot import pgram
 from pyrogram import filters
-from gtts import gTTs,gTTSError
+from gtts import gTTS,gTTSError
 
 
 @pgram.on_message(filters.command("tts"))
