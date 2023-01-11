@@ -22,7 +22,7 @@ async def _speed(_, message):
     await message.reply_text("sᴩᴇᴇᴅᴛᴇsᴛ ᴍᴏᴅᴇ", reply_markup=InlineKeyboardMarkup(buttons))
     
 
-@pgram.on_callback_query(filters.regex("speedtest_image"))
+@pgram.on_callback_query(filters.regex("speedtest_image") & filters.user(S))
 async def _speedtest_img(app : Client,callback_query: CallbackQuery): 
     text = await callback_query.message.edit("ʀᴜɴɴɪɴɢ ᴀ sᴩᴇᴇᴅᴛᴇsᴛ...")
     speed = speedtest.Speedtest()
