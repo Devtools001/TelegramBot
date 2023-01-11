@@ -10,7 +10,7 @@ async def waifu(_,msg):
     waifu=e["url"]
     await msg.reply_photo(waifu, caption="""
      **ᴀ ᴡᴀɪғᴜ ᴀᴘᴘᴇᴀᴅᴇᴅ!**
-ᴀᴅᴅ ᴛʜᴇᴍ ᴛᴏ ʏᴏᴜʀ ʜᴀʀᴇᴍ ʙʏ sᴇɴᴅɪɴɢ /protecc ᴄʜᴀʀᴀᴄᴛᴇʀ ɴᴀᴍᴇ.""")
+ᴀᴅᴅ ᴛʜᴇᴍ ᴛᴏ ʏᴏᴜʀ ʜᴀʀᴇᴍ ʙʏ sᴇɴᴅɪɴɢ /wprotecc ᴄʜᴀʀᴀᴄᴛᴇʀ ɴᴀᴍᴇ.""")
 
 @app.on_message(filters.command("wprotecc"))
 async def waifu_protecc(_,msg):
@@ -19,3 +19,18 @@ async def waifu_protecc(_,msg):
 @app.on_message(filters.command("wharem"))
 async def waifu_harem(_,msg):
     await msg.reply_text("ʏᴏᴜ ʜᴀᴠᴇɴ'ᴛ ᴘʀᴏᴛᴇᴄᴄ'ᴅ ᴀɴʏ ᴡᴀɪғᴜ ʏᴇᴛ...")
+
+
+__help__ = """
+**⸢ᴡᴀɪғᴜ⸥**
+
+「𝗖𝗢𝗠𝗠𝗔𝗡𝗗𝗦」 :
+═───────◇───────═
+๏ /waifu :  sᴇɴᴅs ᴀ ʀᴀɴᴅᴏᴍ ᴡᴀɪғᴜ.
+
+Ⓙ︎Ⓤ︎Ⓢ︎Ⓣ︎ Ⓕ︎Ⓞ︎Ⓡ︎ Ⓕ︎Ⓤ︎Ⓝ︎
+๏ /wprotecc
+๏ /wharem
+═───────◇───────═
+"""
+__mod_name__ = "𝚆ᴀɪғᴜ"
