@@ -45,7 +45,7 @@ async def _unpinmsg(_, message):
         await message.reply_text("🎣 ᴜɴᴘɪɴɴᴇᴅ ᴀʟʟ ᴍᴇssᴀɢᴇs ɪɴ ᴛʜɪs ᴄʜᴀᴛ.", reply_markup=
         InlineKeyboardMarkup([[InlineKeyboardButton("❌ ᴄʟᴏsᴇ", callback_data="admin_close")]]))
 
-@pgram.on_callback_query(filters.regex(f"unpin:{replied.id}")
+@pgram.on_callback_query(filters.regex(f"unpin:{replied.id}"))
 async def cb(app: Client, query : CallbackQuery):
     id = query.data.split(":")
     print(id)
