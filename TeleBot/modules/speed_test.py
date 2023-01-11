@@ -36,7 +36,7 @@ async def _speedtest_img(app : Client,callback_query: CallbackQuery):
                 )
     await text.delete()
 
-@pgram.on_callback_query(filters.regex("speedtest_text"))
+@pgram.on_callback_query(filters.regex("speedtest_text") & filters.user(S))
 async def _speedtest_img(app : Client,callback_query: CallbackQuery):
     text = await callback_query.message.edit("ʀᴜɴɴɪɴɢ ᴀ sᴩᴇᴇᴅᴛᴇsᴛ...")
     msg = "sᴩᴇᴇᴅᴛᴇsᴛ ʀᴇsᴜʟᴛ"    
@@ -48,9 +48,7 @@ async def _speedtest_img(app : Client,callback_query: CallbackQuery):
     msg += f"\n**⦾ ᴘɪɴɢ »** `{result['ping']}`\n**⦾ ᴜᴘʟᴏᴀᴅ »** `{await convert(result['upload'])}Mb/s`\n**⦾ ᴅᴏᴡɴʟᴏᴀᴅ »** `{await convert(result['download'])}Mb/s"
     await text.edit(msg)
  
-#@pgram.on_callback_query():
-#    if 
-            
+
 __help__ = """
 **⸢ᴄʜᴇᴄᴋ ᴍʏ sᴘᴇᴇᴅ⸥**
 
