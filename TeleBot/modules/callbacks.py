@@ -56,11 +56,13 @@ async def callback(client : Client, query: CallbackQuery):
             await query.message.reply_to_message.delete()
         except:
             pass
-    if query.data == "admin_close":
-        print(administrators)
+    if query.data == "admin_close":        
         if user_id in administrators:
-            print(user_id)
             await query.message.delete()
+        try:
+            await query.message.reply_to_message.delete()
+        except:
+            pass
         else:
             await client.answer_callback_query(
             query.id,
