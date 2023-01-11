@@ -1,5 +1,5 @@
 import requests
-from TeleBot import pgram,BOT_NAME,BOT_USERNAME
+from TeleBot import pgram, MENTION_BOT
 from pyrogram import filters, enums 
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup 
 
@@ -21,9 +21,9 @@ async def _write(_, message):
         await message.reply_photo(
         photo=req,
         caption=f"""
-Successfully Written Text 💘
-✨ **Written By :** [{BOT_NAME}](https://t.me/{BOT_USERNAME})
-🥀 **Requested by :** {message.from_user.first_name}
+sᴜᴄᴄᴇssғᴜʟʟʏ Wʀɪᴛᴛᴇɴ Tᴇxᴛ 💘
+✨ **Written By :** {MENTION_BOT}
+🥀 **Requested by :** {message.from_user.mention}
 ❄ **Link :** `{req}`""",
         parse_mode=enums.ParseMode.MARKDOWN,
         reply_markup=InlineKeyboardMarkup(
@@ -36,4 +36,15 @@ Successfully Written Text 💘
         )
         await msg.delete() 
     except Exception as er:
-        await message.reply_text(er) 
+        await message.reply_text(er)
+
+__help__ = """
+**⸢ᴡʀɪᴛᴇs ᴛʜᴇ ɢɪᴠᴇɴ ᴛᴇxᴛ ᴏɴ ᴡʜɪᴛᴇ ᴘᴀɢᴇ ᴡɪᴛʜ ᴀ ᴘᴇɴ 🖊.⸥**
+
+「𝗖𝗢𝗠𝗠𝗔𝗡𝗗𝗦」 :
+═───────◇───────═
+๏ /write <ᴛᴇxᴛ> : ᴡʀɪᴛᴇs ᴛʜᴇ ɢɪᴠᴇɴ ᴛᴇxᴛ.
+═───────◇───────═
+"""
+__mod_name__ = "𝚆ʀɪᴛᴇ"
+ 
