@@ -39,6 +39,7 @@ async def _speedtest_img(app : Client,callback_query: CallbackQuery):
 @pgram.on_callback_query(filters.regex("speedtest_text"))
 async def _speedtest_img(app : Client,callback_query: CallbackQuery):
     text = await callback_query.message.edit("ʀᴜɴɴɪɴɢ ᴀ sᴩᴇᴇᴅᴛᴇsᴛ...")
+    speed = speedtest.Speedtest()
     result = speed.results.dict()
     msg += f"\n**⦾ ᴘɪɴɢ »** `{result['ping']}`\n**⦾ ᴜᴘʟᴏᴀᴅ »** `{await convert(result['upload'])}Mb/s`\n**⦾ ᴅᴏᴡɴʟᴏᴀᴅ »** `{await convert(result['download'])}Mb/s"
     await text.edit(msg, parse_mode=enums.ParseMode.MARKDOWN)
