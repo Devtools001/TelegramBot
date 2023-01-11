@@ -42,30 +42,29 @@ async def Friday(client, callback_query : CallbackQuery):
     show_alert=True
 )
 
+@pgram.on_message(filters.regex("close"))
+async def _close(client : Client, query: CallbackQuery):
+    await query.message.delete()
+    try:
+        await query.message.reply_to_message.delete()
+    except:
+        pass
 
-@pgram.on_callback_query()
-async def callback(client : Client, query: CallbackQuery): 
+@pgram.on_message(filters.regex("admin_close"))
+async def _close(client : Client, query: CallbackQuery):
     chat_id = query.message.chat.id
     user_id = query.from_user.id
     administrators = []
     async for m in client.get_chat_members(chat_id, filter=enums.ChatMembersFilter.ADMINISTRATORS):
         administrators.append(m.user.id)
-    if query.data == "close":
-        await query.message.delete()
-        try:
-            await query.message.reply_to_message.delete()
-        except:
-            pass
-    if query.data == "admin_close":  
-        print(chat_id,user_id)      
-        if user_id in administrators:
+    if user_id in administrators:
             await query.message.delete()
             try:
                 await query.message.reply_to_message.delete()
             except:
                 pass
-        else:
-            await client.answer_callback_query(
-            query.id,
-            text = "❌ ʏᴏᴜ ᴀʀᴇ ɴᴏᴛ ᴡᴏʀᴛʜʏ sᴏɴ.",
-            show_alert = True)
+    else:
+        await client.answer_callback_query(
+        query.id,
+        text = "❌ ʏᴏᴜ ᴀʀᴇ ɴᴏᴛ ᴡᴏʀᴛʜʏ sᴏɴ.",
+        show_alert = True)
