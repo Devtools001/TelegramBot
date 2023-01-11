@@ -20,7 +20,7 @@ async def _pin(_, message):
     try:
         await replied.pin(disable_notification=True)
         await message.reply_text("📝 sᴜᴄᴄᴇss! ᴘɪɴɴᴇᴅ ᴛʜɪs ᴍᴇssᴀɢᴇ ᴏɴ ᴛʜɪs ɢʀᴏᴜᴘ.",reply_markup=
-        InlineKeyboardMarkup([[InlineKeyboardButton(text="💌 ᴠɪᴇᴡ ᴍᴇssᴀɢᴇ",url=replied.link),InlineKeyboardButton(text="💘 ᴜɴᴘɪɴ", callback_data=f"unpin:{replied.id}")],[InlineKeyboardButton(text="❌ ᴄʟᴏsᴇ", callback_data="close")]]))  
+        InlineKeyboardMarkup([[InlineKeyboardButton(text="💌 ᴠɪᴇᴡ ᴍᴇssᴀɢᴇ",url=replied.link),InlineKeyboardButton(text="💘 ᴜɴᴘɪɴ", callback_data=f"unpin:{replied.id}")],[InlineKeyboardButton(text="❌ ᴄʟᴏsᴇ", callback_data="admin_close")]]))  
     except Exception as er:
         await message.reply_text(er)
 
@@ -43,7 +43,7 @@ async def _unpinmsg(_, message):
     if message.command[0] == "unpinall":
         await pgram.unpin_all_chat_messages(message.chat.id)
         await message.reply_text("🎣 ᴜɴᴘɪɴɴᴇᴅ ᴀʟʟ ᴍᴇssᴀɢᴇs ɪɴ ᴛʜɪs ᴄʜᴀᴛ.", reply_markup=
-        InlineKeyboardMarkup([[InlineKeyboardButton("❌ ᴄʟᴏsᴇ", callback_data="close")]]))
+        InlineKeyboardMarkup([[InlineKeyboardButton("❌ ᴄʟᴏsᴇ", callback_data="admin_close")]]))
 
 @pgram.on_callback_query()
 async def cb(app: Client, query : CallbackQuery):
