@@ -71,7 +71,10 @@ async def tag_all_admins(_,message):
         usertext = ''
         async for m in pgram.get_chat_members(message.chat.id,filter=enums.ChatMembersFilter.ADMINISTRATORS):
             username += 1
-            usertext += f"\n✨ {m.user.mention}"
+            if m.user.username:
+                usertext += f"\n✨ @{m.user.username}"
+            else:
+                usertext += f"\n✨ {m.user.mention}"
         await replied.reply_text(usertext)
     else:
         text = (
