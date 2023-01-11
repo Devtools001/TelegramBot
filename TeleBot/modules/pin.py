@@ -45,10 +45,10 @@ async def _unpinmsg(_, message):
         await message.reply_text("🎣 ᴜɴᴘɪɴɴᴇᴅ ᴀʟʟ ᴍᴇssᴀɢᴇs ɪɴ ᴛʜɪs ᴄʜᴀᴛ.", reply_markup=
         InlineKeyboardMarkup([[InlineKeyboardButton("❌ ᴄʟᴏsᴇ", callback_data="admin_close")]]))
 
-@pgram.on_callback_query(filters.regex("^unpin"))
-async def cb(app: Client, query : CallbackQuery):
-    id = query.data.split(":")
-    await app.unpin_chat_message(query.message.chat.id,int(id[1]))
+#@pgram.on_callback_query()
+#async def cb(app: Client, query : CallbackQuery):
+#    id = query.data.split(":")
+#    await app.unpin_chat_message(query.message.chat.id,int(id[1]))
         
 __help__ = """
 **⸢ᴄᴀɴ ᴏɴʟʏ ʙᴇ ᴜsᴇᴅ ɪɴ ɢʀᴏᴜᴘs.⸥**
