@@ -37,7 +37,7 @@ async def _unpinmsg(_, message):
         try:
             await replied.unpin()
             await message.reply_text("🚫 sᴜᴄᴄᴇss!  ᴜɴᴘɪɴɴᴇᴅ ᴛʜɪs ᴍᴇssᴀɢᴇ ᴏɴ ᴛʜɪs ɢʀᴏᴜᴘ.",reply_markup=
-            InlineKeyboardMarkup([[InlineKeyboardButton(text="🎣 ᴠɪᴇᴡ ᴍᴇssᴀɢᴇ",url=replied.link)],[InlineKeyboardButton(text="❌ ᴄʟᴏsᴇ", callback_data="close")]]))  
+            InlineKeyboardMarkup([[InlineKeyboardButton(text="🎣 ᴠɪᴇᴡ ᴍᴇssᴀɢᴇ",url=replied.link)],[InlineKeyboardButton(text="❌ ᴄʟᴏsᴇ", callback_data="admin_close")]]))  
         except Exception as er:
             await message.reply_text(er)
     if message.command[0] == "unpinall":
@@ -48,7 +48,7 @@ async def _unpinmsg(_, message):
 @pgram.on_callback_query(filters.regex("^unpin"))
 async def cb(app: Client, query : CallbackQuery):
     id = query.data.split(":")
-    await app.unpin_chat_message(query.message.chat.id, int(id[1]))
+    await app.unpin_chat_message(query.message.chat.id,int(id[1]))
         
 __help__ = """
 **⸢ᴄᴀɴ ᴏɴʟʏ ʙᴇ ᴜsᴇᴅ ɪɴ ɢʀᴏᴜᴘs.⸥**
