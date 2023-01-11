@@ -4,7 +4,7 @@ from TeleBot import pgram,DEV_USERS, DRAGONS
 from pyrogram import filters, Client ,enums
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup , CallbackQuery 
 
-
+S = DEV_USERS + DRAGONS 
 buttons = [
         [
             InlineKeyboardButton("ɪᴍᴀɢᴇ", callback_data="speedtest_image"),
@@ -16,14 +16,14 @@ buttons = [
 async def convert(speed):
     return round(int(speed) / 1048576, 2)
 
-@pgram.on_message(filters.command("speedtest") & filters.user(DEV_USERS))
+@pgram.on_message(filters.command("speedtest") & filters.user(S))
 async def _speed(_, message):
     await message.reply_text("sᴩᴇᴇᴅᴛᴇsᴛ ᴍᴏᴅᴇ", reply_markup=InlineKeyboardMarkup(buttons))
     
 
 @pgram.on_callback_query()
 async def _speedtest(app : Client,callback_query: CallbackQuery): 
-    if callback_query.user.id in (DEV_USERS or DRAGONS) :   
+    if callback_query.from_user.id in (DEV_USERS or DRAGONS) :   
         text = await callback_query.message.edit("ʀᴜɴɴɪɴɢ ᴀ sᴩᴇᴇᴅᴛᴇsᴛ...")
         speed = speedtest.Speedtest()
         speed.get_best_server()
