@@ -39,7 +39,6 @@ async def _tts(_, message):
         await message.reply_text("ᴇʀʀᴏʀ ɪɴ Gᴏᴏɢʟᴇ Tᴇxᴛ-ᴛᴏ-Sᴘᴇᴇᴄʜ API ʀᴇǫᴜᴇsᴛ!")
         return
     with open("Friday.mp3", "r"):
-        await pgram.send_audio(
-            message.chat.id,"Friday.mp3")
-        )
+        await pgram.send_audio(message.chat.id,"Friday.mp3")
+        
         remove("Friday.mp3")
