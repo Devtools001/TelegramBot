@@ -82,7 +82,7 @@ async def instatus(_, message):
 
 ⏱ ᴛɪᴍᴇ ᴛᴏᴏᴋ » `{time}` sᴇᴄᴏɴᴅs
 """,reply_markup=InlineKeyboardMarkup (
-    [[InlineKeyboardButton("❌ ᴄʟᴏsᴇ", callback_data="close")]]))
+    [[InlineKeyboardButton("❌ ᴄʟᴏsᴇ", callback_data="admin_close")]]))
  
     else:
         await text.edit("`You must be an admin or group owner to perform this action.`")
