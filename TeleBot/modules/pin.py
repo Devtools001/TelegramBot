@@ -48,6 +48,7 @@ async def _unpinmsg(_, message):
 @pgram.on_callback_query()
 async def cb(app: Client, query : CallbackQuery):
     id = query.data.split(":")
+    print(id)
     if id[0].casefold() == "unpin":
         await app.unpin_chat_message(query.message.chat.id, int(id[1]))
     
