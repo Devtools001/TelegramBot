@@ -4,7 +4,7 @@ import requests
 import random
 import glob
 
-from TeleBot import pgram
+from TeleBot import pgram,MENTION_BOT
 from pyrogram import filters
 from PIL import Image,ImageDraw,ImageFont
 
