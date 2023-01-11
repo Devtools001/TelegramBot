@@ -20,7 +20,7 @@ async def _pin(_, message):
     try:
         await replied.pin(disable_notification=True)
         await message.reply_text("📝 sᴜᴄᴄᴇss! ᴘɪɴɴᴇᴅ ᴛʜɪs ᴍᴇssᴀɢᴇ ᴏɴ ᴛʜɪs ɢʀᴏᴜᴘ.",reply_markup=
-        InlineKeyboardMarkup([[InlineKeyboardButton(text="💌 ᴠɪᴇᴡ ᴍᴇssᴀɢᴇ",url=replied.link),InlineKeyboardButton(text="💘 ᴜɴᴘɪɴ", callback_data=f"unpin_{replied.id}")],[InlineKeyboardButton(text="❌ ᴄʟᴏsᴇ", callback_data="admin_close")]]))  
+        InlineKeyboardMarkup([[InlineKeyboardButton(text="💌 ᴠɪᴇᴡ ᴍᴇssᴀɢᴇ",url=replied.link),InlineKeyboardButton(text="💘 ᴜɴᴘɪɴ", callback_data=f"unpin:{replied.id}")],[InlineKeyboardButton(text="❌ ᴄʟᴏsᴇ", callback_data="admin_close")]]))  
     except Exception as er:
         await message.reply_text(er)
 
@@ -45,13 +45,10 @@ async def _unpinmsg(_, message):
         await message.reply_text("🎣 ᴜɴᴘɪɴɴᴇᴅ ᴀʟʟ ᴍᴇssᴀɢᴇs ɪɴ ᴛʜɪs ᴄʜᴀᴛ.", reply_markup=
         InlineKeyboardMarkup([[InlineKeyboardButton("❌ ᴄʟᴏsᴇ", callback_data="admin_close")]]))
 
-@pgram.on_callback_query(filters.regex("unpin_"))
+@pgram.on_callback_query(filters.regex("^unpin"))
 async def cb(app: Client, query : CallbackQuery):
-    id = query.data.split("_")
-    print(id)
-    if id[0].casefold() == "unpin":
-        await app.unpin_chat_message(query.message.chat.id, int(id[1]))
-    
+    id = query.data.split(":")
+    await app.unpin_chat_message(query.message.chat.id, int(id[1]))
         
 __help__ = """
 **⸢ᴄᴀɴ ᴏɴʟʏ ʙᴇ ᴜsᴇᴅ ɪɴ ɢʀᴏᴜᴘs.⸥**
