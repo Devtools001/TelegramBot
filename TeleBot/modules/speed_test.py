@@ -42,5 +42,13 @@ async def _speedtest(app : Client,callback_query: CallbackQuery):
         result = speed.results.dict()
         msg += f"\n**⦾ ᴘɪɴɢ »** `{result['ping']}`\n**⦾ ᴜᴘʟᴏᴀᴅ »** `{await convert(result['upload'])}Mb/s`\n**⦾ ᴅᴏᴡɴʟᴏᴀᴅ »** `{await convert(result['download'])}Mb/s"
         await text.edit(msg, parse_mode=enums.ParseMode.MARKDOWN)
-    
+ 
+__help__ = """
+**⸢ᴄʜᴇᴄᴋ ᴍʏ sᴘᴇᴇᴅ⸥**
+
+「𝗖𝗢𝗠𝗠𝗔𝗡𝗗𝗦」 :
+═───────◇───────═
+๏ /speedtest : ʀᴜɴs ᴀ sᴘᴇᴇᴅᴛᴇsᴛ ᴀɴᴅ ᴄʜᴇᴄᴋ ᴛʜᴇ sᴇʀᴠᴇʀ sᴘᴇᴇᴅ.
+═───────◇───────═
+"""   
 __mod_name__ = "𝚂ᴘᴇᴇᴅᴛᴇsᴛ"
