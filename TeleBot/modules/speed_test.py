@@ -39,6 +39,7 @@ async def _speedtest_img(app : Client,callback_query: CallbackQuery):
 @pgram.on_callback_query(filters.regex("speedtest_text"))
 async def _speedtest_img(app : Client,callback_query: CallbackQuery):
     text = await callback_query.message.edit("ʀᴜɴɴɪɴɢ ᴀ sᴩᴇᴇᴅᴛᴇsᴛ...")
+    msg = "sᴩᴇᴇᴅᴛᴇsᴛ ʀᴇsᴜʟᴛ"    
     speed = speedtest.Speedtest()
     speed.get_best_server()
     speed.download()
