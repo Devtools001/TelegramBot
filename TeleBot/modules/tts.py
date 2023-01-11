@@ -9,7 +9,7 @@ async def _tts(_, message):
     replied = message.reply_to_message
     if message.sender_chat:
         return
-    if len(message.command) < 2 or not replied:
+    if len(message.command) < 2 and not replied:
         await message.reply_text(" ɢɪᴠᴇ ᴍᴇ ᴀ ᴛᴇxᴛ ᴏʀ ʀᴇᴘʟʏ ᴛᴏ ᴀ ᴛᴇxᴛ.")
     if replied:
         text = replied.text
