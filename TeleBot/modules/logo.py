@@ -10,6 +10,9 @@ from PIL import Image,ImageDraw,ImageFont
 
 from TeleBot.resources.LOGO_LINK.LOGO_LINKS import LOGOES
 from telegraph import upload_file
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
+
+key = reply_markup(InlineKeyboardMarkup([[InlineKeyboardButton("❌ ᴄʟᴏsᴇ", callback_data="close")]]))
 
 async def logo_vai(link,logo_text):
                 randc = link
@@ -37,19 +40,17 @@ async def logo_vai(link,logo_text):
 
 @pgram.on_message(filters.command("logo"))
 async def logo_make(_,message):
+    if message.sender_chat:
+        return 
     chat_id = message.chat.id
     replied = message.reply_to_message
     if len(message.command) < 2: 
-        await message.reply_text("give a text to generate logo")
+        await message.reply_text("`⚗️ ɢɪᴠᴇ ᴀ ᴛᴇxᴛ ᴛᴏ ɢᴇɴᴇʀᴀᴛᴇ ʟᴏɢᴏ.`")
         return
              
 
 
-    logo_text = (
-            message.text.split(None, 1)[1]
-            if len(message.command) < 3
-            else message.text.split(None, 1)[1]
-        )
+    logo_text = message.text.split(None,1)[1]
 
     text = await message.reply("`ᴍᴀᴋɪɴɢ ʏᴏᴜʀ ʟᴏɢᴏ`")
         
@@ -57,7 +58,7 @@ async def logo_make(_,message):
         try:
             randc = random.choice(LOGOES)
             final = await logo_vai(link=randc,logo_text=logo_text)
-            await pgram.send_photo(chat_id,final)
+            await pgram.send_photo(chat_id,final, caption=f"ʟᴏɢᴏ ɢᴇɴᴇʀᴀᴛᴇᴅ ʙʏ {MENTION_BOT}",key)
             await text.delete()
             if os.path.exists(final):
                 os.remove(final)                
