@@ -40,6 +40,9 @@ async def _speedtest_img(app : Client,callback_query: CallbackQuery):
 async def _speedtest_img(app : Client,callback_query: CallbackQuery):
     text = await callback_query.message.edit("ʀᴜɴɴɪɴɢ ᴀ sᴩᴇᴇᴅᴛᴇsᴛ...")
     speed = speedtest.Speedtest()
+    speed.get_best_server()
+    speed.download()
+    speed.upload()
     result = speed.results.dict()
     msg += f"\n**⦾ ᴘɪɴɢ »** `{result['ping']}`\n**⦾ ᴜᴘʟᴏᴀᴅ »** `{await convert(result['upload'])}Mb/s`\n**⦾ ᴅᴏᴡɴʟᴏᴀᴅ »** `{await convert(result['download'])}Mb/s"
     await text.edit(msg, parse_mode=enums.ParseMode.MARKDOWN)
