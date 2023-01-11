@@ -46,7 +46,7 @@ async def _unpinmsg(_, message):
         InlineKeyboardMarkup([[InlineKeyboardButton("❌ ᴄʟᴏsᴇ", callback_data="close")]]))
 
 @pgram.on_callback_query()
-async def cb(app: Client, query):
+async def cb(app: Client, query : CallbackQuery):
     id = query.data.split(":")
     if id[0].casefold() == "unpin":
         await app.unpin_chat_message(query.message.chat.id, id[1])
