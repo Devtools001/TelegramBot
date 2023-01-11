@@ -46,7 +46,7 @@ async def Friday(client, callback_query : CallbackQuery):
 @pgram.on_callback_query()
 async def callback(client : Client, query: CallbackQuery): 
     chat_id = query.message.chat.id
-    user_id = query.message.from_user.id
+    user_id = query.from_user.id
     administrators = []
     async for m in client.get_chat_members(chat_id, filter=enums.ChatMembersFilter.ADMINISTRATORS):
         administrators.append(m.user.id)
