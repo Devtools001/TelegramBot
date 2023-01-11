@@ -3,7 +3,7 @@ import asyncio
 from TeleBot import pgram,get_readable_time
 from pyrogram import filters, enums 
 from TeleBot.modules.pyrogram_funcs.status import user_admin
-
+from pyrogram.errors import FloodWait 
 
 SPAM_CHATS = []
 
@@ -36,11 +36,8 @@ async def tag_all_users(_,message):
         except Exception:
             pass
     else:
-        text = (
-            message.text.split(None, 1)[1]
-            if len(message.command) < 3
-            else message.text.split(None, 1)[1]
-        )  
+        text = message.text.split(None, 1)[1]
+        
         SPAM_CHATS.append(message.chat.id)
         start = time.time()
         usernum= 0
