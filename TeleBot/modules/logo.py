@@ -4,7 +4,7 @@ import requests
 import random
 import glob
 
-from TeleBot import pgram,MENTION_BOT
+from TeleBot import pgram,MENTION_BOT,SUPPORT_CHAT,LOG
 from pyrogram import filters
 from PIL import Image,ImageDraw,ImageFont
 
@@ -63,7 +63,7 @@ async def logo_make(_,message):
             if os.path.exists(final):
                 os.remove(final)                
         except Exception as e:
-            await message.reply_text(e)
+            await message.reply_text(f"🧪 ᴇʀʀᴏʀ ʀᴇᴘᴏʀᴛ ɪɴ {SUPPORT_CHAT}\nᴇʀʀᴏʀ : {e}")
     
    
     if replied:
@@ -74,19 +74,16 @@ async def logo_make(_,message):
                 telegraph_link = f"https://graph.org{uploaded_file[0]}" 
 
                 final = await logo_vai(link=telegraph_link,logo_text=logo_text)
-                await pgram.send_photo(chat_id,final)
+                await pgram.send_photo(chat_id,final,caption=f"ʟᴏɢᴏ ɢᴇɴᴇʀᴀᴛᴇᴅ ʙʏ {MENTION_BOT}", reply_markup=key))
                 await text.delete()
                 if os.path.exists(final):
                     os.remove(final) 
                 try:
                     os.remove(downloaded)   
                 except Exception as e:
-                    await message.reply_text(e)                 
+                     LOG.print(f"[bold red] {e}")              
             
                 
             except Exception as e:
-                await message.reply_text(e)
-      
-    
-           
+                await message.reply_text(f"🧪 ᴇʀʀᴏʀ ʀᴇᴘᴏʀᴛ ɪɴ {SUPPORT_CHAT}\nᴇʀʀᴏʀ : {e}")
             
