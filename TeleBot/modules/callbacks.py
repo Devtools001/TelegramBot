@@ -2,10 +2,11 @@ import os
 import time
 import random
 import psutil
-from pyrogram import filters , __version__ as pyro , Client 
+from pyrogram import filters , __version__ as pyro , Client , enums 
 from TeleBot import pgram,StartTime,BOT_NAME,get_readable_time,BOT_USERNAME
 from pyrogram.types import CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery 
 from TeleBot.resources.Data import *
+
 
 STATS_MSG="""
 ʜɪɪ {},
@@ -44,9 +45,26 @@ async def Friday(client, callback_query : CallbackQuery):
 
 @pgram.on_callback_query()
 async def callback(client : Client, query: CallbackQuery): 
+    chat_id = query.message.chat.id
+    user_id = query.message.from_user.id
+    administrators = []
+    async for m in client.get_chat_members(chat_id, filter=enums.ChatMembersFilter.ADMINISTRATORS):
+        administrators.append(m.user.id)
     if query.data == "close":
         await query.message.delete()
         try:
             await query.message.reply_to_message.delete()
         except:
             pass
+    if query.data == "admin_close":
+        if user_id in administrators:
+            await query.message.delete()
+            try:
+                await query.message.reply_to_message.delete()
+            except:
+                pass
+        else:
+            await client.answer_callback_query(
+            query.id
+            text = "❌ ʏᴏᴜ ᴀʀᴇ ɴᴏᴛ ᴡᴏʀᴛʜʏ sᴏɴ."
+            show_alert = True)
