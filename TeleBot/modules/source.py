@@ -37,4 +37,14 @@ async def _git(client, callback_query : CallbackQuery):
     await client.answer_web_app_query(
     callback_query.id,
     "https://github.com/NotStark")
+
+__help__ = """
+**⸢ᴍʏ sᴏᴜʀᴄᴇ ᴄᴏᴅᴇ.⸥**
+
+「𝗖𝗢𝗠𝗠𝗔𝗡𝗗𝗦」 :
+═───────◇───────═
+๏ /repo | /source : sᴏᴜʀᴄᴇ ᴄᴏᴅᴇ ᴏғ ᴍʏ ʀᴇᴘᴏ.
+═───────◇───────═
+"""
+__mod_name__ = "𝚂ᴏᴜʀᴄᴇ"
     
