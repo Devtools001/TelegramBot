@@ -34,6 +34,7 @@ async def wall(_,msg):
         await msg.reply_text(f"ᴀɴ ᴇʀʀᴏʀ ᴏᴄᴄᴜʀᴇᴅ.\n {error}")  
 
 @pgram.on_message(filters.command("wallpaper"))
+@send_action(enums.ChatAction.UPLOAD_PHOTO)
 async def wallpaper (_,msg):  
     try:
         url=f"https://wallhaven.cc/api/v1/search"
