@@ -12,7 +12,7 @@ from TeleBot.resources.LOGO_LINK.LOGO_LINKS import LOGOES
 from telegraph import upload_file
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
-key = reply_markup(InlineKeyboardMarkup([[InlineKeyboardButton("❌ ᴄʟᴏsᴇ", callback_data="close")]]))
+key = InlineKeyboardMarkup([[InlineKeyboardButton("❌ ᴄʟᴏsᴇ", callback_data="close")]])
 
 async def logo_vai(link,logo_text):
                 randc = link
@@ -58,7 +58,7 @@ async def logo_make(_,message):
         try:
             randc = random.choice(LOGOES)
             final = await logo_vai(link=randc,logo_text=logo_text)
-            await pgram.send_photo(chat_id,final, caption=f"ʟᴏɢᴏ ɢᴇɴᴇʀᴀᴛᴇᴅ ʙʏ {MENTION_BOT}",key)
+            await pgram.send_photo(chat_id,final, caption=f"ʟᴏɢᴏ ɢᴇɴᴇʀᴀᴛᴇᴅ ʙʏ {MENTION_BOT}", reply_markup=key)
             await text.delete()
             if os.path.exists(final):
                 os.remove(final)                
