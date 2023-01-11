@@ -16,8 +16,11 @@ async def _tts(_, message):
     else:
         text = message.text.split(None,1)[1]
 
-    if "|" in text:
+   
+     if "|" in text:
         lan, text = text.split("|")
+    elif "|" not in text:
+        lan = "en"
     else:
         await message.reply_text("Iɴᴠᴀʟɪᴅ Sʏɴᴛᴀx\ɴFᴏʀᴍᴀᴛ /ᴛᴛs ʟᴀɴɢ | ᴛᴇxᴛ\ɴFᴏʀ ᴇɢ: /ᴛᴛs ᴇɴ | ʜᴇʟʟᴏ")
 
