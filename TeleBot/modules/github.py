@@ -16,8 +16,7 @@ async def _github(_, message):
         m = await message.reply_text("`Searching.....`")
         url = result['html_url']
         name = result['name']
-        company = result['company']
-        bio = result['bio']
+        company = result['company']        
         created_at = result['created_at']
         avatar_url = result['avatar_url']
         blog = result['blog']
@@ -25,23 +24,22 @@ async def _github(_, message):
         repositories = result['public_repos']
         followers = result['followers']
         following = result['following']
-        caption = f"""**Info Of {name}**
-**Username:** `{username}`
-**Bio:** `{bio}`
-**Profile Link:** [Here]({url})
-**Company:** `{company}`
-**Created On:** `{created_at}`
-**Repositories:** `{repositories}`
-**Blog:** `{blog}`
-**Location:** `{location}`
-**Followers:** `{followers}`
-**Following:** `{following}`"""
+        caption = f"""**👨‍💻 ɢɪᴛʜᴜʙ ɪɴғᴏ ᴏғ {name}**
+
+**🖇️ ᴜsᴇʀɴᴀᴍᴇ »** `{username}`
+**💘 ᴘʀᴏғɪʟᴇ ʟɪɴᴋ »** [name]({url})
+**🎉 ᴄᴏᴍᴘᴀɴʏ »** `{company}`
+**⏱️ ᴄʀᴇᴀᴛᴇᴅ ᴏɴ »** `{created_at}`
+**👨‍🔬 ʀᴇᴘᴏsɪᴛᴏʀɪᴇs »** `{repositories}`
+**🌐 ʟᴏᴄᴀᴛɪᴏɴ »** `{location}`
+**🎭 ғᴏʟʟᴏᴡᴇʀs »** `{followers}`
+**🎣 ғᴏʟʟᴏᴡɪɴɢ »** `{following}`"""
         await m.delete()
         await message.reply_photo(avatar_url, caption=caption,reply_markup=InlineKeyboardMarkup(
                 [
                     [
                         InlineKeyboardButton(
-                            text="Profile",
+                            text="✨ ᴘʀᴏғɪʟᴇ",
                             url=url,
                         ),
                     ],
