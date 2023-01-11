@@ -4,7 +4,7 @@ from pyrogram import filters,enums
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup 
 
 
-@pgram.on_message(filters.command(["git","github"])
+@pgram.on_message(filters.command(["git","github"]))
 async def _github(_, message):
     if len(message.command) < 2:
         return await message.reply_text("🙃 ʜᴇʏ ɢɪᴠᴇ ᴀ GɪᴛHᴜʙ ᴜsᴇʀɴᴀᴍᴇ ᴛᴏᴏ.")
