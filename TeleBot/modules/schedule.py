@@ -3,7 +3,7 @@ from TeleBot import pgram
 from pyrogram import filters
 
 @pgram.on_message(filters.command('schedule'))
-def schedule(_, message):
+async def schedule(_, message):
     results = requests.get('https://subsplease.org/api/?f=schedule&h=true&tz=Japan').json()
     text = None
     for result in results['schedule']:
