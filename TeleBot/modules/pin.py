@@ -20,7 +20,7 @@ async def _pin(_, message):
     try:
         await replied.pin(disable_notification=True)
         await message.reply_text("📝 sᴜᴄᴄᴇss! ᴘɪɴɴᴇᴅ ᴛʜɪs ᴍᴇssᴀɢᴇ ᴏɴ ᴛʜɪs ɢʀᴏᴜᴘ.",reply_markup=
-        InlineKeyboardMarkup([[InlineKeyboardButton(text="💌 ᴠɪᴇᴡ ᴍᴇssᴀɢᴇ",url=replied.link),InlineKeyboardButton(text="💘 ᴜɴᴘɪɴ", callback_data=f"admin_demote_{replied.id}")],[InlineKeyboardButton(text="❌ ᴄʟᴏsᴇ", callback_data="close")]]))  
+        InlineKeyboardMarkup([[InlineKeyboardButton(text="💌 ᴠɪᴇᴡ ᴍᴇssᴀɢᴇ",url=replied.link),InlineKeyboardButton(text="💘 ᴜɴᴘɪɴ", callback_data=f"unpin:{replied.id}")],[InlineKeyboardButton(text="❌ ᴄʟᴏsᴇ", callback_data="close")]]))  
     except Exception as er:
         await message.reply_text(er)
 
@@ -45,21 +45,10 @@ async def _unpinmsg(_, message):
         await message.reply_text("🎣 ᴜɴᴘɪɴɴᴇᴅ ᴀʟʟ ᴍᴇssᴀɢᴇs ɪɴ ᴛʜɪs ᴄʜᴀᴛ.", reply_markup=
         InlineKeyboardMarkup([[InlineKeyboardButton("❌ ᴄʟᴏsᴇ", callback_data="close")]]))
 
-
-async def unpinc(app : Client , callback_query : CallbackQuery):    
-    chat_id = callback_query.message.chat.id
-  #  administrators = []
-  #  async for m in app.get_chat_members(chat_id, filter=enums.ChatMembersFilter.ADMINISTRATORS):
-     #   administrators.append(m.user.id)
-  #  user_id = callback_query.message.from_user.id
-    replied = callback_query.data.split("_")[2]  
-    print(replied)  
-   # if user_id in administrators:
-    mode = callback_query.data.split("_")[1]
-    if mode == "demote":
-        await app.unpin_chat_message(chat_id,replied)
+@pgram.on_callback_query()
+async def cb(app: Client, query):
+    id = query.data.split(":")
+    if id[0].casefold() == "unpin":
+        await app.unpin_chat_message(query.message.chat.id, id[1])
     
         
-my_handler = CallbackQueryHandler(unpinc, filters.regex("admin_"))
-pgram.add_handler(my_handler)
-
