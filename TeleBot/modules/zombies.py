@@ -8,7 +8,7 @@ from TeleBot.modules.pyrogram_funcs.status import (
     user_admin,
     user_can_ban )
 from pyrogram import filters 
-
+from pyrogram.types import InlineKeyboardButton,InlineKeyboardMarkup 
 
 
 @pgram.on_message(filters.command(["zombies","ban_zombies"]) & ~filters.private)
@@ -30,10 +30,10 @@ async def _zombies(_,message):
            Nzombies.append(member.user.id) 
 
     if message.command[0] == "zombies": 
-           await text.edit(f"{len(zombies)} ᴢᴏᴍʙɪᴇs ғᴏᴜɴᴅ ɪɴ {message.chat.title}.")
+           await text.edit(f"{len(zombies)} ᴢᴏᴍʙɪᴇs ғᴏᴜɴᴅ ɪɴ {message.chat.title}.",reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("❌ ᴄʟᴏsᴇ", callback_data="admin_close")]]))
     if message.command[0] == "ban_zombies":
         if len(zombies) == 0:
-            return await text.edit(f"ᴛʜᴇʀᴇ ᴀʀᴇɴ'ᴛ ᴀɴʏ ᴢᴏᴍʙɪᴇs ɪɴ {message.chat.title}")
+            return await text.edit(f"ᴛʜᴇʀᴇ ᴀʀᴇɴ'ᴛ ᴀɴʏ ᴢᴏᴍʙɪᴇs ɪɴ {message.chat.title}",reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("❌ ᴄʟᴏsᴇ", callback_data="admin_close")]]))
         for i in zombies :
             try:                         
                 await pgram.ban_chat_member(chat_id,zombies[x])           
@@ -44,5 +44,5 @@ async def _zombies(_,message):
                 asyncio.sleep(e.value)
         end = get_readable_time((time.time() - start))  
         await text.delete()
-        await message.reply_text(f"ʙᴀɴɴᴇᴅ {len(zombies)} ᴢᴏᴍʙɪᴇs ɪɴ {message.chat.title}.\n⏰ ᴛɪᴍᴇ ᴛᴏᴏᴋ : {ᴇɴᴅ}")
+        await message.reply_text(f"ʙᴀɴɴᴇᴅ {len(zombies)} ᴢᴏᴍʙɪᴇs ɪɴ {message.chat.title}.\n⏰ ᴛɪᴍᴇ ᴛᴏᴏᴋ : {ᴇɴᴅ}",reply_markup = InlineKeyboardMarkup([[InlineKeyboardButton("❌ ᴄʟᴏsᴇ", callback_data="admin_close")]]))
     
