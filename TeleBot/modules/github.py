@@ -49,3 +49,16 @@ async def _github(_, message):
         print(str(e))
         await message.reply_text(f"ERROR!! Contact @{SUPPORT_CHAT}")
         pass
+
+__help__ = """
+**⸢I ᴡɪʟʟ ɢɪᴠᴇ ɪɴғᴏʀᴍᴀᴛɪᴏɴ ᴀʙᴏᴜᴛ ɢɪᴛʜᴜʙ ᴘʀᴏғɪʟᴇ .⸥**
+
+「𝗖𝗢𝗠𝗠𝗔𝗡𝗗𝗦」 :
+═───────◇───────═
+๏ /github | /git <ᴜsᴇʀɴᴀᴍᴇ>: ɢᴇᴛ ɪɴғᴏʀᴍᴀᴛɪᴏɴ ᴀʙᴏᴜᴛ ᴀ ɢɪᴛʜᴜʙ ᴜsᴇʀ.
+═───────◇───────═
+"""
+
+__mod_name__ = "𝙶ɪᴛʜᴜʙ"
+
+
