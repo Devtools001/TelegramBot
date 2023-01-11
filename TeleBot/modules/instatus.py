@@ -2,7 +2,7 @@ import asyncio
 from datetime import datetime
 from pyrogram import enums , filters 
 from TeleBot import pgram
-
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup 
 COMMANDERS = [enums.ChatMemberStatus.ADMINISTRATOR,enums.ChatMemberStatus.OWNER]
 
 
@@ -81,7 +81,8 @@ async def instatus(_, message):
 ——————«•»——————
 
 ⏱ ᴛɪᴍᴇ ᴛᴏᴏᴋ » `{time}` sᴇᴄᴏɴᴅs
-""")
+""",reply_markup=InlineKeyboardMarkup (
+    [[InlineKeyboardButton("❌ ᴄʟᴏsᴇ", callback_data="close")]]))
  
     else:
         await text.edit("`You must be an admin or group owner to perform this action.`")
