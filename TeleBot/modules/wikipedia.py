@@ -3,7 +3,7 @@ from TeleBot import pgram
 from pyrogram import filters,enums
 from wikipedia.exceptions import DisambiguationError, PageError
 
-@pgram.on_message(filters.command("wiki"))
+@pgram.on_message(filters.command(["wiki","wikipedia"]))
 async def _wiki(_, message):
     replied = message.reply_to_message
     if len(message.command) < 2 and not replied:
@@ -44,4 +44,15 @@ async def _wiki(_, message):
         else:
             await message.reply_text(
                 result, parse_mode=enums.ParseMode.HTML, disable_web_page_preview=True
-            )    
+            )   
+
+ 
+__help__ = """
+**⸢sᴇᴀʀᴄʜ sᴏᴍᴇᴛʜɪɴɢ ᴏɴ ᴡɪᴋɪᴘᴇᴅɪᴀ.⸥**
+
+「𝗖𝗢𝗠𝗠𝗔𝗡𝗗𝗦」 :
+═───────◇───────═
+๏ /wiki | /wikipedia (ᴛᴇxᴛ) : sᴇᴀʀᴄʜs ᴀʙᴏᴜᴛ ᴛʜᴇ ɢɪᴠᴇɴ ᴛᴇxᴛ ᴏɴ ᴡɪᴋɪᴘᴇᴅɪᴀ.
+═───────◇───────═
+"""
+__mod_name__ = "𝚆ɪᴋɪᴘᴇᴅɪᴀ"
