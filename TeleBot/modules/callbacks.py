@@ -66,5 +66,5 @@ async def callback(client : Client, query: CallbackQuery):
         else:
             await client.answer_callback_query(
             query.id,
-            text = "❌ ʏᴏᴜ ᴀʀᴇ ɴᴏᴛ ᴡᴏʀᴛʜʏ sᴏɴ."
+            text = "❌ ʏᴏᴜ ᴀʀᴇ ɴᴏᴛ ᴡᴏʀᴛʜʏ sᴏɴ.",
             show_alert = True)
