@@ -36,7 +36,7 @@ async def memify(client, message):
         font_path = "./TeleBot/resources/mmf_fonts/d.otf"
         
     elif "-l" in text:
-        text = text.replace("-di","")
+        text = text.replace("-l","")
         font_path = "./TeleBot/resources/mmf_fonts/di.ttf"
 
     elif "-h" in text :
@@ -184,4 +184,20 @@ async def draw_meme_text(image_path, text,font_path):
     img.save(webp_file, "WebP")
     return webp_file
 
+__help__ = """
+**⸢ᴅʀᴀᴡ ᴛᴇxᴛ ᴏɴ ɪᴍᴀɢᴇs ᴏʀ sᴛɪᴄᴋᴇʀ ᴡɪᴛʜ ᴄᴏᴏʟ ғᴏɴᴛs.⸥**
+
+「𝗖𝗢𝗠𝗠𝗔𝗡𝗗𝗦」 :
+═───────◇───────═
+๏ /mmf «ᴛᴇxᴛ» : ᴅʀᴀᴡ ᴀ ᴛᴇxᴛ ᴏɴ ᴀ ᴘʜᴏᴛᴏ ᴏʀ sᴛɪᴄᴋᴇʀ
+
+Ⓣ︎Ⓡ︎Ⓨ︎ Ⓦ︎Ⓘ︎Ⓣ︎Ⓗ︎ Ⓓ︎Ⓘ︎Ⓕ︎Ⓕ︎Ⓡ︎Ⓔ︎Ⓑ︎Ⓣ︎ Ⓕ︎Ⓞ︎Ⓝ︎Ⓣ︎Ⓢ︎
+๏ /mmf  -r «ᴛᴇxᴛ»
+๏ /mmf -a «ᴛᴇxᴛ»
+๏ /mmf -d «ᴛᴇxᴛ»
+๏ /mmf -l «ᴛᴇxᴛ»
+๏ /mmf -h «ᴛᴇxᴛ»
+═───────◇───────═
+"""
+__mod_name__ = "𝙼ᴇᴍɪғʏ"
 
