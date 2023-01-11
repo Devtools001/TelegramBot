@@ -12,20 +12,9 @@ async def wall(_,msg):
     if len(msg.command) < 2:
          await msg.reply_text("ʜᴇʏ ɴᴏᴏʙ ɢɪᴠᴇ sᴏᴍᴇᴛʜɪɴɢ ᴛᴏ sᴇᴀʀᴄʜ.")
          return 
-    else:
-         pass
-
-    query=(
-       msg.text.split(None,1)[1]
-       if len(msg.command) < 3
-       else msg.text.split(None,1)[1].replace(" ","%20")
-       )
     
-    if not query:
-        await msg.reply_text("ʜᴇʏ ɴᴏᴏʙ ɢɪᴠᴇ sᴏᴍᴇᴛʜɪɴɢ ᴛᴏ sᴇᴀʀᴄʜ.")
-    else:
-        pass  
-            
+    query= msg.text.split(None,1)[1].replace(" ","%20")
+                    
     url=f"https://api.safone.me/wall?query={query}"
     re=requests.get(url).json()
     walls = re.get("results")
@@ -42,12 +31,33 @@ async def wall(_,msg):
         await msg.reply_photo(preview, caption="⚡ ᴘʀɪᴠɪᴇᴡ")
         await msg.reply_document(pic, caption=f"⚡ ᴛɪᴛʟᴇ - {title}")
     except Exception as error :
-        await msg.reply_text(f"ᴀɴ ᴇʀʀᴏʀ ᴏᴄᴄᴜʀᴇᴅ.\n {error}")            
+        await msg.reply_text(f"ᴀɴ ᴇʀʀᴏʀ ᴏᴄᴄᴜʀᴇᴅ.\n {error}")  
+
+@pgram.on_message(filters.command("wallpaper"))
+async def wallpaper (_,msg):  
+    try:
+        url=f"https://wallhaven.cc/api/v1/search"
+        re=requests.get(url).json()    
+        stark=re["data"]
+        wall = randint(0, len(stark) -1)
+        main = stark[wall]["path"]
+        preview = stark[wall]["path"]
+        url = stark[wall]["url"]
+        category = stark[wall]["category"]
+        await msg.reply_photo(preview, caption="⚡ ᴘʀɪᴠɪᴇᴡ")
+        await msg.reply_document(main, caption=f"💫 ᴄᴀᴛᴇɢᴏʀʏ :- {category}")
+
+    except Exception as a:
+        await message.reply_text(a)
+    
+    
+          
     
 __help__ = """
 「𝗖𝗢𝗠𝗠𝗔𝗡𝗗𝗦」 :
 ═───────◇───────═
 ๏ /wall «ǫᴜᴇʀʏ» : ɢᴇᴛ ᴡᴀʟʟᴘᴀᴘᴇʀs ғʀᴏᴍ ᴀʟᴘʜᴀᴄᴏᴅᴇʀs.
+๏ /wallpaper sᴇɴᴅ ʀᴀɴᴅᴏᴍ ᴡᴀʟʟᴘᴀᴘᴇʀs.
 ═───────◇───────═
 """
 __mod_name__ = "𝚆ᴀʟʟᴘᴀᴘᴇʀ"
