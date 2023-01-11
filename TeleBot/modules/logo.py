@@ -74,7 +74,7 @@ async def logo_make(_,message):
                 telegraph_link = f"https://graph.org{uploaded_file[0]}" 
 
                 final = await logo_vai(link=telegraph_link,logo_text=logo_text)
-                await pgram.send_photo(chat_id,final,caption=f"ʟᴏɢᴏ ɢᴇɴᴇʀᴀᴛᴇᴅ ʙʏ {MENTION_BOT}", reply_markup=key))
+                await pgram.send_photo(chat_id,final,caption=f"ʟᴏɢᴏ ɢᴇɴᴇʀᴀᴛᴇᴅ ʙʏ {MENTION_BOT}", reply_markup=key)
                 await text.delete()
                 if os.path.exists(final):
                     os.remove(final) 
