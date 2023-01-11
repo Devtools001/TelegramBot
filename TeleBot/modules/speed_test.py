@@ -43,3 +43,4 @@ async def _speedtest(app : Client,callback_query: CallbackQuery):
         msg += f"\n**⦾ ᴘɪɴɢ »** `{result['ping']}`\n**⦾ ᴜᴘʟᴏᴀᴅ »** `{await convert(result['upload'])}Mb/s`\n**⦾ ᴅᴏᴡɴʟᴏᴀᴅ »** `{await convert(result['download'])}Mb/s"
         await text.edit(msg, parse_mode=enums.ParseMode.MARKDOWN)
     
+__mod_name__ = "𝚂ᴘᴇᴇᴅᴛᴇsᴛ"
