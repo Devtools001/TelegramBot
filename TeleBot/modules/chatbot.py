@@ -10,10 +10,9 @@ chatbotdb = db.chatbot
 
 async def is_chatbot(chat_id : int) -> bool :
     check= chatbotdb.find_one({"chat_id":chat_id})
-    if not check:
-        return False    
-    return True    
-
+    if check :
+        return True
+    return False
 
 buttons = InlineKeyboardMarkup([[ InlineKeyboardButton(text="ᴇɴᴀʙʟᴇ", callback_data="add_chat"),InlineKeyboardButton(text="ᴅɪsᴀʙʟᴇ", callback_data="rm_chat")]])
                         
@@ -44,6 +43,7 @@ async def _addchat(app : Client, query : CallbackQuery):
     user_id = query.from_user.id
     chat_id = query.message.chat.id
     check_db = await is_chatbot(chat_id)
+    
     if query.message.chat.type != enums.ChatType.PRIVATE:
         administrators = []
         async for m in app.get_chat_members(chat_id, filter=enums.ChatMembersFilter.ADMINISTRATORS):
