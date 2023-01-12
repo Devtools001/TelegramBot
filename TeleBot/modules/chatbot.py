@@ -77,8 +77,38 @@ async def _addchat(app : Client, query : CallbackQuery):
             return await query.message.edit_caption("ᴇɴᴀʙʟᴇᴅ ᴄʜᴀᴛʙᴏᴛ ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ.") 
         elif check_chat:
             await query.message.edit_caption("ᴄʜᴀᴛʙᴏᴛ ɪs ᴀʟʀᴇᴀᴅʏ ᴇɴᴀʙʟᴇᴅ.")   
-    print(check_chat,chat_id)         
-    
+             
+@pgram.on_callback_query(filters.regex("rm_chat"))
+async def _rmchat(app : Client, query : CallbackQuery):
+    user_id = query.from_user.id
+    chat_id = query.message.chat.id
+    check_chat = await chatbotdb.find_one({"chat_id" : chat_id})
+  
+    if query.message.chat.type != enums.ChatType.PRIVATE:
+        administrators = []
+        async for m in app.get_chat_members(chat_id, filter=enums.ChatMembersFilter.ADMINISTRATORS):
+            administrators.append(m.user.id)
+        if user_id in administrators:
+            if not check_chat:  
+                await rmchat_bot(chat_id)           
+                return await query.message.edit_caption("ᴅɪsᴀʙʟᴇᴅ ᴄʜᴀᴛʙᴏᴛ ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ.")      
+                
+            elif check_chat:
+                await query.message.edit_caption("ᴄʜᴀᴛʙᴏᴛ ɪs ᴀʟʀᴇᴀᴅʏ ᴅɪsᴀʙʟᴇᴅ.")
+            
+   
+        else:
+            await client.answer_callback_query(
+            query.id,
+            text = "❌ ʏᴏᴜ ᴀʀᴇ ɴᴏᴛ ᴡᴏʀᴛʜʏ sᴏɴ.",
+            show_alert = True)
+    else:
+        if not check_chat:
+            await rmchat_bot(user_id)                     
+            return await query.message.edit_caption("ᴅɪsᴀʙʟᴇᴅ ᴄʜᴀᴛʙᴏᴛ ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ.") 
+        elif check_chat:
+            await query.message.edit_caption("ᴄʜᴀᴛʙᴏᴛ ɪs ᴀʟʀᴇᴀᴅʏ ᴅɪsᴀʙʟᴇᴅ.")   
+                 
 
 
 async def friday_message(message : Message):
