@@ -1,7 +1,7 @@
 import asyncio
 from TeleBot import pgram
 from pyrogram import filters
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery 
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery ,InputMediaPhoto
 from datetime import datetime
 
 
