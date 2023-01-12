@@ -15,7 +15,7 @@ buttons = InlineKeyboardMarkup([[ InlineKeyboardButton(text="ᴇɴᴀʙʟᴇ", c
 @pgram.on_message(filters.command("chatbot"))
 async def _check_bot(_, message):
     await message.reply_photo(photo="https://graph.org/file/1e810f699ea60b2962c61.jpg",
-    caption="ᴄʜᴏᴏsᴇ ᴀɴ ᴏᴩᴛɪᴏɴ ᴛᴏ ᴇɴᴀʙʟᴇ/ᴅɪsᴀʙʟᴇ ᴄʜᴀᴛʙᴏᴛ"
+    caption="ᴄʜᴏᴏsᴇ ᴀɴ ᴏᴩᴛɪᴏɴ ᴛᴏ ᴇɴᴀʙʟᴇ/ᴅɪsᴀʙʟᴇ ᴄʜᴀᴛʙᴏᴛ",
     reply_markup=buttons)
 
 async def friday_message(message : Message):
