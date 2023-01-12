@@ -50,7 +50,7 @@ async def _check_bot(_, message):
             reply_markup=buttons)
     
 
-@pgram.on_callback_query(filters.regex("add_chat")
+@pgram.on_callback_query(filters.regex("add_chat"))
 async def _addchat(app : Client, query : CallbackQuery):
     user_id = query.from_user.id
     chat_id = query.message.chat.id
