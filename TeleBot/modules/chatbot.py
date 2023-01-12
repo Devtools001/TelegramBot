@@ -8,12 +8,11 @@ from TeleBot.modules.pyrogram_funcs.chat_actions import send_action
 
 chatbotdb = db.chatbot
 
-async def is_chatbot(chat_id):
-    chatbot = chatbotdb.find_one({"chat_id":chat_id})
-    if not chatbot:
-        return False
-    else:
-        return True    
+async def is_chatbot(chat_id : int) -> bool :
+    check= chatbotdb.find_one({"chat_id":chat_id})
+    if not check:
+        return False    
+    return True    
 
 
 buttons = InlineKeyboardMarkup([[ InlineKeyboardButton(text="ᴇɴᴀʙʟᴇ", callback_data="add_chat"),InlineKeyboardButton(text="ᴅɪsᴀʙʟᴇ", callback_data="rm_chat")]])
