@@ -27,9 +27,9 @@ async def _sh(_, message):
     
     else:
         await message.reply_text(f"""
-    ǫᴜᴇʀʏ :
-    {cmd}   
-    {reply}
+**ǫᴜᴇʀʏ :**
+    `{cmd}`   
+    `{reply}`
     """, parse_mode=enums.ParseMode.MARKDOWN)                
                 
     
