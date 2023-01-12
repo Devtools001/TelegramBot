@@ -12,19 +12,11 @@ async def is_chatbot(chat_id):
     chatbot = chatbotdb.find_one({"chat_id":chat_id})
     if not chatbot:
         return False
-    return True    
+    else:
+        return True    
 
-async def add_chatbot(chat_id):
-    check = await is_chatbot(chat_id)
-    if check:
-        return
-    return await chatbotdb.insert_one({"chat_id":chat_id})
 
-async def rm_chatbot(chat_id):
-    check_rm = await is_chatbot(chat_id)
-    if not check_rm:
-        return
-    return await chatbotdb.delete_one({"chat_id":chat_id})
+
 
 buttons = InlineKeyboardMarkup([[ InlineKeyboardButton(text="ᴇɴᴀʙʟᴇ", callback_data="add_chat"),InlineKeyboardButton(text="ᴅɪsᴀʙʟᴇ", callback_data="rm_chat")]])
                         
@@ -62,7 +54,7 @@ async def _addchat(app : Client, query : CallbackQuery):
             if await is_chatbot(chat_id):
                 await query.message.edit_caption("ᴄʜᴀᴛʙᴏᴛ ɪs ᴀʟʀᴇᴀᴅʏ ᴇɴᴀʙʟᴇᴅ.")
             else:
-                await add_chatbot(chat_id)            
+                await chatbotdb.insert_one({"chat_id", message.chat.id})           
                 return await query.message.edit_caption("ᴇɴᴀʙʟᴇᴅ ᴄʜᴀᴛʙᴏᴛ ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ.")
    
         else:
