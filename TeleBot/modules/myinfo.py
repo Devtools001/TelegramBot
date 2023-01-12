@@ -59,8 +59,6 @@ async def _minfo(_, message):
 
 @pgram.on_callback_query(filters.regex("info"))
 async def _ic(app: Client, query : CallbackQuery):
-    print(query)
-    print(query.from_user)
     msg = "⚗️ ʜᴇʀᴇ ᴀʀᴇ ʏᴏᴜ ᴅᴇᴛᴀɪʟs\n\n"
     msg += f"๏ ғɪʀsᴛ ɴᴀᴍᴇ : {query.from_user.first_name}\n"
     msg += f"๏ ʟᴀsᴛ ɴᴀᴍᴇ : {query.from_user.last_name}\n"
