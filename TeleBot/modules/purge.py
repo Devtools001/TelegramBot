@@ -19,4 +19,8 @@ async def _del(_, message):
     if not replied:
         return await message.reply_text("`ʀᴇᴘʟʏ ᴛᴏ ᴀ ᴍᴇssᴀɢᴇ ᴛᴏ ᴅᴇʟᴇᴛᴇ ɪᴛ.`")
     
-    await pgram.delete_messages(chat_id, replied.id,revoke=False)
+    await pgram.delete_messages(chat_id, replied.id)
+        try:
+            await message.delete()
+        except:
+            pass
