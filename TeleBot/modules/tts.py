@@ -23,7 +23,6 @@ async def _tts(_, message):
         lan = "en"
     else:
         await message.reply_text("Iɴᴠᴀʟɪᴅ Sʏɴᴛᴀx\ɴFᴏʀᴍᴀᴛ /ᴛᴛs ʟᴀɴɢ | ᴛᴇxᴛ\ɴFᴏʀ ᴇɢ: /ᴛᴛs ᴇɴ | ʜᴇʟʟᴏ")
-    print(lan,text)
     text = text.strip()
     lan = lan.strip()
     try:
