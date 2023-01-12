@@ -13,10 +13,10 @@ async def _sh(_, message):
     reply = ""
     stderr = stderr
     if stdout := stdout.decode():
-        reply += f"**sᴛᴅᴏᴜᴛ**\n`{stdout}`\n"
+        reply += f" **sᴛᴅᴏᴜᴛ** \n`{stdout}`\n"
         LOG.print(f"[bold yellow]Shell - {cmd} - {stdout}")
     if stderr:
-        reply += f"**sᴛᴅᴇʀʀ**\n`{stderr}`\n"
+        reply += f" **sᴛᴅᴇʀʀ** \n`{stderr}`\n"
         LOG.print(f"[bold yellow]Shell - {cmd} - {stderr}")
     
     if len(reply) > 3000:
@@ -28,7 +28,7 @@ async def _sh(_, message):
     else:
         await message.reply_text(f"""
 **ǫᴜᴇʀʏ :**
-    `{cmd}`   
+`{cmd}`   
 `{reply}`
     """, parse_mode=enums.ParseMode.MARKDOWN)                
                 
