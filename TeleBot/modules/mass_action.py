@@ -168,7 +168,7 @@ async def _list(_, message):
             if member.user.is_deleted
             else f"\n{member.user.mention} {member.user.id}"
             )
-        count.append(member)
+        count.append(member.user.id)
     
     with open("userslist.txt", "w+") as file:
         file.write(mentions)
