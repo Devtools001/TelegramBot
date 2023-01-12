@@ -64,7 +64,7 @@ async def _addchat(app : Client, query : CallbackQuery):
                 
             elif check_chat == True:
                 await query.message.edit_caption("ᴄʜᴀᴛʙᴏᴛ ɪs ᴀʟʀᴇᴀᴅʏ ᴇɴᴀʙʟᴇᴅ.")
-            print(check_db,chat_id)
+            
    
         else:
             await client.answer_callback_query(
@@ -77,7 +77,7 @@ async def _addchat(app : Client, query : CallbackQuery):
             return await query.message.edit_caption("ᴇɴᴀʙʟᴇᴅ ᴄʜᴀᴛʙᴏᴛ ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ.") 
         elif check_chat == True:
             await query.message.edit_caption("ᴄʜᴀᴛʙᴏᴛ ɪs ᴀʟʀᴇᴀᴅʏ ᴇɴᴀʙʟᴇᴅ.")   
-            
+    print(check_chat,chat_id)         
     
 
 
