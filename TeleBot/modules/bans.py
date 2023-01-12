@@ -371,7 +371,7 @@ async def _list(_, message):
     count = await pgram.get_chat_members_count(message.chat.id)
     title = message.chat.title 
     mentions = f"ᴜꜱᴇʀꜱ ɪɴ {title}: \n"
-    async for member in pgram.get_chat_members(message.chat.id.):
+    async for member in pgram.get_chat_members(message.chat.id):
         mentions += (
             f"\nᴅᴇʟᴇᴛᴇᴅ ᴀᴄᴄᴏᴜɴᴛ {member.user.id}"
             if member.user.is_deleted
