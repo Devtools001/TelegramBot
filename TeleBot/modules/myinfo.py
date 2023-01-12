@@ -1,6 +1,6 @@
 import asyncio
 from TeleBot import pgram
-from pyrogram import filters
+from pyrogram import filters, Client 
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery ,InputMediaPhoto
 from datetime import datetime
 
@@ -56,3 +56,15 @@ async def _minfo(_, message):
 
     await asyncio.sleep(EDIT_TIME)
     ic9 = await pgram.edit_message_media(chat_id, ic8.id,InputMediaPhoto(file5), reply_markup=buttons)
+
+
+@pgram.on_callback_query(filters.regex("info"))
+async def (app: Client, query : CallbackQuery):
+    msg = "⚗️ ʜᴇʀᴇ ᴀʀᴇ ʏᴏᴜ ᴅᴇᴛᴀɪʟs\n"
+    msg += f"ғɪʀsᴛ ɴᴀᴍᴇ : {query.from_user.first_name}"
+    await app.answer_callback_query(
+    query.id,
+    text=msg,
+    show_alert=True)
+    
+
