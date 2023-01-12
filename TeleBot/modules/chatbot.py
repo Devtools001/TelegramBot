@@ -50,12 +50,12 @@ async def _addchat(app : Client, query : CallbackQuery):
             administrators.append(m.user.id)
         if user_id in administrators:
             if not await is_chatbot(chat_id):  
-                await chatbotdb.insert_one({"chat_id":message.chat.id})           
+                await chatbotdb.insert_one({"chat_id":chat_id})           
                 return await query.message.edit_caption("ᴇɴᴀʙʟᴇᴅ ᴄʜᴀᴛʙᴏᴛ ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ.")      
                 
             else:
                 await query.message.edit_caption("ᴄʜᴀᴛʙᴏᴛ ɪs ᴀʟʀᴇᴀᴅʏ ᴇɴᴀʙʟᴇᴅ.")
-            print(await is_chatbot(chat_id))
+            print(await is_chatbot(chat_id),chat_id)
    
         else:
             await client.answer_callback_query(
