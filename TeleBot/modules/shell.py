@@ -12,7 +12,7 @@ async def _sh(_, message):
     stdout, stderr = process.communicate()
     reply = ""
     stderr = stderr
-       if stdout := stdout.decode():
+    if stdout := stdout.decode():
         reply += f"*Stdout*\n`{stdout}`\n"
         LOG.print(f"[bold yellow]Shell - {cmd} - {stdout}")
     if stderr:
