@@ -27,7 +27,32 @@ async def _minfo(_, message):
     steve = await pgram.send_photo(
         chat_id,
         photo=file2,
+        caption="🧪 ᴄʟɪᴄᴋ Tʜᴇ ʙᴜᴛᴛᴏɴ ʙᴇʟᴏᴡ ᴛᴏ ɢᴇᴛ ʏᴏᴜʀ Iɴғᴏ.",
         reply_markup=buttons)    
-    print(steve.id) 
+   
     await asyncio.sleep(EDIT_TIME)
-    await pgram.edit_message_media(chat_id,steve.id,InputMediaPhoto(file3),reply_markup=buttons)
+    ic = await pgram.edit_message_media(chat_id,steve.id,InputMediaPhoto(file3),reply_markup=buttons)
+
+    await asyncio.sleep(EDIT_TIME)
+    ic2 = await pgram.edit_message_media(chat_id,ic.id ,InputMediaPhoto(file1), reply_markup=buttons)
+
+    await asyncio.sleep(EDIT_TIME)
+    ic3 = await pgram.edit_message_media(chat_id, ic2.id,InputMediaPhoto(file4),reply_markup=buttons)
+
+    await asyncio.sleep(EDIT_TIME)
+    ic4 = await pgram.edit_message_media(chat_id, ic3.id,InputMediaPhoto(file5),reply_markup=buttons)
+
+    await asyncio.sleep(EDIT_TIME)
+    ic5 = await pgram.edit_message_media(chat_id,ic4.id,InputMediaPhoto(file2),reply_markup=buttons)
+
+    await asyncio.sleep(EDIT_TIME)
+    ic6 = await pgram.edit_message_media(chat_id,ic5.id,InputMediaPhoto(file1),reply_markup=buttons)
+
+    await asyncio.sleep(EDIT_TIME)
+    ic7 = await pgram.edit_message_media(chat_id,ic6.id,InputMediaPhoto(file3), reply_markup=buttons)
+
+    await asyncio.sleep(EDIT_TIME)
+    ic8 = await pgram.edit_message_media(chat_id,ic7.id,InputMediaPhoto(file4), reply_markup=buttons)
+
+    await asyncio.sleep(EDIT_TIME)
+    ic9 = await pgram.edit_message_media(chat_id, ic8.id,InputMediaPhoto(file5), reply_markup=buttons)
