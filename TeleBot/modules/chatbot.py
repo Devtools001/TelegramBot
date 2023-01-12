@@ -9,10 +9,19 @@ from TeleBot.modules.pyrogram_funcs.chat_actions import send_action
 chatbotdb = db.chatbot
 
 async def is_chatbot(chat_id : int) -> bool :
-    check = chatbotdb.find_one({"chat_id":chat_id})
-    if check :
+    chat = chatbotdb.find_one({"chat_id":chat_id})
+    if not chat  :
         return False
     return True
+
+async def addchat_bot(chat_id : int):
+    return await chatbotdb.insert_one({"chat_id : chat_id})
+    
+async def rmchat_bot(chat_id : int):
+    chat = chatbotdb.find_one({"chat_id":chat_id})
+    if chat:
+        return await chatbotdb.delete_one({"chat_id" : chat_id})        
+
 
 buttons = InlineKeyboardMarkup([[ InlineKeyboardButton(text="ᴇɴᴀʙʟᴇ", callback_data="add_chat"),InlineKeyboardButton(text="ᴅɪsᴀʙʟᴇ", callback_data="rm_chat")]])
                         
@@ -42,18 +51,18 @@ async def _check_bot(_, message):
 async def _addchat(app : Client, query : CallbackQuery):
     user_id = query.from_user.id
     chat_id = query.message.chat.id
-    check_db = await is_chatbot(chat_id)
-    
+    check_chat = await is_chatbot(chat_id)  
+  
     if query.message.chat.type != enums.ChatType.PRIVATE:
         administrators = []
         async for m in app.get_chat_members(chat_id, filter=enums.ChatMembersFilter.ADMINISTRATORS):
             administrators.append(m.user.id)
         if user_id in administrators:
-            if not check_db:  
-                await chatbotdb.insert_one({"chat_id":chat_id})           
+            if check_db == False:  
+                await addchat_bot(chat_id)           
                 return await query.message.edit_caption("ᴇɴᴀʙʟᴇᴅ ᴄʜᴀᴛʙᴏᴛ ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ.")      
                 
-            elif check_db:
+            elif check_db == True:
                 await query.message.edit_caption("ᴄʜᴀᴛʙᴏᴛ ɪs ᴀʟʀᴇᴀᴅʏ ᴇɴᴀʙʟᴇᴅ.")
             print(check_db,chat_id)
    
@@ -63,10 +72,10 @@ async def _addchat(app : Client, query : CallbackQuery):
             text = "❌ ʏᴏᴜ ᴀʀᴇ ɴᴏᴛ ᴡᴏʀᴛʜʏ sᴏɴ.",
             show_alert = True)
     else:
-        if not check_db:
-            await chatbotdb.insert_one({"chat_id":user_id})           
+        if check_db == False:
+            await addchat_bot(user_id)                     
             return await query.message.edit_caption("ᴇɴᴀʙʟᴇᴅ ᴄʜᴀᴛʙᴏᴛ ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ.") 
-        elif check_db:
+        elif check_db == True:
             await query.message.edit_caption("ᴄʜᴀᴛʙᴏᴛ ɪs ᴀʟʀᴇᴀᴅʏ ᴇɴᴀʙʟᴇᴅ.")   
             
     
