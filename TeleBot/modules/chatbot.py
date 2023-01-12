@@ -15,7 +15,7 @@ async def is_chatbot(chat_id : int) -> bool :
     return True
 
 async def addchat_bot(chat_id : int):
-    return await chatbotdb.insert_one({"chat_id : chat_id})
+    return await chatbotdb.insert_one({"chat_id" : chat_id})
     
 async def rmchat_bot(chat_id : int):
     chat = chatbotdb.find_one({"chat_id":chat_id})
