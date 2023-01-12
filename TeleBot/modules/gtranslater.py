@@ -2,6 +2,8 @@ from gpytranslate import SyncTranslator
 from TeleBot import pgram
 from pyrogram import filters, enums 
 
+trans = SyncTranslator()
+
 @pgram.on_message(filters.command(["tr","tl"]))
 async def _translate(_, message):
     replied = message.reply_to_message
