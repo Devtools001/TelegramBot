@@ -11,8 +11,8 @@ chatbotdb = db.chatbot
 async def is_chatbot(chat_id : int) -> bool :
     check = chatbotdb.find_one({"chat_id":chat_id})
     if check :
-        return True
-    return False
+        return False
+    return True
 
 buttons = InlineKeyboardMarkup([[ InlineKeyboardButton(text="ᴇɴᴀʙʟᴇ", callback_data="add_chat"),InlineKeyboardButton(text="ᴅɪsᴀʙʟᴇ", callback_data="rm_chat")]])
                         
@@ -49,11 +49,11 @@ async def _addchat(app : Client, query : CallbackQuery):
         async for m in app.get_chat_members(chat_id, filter=enums.ChatMembersFilter.ADMINISTRATORS):
             administrators.append(m.user.id)
         if user_id in administrators:
-            if check_db:  
+            if not check_db:  
                 await chatbotdb.insert_one({"chat_id":chat_id})           
                 return await query.message.edit_caption("ᴇɴᴀʙʟᴇᴅ ᴄʜᴀᴛʙᴏᴛ ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ.")      
                 
-            elif not check_db:
+            elif check_db:
                 await query.message.edit_caption("ᴄʜᴀᴛʙᴏᴛ ɪs ᴀʟʀᴇᴀᴅʏ ᴇɴᴀʙʟᴇᴅ.")
             print(check_db,chat_id)
    
@@ -63,10 +63,10 @@ async def _addchat(app : Client, query : CallbackQuery):
             text = "❌ ʏᴏᴜ ᴀʀᴇ ɴᴏᴛ ᴡᴏʀᴛʜʏ sᴏɴ.",
             show_alert = True)
     else:
-        if check_db:
+        if not check_db:
             await chatbotdb.insert_one({"chat_id":user_id})           
             return await query.message.edit_caption("ᴇɴᴀʙʟᴇᴅ ᴄʜᴀᴛʙᴏᴛ ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ.") 
-        elif not check_db:
+        elif check_db:
             await query.message.edit_caption("ᴄʜᴀᴛʙᴏᴛ ɪs ᴀʟʀᴇᴀᴅʏ ᴇɴᴀʙʟᴇᴅ.")   
             
     
