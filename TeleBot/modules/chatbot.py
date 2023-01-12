@@ -16,8 +16,6 @@ async def is_chatbot(chat_id):
         return True    
 
 
-
-
 buttons = InlineKeyboardMarkup([[ InlineKeyboardButton(text="ᴇɴᴀʙʟᴇ", callback_data="add_chat"),InlineKeyboardButton(text="ᴅɪsᴀʙʟᴇ", callback_data="rm_chat")]])
                         
 @pgram.on_message(filters.command("chatbot"))
@@ -51,11 +49,13 @@ async def _addchat(app : Client, query : CallbackQuery):
         async for m in app.get_chat_members(chat_id, filter=enums.ChatMembersFilter.ADMINISTRATORS):
             administrators.append(m.user.id)
         if user_id in administrators:
-            if await is_chatbot(chat_id):
-                await query.message.edit_caption("ᴄʜᴀᴛʙᴏᴛ ɪs ᴀʟʀᴇᴀᴅʏ ᴇɴᴀʙʟᴇᴅ.")
-            else:
+            if not await is_chatbot(chat_id):  
                 await chatbotdb.insert_one({"chat_id", message.chat.id})           
-                return await query.message.edit_caption("ᴇɴᴀʙʟᴇᴅ ᴄʜᴀᴛʙᴏᴛ ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ.")
+                return await query.message.edit_caption("ᴇɴᴀʙʟᴇᴅ ᴄʜᴀᴛʙᴏᴛ ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ.")      
+                
+            else:
+                await query.message.edit_caption("ᴄʜᴀᴛʙᴏᴛ ɪs ᴀʟʀᴇᴀᴅʏ ᴇɴᴀʙʟᴇᴅ.")
+            print(await is_chatbot(chat_id))
    
         else:
             await client.answer_callback_query(
