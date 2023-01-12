@@ -6,13 +6,12 @@ from datetime import datetime
 
 
 EDIT_TIME = 5
-""" =======================CONSTANTS====================== """
+
 file1 = "https://graph.org/file/d57a4593b6c727a1f7541.jpg"
 file2 = "https://graph.org/file/992e2af23414750cfb656.jpg"
 file3 = "https://graph.org/file/aae20f536bbaf255a28bd.jpg"
 file4 = "https://graph.org/file/3b289f747da34ac4a1103.jpg"
 file5 = "https://graph.org/file/7207ff67166b5fab23257.jpg"
-""" =======================CONSTANTS====================== """
 
 
 
