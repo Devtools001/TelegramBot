@@ -9,7 +9,7 @@ from TeleBot.modules.pyrogram_funcs.chat_actions import send_action
 chatbotdb = db.chatbot
 
 async def is_chatbot(chat_id : int) -> bool :
-    check= chatbotdb.find_one({"chat_id":chat_id})
+    check = chatbotdb.find_one({"chat_id":chat_id})
     if check :
         return True
     return False
@@ -49,11 +49,11 @@ async def _addchat(app : Client, query : CallbackQuery):
         async for m in app.get_chat_members(chat_id, filter=enums.ChatMembersFilter.ADMINISTRATORS):
             administrators.append(m.user.id)
         if user_id in administrators:
-            if not check_db:  
+            if check_db:  
                 await chatbotdb.insert_one({"chat_id":chat_id})           
                 return await query.message.edit_caption("ᴇɴᴀʙʟᴇᴅ ᴄʜᴀᴛʙᴏᴛ ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ.")      
                 
-            elif check_db:
+            elif not check_db:
                 await query.message.edit_caption("ᴄʜᴀᴛʙᴏᴛ ɪs ᴀʟʀᴇᴀᴅʏ ᴇɴᴀʙʟᴇᴅ.")
             print(check_db,chat_id)
    
@@ -63,10 +63,10 @@ async def _addchat(app : Client, query : CallbackQuery):
             text = "❌ ʏᴏᴜ ᴀʀᴇ ɴᴏᴛ ᴡᴏʀᴛʜʏ sᴏɴ.",
             show_alert = True)
     else:
-        if not check_db:
+        if check_db:
             await chatbotdb.insert_one({"chat_id":user_id})           
             return await query.message.edit_caption("ᴇɴᴀʙʟᴇᴅ ᴄʜᴀᴛʙᴏᴛ ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ.") 
-        elif check_db:
+        elif not check_db:
             await query.message.edit_caption("ᴄʜᴀᴛʙᴏᴛ ɪs ᴀʟʀᴇᴀᴅʏ ᴇɴᴀʙʟᴇᴅ.")   
             
     
