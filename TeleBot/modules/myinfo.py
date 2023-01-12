@@ -1,3 +1,4 @@
+import asyncio
 from TeleBot import pgram
 from pyrogram import filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery 
@@ -23,7 +24,10 @@ async def _minfo(_, message):
     user_name = message.from_user
     datetime.utcnow()
     buttons = InlineKeyboardMarkup([[InlineKeyboardButton("💌 ᴄʟɪᴄᴋ ʜᴇʀᴇ", callback_data="info")]])  
-    await pgram.send_photo(
+    steve = await pgram.send_photo(
         chat_id,
         photo=file2,
         reply_markup=buttons)    
+    
+    await asyncio.sleep(EDIT_TIME)
+    await pgram.edit_message(chat_id,steve,file=file3,reply_markup=buttons)
