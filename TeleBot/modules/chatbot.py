@@ -3,9 +3,20 @@ import json
 import asyncio
 from TeleBot import pgram,BOT_USERNAME,BOT_ID, BOT_NAME
 from pyrogram import filters,enums
-from pyrogram.types import Message 
+from pyrogram.types import Message , InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery 
 from TeleBot.modules.pyrogram_funcs.chat_actions import send_action
 
+
+buttons = InlineKeyboardMarkup([[ InlineKeyboardButton(text="ᴇɴᴀʙʟᴇ", callback_data="add_chat({})"),InlineKeyboardButton(text="ᴅɪsᴀʙʟᴇ", callback_data="rm_chat({})")]])
+            
+        
+    
+
+@pgram.on_message(filters.command("chatbot"))
+async def _check_bot(_, message):
+    await message.reply_photo(photo="https://graph.org/file/1e810f699ea60b2962c61.jpg",
+    caption="ᴄʜᴏᴏsᴇ ᴀɴ ᴏᴩᴛɪᴏɴ ᴛᴏ ᴇɴᴀʙʟᴇ/ᴅɪsᴀʙʟᴇ ᴄʜᴀᴛʙᴏᴛ"
+    reply_markup=buttons)
 
 async def friday_message(message : Message):
     reply_message = message.reply_to_message
