@@ -1,4 +1,4 @@
-from datetime import datetime 
+import time 
 from TeleBot import pgram
 from pyrogram import filters 
 from TeleBot.modules.pyrogram_funcs.status import (
@@ -34,7 +34,7 @@ async def _del(_, message):
 async def _purge(_, message):
     if message.sender_chat:
         return
-    start = datetime.now()
+    start = time.perf_counter()
     replied = message.reply_to_message
     await message.delete()
     if not replied:
@@ -64,8 +64,8 @@ async def _purge(_, message):
             chat_id=chat_id,
             message_ids=message_ids,
             revoke=True)        
-    end = datetime.now()
-    _time = (end-start).seconds
+  
+    _time = time.perf_counter() - start
     await message.reply_text(f"⏱️ ᴘᴜʀɢᴇᴅ sᴜᴄᴄᴇssғᴜʟʟʏ ɪɴ {_time} sᴇᴄᴏɴᴅ(s)")
 
 
