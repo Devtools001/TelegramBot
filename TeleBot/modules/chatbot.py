@@ -117,14 +117,15 @@ async def friday_message(message : Message):
         return False
 
 @pgram.on_message(filters.text  & ~filters.bot,group=2)
-@send_action(enums.ChatAction.TYPING)
 async def chatbot(_, message): 
+    chat_id = message.chat.id
     check_chat = await chatbotdb.find_one({"chat_id" : chat_id})
-    if check_chat:
+    if not check_chat:
         return        
     if message.text and not message.document:
         if not await friday_message(message):
-            return        
+            return  
+        await pgram.send_chat_action(chat_id, enums.ChatAction.TYPING)      
         url = f"https://kora-api.vercel.app/chatbot/2d94e37d-937f-4d28-9196-bd5552cac68b/{BOT_NAME}/Anonymous/message={message.text}"
         request = requests.get(url)
         results = json.loads(request.text)
