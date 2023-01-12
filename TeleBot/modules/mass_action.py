@@ -175,7 +175,7 @@ async def _list(_, message):
     await pgram.send_document(
         message.chat.id,
         "userslist.txt",
-        caption=f"`{count}` ʙᴀɴɴᴇᴅ ᴍᴇᴍʙᴇʀs ɪɴ `{title}`\n"       
+        caption=f"`{len(count)}` ʙᴀɴɴᴇᴅ ᴍᴇᴍʙᴇʀs ɪɴ `{title}`\n"       
     )
     await msg.delete()
     os.remove("userslist.txt")      
