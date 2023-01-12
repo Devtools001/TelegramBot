@@ -58,11 +58,11 @@ async def _addchat(app : Client, query : CallbackQuery):
         async for m in app.get_chat_members(chat_id, filter=enums.ChatMembersFilter.ADMINISTRATORS):
             administrators.append(m.user.id)
         if user_id in administrators:
-            if check_db == False:  
+            if check_chat == False:  
                 await addchat_bot(chat_id)           
                 return await query.message.edit_caption("ᴇɴᴀʙʟᴇᴅ ᴄʜᴀᴛʙᴏᴛ ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ.")      
                 
-            elif check_db == True:
+            elif check_chat == True:
                 await query.message.edit_caption("ᴄʜᴀᴛʙᴏᴛ ɪs ᴀʟʀᴇᴀᴅʏ ᴇɴᴀʙʟᴇᴅ.")
             print(check_db,chat_id)
    
@@ -72,10 +72,10 @@ async def _addchat(app : Client, query : CallbackQuery):
             text = "❌ ʏᴏᴜ ᴀʀᴇ ɴᴏᴛ ᴡᴏʀᴛʜʏ sᴏɴ.",
             show_alert = True)
     else:
-        if check_db == False:
+        if check_chat == False:
             await addchat_bot(user_id)                     
             return await query.message.edit_caption("ᴇɴᴀʙʟᴇᴅ ᴄʜᴀᴛʙᴏᴛ ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ.") 
-        elif check_db == True:
+        elif check_chat == True:
             await query.message.edit_caption("ᴄʜᴀᴛʙᴏᴛ ɪs ᴀʟʀᴇᴀᴅʏ ᴇɴᴀʙʟᴇᴅ.")   
             
     
