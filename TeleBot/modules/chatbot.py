@@ -87,11 +87,11 @@ async def _rmchat(app : Client, query : CallbackQuery):
         async for m in app.get_chat_members(chat_id, filter=enums.ChatMembersFilter.ADMINISTRATORS):
             administrators.append(m.user.id)
         if user_id in administrators:
-            if not check_chat:  
+            if check_chat:  
                 await rmchat_bot(chat_id)           
                 return await query.message.edit_caption("ᴅɪsᴀʙʟᴇᴅ ᴄʜᴀᴛʙᴏᴛ ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ.")      
                 
-            elif check_chat:
+            elif not check_chat:
                 await query.message.edit_caption("ᴄʜᴀᴛʙᴏᴛ ɪs ᴀʟʀᴇᴀᴅʏ ᴅɪsᴀʙʟᴇᴅ.")
             
    
@@ -101,10 +101,10 @@ async def _rmchat(app : Client, query : CallbackQuery):
             text = "❌ ʏᴏᴜ ᴀʀᴇ ɴᴏᴛ ᴡᴏʀᴛʜʏ sᴏɴ.",
             show_alert = True)
     else:
-        if not check_chat:
+        if check_chat:
             await rmchat_bot(user_id)                     
             return await query.message.edit_caption("ᴅɪsᴀʙʟᴇᴅ ᴄʜᴀᴛʙᴏᴛ ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ.") 
-        elif check_chat:
+        elif not check_chat:
             await query.message.edit_caption("ᴄʜᴀᴛʙᴏᴛ ɪs ᴀʟʀᴇᴀᴅʏ ᴅɪsᴀʙʟᴇᴅ.")   
                  
 
