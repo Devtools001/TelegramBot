@@ -356,6 +356,32 @@ async def _unmute(_, message):
             await message.reply_text(ok)
     
 
+
+@pgram.on_message(filters.command("gusers") & ~filters.private)
+@user_admin
+async def _list(_, message):
+    msg = await message.reply("`ɢᴇᴛᴛɪɴɢ ᴜsᴇʀs ʟɪsᴛ ɪɴ ᴛʜɪs ᴄʜᴀᴛ.`")
+    count = await pgram.get_chat_members_count(message.chat.id)
+    title = message.chat.title 
+    mentions = f"ᴜꜱᴇʀꜱ ɪɴ {title}: \n"
+    async for member in pgram.get_chat_members(message.chat.id.):
+        mentions += (
+            f"\nᴅᴇʟᴇᴛᴇᴅ ᴀᴄᴄᴏᴜɴᴛ {member.user.id}"
+            if member.user.is_deleted
+            else f"\n{member.user.mention} {member.user.id}"
+            )
+    
+    with open("userslist.txt", "w+") as file:
+        file.write(mentions)
+    await pgram.send_document(
+        message.chat.id,
+        "userslist.txt",
+        caption=f"`{count}` ᴛᴏᴛᴀʟ ᴍᴇᴍʙᴇʀs ɪɴ `{title}`\n"       
+    )
+    await msg.delete()
+    os.remove("userslist.txt")      
+
+
 __help__ = """
 **⸢ᴄᴀɴ ᴏɴʟʏ ʙᴇ ᴜsᴇᴅ ɪɴ ɢʀᴏᴜᴘs.⸥**
 
@@ -366,6 +392,7 @@ __help__ = """
 ๏ /ban ᴏʀ /dban <ᴜsᴇʀʜᴀɴᴅʟᴇ> : ʙᴀɴs ᴀ ᴜsᴇʀ. (ᴠɪᴀ ʜᴀɴᴅʟᴇ, ᴏʀ ʀᴇᴘʟʏ)
 ๏ /sban <ᴜsᴇʀʜᴀɴᴅʟᴇ> : sɪʟᴇɴᴛʟʏ ʙᴀɴ ᴀ ᴜsᴇʀ. ᴅᴇʟᴇᴛᴇs ᴄᴏᴍᴍᴀɴᴅ, ʀᴇᴘʟɪᴇᴅ ᴍᴇssᴀɢᴇ ᴀɴᴅ ᴅᴏᴇsɴ'ᴛ ʀᴇᴘʟʏ. (ᴠɪᴀ ʜᴀɴᴅʟᴇ, ᴏʀ ʀᴇᴘʟʏ)
 ๏ /tban <ᴜsᴇʀʜᴀɴᴅʟᴇ> x(m/h/d) : ʙᴀɴs ᴀ ᴜsᴇʀ ғᴏʀ x ᴛɪᴍᴇ. (ᴠɪᴀ ʜᴀɴᴅʟᴇ, ᴏʀ ʀᴇᴘʟʏ). ᴍ = ᴍɪɴᴜᴛᴇs, ʜ = ʜᴏᴜʀs, ᴅ = ᴅᴀʏs.
+๏ /listbans : ʟɪsᴛ ᴏғ ʙᴀɴɴᴇᴅ ᴜsᴇʀs ɪɴ ᴀ ᴄʜᴀᴛ.
 ๏ /unban <ᴜsᴇʀʜᴀɴᴅʟᴇ> :  ᴜɴʙᴀɴs a user. (ᴠɪᴀ ʜᴀɴᴅʟᴇ, ᴏʀ ʀᴇᴘʟʏ)
 ๏ /punch <ᴜsᴇʀʜᴀɴᴅʟᴇ> :  Punches a user out of the group, (ᴠɪᴀ ʜᴀɴᴅʟᴇ, ᴏʀ ʀᴇᴘʟʏ)
 ๏ /mute or /dmute <ᴜsᴇʀʜᴀɴᴅʟᴇ> : sɪʟᴇɴᴄᴇs ᴀ ᴜsᴇʀ. ᴄᴀɴ ᴀʟsᴏ ʙᴇ ᴜsᴇᴅ ᴀs ᴀ ʀᴇᴘʟʏ, ᴍᴜᴛɪɴɢ ᴛʜᴇ ʀᴇᴘʟɪᴇᴅ ᴛᴏ ᴜsᴇʀ.
