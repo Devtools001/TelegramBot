@@ -18,9 +18,6 @@ async def _check_bot(_, message):
         return
     chat_id = message.chat.id
     user_id = message.from_user.id
-    administrators = []
-    async for m in pgram.get_chat_members(chat_id, filter=enums.ChatMembersFilter.ADMINISTRATORS):
-        administrators.append(m.user.id)
     if message.chat.type != enums.ChatType.PRIVATE:
         administrators = []
         async for m in pgram.get_chat_members(chat_id, filter=enums.ChatMembersFilter.ADMINISTRATORS):
