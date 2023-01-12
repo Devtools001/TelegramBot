@@ -30,4 +30,4 @@ async def _minfo(_, message):
         reply_markup=buttons)    
     print(steve.id) 
     await asyncio.sleep(EDIT_TIME)
-    await pgram.edit_message_media(chat_id,steve,InputMediaPhoto(file3),reply_markup=buttons)
+    await pgram.edit_message_media(chat_id,steve.id,InputMediaPhoto(file3),reply_markup=buttons)
