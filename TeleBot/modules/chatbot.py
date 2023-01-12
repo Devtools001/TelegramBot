@@ -28,5 +28,5 @@ async def chatbot(_, message):
         url = f"https://kora-api.vercel.app/chatbot/2d94e37d-937f-4d28-9196-bd5552cac68b/{BOT_NAME}/Anonymous/message={message.text}"
         request = requests.get(url)
         results = json.loads(request.text)
-        asyncio.sleep(0.5)
+        await asyncio.sleep(0.5)
         await message.reply_text(results["reply"])
