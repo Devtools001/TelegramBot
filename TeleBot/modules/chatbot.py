@@ -8,11 +8,6 @@ from TeleBot.modules.pyrogram_funcs.chat_actions import send_action
 
 chatbotdb = db.chatbot
 
-async def is_chatbot(chat_id : int) -> bool :
-    chat = chatbotdb.find_one({"chat_id":chat_id})
-    if not chat  :
-        return False
-    return True
 
 async def addchat_bot(chat_id : int):
     return await chatbotdb.insert_one({"chat_id" : chat_id})
@@ -123,7 +118,10 @@ async def friday_message(message : Message):
 
 @pgram.on_message(filters.text  & ~filters.bot,group=2)
 @send_action(enums.ChatAction.TYPING)
-async def chatbot(_, message):        
+async def chatbot(_, message): 
+    check_chat = await chatbotdb.find_one({"chat_id" : chat_id})
+    if not check_chat:
+        return        
     if message.text and not message.document:
         if not await friday_message(message):
             return        
