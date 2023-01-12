@@ -24,6 +24,20 @@ async def _pin(_, message):
     except Exception as er:
         await message.reply_text(er)
 
+@pgram.on_message(filters.command("pinned") & ~filters.private)
+@bot_admin
+@user_admin
+@bot_can_pin
+async def _pin(_, message):
+    chat = await pgram.get_chat(message.chat.id)
+    if not chat.pinned_message:
+        return await message.reply_text("⚗️ ᴛʜᴇʀᴇ ᴀʀᴇɴ'ᴛ ᴀɴʏ ᴘɪɴɴᴇᴅ ᴍᴇssᴀɢᴇ ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ.")
+    try:        
+        await message.reply_text("🖇️ ʜᴇʀᴇ ɪs ʟɪɴᴋ ᴏғ ᴛʜᴇ ʟᴀsᴛ ᴘɪɴɴᴇᴅ ᴍᴇssᴀɢᴇ.",reply_markup=
+        InlineKeyboardMarkup([[InlineKeyboardButton(text="💌 ᴠɪᴇᴡ ᴍᴇssᴀɢᴇ",url=chat.pinned_message.link)],[InlineKeyboardButton(text="❌ ᴄʟᴏsᴇ", callback_data="admin_close")]]))  
+    except Exception as er:
+        await message.reply_text(er)
+
 
 @pgram.on_message(filters.command(["unpin","unpinall"]) & ~filters.private)
 @bot_admin
