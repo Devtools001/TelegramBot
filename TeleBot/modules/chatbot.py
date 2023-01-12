@@ -23,7 +23,7 @@ async def friday_message(message : Message):
 @send_action(enums.ChatAction.TYPING)
 async def chatbot(_, message):        
     if message.text and not message.document:
-        if not friday_message(message):
+        if not await friday_message(message):
             return        
         url = f"https://kora-api.vercel.app/chatbot/2d94e37d-937f-4d28-9196-bd5552cac68b/{BOT_NAME}/Anonymous/message={message.text}"
         request = requests.get(url)
