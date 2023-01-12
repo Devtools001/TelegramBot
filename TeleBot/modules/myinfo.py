@@ -71,6 +71,6 @@ async def _ic(app: Client, query : CallbackQuery):
     await app.answer_callback_query(
     query.id,
     text=msg,
-    )
+    show_alert=True)
     
 
