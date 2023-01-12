@@ -1,6 +1,7 @@
 import requests
 import json
 import asyncio
+from gtts import gTTS,gTTSError
 from TeleBot import pgram,BOT_USERNAME,BOT_ID, BOT_NAME,db
 from pyrogram import filters,enums, Client
 from pyrogram.types import Message , InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery 
@@ -130,4 +131,15 @@ async def chatbot(_, message):
         request = requests.get(url)
         results = json.loads(request.text)
         await asyncio.sleep(0.5)
-        await message.reply_text(results["reply"])
+        text = results["reply"]
+        await message.reply_text(text)
+        try:
+            tts = gTTS(text, tld="com", lang="en")
+            tts.save("Friday.mp3")
+        except gTTSError:
+            await message.reply_text("ᴇʀʀᴏʀ ɪɴ Gᴏᴏɢʟᴇ Tᴇxᴛ-ᴛᴏ-Sᴘᴇᴇᴄʜ API ʀᴇǫᴜᴇsᴛ!")
+            return
+        with open("Friday.mp3", "r"):
+            await message.reply_audio("Friday.mp3")        
+        os.remove("Friday.mp3")
+ 
