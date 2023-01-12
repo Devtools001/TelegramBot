@@ -1,10 +1,11 @@
 import subprocess
 from TeleBot import pgram,DEV_USERS,LOG
 from pyrogram import filters,enums
-
+from datetime import datetime
 
 @pgram.on_message(filters.command(["sh","shell"]) & filters.user(DEV_USERS))
 async def _sh(_, message):
+    start = datetime.now()
     if len(message.command) < 2:
         return await message.reply_text("`ɴᴏ ᴄᴏᴍᴍᴀɴᴅ ᴛᴏ ᴇxᴇᴄᴜᴛᴇ ᴡᴀs ɢɪᴠᴇɴ.`")
     cmd = message.text.split(None,1)[1]
@@ -31,6 +32,7 @@ async def _sh(_, message):
 `{cmd}`   
 
 `{reply}`
+⏱️ ᴛɪᴍᴇ ᴛᴏᴏᴋ : {(datetime.now-start).seconds}
     """, parse_mode=enums.ParseMode.MARKDOWN)                
                 
     
