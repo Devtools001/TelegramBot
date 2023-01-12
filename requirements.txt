@@ -5,6 +5,7 @@ jikanpy
 httpx 
 google-reverse-search==0.1.3
 gtts
+gpytranslate
 motor
 pyrogram
 PyDictionary
