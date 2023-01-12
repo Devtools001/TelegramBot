@@ -6,9 +6,10 @@ trans = SyncTranslator()
 
 @pgram.on_message(filters.command(["tr","tl"]))
 async def _translate(_, message):
+    text = await message.reply("📝 ᴛʀᴀɴsʟᴀᴛɪɴɢ......")
     replied = message.reply_to_message
     if not replied:
-        return await message.reply_text("📝 ʀᴇᴘʟʏ ᴛᴏ ᴀ ᴍᴇssᴀɢᴇ ᴛᴏ ᴛʀᴀɴsʟᴀᴛᴇ ɪᴛ!")
+        return await text.edit("📝 ʀᴇᴘʟʏ ᴛᴏ ᴀ ᴍᴇssᴀɢᴇ ᴛᴏ ᴛʀᴀɴsʟᴀᴛᴇ ɪᴛ!")
     
     if replied.caption:
         to_translate = replied.caption
@@ -31,4 +32,4 @@ async def _translate(_, message):
     reply = f"**📒 ᴛʀᴀɴsʟᴀᴛᴇᴅ ғʀᴏᴍ {source} ᴛᴏ {dest} :**\n" \
         f"`{translation.text}`"
 
-    await pgram.send_message(message.chat.id,reply)               
+    await text.edit(reply)               
