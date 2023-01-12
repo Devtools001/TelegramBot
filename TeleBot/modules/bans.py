@@ -45,7 +45,7 @@ async def extract_time(message, time_val):
 
 SUPREME_USERS = DEV_USERS + DRAGONS
 
-@pgram.on_message(filters.command("kickme") & ~filters.private)
+@pgram.on_message(filters.command(["kickme","banme"]) & ~filters.private)
 @bot_admin
 @bot_can_ban
 async def _kickme(_, message):
@@ -58,12 +58,19 @@ async def _kickme(_, message):
     if user_id in administrators:
         await message.reply_text("I ᴡɪsʜ I ᴄᴏᴜʟᴅ... ʙᴜᴛ ʏᴏᴜ'ʀᴇ ᴀɴ ᴀᴅᴍɪɴ.")
         return
-    try:
-        await pgram.ban_chat_member(chat_id, user_id)
-        await pgram.unban_chat_member(chat_id, user_id)
-        await message.reply_text("*ᴋɪᴄᴋs ʏᴏᴜ ᴏᴜᴛ ᴏғ ᴛʜᴇ ɢʀᴏᴜᴘ*")
-    except Exception as error:
-        await message.reply_text(error)
+    if message.command[0] == "kickme":
+        try:
+            await pgram.ban_chat_member(chat_id, user_id)
+            await pgram.unban_chat_member(chat_id, user_id)
+            await message.reply_text("*ᴋɪᴄᴋs ʏᴏᴜ ᴏᴜᴛ ᴏғ ᴛʜᴇ ɢʀᴏᴜᴘ*")
+        except Exception as error:
+            await message.reply_text(error)
+    if message.command[0] == "banme":
+        try:
+            await pgram.ban_chat_member(chat_id, user_id)            
+            await message.reply_text("**🚫 ʙᴀɴɴᴇᴅ ʏᴏᴜ ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ.**")
+        except Exception as error:
+            await message.reply_text(error)
        
          
 @pgram.on_message(filters.command(["ban","sban","dban"]) & ~filters.private)
