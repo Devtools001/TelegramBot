@@ -44,18 +44,19 @@ async def _check_bot(_, message):
 async def _addchat(app : Client, query : CallbackQuery):
     user_id = query.from_user.id
     chat_id = query.message.chat.id
+    check_db = await chatbotdb.find_one({"chat_id":chat_id})
     if query.message.chat.type != enums.ChatType.PRIVATE:
         administrators = []
         async for m in app.get_chat_members(chat_id, filter=enums.ChatMembersFilter.ADMINISTRATORS):
             administrators.append(m.user.id)
         if user_id in administrators:
-            if not await is_chatbot(chat_id):  
+            if not check_db:  
                 await chatbotdb.insert_one({"chat_id":chat_id})           
                 return await query.message.edit_caption("ᴇɴᴀʙʟᴇᴅ ᴄʜᴀᴛʙᴏᴛ ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ.")      
                 
-            else:
+            elif check_db:
                 await query.message.edit_caption("ᴄʜᴀᴛʙᴏᴛ ɪs ᴀʟʀᴇᴀᴅʏ ᴇɴᴀʙʟᴇᴅ.")
-            print(await is_chatbot(chat_id),chat_id)
+            print(check_db,chat_id)
    
         else:
             await client.answer_callback_query(
