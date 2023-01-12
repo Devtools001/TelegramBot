@@ -66,7 +66,7 @@ async def _purge(_, message):
             revoke=True)        
   
     _time = time.perf_counter() - start
-    await message.reply_text(f"⏱️ ᴘᴜʀɢᴇᴅ sᴜᴄᴄᴇssғᴜʟʟʏ ɪɴ {_time} sᴇᴄᴏɴᴅ(s)")
+    await message.reply_text(f"⏱️ ᴘᴜʀɢᴇᴅ sᴜᴄᴄᴇssғᴜʟʟʏ ɪɴ {_time : 0.2f} sᴇᴄᴏɴᴅ(s)")
 
 
 
