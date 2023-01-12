@@ -6,7 +6,7 @@ from TeleBot.modules.pyrogram_funcs.status import (
     bot_can_del,
     user_can_del)
 
-@pgram.on_message(filters.command(["del,"delete"]) & ~filters.private)
+@pgram.on_message(filters.command(["del","delete"]) & ~filters.private)
 @bot_admin
 @user_admin
 @bot_can_del
