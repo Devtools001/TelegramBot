@@ -32,7 +32,7 @@ async def _sh(_, message):
 `{cmd}`   
 
 `{reply}`
-⏱️ ᴛɪᴍᴇ ᴛᴏᴏᴋ : {(datetime.now-start).seconds}
+⏱️ ᴛɪᴍᴇ ᴛᴏᴏᴋ : {(datetime.now()-start).seconds}
     """, parse_mode=enums.ParseMode.MARKDOWN)                
                 
     
