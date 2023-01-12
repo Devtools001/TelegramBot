@@ -120,7 +120,7 @@ async def friday_message(message : Message):
 @send_action(enums.ChatAction.TYPING)
 async def chatbot(_, message): 
     check_chat = await chatbotdb.find_one({"chat_id" : chat_id})
-    if not check_chat:
+    if check_chat:
         return        
     if message.text and not message.document:
         if not await friday_message(message):
