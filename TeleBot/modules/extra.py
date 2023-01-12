@@ -14,7 +14,7 @@ async def _spoil(_, message):
         await pgram.send_photo(message.chat.id,photo=file,has_spoiler=True)
         try:
             os.remove(file)
-        except Exception as er
+        except Exception as er:
             return await message.reply_text(er)
     except Exception as er:
         await message.reply_text(er)
