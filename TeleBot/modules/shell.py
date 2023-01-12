@@ -3,7 +3,7 @@ from TeleBot import pgram,DEV_USERS,LOG
 from pyrogram import filters,enums
 
 
-@pgram.on_message(filters.command(["sh,"shell"]) & filters.user(DEV_USERS))
+@pgram.on_message(filters.command(["sh","shell"]) & filters.user(DEV_USERS))
 async def _sh(_, message):
     if len(message.command) < 2:
         return await message.reply_text("`ɴᴏ ᴄᴏᴍᴍᴀɴᴅ ᴛᴏ ᴇxᴇᴄᴜᴛᴇ ᴡᴀs ɢɪᴠᴇɴ.`")
