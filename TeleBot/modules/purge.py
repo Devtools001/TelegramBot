@@ -1,3 +1,4 @@
+from datetime import datetime 
 from TeleBot import pgram
 from pyrogram import filters 
 from TeleBot.modules.pyrogram_funcs.status import (
@@ -33,6 +34,7 @@ async def _del(_, message):
 async def _purge(_, message):
     if message.sender_chat:
         return
+    start = datetime.now()
     replied = message.reply_to_message
     await message.delete()
     if not replied:
@@ -56,14 +58,15 @@ async def _purge(_, message):
                 message_ids=message_ids,
                 revoke=True)                        
             message_ids = []
-    
-
+        
     if len(message_ids) > 0:
         await pgram.delete_messages(
             chat_id=chat_id,
             message_ids=message_ids,
-            revoke=True)
-        
+            revoke=True)        
+    end = datetime.now()
+    _time = (end-start).seconds
+    await message.reply_text(f"⏱️ ᴘᴜʀɢᴇᴅ sᴜᴄᴄᴇssғᴜʟʟʏ ɪɴ {_time} sᴇᴄᴏɴᴅ(s)")
 
 
 
