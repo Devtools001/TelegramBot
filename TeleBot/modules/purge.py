@@ -41,7 +41,7 @@ async def _purge(_, message):
     
     if len(message.command) > 1 and message.command[1].isdigit():
          _id = replied.id + int(message.command[1])
-        if _id > message.id:
+         if _id > message.id:
             _id = message.id           
     else:
         _id = message.id  
