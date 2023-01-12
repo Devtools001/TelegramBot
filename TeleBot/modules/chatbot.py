@@ -19,7 +19,7 @@ async def friday_message(message : Message):
     else:
         return False
 
-@pgram.on_message((filters.text | filters.sticker) & ~filters.bot)
+@pgram.on_message(filters.text  & ~filters.bot & group=2)
 @send_action(enums.ChatAction.TYPING)
 async def chatbot(_, message):        
     if message.text and not message.document:
