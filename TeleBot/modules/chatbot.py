@@ -22,6 +22,9 @@ async def _check_bot(_, message):
     async for m in pgram.get_chat_members(chat_id, filter=enums.ChatMembersFilter.ADMINISTRATORS):
         administrators.append(m.user.id)
     if message.chat.type != enums.ChatType.PRIVATE:
+        administrators = []
+        async for m in pgram.get_chat_members(chat_id, filter=enums.ChatMembersFilter.ADMINISTRATORS):
+            administrators.append(m.user.id)
         if user_id in administrators:
             return await message.reply_photo(photo="https://graph.org/file/1e810f699ea60b2962c61.jpg",
             caption="ᴄʜᴏᴏsᴇ ᴀɴ ᴏᴩᴛɪᴏɴ ᴛᴏ ᴇɴᴀʙʟᴇ/ᴅɪsᴀʙʟᴇ ᴄʜᴀᴛʙᴏᴛ",
