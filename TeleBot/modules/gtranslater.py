@@ -29,6 +29,6 @@ async def _translate(_, message):
     translation = trans(to_translate,
                         sourcelang=source, targetlang=dest)
     reply = f"**📒 ᴛʀᴀɴsʟᴀᴛᴇᴅ ғʀᴏᴍ {source} ᴛᴏ {dest} :**\n" \
-        f"{translation.text}"
+        f"`{translation.text}`"
 
-    await pgram.send_message(text=reply, chat_id=message.chat.id)               
+    await pgram.send_message(message.chat.id,reply)               
