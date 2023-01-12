@@ -10,9 +10,9 @@ class Config:
 
     API_ID=16191628
     API_HASH="7d5acccaf1df4f5b7a690b203fd1953e"
-    BOT_TOKEN="5966252354:AAGcVXgJrP5vKb8-0LBPSRzwaATPgY96cSI"
+    BOT_TOKEN="5897563446:AAFp0VkPEZbxxKc3zVq771RESMTHjPGGULM"
 
-    OWNER_ID = 5459540851
+    OWNER_ID = 601786671
     SUPPORT_CHAT = "Testing_support_group"
 
     BOT_NAME = "• ғ ʀ ɪ ᴅ ᴀ ʏ •"
