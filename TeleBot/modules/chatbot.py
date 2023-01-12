@@ -17,10 +17,8 @@ async def is_chatbot(chat_id : int) -> bool :
 async def addchat_bot(chat_id : int):
     return await chatbotdb.insert_one({"chat_id" : chat_id})
     
-async def rmchat_bot(chat_id : int):
-    chat = chatbotdb.find_one({"chat_id":chat_id})
-    if chat:
-        return await chatbotdb.delete_one({"chat_id" : chat_id})        
+async def rmchat_bot(chat_id : int):    
+    return await chatbotdb.delete_one({"chat_id" : chat_id})        
 
 
 buttons = InlineKeyboardMarkup([[ InlineKeyboardButton(text="ᴇɴᴀʙʟᴇ", callback_data="add_chat"),InlineKeyboardButton(text="ᴅɪsᴀʙʟᴇ", callback_data="rm_chat")]])
