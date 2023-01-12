@@ -7,17 +7,7 @@ from TeleBot import pgram,BOT_USERNAME,BOT_ID, BOT_NAME,db
 from pyrogram import filters,enums, Client
 from pyrogram.types import Message , InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery 
 from TeleBot.modules.pyrogram_funcs.chat_actions import send_action
-
-chatbotdb = db.chatbot
-
-
-async def addchat_bot(chat_id : int):
-    return await chatbotdb.insert_one({"chat_id" : chat_id})
-    
-async def rmchat_bot(chat_id : int):   
-    chat = await chatbotdb.find_one({"chat_id" : chat_id})
-    if chat: 
-        return await chatbotdb.delete_one({"chat_id" : chat_id})        
+from TeleBot.modules.mongo.chatbot_db import chatbotdb,addchat_bot,rmchat_bot
 
 
 buttons = InlineKeyboardMarkup([[ InlineKeyboardButton(text="ᴇɴᴀʙʟᴇ", callback_data="add_chat"),InlineKeyboardButton(text="ᴅɪsᴀʙʟᴇ", callback_data="rm_chat")]])
