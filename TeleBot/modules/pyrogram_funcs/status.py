@@ -65,6 +65,17 @@ def bot_can_pin(func):
         return await func(app,message,*args,**kwargs)
     return can_pin
 
+def bot_can_del(func):
+    @wraps(func)
+    async def can_delete(app : Client, message : Message,*args,**kwargs):
+        BOT = await app.get_chat_member(message.chat.id,BOT_ID)
+
+        if not BOT.privileges.can_delete_messages:                         
+            await message.reply_text(f"ʜᴇʏ ʙᴀʙʏ ɪ ᴅᴏɴ'ᴛ ʜᴀᴠᴇ ʀɪɢʜᴛs ᴛᴏ **ᴅᴇʟᴇᴛᴇ ᴍᴇssᴀɢᴇs** ɪɴ **{message.chat.title}**. ᴄʜᴇᴄᴋ ᴀɴᴅ ɢɪᴠᴇ ᴍᴇ ᴛʜᴇ ʀɪɢʜᴛ ᴘʟᴇᴀsᴇ.")
+            return 
+        return await func(app,message,*args,**kwargs)
+    return can_delete
+
 def user_admin(mystic):
     @wraps(mystic)
     async def wrapper(app : Client, message : Message,*args,**kwargs):  
@@ -92,6 +103,19 @@ def user_can_ban(mystic):
         
         if (user.status in COMMANDERS and not user.privileges.can_restrict_members) and user_id not in SUPREME_USERS:                     
             return await message.reply_text("ʜᴇʏ ɴᴏᴏʙ ʏᴏᴜ ᴅᴏɴ'ᴛ ʜᴀᴠᴇ ʀɪɢʜᴛ ᴛᴏ **ʀᴇsᴛʀɪᴄᴛ ᴜsᴇʀs**. ʏᴏᴜ ᴄᴀɴ'ᴛ ᴜsᴇ ᴛʜɪs ᴄᴏᴍᴍᴀɴᴅ.") 
+                                                    
+        return await mystic(app,message,*args,**kwargs)
+    return wrapper
+
+def user_can_del(mystic):
+    @wraps(mystic)
+    async def wrapper(app : Client, message : Message,*args,**kwargs):
+        user_id = message.from_user.id
+        chat_id = message.chat.id
+        user = await app.get_chat_member(chat_id,user_id)
+        
+        if (user.status in COMMANDERS and not user.privileges.can_delete_messages) and user_id not in SUPREME_USERS:                     
+            return await message.reply_text("ʜᴇʏ ɴᴏᴏʙ ʏᴏᴜ ᴅᴏɴ'ᴛ ʜᴀᴠᴇ ʀɪɢʜᴛ ᴛᴏ **ᴅᴇʟᴇᴛᴇ ᴍᴇssᴀɢᴇs**. ʏᴏᴜ ᴄᴀɴ'ᴛ ᴜsᴇ ᴛʜɪs ᴄᴏᴍᴍᴀɴᴅ.") 
                                                     
         return await mystic(app,message,*args,**kwargs)
     return wrapper
