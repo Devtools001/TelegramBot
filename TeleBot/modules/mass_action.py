@@ -155,26 +155,27 @@ async def _kickthefools(_,message):
         await message.reply_text(f"ᴋɪᴄᴋᴇᴅ {len(fools)} ᴍᴇᴍʙᴇʀs ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ ᴡʜᴏ ᴡᴇʀᴇ ɪɴᴀᴄᴛɪᴠᴇ ғᴏʀ ᴀ ᴍᴏɴᴛʜ.\n⏰ ᴛɪᴍᴇ ᴛᴏᴏᴋ : {end}")
 
 
-@pgram.on_message(filters.command("gusers") & ~filters.private)
+@pgram.on_message(filters.command("listbans") & ~filters.private)
 @user_admin
 async def _list(_, message):
-    msg = await message.reply("`ɢᴇᴛᴛɪɴɢ ᴜsᴇʀs ʟɪsᴛ ɪɴ ᴛʜɪs ᴄʜᴀᴛ.`")
-    count = await pgram.get_chat_members_count(message.chat.id)
+    msg = await message.reply("`ɢᴇᴛᴛɪɴɢ ʙᴀɴɴᴇᴅ ᴜsᴇʀs ʟɪsᴛ ɪɴ ᴛʜɪs ᴄʜᴀᴛ.`")
+    count = []
     title = message.chat.title 
     mentions = f"ᴜꜱᴇʀꜱ ɪɴ {title}: \n"
-    async for member in pgram.get_chat_members(message.chat.id):
+    async for member in pgram.get_chat_members(message.chat.id,filter=enums.ChatMembersFilter.BANNED):        
         mentions += (
             f"\nᴅᴇʟᴇᴛᴇᴅ ᴀᴄᴄᴏᴜɴᴛ {member.user.id}"
             if member.user.is_deleted
             else f"\n{member.user.mention} {member.user.id}"
             )
+        count.append(member)
     
     with open("userslist.txt", "w+") as file:
         file.write(mentions)
     await pgram.send_document(
         message.chat.id,
         "userslist.txt",
-        caption=f"`{count}` ᴛᴏᴛᴀʟ ᴍᴇᴍʙᴇʀs ɪɴ `{title}`\n"       
+        caption=f"`{count}` ʙᴀɴɴᴇᴅ ᴍᴇᴍʙᴇʀs ɪɴ `{title}`\n"       
     )
     await msg.delete()
     os.remove("userslist.txt")      
